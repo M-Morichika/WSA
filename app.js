@@ -11,9 +11,9 @@ const auditData = {
   overviewOpinion:
     "現時点の証拠に基づく限り、アルゼンチン軍事政権の開戦判断は、英国の軍事的反応、米国・国際社会の反応、限定戦争としての制御可能性について、楽観的な前提に依存していた可能性が高い。ただし、開戦前時点で英国の全面的軍事奪還がどこまで予見可能だったかについては、追加検証を要する。",
   issues: [
-    { name: "英国反応の見積もり", status: "重大懸念", evidence: 5, open: 2 },
+    { name: "英国反応の見積もり", status: "重大懸念", evidence: 5, open: 3 },
     { name: "国際環境の誤認", status: "要注意", evidence: 3, open: 3 },
-    { name: "継戦能力の過大評価", status: "重大懸念", evidence: 6, open: 1 },
+    { name: "継戦能力の過大評価", status: "重大懸念", evidence: 6, open: 2 },
     { name: "国内政治動機の影響", status: "要検証", evidence: 2, open: 4 },
   ],
   counterHypotheses: [
@@ -460,7 +460,7 @@ const auditData = {
       // #2 データ拡充: 1982年2月25日の豪州による購入意向発表。開戦直前に公開された
       // 英空母戦力縮小シグナルで、E-005 と並ぶ claim_uk_limited の同時代的根拠。
       source:
-        "Australian Government announcement of intention to purchase HMS Invincible, 25 Feb 1982. Secondary confirmation: Anthony Wright, Australian Carrier Decisions, Sea Power Centre, June 1998; HMAS Melbourne historical accounts.",
+        "一次発表本文は未収集。二次確認: Anthony Wright, Australian Carrier Decisions, Sea Power Centre, June 1998; HMAS Melbourne historical accounts（1982年2月25日の HMS Invincible 購入意向発表を確認）。",
       collectionState: "一次発表未収集（二次研究で確認可）",
       authenticity: "中", // 一次発表本文は未収集。複数の二次資料で確認する暫定状態
       interpretiveReliability: "中", // 売却合意の存在は明確だが、アルゼンチン中枢の依拠は別問題
@@ -632,7 +632,7 @@ const auditData = {
       knownByDecisionMakersBasis:
         "1982年2月25日の公開発表として同時代に受領可能。ただし、アルゼンチン軍事政権中枢がこれを実際に判断材料化した一次記録は未確認。",
       canSay:
-        "開戦直前に英国が新鋭空母 Invincible を豪州へ売却する方向だったことは、英国の遠隔奪還能力・意志を過小評価する同時代的シグナルになり得た。",
+        "開戦直前に英国が新鋭空母 Invincible を豪州へ売却する方向だったことは、英国の反応が限定的にとどまると予測する材料になり得た。",
       cannotSay:
         "売却合意だけでは、英国が危機時に空母を投入しない、または売却を延期しないと結論できない。実際には戦争勃発後に売却は停止・撤回された。",
     },
