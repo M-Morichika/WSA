@@ -11,9 +11,9 @@ const auditData = {
   overviewOpinion:
     "現時点の証拠に基づく限り、アルゼンチン軍事政権の開戦判断は、英国の軍事的反応、米国・国際社会の反応、限定戦争としての制御可能性について、楽観的な前提に依存していた可能性が高い。ただし、開戦前時点で英国の全面的軍事奪還がどこまで予見可能だったかについては、追加検証を要する。",
   issues: [
-    { name: "英国反応の見積もり", status: "重大懸念", evidence: 4, open: 2 },
+    { name: "英国反応の見積もり", status: "重大懸念", evidence: 5, open: 2 },
     { name: "国際環境の誤認", status: "要注意", evidence: 3, open: 3 },
-    { name: "継戦能力の過大評価", status: "重大懸念", evidence: 5, open: 1 },
+    { name: "継戦能力の過大評価", status: "重大懸念", evidence: 6, open: 1 },
     { name: "国内政治動機の影響", status: "要検証", evidence: 2, open: 4 },
   ],
   counterHypotheses: [
@@ -226,7 +226,7 @@ const auditData = {
       impact: "高",
       evidenceStrength: "中",
       opinion:
-        "英国の軍事的反応、長距離展開能力、米国・国際社会の反応について、アルゼンチン軍事政権の見積もりは楽観的前提に依存していた可能性が高い。ただし、政権中枢がどの程度の英国反応を実際に想定していたかは、追加資料が必要である。他方、1981年国防白書（HMS Endurance 撤収）など英国関与の縮小を示す同時代シグナルも存在し、楽観的見積もりには一定の酌量余地がある（E-005／反証を隠さない）。",
+        "英国の軍事的反応、長距離展開能力、米国・国際社会の反応について、アルゼンチン軍事政権の見積もりは楽観的前提に依存していた可能性が高い。ただし、政権中枢がどの程度の英国反応を実際に想定していたかは、追加資料が必要である。他方、1981年国防白書（HMS Endurance 撤収）や1982年2月の HMS Invincible 豪州売却合意など、英国関与・空母戦力の縮小を示す同時代シグナルも存在し、楽観的見積もりには一定の酌量余地がある（E-005/E-006／反証を隠さない）。",
       criteria: [
         "判断前提が戦争進行により大きく崩れた",
         "当時利用可能な反対情報が存在した可能性がある",
@@ -443,13 +443,27 @@ const auditData = {
       type: "政府・軍事行動資料",
       publishedDate: "1981年6月（同時代公開）",
       coveragePeriod: "開戦前（英国の南大西洋関与縮小方針）",
-      // #2(A): ex-ante 主張を直接支える唯一の同時代一次史料。判断時点で公開・入手可能だった
+      // #2(A): ex-ante 主張を直接支える同時代一次史料。判断時点で公開・入手可能だった
       // 政府文書で、英国の南大西洋関与後退シグナル（claim_uk_limited の同時代的根拠）を構成する。
       source:
         "The United Kingdom Defence Programme: The Way Forward, Cmnd 8288, HMSO, June 1981（HMS Endurance 撤収方針を含む）。当時公開の政府文書。",
       collectionState: "一次資料入手可",
       authenticity: "高", // 同時代の公式政府文書
       interpretiveReliability: "中", // シグナルの存在は確実だが、依拠・受領は別問題
+    },
+    {
+      id: "E-006",
+      title: "HMS Invincible 豪州売却合意（1982年2月の空母戦力縮小シグナル）",
+      type: "政府・軍事行動資料",
+      publishedDate: "1982年2月25日（同時代発表）",
+      coveragePeriod: "開戦前（英国空母戦力の削減・移転シグナル）",
+      // #2 データ拡充: 1982年2月25日の豪州による購入意向発表。開戦直前に公開された
+      // 英空母戦力縮小シグナルで、E-005 と並ぶ claim_uk_limited の同時代的根拠。
+      source:
+        "Australian Government announcement of intention to purchase HMS Invincible, 25 Feb 1982. Secondary confirmation: Anthony Wright, Australian Carrier Decisions, Sea Power Centre, June 1998; HMAS Melbourne historical accounts.",
+      collectionState: "一次発表未収集（二次研究で確認可）",
+      authenticity: "中", // 一次発表本文は未収集。複数の二次資料で確認する暫定状態
+      interpretiveReliability: "中", // 売却合意の存在は明確だが、アルゼンチン中枢の依拠は別問題
     },
   ],
   // claim は id/text/type のみ保持し、状態（支持/反証の集計）は持たない。
@@ -502,7 +516,10 @@ const auditData = {
       id: "EL-002",
       evidenceId: "E-001",
       claimId: "claim_uk_limited",
-      assessmentCellId: null,
+      // A-1: 中心セルに紐付け。EL-006/EL-007（同セルへの支持）と対になる唯一の反証であり、
+      // null のままだと Assessment ビューの cell_war_capacity_opening が支持/保留のみになり
+      // 「反証を隠さない」原則が当該ビューで破れる。反証を同セル上で可視化する。
+      assessmentCellId: "cell_war_capacity_opening",
       claimLabel: "英国反応の見積もり",
       target: "反対仮説: 英国は全面奪還しない",
       relationship: "反証",
@@ -598,6 +615,27 @@ const auditData = {
       cannotSay:
         "この公開シグナルから、アルゼンチンが英国の全面奪還を排除したとは結論できない（実際の全面奪還＝EL-002 がこの仮説を弱める）。",
     },
+    {
+      id: "EL-007",
+      evidenceId: "E-006",
+      claimId: "claim_uk_limited",
+      assessmentCellId: "cell_war_capacity_opening",
+      claimLabel: "英国空母戦力縮小シグナル",
+      target: "反対仮説: 英国の反応は限定的（開戦直前の公開シグナル）",
+      relationship: "支持",
+      reviewState: "要検証",
+      relevance: "中",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "不明",
+      knownByDecisionMakersBasis:
+        "1982年2月25日の公開発表として同時代に受領可能。ただし、アルゼンチン軍事政権中枢がこれを実際に判断材料化した一次記録は未確認。",
+      canSay:
+        "開戦直前に英国が新鋭空母 Invincible を豪州へ売却する方向だったことは、英国の遠隔奪還能力・意志を過小評価する同時代的シグナルになり得た。",
+      cannotSay:
+        "売却合意だけでは、英国が危機時に空母を投入しない、または売却を延期しないと結論できない。実際には戦争勃発後に売却は停止・撤回された。",
+    },
   ],
   ratingBasis: [
     { cell: "継戦能力見積もり / 開戦判断", weight: 3 },
@@ -673,6 +711,7 @@ function getAssumption(id) {
 }
 
 let activeView = "overview";
+let activeTimelinePhaseId = "opening";
 let activeEvidenceLinkId = "EL-001";
 let activeAssessmentCellId = "cell_war_capacity_opening";
 let opinionMode = "summary";
@@ -777,24 +816,32 @@ function renderOverview() {
 }
 
 function renderTimeline() {
-  const selected = auditData.phases[0];
+  // U-1: フェーズは選択可能。転換点/終戦判断の前提・監査の問い等が UI から到達できるようにする。
+  const selected =
+    auditData.phases.find((phase) => phase.id === activeTimelinePhaseId) || auditData.phases[0];
   return `
     <section class="section">
       <h3>意思決定タイムライン</h3>
       <div class="timeline-nodes">
         ${auditData.phases
-          .map(
-            (phase, index) => `
-              <article class="timeline-node">
-                <h3>${index + 1}. ${phase.name}</h3>
+          .map((phase, index) => {
+            const isSelected = phase.id === selected.id;
+            return `
+              <article class="timeline-node ${isSelected ? "is-selected" : ""}">
+                <button
+                  class="timeline-node-select"
+                  type="button"
+                  data-timeline-phase="${phase.id}"
+                  aria-pressed="${isSelected ? "true" : "false"}"
+                >${index + 1}. ${phase.name}</button>
                 <dl>
                   <dt>状態</dt><dd>${badge(phase.status)}</dd>
                   <dt>修正余地</dt><dd>${phase.revisionRoom}</dd>
                   <dt>論点</dt><dd>${phase.mainIssue}</dd>
                 </dl>
               </article>
-            `,
-          )
+            `;
+          })
           .join("")}
       </div>
     </section>
@@ -1376,6 +1423,12 @@ document.addEventListener("click", (event) => {
   const evidenceButton = event.target.closest("[data-evidence-link]");
   if (evidenceButton) {
     activeEvidenceLinkId = evidenceButton.dataset.evidenceLink;
+    render();
+  }
+
+  const timelinePhaseButton = event.target.closest("[data-timeline-phase]");
+  if (timelinePhaseButton) {
+    activeTimelinePhaseId = timelinePhaseButton.dataset.timelinePhase;
     render();
   }
 

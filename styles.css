@@ -304,6 +304,33 @@ select {
   font-size: 16px;
 }
 
+/* U-1: 見出し兼セレクタ。h3 の見た目を保ちつつボタンとしてキーボード操作可能。 */
+.timeline-node-select {
+  display: block;
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.timeline-node-select:hover,
+.timeline-node-select:focus-visible {
+  color: var(--blue);
+  outline: none;
+}
+
+.timeline-node.is-selected {
+  border-color: var(--blue);
+  background: #e8f2f8;
+}
+
 .timeline-node dl,
 .mini-card dl {
   display: grid;
