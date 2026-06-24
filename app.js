@@ -226,7 +226,7 @@ const auditData = {
       impact: "高",
       evidenceStrength: "中",
       opinion:
-        "英国の軍事的反応、長距離展開能力、米国・国際社会の反応について、アルゼンチン軍事政権の見積もりは楽観的前提に依存していた可能性が高い。ただし、政権中枢がどの程度の英国反応を実際に想定していたかは、追加資料が必要である。",
+        "英国の軍事的反応、長距離展開能力、米国・国際社会の反応について、アルゼンチン軍事政権の見積もりは楽観的前提に依存していた可能性が高い。ただし、政権中枢がどの程度の英国反応を実際に想定していたかは、追加資料が必要である。他方、1981年国防白書（HMS Endurance 撤収）など英国関与の縮小を示す同時代シグナルも存在し、楽観的見積もりには一定の酌量余地がある（E-005／反証を隠さない）。",
       criteria: [
         "判断前提が戦争進行により大きく崩れた",
         "当時利用可能な反対情報が存在した可能性がある",
@@ -385,65 +385,91 @@ const auditData = {
       id: "E-001",
       title: "英国機動部隊の派遣・奪還作戦（公式戦史）",
       type: "政府・軍事行動資料",
-      date: "1982年4月以降（戦後刊行）",
+      // #2: 日付は publishedDate（刊行/生成年）と coveragePeriod（記述対象期間）に分離。
+      publishedDate: "2005年（戦後刊行）",
+      coveragePeriod: "1982年（フォークランド紛争・奪還作戦）",
       // 戦後の事実記録。開戦前認識の直接証拠にはしない（EL-001 の knownByDecisionMakers 参照）。
       source: "Lawrence Freedman, The Official History of the Falklands Campaign, Vol.2 (Routledge, 2005)",
       collectionState: "二次研究で確認可",
-      reliability: "高",
+      // #4: 信頼度を2軸に分離。
+      //   authenticity         = 文書の真正性（出典が本物・改竄されていないか）
+      //   interpretiveReliability = 解釈の信頼性（その文書から主張を導く解釈の確実性）
+      authenticity: "高",
+      interpretiveReliability: "中", // 事後著述ゆえ開戦前認識の解釈には限界
     },
     {
       id: "E-002",
       title: "アルゼンチン軍の作戦持続・意思決定分析（ラッテンバッハ報告書）",
       type: "軍事能力資料",
-      date: "1983年（2012年機密解除・全文公開）",
+      publishedDate: "1983年（2012年機密解除・全文公開）",
+      coveragePeriod: "開戦前〜戦中（ア軍の意思決定・作戦持続）",
       // 戦後文書だが開戦前の軍司令部記録を再録。報告書の結論は post-hoc 解釈として扱い、
       // 再録された同時代記録を pre-war 証拠への橋渡しとする。
       source:
         "Informe Rattenbach（南大西洋紛争 責任分析・評価委員会報告, 1983）。アルゼンチン政府が2012年に機密解除・オンライン全文公開（西語）",
       collectionState: "一次資料入手可（西語）",
-      reliability: "中",
+      authenticity: "高", // 政府公式・全文公開
+      interpretiveReliability: "中", // 報告書結論は post-hoc 解釈。再録記録を橋渡しとして扱う
     },
     {
       id: "E-003",
       title: "英国の開戦前評価・対ア姿勢に関する政府調査（フランクス報告書）",
       type: "政府・軍事行動資料",
-      date: "1983年（対象期間: 開戦前）",
+      publishedDate: "1983年",
+      coveragePeriod: "開戦前（英国の事前評価・対ア姿勢）",
       // 英政府の枢密院委員会による開戦前評価の検証。HMS Endurance 撤収等、
       // アルゼンチンが入手可能だった「英国の関与限定シグナル」を逆算できる。
       source: "Falkland Islands Review (Franks Report), Cmnd 8787, HMSO, 1983",
       collectionState: "一次資料入手可",
-      reliability: "高",
+      authenticity: "高", // 政府公式刊行
+      interpretiveReliability: "低〜中", // #5: 結論が英政府を免責する方向のバイアスを含む
     },
     {
       id: "E-004",
       title: "米国の開戦前外交姿勢（機密解除文書）",
       type: "外交資料",
-      date: "1982年3月〜4月",
+      publishedDate: "1982年（同時代生成・後年機密解除公開）",
+      coveragePeriod: "1982年3月〜4月（米国の開戦前後の外交姿勢）",
       // ヘイグのシャトル外交を含む。米国中立仲介仮説（claim_us_mediation）の事前曖昧性を検証する。
       source:
         "National Security Archive (George Washington University) フォークランド/マルビナス機密解除文書コレクション（主出典）。該当する FRUS（米国対外関係文書）巻が刊行されていれば併用。",
       collectionState: "一次資料入手可",
-      reliability: "中",
+      authenticity: "中", // コレクションの網羅性に依存・FRUS併用前提
+      interpretiveReliability: "中", // 同時代一次文書だが意思決定者の依拠は未確定
+    },
+    {
+      id: "E-005",
+      title: "英国の対南大西洋関与縮小シグナル（1981年国防白書／HMS Endurance 撤収方針）",
+      type: "政府・軍事行動資料",
+      publishedDate: "1981年6月（同時代公開）",
+      coveragePeriod: "開戦前（英国の南大西洋関与縮小方針）",
+      // #2(A): ex-ante 主張を直接支える唯一の同時代一次史料。判断時点で公開・入手可能だった
+      // 政府文書で、英国の南大西洋関与後退シグナル（claim_uk_limited の同時代的根拠）を構成する。
+      source:
+        "The United Kingdom Defence Programme: The Way Forward, Cmnd 8288, HMSO, June 1981（HMS Endurance 撤収方針を含む）。当時公開の政府文書。",
+      collectionState: "一次資料入手可",
+      authenticity: "高", // 同時代の公式政府文書
+      interpretiveReliability: "中", // シグナルの存在は確実だが、依拠・受領は別問題
     },
   ],
+  // claim は id/text/type のみ保持し、状態（支持/反証の集計）は持たない。
+  // 設計判断B（status はデータ非保存・リンク層から実行時に読む）と一貫させるため、
+  // 旧 claims[].status は削除（未使用かつリンク実体と矛盾し得たため）。
   claims: [
     {
       id: "claim_uk_response",
       text: "アルゼンチン軍事政権は英国の全面的軍事奪還を過小評価した",
       type: "audit_issue",
-      status: "重大懸念",
     },
     {
       id: "claim_uk_limited",
       text: "英国の軍事反応は限定的にとどまる",
       type: "counter_claim",
-      status: "弱体化",
     },
     {
       id: "claim_us_mediation",
       text: "米国は中立仲介する",
       type: "counter_claim",
-      status: "要検証",
     },
   ],
   // 時点フィールドの定義（#1で明確化）:
@@ -497,7 +523,9 @@ const auditData = {
       assessmentCellId: "cell_war_capacity_opening",
       claimLabel: "英国即応能力",
       target: "継戦能力 / 開戦判断",
-      relationship: "反証",
+      // #1-(a): canSay「英国の即応が困難」は反対仮説（英国限定反応）を強める方向のため 支持。
+      // EL-002（実際の軍事行動＝仮説を弱める）の 反証 と方向が対になる。
+      relationship: "支持",
       reviewState: "要検証",
       relevance: "中",
       timeFit: "間接",
@@ -507,7 +535,9 @@ const auditData = {
       knownByDecisionMakersBasis:
         "出典は戦後の英政府調査（1983）。開戦前に存在した英国の関与限定シグナル（HMS Endurance 撤収等）を事後に記録するもので、文書自体は判断時点で入手不可。",
       canSay: "英国の即応が困難と考える余地を示す。",
-      cannotSay: "英国が奪還を断念するとまでは言えない。",
+      // #5: 出典（フランクス報告書）の結論は英政府を免責する方向のバイアスを含むため、解釈に留保。
+      cannotSay:
+        "英国が奪還を断念するとまでは言えない。なお出典のフランクス報告書は結論が英政府を免責する方向のバイアスを含むため、この出典に依拠した解釈は割り引いて評価する必要がある。",
     },
     {
       id: "EL-004",
@@ -545,6 +575,28 @@ const auditData = {
         "出典は戦後の公的調査報告（1983）で、開戦前の軍司令部記録を事後に再構成・再録するもの。文書自体は判断時点で入手不可。",
       canSay: "作戦持続力の制約が、開戦判断時点の継戦能力評価に関係する可能性を示す。",
       cannotSay: "政権中枢が実際にどの数値や見積もりを採用したかは直接示さない。",
+    },
+    {
+      id: "EL-006",
+      evidenceId: "E-005",
+      claimId: "claim_uk_limited",
+      assessmentCellId: "cell_war_capacity_opening",
+      claimLabel: "英国関与縮小シグナル",
+      target: "反対仮説: 英国の反応は限定的（同時代の根拠）",
+      // #2(A): ex-ante を直接支える同時代史料。EL-002（事後・反証）と claim_uk_limited 上で対になる。
+      relationship: "支持",
+      reviewState: "確認済",
+      relevance: "高",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "不明",
+      knownByDecisionMakersBasis:
+        "1981年の公開政府文書であり、英国の南大西洋関与後退シグナルとして同時代に受領可能。中枢が実際に判断材料としたかは未確定。",
+      canSay:
+        "1981年時点で英国の南大西洋関与縮小を示す公開シグナルが存在し、「英国反応は限定的」仮説に同時代的根拠があったことを示す。",
+      cannotSay:
+        "この公開シグナルから、アルゼンチンが英国の全面奪還を排除したとは結論できない（実際の全面奪還＝EL-002 がこの仮説を弱める）。",
     },
   ],
   ratingBasis: [
@@ -627,7 +679,7 @@ let opinionMode = "summary";
 let evidenceFilters = getDefaultEvidenceFilters();
 
 function getDefaultEvidenceFilters() {
-  return { type: "all", reliability: "all", relevance: "all", relationship: "all" };
+  return { type: "all", authenticity: "all", relevance: "all", relationship: "all" };
 }
 
 function hasActiveEvidenceFilters() {
@@ -672,7 +724,7 @@ function evidenceLinkMatchesFilters(link) {
   const evidence = getEvidence(link.evidenceId);
   return (
     (evidenceFilters.type === "all" || evidence.type === evidenceFilters.type) &&
-    (evidenceFilters.reliability === "all" || evidence.reliability === evidenceFilters.reliability) &&
+    (evidenceFilters.authenticity === "all" || evidence.authenticity === evidenceFilters.authenticity) &&
     (evidenceFilters.relevance === "all" || link.relevance === evidenceFilters.relevance) &&
     (evidenceFilters.relationship === "all" || link.relationship === evidenceFilters.relationship)
   );
@@ -869,7 +921,7 @@ function renderAssessment() {
             <div class="issue-row assessment-link-row">
               ${badge(link.relationship)}
               <strong>${evidence.title}</strong>
-              <span>信頼度 ${evidence.reliability}</span>
+              <span>真正性 ${evidence.authenticity}</span>
               <span>${link.reviewState}</span>
               <span class="cell-meta">${link.id}</span>
             </div>
@@ -924,10 +976,10 @@ function renderEvidence() {
             <option value="軍事能力資料" ${evidenceFilters.type === "軍事能力資料" ? "selected" : ""}>軍事能力資料</option>
             <option value="政府・軍事行動資料" ${evidenceFilters.type === "政府・軍事行動資料" ? "selected" : ""}>政府・軍事行動資料</option>
           </select>
-          <select aria-label="信頼度" data-filter="reliability">
-            <option value="all">信頼度</option>
-            <option value="高" ${evidenceFilters.reliability === "高" ? "selected" : ""}>高</option>
-            <option value="中" ${evidenceFilters.reliability === "中" ? "selected" : ""}>中</option>
+          <select aria-label="真正性" data-filter="authenticity">
+            <option value="all">真正性</option>
+            <option value="高" ${evidenceFilters.authenticity === "高" ? "selected" : ""}>高</option>
+            <option value="中" ${evidenceFilters.authenticity === "中" ? "selected" : ""}>中</option>
           </select>
           <select aria-label="関連度" data-filter="relevance">
             <option value="all">関連度</option>
@@ -967,7 +1019,8 @@ function renderEvidence() {
                       <div class="cell-stack">
                         <strong>${link.target}</strong>
                         ${badge(link.relationship)}
-                        <span class="cell-meta">信頼度: ${evidence.reliability}</span>
+                        <span class="cell-meta">真正性: ${evidence.authenticity}</span>
+                        <span class="cell-meta">解釈信頼性: ${evidence.interpretiveReliability}</span>
                         <span class="cell-meta">関連度: ${link.relevance}</span>
                         <span class="cell-meta">時点適合度: ${link.timeFit}</span>
                       </div>
@@ -1010,18 +1063,25 @@ function renderEvidence() {
         ${selectedLink
           ? `
             <h3>選択中リンク: ${selectedLink.id}</h3>
+            <p class="metric-group-label">資料</p>
             <div class="metric-row"><dt>ID</dt><dd>${selectedEvidence.id}</dd></div>
             <div class="metric-row"><dt>タイトル</dt><dd>${selectedEvidence.title}</dd></div>
             <div class="metric-row"><dt>種類</dt><dd>${selectedEvidence.type}</dd></div>
-            <div class="metric-row"><dt>日付</dt><dd>${selectedEvidence.date}</dd></div>
             <div class="metric-row"><dt>出典</dt><dd>${selectedEvidence.source}</dd></div>
             <div class="metric-row"><dt>資料状態</dt><dd>${selectedEvidence.collectionState}</dd></div>
-            <div class="metric-row"><dt>資料信頼度</dt><dd>${selectedEvidence.reliability}</dd></div>
+            <p class="metric-group-label">時点</p>
+            <div class="metric-row"><dt>刊行/生成</dt><dd>${selectedEvidence.publishedDate}</dd></div>
+            <div class="metric-row"><dt>対象期間</dt><dd>${selectedEvidence.coveragePeriod}</dd></div>
+            <div class="metric-row"><dt>時点適合度</dt><dd>${selectedLink.timeFit}</dd></div>
+            <div class="metric-row"><dt>判断時点で利用可能</dt><dd>${selectedLink.availableAtDecisionTime ? "はい" : "いいえ"}</dd></div>
+            <div class="metric-row"><dt>分析者が知り得た</dt><dd>${selectedLink.availableToAnalysts ? "はい" : "いいえ"}</dd></div>
+            <p class="metric-group-label">信頼性</p>
+            <div class="metric-row"><dt>真正性</dt><dd>${selectedEvidence.authenticity}</dd></div>
+            <div class="metric-row"><dt>解釈信頼性</dt><dd>${selectedEvidence.interpretiveReliability}</dd></div>
+            <p class="metric-group-label">リンク</p>
             <div class="metric-row"><dt>関係</dt><dd>${badge(selectedLink.relationship)}</dd></div>
             <div class="metric-row"><dt>対象</dt><dd>${selectedLink.target}</dd></div>
             <div class="metric-row"><dt>関連度</dt><dd>${selectedLink.relevance}</dd></div>
-            <div class="metric-row"><dt>判断時点で利用可能</dt><dd>${selectedLink.availableAtDecisionTime ? "true" : "false"}</dd></div>
-            <div class="metric-row"><dt>分析者が知り得た</dt><dd>${selectedLink.availableToAnalysts ? "true" : "false"}</dd></div>
             <div class="metric-row"><dt>意思決定者が知っていた</dt><dd>${selectedLink.knownByDecisionMakers}</dd></div>
             <div class="metric-row"><dt>認識根拠</dt><dd>${selectedLink.knownByDecisionMakersBasis}</dd></div>
             <h3>このリンクから言えること</h3>

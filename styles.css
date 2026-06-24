@@ -243,6 +243,18 @@ select {
   grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.5fr);
 }
 
+.metric-group-label {
+  margin: 16px 0 2px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.metric-group-label:first-of-type {
+  margin-top: 4px;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;

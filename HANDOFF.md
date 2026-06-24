@@ -1,9 +1,9 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-24
+最終更新: 2026-06-24（出典レジストリ整合セッション）
 
 ## 0. このファイルの目的
-セッションが長くなったため、状態を要約。次セッションは**まずこれを読んでから**再開すること。
+セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
 
 ---
 
@@ -12,105 +12,104 @@
 - 監査原則（最重要・全設計の前提）:
   1. 反証証拠を隠さない
   2. 言えること/言えないことを分ける
-  3. **開戦後の証拠を直接証拠にしない**
+  3. **開戦後の証拠を直接証拠にしない**（＝時点性）
 - 構成ファイル:
-  - `index.html` — サイドバー＋ビュー切替タブ（Overview / Timeline / **Pre-War** / Assessment / Evidence / Audit Opinion）
+  - `index.html` — サイドバー＋ビュー切替タブ（Overview / Timeline / Pre-War / Assessment / Evidence / Audit Opinion）
   - `app.js`（中心）— `auditData` オブジェクト＋レンダラ群
   - `styles.css`
-  - `.claude/launch.json` — プレビュー用静的サーバー定義（後述）
+  - `.claude/launch.json` — プレビュー用静的サーバー定義（`python -m http.server 8123`）
 
 ---
 
-## 2. このセッションで実装したこと（完了・検証済み）
+## 2. このセッションで完了したこと（すべて検証済み・未コミット）
 
-### 2-1. Pre-War Checklist 機能（新規）
-「開戦前に評価可能だった項目」を独立ビューとして追加。
-- **データ**: `auditData.preWarChecklist`（7項目）。`app.js` 内、`phases` 配列の直後。
-- **7項目**: pw_uk_force_projection / pw_island_hold / pw_air_sea_control / pw_supply_line / pw_political_endurance / pw_diplomatic_alignment / **pw_regime_survival**（目玉）
-- **status は保存しない**（単一情報源）。`resolveStatus()` が `exAnteEvaluability`（高/中/低）× `actuallyEvaluated`（形跡あり/限定的/形跡なし/不明）から `STATUS_MATRIX` で導出。
-- **STATUS_MATRIX**（重大懸念は「高×形跡なし」の1セルのみ）:
-  ```
-  評価可能性\評価形跡  形跡あり 限定的  形跡なし 不明
-        高           要検証  要注意  重大懸念 要検証
-        中           要検証  要注意  要注意   要検証
-        低           要検証  要検証  要注意   要検証
-  ```
-- **override（regime_survival のみ）**: `statusOverride.provisional: true`。`actuallyEvaluated` が `"形跡なし"` になると `resolveStatus` が**自動発火**して重大懸念へ昇格（証拠到達まで保留）。検証済み。
-- **現在の分布**: 重大懸念 0 / 要注意 5 / 要検証 2（＝後知恵で断罪していない誠実な状態。regime_survival は「⏳昇格候補」として保留表示）。
-- **表示**（`renderPreWar()`）: ①status分布 ②保留中の昇格候補コールアウト ③評価ギャップ・マトリクス（derivedで配置・着色、overrideは注釈バッジ） ④項目詳細カード（`<details>` で展開、反証・非対称性を常時併置）。
-- **assumptions に id 付与**: `phases[].assumptions[]` に `asm_opening_*` / `asm_turning_*` / `asm_ending_*` を追加（`linkedAssumptions` の id 参照のため）。
+> ⚠️ **git 未コミット**: `app.js` / `styles.css` が modified のまま。直近コミットは `80271ce`（前セッションの Pre-War 実装）。次セッションでコミット要否を判断。
 
-### 2-2. 出典レジストリ（evidence）の実史料化
-`auditData.evidence` の E-001〜E-004 を実在史料に差し替え（`source: "未入力"` を解消）。既存 `evidenceLinks` 参照は維持。
-- **E-001** = Lawrence Freedman, *The Official History of the Falklands Campaign*, Vol.2 (Routledge, 2005)
-- **E-002** = Informe Rattenbach（ラッテンバッハ報告書, 1983 / 2012機密解除・公開, 西語）
-- **E-003** = Falkland Islands Review (Franks Report), Cmnd 8787, HMSO, 1983
-- **E-004** = National Security Archive (GWU) マルビナス機密解除コレクション（主）+ FRUS（該当巻あれば併用）
-- 表示: Evidence ビューの詳細パネルが `出典`/`資料状態`/`日付` を描画（確認済）。
+### 2-1. EL-003 の関係方向修正（#1-a）
+- `claim_uk_limited`（反対仮説「英国反応は限定的」）上で、EL-002（反証＝仮説を弱める）と EL-003 が同じ「反証」で**方向矛盾**していた。
+- EL-003 の canSay「英国の即応が困難」は仮説を**強める**方向なので `relationship: 反証 → 支持` に修正（[app.js] EL-003）。意図コメント付き。
 
-### 2-3. 時点フラグ整合修正（#1・#3）
-- `evidenceLinks` 冒頭に**時点フィールドの定義コメント**を追加:
-  - `timeFit`: 出典の判断時点への近さ（直接=同時代記録 / 間接=戦後著述）
-  - `availableAtDecisionTime` / `availableToAnalysts`: 「文書」が判断時点で入手可能だったか
-- **EL-003（→Franks 1983）, EL-005（→Rattenbach 1983）** を `timeFit: 間接` / `availableAtDecisionTime: false` / `availableToAnalysts: false` に修正（戦後文書なので）。`knownByDecisionMakersBasis` も「戦後文書が開戦前を記述」と書き換え。
-- **EL-004（→NSArchive＝同時代の機密電報）** は据え置き（1982年生成の同時代記録なので 直接/true が正しい）。
-- **EL-001/EL-002（→Freedman）** は元から 間接/false で回帰なし。
+### 2-2. 同時代一次史料の追加で ex-ante のゼロ解消（#2 = A＋B）
+- **A**: **E-005**（新規）= 1981年英国国防白書 *The Way Forward*, Cmnd 8288（HMS Endurance 撤収方針）を追加。判断時点で公開・入手可能な唯一の ex-ante 同時代一次史料。
+- **EL-006**（新規）= E-005 → `claim_uk_limited`、`relationship: 支持` / `timeFit: 直接` / `availableAtDecisionTime: true`。これで **EL-006（同時代・支持）⇄ EL-002（事後・反証）** が対になる誠実な状態。
+- **B**: `cell_war_capacity_opening` の `opinion` に「楽観的見積もりに一定の酌量余地（E-005／反証を隠さない）」を併記。
+  - ⚠️ 当初 criteria に入れかけたが**方向が逆**（criterion は楽観前提を覆す“反対情報”側＝論点を強める。E-005 は酌量＝逆向き）と判明し、criteria は原文維持・opinion 側に正しく併記した。**この区別は再混同しないこと**。
+
+### 2-3. #3 は実体なし（消し込み済み）
+- 「E-004 の機密電報→機密文書」は、既に E-004 が「機密解除文書」表記で**修正不要**だった（"電報" は本 HANDOFF にしか存在しなかった）。対応不要として確定。
+
+### 2-4. date の2軸分割（#1の根治）
+- 全5 evidence の `date` を **`publishedDate`（刊行/生成年）** と **`coveragePeriod`（記述対象期間）** に分割。
+- 表示も詳細パネルで `刊行/生成` + `対象期間` の2行に。`.date` への stale 参照ゼロ。
+- 効果: 「戦後刊行だが対象は開戦前」（E-002 ラッテンバッハ / E-003 フランクス）の時点の二重性が明示。
+
+### 2-5. reliability の2軸化（#4）＋ フランクス免責バイアス注記（#5）
+- `reliability` → **`authenticity`（文書の真正性）** + **`interpretiveReliability`（解釈の信頼性）**。定義は E-001 直後のコメント参照。
+  - 値: E-001 高/中, E-002 高/中, **E-003 高/低〜中**, E-004 中/中, E-005 高/中。
+- **#5**: EL-003 の `cannotSay` に「フランクス報告書は結論が英政府を免責する方向のバイアスを含むため、依拠した解釈は割り引く」を追記。E-003 の `interpretiveReliability: 低〜中` と整合。
+- 波及修正: 詳細パネル（真正性＋解釈信頼性の2行）、一覧カード/セルメタ（信頼度→真正性）、**フィルタ `reliability` → `authenticity`（真正性）に統一**（state key・select・絞り込みロジック）。`reliability` 参照は grep 0件。
+
+### 2-6. 死蔵 `claims[].status` の削除（レビュー指摘 E-1/E-2 = (P)案）
+- `auditData.claims[].status`（重大懸念/弱体化/要検証）は**どこからも render も参照もされない死蔵データ**で、かつ今回の変更でリンク実体と矛盾し得た（claim_uk_limited は支持2/反証1なのに "弱体化" 固定）。
+- → `status` を3 claim すべてから削除。claim は `id`/`text`/`type` のみ保持。**設計判断B（status非保存・実行時導出）と一貫**。意図コメント付き。全6ビュー描画でエラーなし＝死蔵だった裏付け。
+
+### 2-7. UI微修正（レビュー指摘 U-1/U-2/U-3 と M-3/U-5）
+- **U-1**: 証拠一覧の cell-stack に `解釈信頼性` を追加（バイアス軸を一覧で可視化）。
+- **U-2**: 詳細パネルを小見出しでグルーピング。`.metric-group-label` を `styles.css` に追加。
+- **U-3**: 詳細パネルの `true/false` → `はい/いいえ`。
+- **M-3＋U-5**: `時点適合度(timeFit)` を詳細パネルに常置（従来は一覧のみ）。可用性2フラグ（判断時点で利用可能 / 分析者が知り得た）を「時点」群へ移動。最終グループは **資料 → 時点（刊行/生成・対象期間・時点適合度・可用性2）→ 信頼性（真正性・解釈信頼性）→ リンク（関係・対象・関連度・意思決定者が知っていた・認識根拠）**。時点フィールド定義コメント（timeFit＋可用性2）の区分に一致。
 
 ---
 
 ## 3. 確定した設計判断（蒸し返さない）
-- **A**: regime_survival の override は provisional（証拠が「形跡なし」を裏づけるまで保留）→ 現状の重大懸念ゼロは正しい。
-- **B**: status はデータ非保存・実行時導出（`resolveStatus`）。
-- **C**: マトリクスは derived のみで配置・着色、override は注釈バッジで別レイヤー。
-- **校正α**: 重大懸念は「高×形跡なし」のみに限定（辛口側に振らない）。**現状維持で確定**。
-- **校正β**: 「評価したが妥当でなかった」を表す軸は**追加しない**。**現状維持で確定**。
-- これらは `app.js` の `preWarChecklist` 冒頭コメントにも明記済み。
+- **A**: regime_survival の override は provisional（前セッション確定）。現状の重大懸念ゼロは正しい。
+- **B**: status はデータ非保存・実行時導出（`resolveStatus` / リンク層が単一情報源）。**今セッションで claims.status を削除して B を徹底**。
+- **C**: Pre-War マトリクスは derived のみで配置・着色、override は注釈バッジで別レイヤー。
+- **校正α**: 重大懸念は「高×形跡なし」のみに限定。現状維持。
+- **校正β**: 「評価したが妥当でなかった」軸は追加しない。現状維持。
+- **EL-003 = (a)**: `claim_uk_limited` への `支持`（claim 付け替え=(b)案は採らない）。理由: canSay を書き換えず1語修正で整合、フランクスのバイアスを免責証拠根拠にすると二重偏向。
+- **#2 = A＋B**: 同時代史料追加＋opinion 酌量併記。criteria への E-005 投入は方向逆のため不採用。
+- **E-1/E-2 = (P)**: claims から status を削除（claim集計ビュー新設=(Q)案は凍結）。
 
 ---
 
-## 4. 未適用・保留中（次セッションの候補）
+## 4. 凍結中の項目（メタ視点で逓減と判断。やるなら独立セッション）
+- **E-4【最大の残負債】**: `<dt>/<dd>` が `<dl>` の外（`<div class="metric-row">` 内）で全パネル横断に使われており**HTML的に不正**（a11y/バリデータ問題、描画は正常）。正しく `<dl>` 配下なのは Timeline フェーズカードのみ。範囲広・監査内容に無関係な純技術負債。
+- **U-4**: 証拠一覧3列目（評価セル/反対仮説）が6行積みで密。関連度/時点適合度を詳細送りにする余地。
+- **E-3**: `interpretiveReliability` の `低〜中` だけレンジ値で語彙不統一。順序尺度に正規化 or レンジ許容明記。
+- **M-1**: claim 単位の支持/反証集計ビュー（死蔵 claims を活かす）。
+- **M-2**: 論理連動する `claim_uk_limited`⇄`claim_uk_response` の横断リンク（既定見送り）。
+- **#2 データ拡充**: ex-ante 同時代一次史料が現状 E-005 の1件のみ。他の公開戦力データ等を足す余地（データ収集タスク）。
 
-### 4-1. レビュー指摘で合意済みの保留
-- **#2**: `evidence.date` が「刊行年」と「対象期間」を混同 → `publishedDate` / `coveragePeriod` に分割。`renderEvidence` の日付表示行（`app.js` の詳細パネル、`<dt>日付</dt>` 付近）にも波及。**#1の根治策**。
-- **#4**: `evidence.reliability` が「文書の真正性」と「解釈の信頼性」を混同 → 2軸化（当面は注記でも可）。
-- **#5**: フランクス報告書は結論が英政府を免責したバイアスあり → 該当リンクの `cannotSay` に注記。
-
-### 4-2. ★中断したサブエージェントレビューの未提示findings（重要）
-直前に Pre-War/#1修正後のレビューを実施中で、以下を提示しかけて中断した:
-
-1. **【最重要・新発見】EL-003 の関係方向が canSay と矛盾**（既存バグだが E-003=Franks化で顕在化）:
-   - EL-002 と EL-003 はどちらも `claimId: "claim_uk_limited"`（＝反対仮説「英国の反応は限定的」）+ `relationship: "反証"`。
-   - だが EL-002 の canSay は仮説を**弱める**（真の反証 ✓）一方、EL-003 の canSay「英国の即応が困難と考える余地を示す」は仮説を**強める**（＝本来 `支持` のはず）。方向が逆。
-   - **修正案**: (a) EL-003 を `relationship: "支持"` に、または (b) `claimId` を `claim_uk_response`（過小評価）に変えて `反証`（免責証拠）として扱う。**どちらの意味が意図か要確認**。
-
-2. **【方法論】#1の誠実な修正の結果、開戦前(ex-ante)主張を支える同時代史料がゼロになった**:
-   - 現レジストリは戦後文書（間接/入手不可）のみ。ex-ante の「評価可能だった」主張を直接支える**同時代の一次史料が無い**（例: 1981年 HMS Endurance 撤収発表、当時公開の戦力データ等が必要）。
-   - → 同時代史料エントリを追加する（データ収集タスク）か、該当セルの evidenceStrength で「過小証拠」を明示すべき。
-
-3. **【軽微】** E-004 の "機密電報" → "機密文書"（NSArchive は電報以外も含むため）。
+> レビュー2巡で**監査軸の新発見はゼロ**＝実質的な監査価値はほぼ枯れた状態。次は機能追加よりコミット/技術負債整理が妥当。
 
 ---
 
 ## 5. 動かし方 / 検証
-- **プレビュー**: `.claude/launch.json` に static サーバー定義済み（`python -m http.server 8123`）。
-  - 起動: preview MCP の `preview_start` に `name: "static"`。※ serverId はセッションごとに変わる。
-  - Pre-War タブは `[data-view="prewar"]` をクリック。
+- **プレビュー**: `.claude/launch.json` に static サーバー定義（`python -m http.server 8123`）。preview MCP の `preview_start` に `name: "static"`。serverId はセッションごとに変わる。
 - **構文チェック**: `node --check app.js`
-- **検証方法**: preview の `preview_eval` で `auditData` / `resolveStatus()` を直接叩いてDOM/ロジックを確認（screenshotはタイムアウトしがちなのでeval併用が確実）。
-- これまでの全変更でコンソールエラーなし。
+- **検証方法**: preview の `preview_eval` で `auditData` / `render()` を直接叩いて DOM/ロジック確認。
+  - ⚠️ `preview_screenshot` はこの環境で**タイムアウトしがち** → `preview_eval` で `innerText` 構造を取得して証跡にするのが確実。
+  - reload は `location.reload()` 後に "Inspected target navigated" エラーが出るが正常（次の eval で再取得できる）。
+- 今セッションの全変更でコンソールエラーなし。
 
 ---
 
 ## 6. 作業スタイル（ユーザーの好み）
 - 日本語で応答。
-- **「サブエージェントレビュー」**= 自分の中に UIデザイナー / シニアエンジニア / 監査方法論レビュアー（＋必要ならメタ視点）の人格を立て、コンテキストなしの客観視点で粗探しレビュー → 優先度表で統合 → 推奨を述べる、というパターンを確立済み。
-- 進め方: 設計を詰める→サブエージェントレビュー→指摘を選んで適用（「ABC」「1,3適応」のように番号/記号で指示）→プレビュー検証→再レビュー、のループ。
-- 過剰設計には「メタ視点」で逓減を指摘し、凍結を提案するのも歓迎される。
+- **「サブエージェントレビュー」** = UIデザイナー / シニアエンジニア / 監査方法論レビュアー（＋メタ視点）の人格をコンテキストなしで立て、粗探し → 優先度表で統合 → 推奨を述べる。確立済みパターン。
+- 進め方: 設計を詰める→サブエージェントレビュー→指摘を番号/記号で選択適用（「#1-a」「A+B」「P」「U-1,2,3」のように指示）→プレビュー検証→再レビュー、のループ。
+- 過剰設計には**メタ視点で逓減を指摘し凍結を提案**するのが歓迎される（今セッションで M-1/M-2/E-4 等を凍結）。
+- 修正後は必ず `node --check` ＋ `preview_eval` で検証してから報告。
 
 ---
 
 ## 7. 次セッションの推奨アクション
 1. まず本ファイルを読む。
-2. 中断した **4-2 のレビューfindings（特に #1: EL-003 の関係方向）** をユーザーに提示し直す。
-3. ユーザーの指示に従い、EL-003 の意図（支持 or claim差し替え）を確認して修正。
-4. その後 #2（date分割の根治）に進むか、レジストリ拡充（同時代史料の追加）か、一区切りかを問う。
+2. **未コミットの `app.js`/`styles.css` のコミット要否**をユーザーに確認（今セッション成果がまだ git に入っていない）。
+3. その後の選択肢を提示:
+   - **E-4**（dt/dd の dl 是正）に着手するか、
+   - **#2 データ拡充**（ex-ante 同時代史料の追加）か、
+   - U-4 / E-3 の小修正か、
+   - 一区切りか。
+4. いずれも蒸し返し禁止項目（§3）に抵触しないか確認してから進める。
