@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>War Accountability Audit</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="監査ナビゲーション">
+        <div class="brand-block">
+          <p class="eyebrow">War Accountability Audit</p>
+          <h1>フォークランド紛争</h1>
+          <p>アルゼンチン軍事政権</p>
+        </div>
+
+        <nav class="nav-tabs" aria-label="画面切り替え">
+          <button class="nav-tab is-active" type="button" data-view="overview">
+            <span>Overview</span>
+          </button>
+          <button class="nav-tab" type="button" data-view="timeline">
+            <span>Timeline</span>
+          </button>
+          <button class="nav-tab" type="button" data-view="prewar">
+            <span>Pre-War</span>
+          </button>
+          <button class="nav-tab" type="button" data-view="assessment">
+            <span>Assessment</span>
+          </button>
+          <button class="nav-tab" type="button" data-view="evidence">
+            <span>Evidence</span>
+          </button>
+          <button class="nav-tab" type="button" data-view="opinion">
+            <span>Audit Opinion</span>
+          </button>
+        </nav>
+
+        <section class="sidebar-panel">
+          <h2>監査の原則</h2>
+          <ul>
+            <li>反証証拠を隠さない</li>
+            <li>言えることと言えないことを分ける</li>
+            <li>開戦後の証拠を直接証拠にしない</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="view-kicker">Overview</p>
+            <h2 id="view-title">この戦争監査の暫定結論は何か？</h2>
+          </div>
+          <div class="rating-pill" aria-label="補助格付け">
+            <span>暫定</span>
+            <strong>C-/D+</strong>
+          </div>
+        </header>
+
+        <section id="view-root" class="view-root" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
