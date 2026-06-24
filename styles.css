@@ -243,6 +243,10 @@ select {
   grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.5fr);
 }
 
+.metric-list {
+  margin: 0;
+}
+
 .metric-group-label {
   margin: 16px 0 2px;
   font-size: 12px;

@@ -763,12 +763,14 @@ function renderOverview() {
       </section>
       <section class="section">
         <h3>監査スナップショット</h3>
-        <div class="metric-row"><dt>監査対象</dt><dd>${snapshot.auditedActor}</dd></div>
-        <div class="metric-row"><dt>評価単位</dt><dd>戦争単位</dd></div>
-        <div class="metric-row"><dt>監査範囲</dt><dd>${snapshot.scope}</dd></div>
-        <div class="metric-row"><dt>主評価</dt><dd>${snapshot.primaryResponsibility}</dd></div>
-        <div class="metric-row"><dt>不確実性</dt><dd>${snapshot.uncertainty}</dd></div>
-        <div class="metric-row"><dt>補助格付け</dt><dd>${snapshot.rating}</dd></div>
+        <dl class="metric-list">
+          <div class="metric-row"><dt>監査対象</dt><dd>${snapshot.auditedActor}</dd></div>
+          <div class="metric-row"><dt>評価単位</dt><dd>戦争単位</dd></div>
+          <div class="metric-row"><dt>監査範囲</dt><dd>${snapshot.scope}</dd></div>
+          <div class="metric-row"><dt>主評価</dt><dd>${snapshot.primaryResponsibility}</dd></div>
+          <div class="metric-row"><dt>不確実性</dt><dd>${snapshot.uncertainty}</dd></div>
+          <div class="metric-row"><dt>補助格付け</dt><dd>${snapshot.rating}</dd></div>
+        </dl>
       </section>
     </div>
   `;
@@ -805,23 +807,27 @@ function renderTimeline() {
     <div class="grid two">
       <section class="section">
         <h3>判断前提の監査</h3>
-        ${selected.assumptions
-          .map(
-            (item) => `
-              <div class="metric-row">
-                <dt>${item.type}</dt>
-                <dd>${item.content}<br><span class="muted">根拠レベル: ${item.basis}</span></dd>
-              </div>
-            `,
-          )
-          .join("")}
+        <dl class="metric-list">
+          ${selected.assumptions
+            .map(
+              (item) => `
+                <div class="metric-row">
+                  <dt>${item.type}</dt>
+                  <dd>${item.content}<br><span class="muted">根拠レベル: ${item.basis}</span></dd>
+                </div>
+              `,
+            )
+            .join("")}
+        </dl>
       </section>
       <section class="section">
         <h3>監査シート</h3>
-        <div class="metric-row"><dt>当時利用可能だった情報</dt><dd>${selected.availableInfo}</dd></div>
-        <div class="metric-row"><dt>代替案</dt><dd>${selected.alternatives}</dd></div>
-        <div class="metric-row"><dt>判断修正余地</dt><dd>${selected.revisionRoom}。${selected.revisionNote}</dd></div>
-        <div class="metric-row"><dt>監査上の疑問</dt><dd>${selected.auditQuestion}</dd></div>
+        <dl class="metric-list">
+          <div class="metric-row"><dt>当時利用可能だった情報</dt><dd>${selected.availableInfo}</dd></div>
+          <div class="metric-row"><dt>代替案</dt><dd>${selected.alternatives}</dd></div>
+          <div class="metric-row"><dt>判断修正余地</dt><dd>${selected.revisionRoom}。${selected.revisionNote}</dd></div>
+          <div class="metric-row"><dt>監査上の疑問</dt><dd>${selected.auditQuestion}</dd></div>
+        </dl>
       </section>
     </div>
 
@@ -1064,26 +1070,34 @@ function renderEvidence() {
           ? `
             <h3>選択中リンク: ${selectedLink.id}</h3>
             <p class="metric-group-label">資料</p>
-            <div class="metric-row"><dt>ID</dt><dd>${selectedEvidence.id}</dd></div>
-            <div class="metric-row"><dt>タイトル</dt><dd>${selectedEvidence.title}</dd></div>
-            <div class="metric-row"><dt>種類</dt><dd>${selectedEvidence.type}</dd></div>
-            <div class="metric-row"><dt>出典</dt><dd>${selectedEvidence.source}</dd></div>
-            <div class="metric-row"><dt>資料状態</dt><dd>${selectedEvidence.collectionState}</dd></div>
+            <dl class="metric-list">
+              <div class="metric-row"><dt>ID</dt><dd>${selectedEvidence.id}</dd></div>
+              <div class="metric-row"><dt>タイトル</dt><dd>${selectedEvidence.title}</dd></div>
+              <div class="metric-row"><dt>種類</dt><dd>${selectedEvidence.type}</dd></div>
+              <div class="metric-row"><dt>出典</dt><dd>${selectedEvidence.source}</dd></div>
+              <div class="metric-row"><dt>資料状態</dt><dd>${selectedEvidence.collectionState}</dd></div>
+            </dl>
             <p class="metric-group-label">時点</p>
-            <div class="metric-row"><dt>刊行/生成</dt><dd>${selectedEvidence.publishedDate}</dd></div>
-            <div class="metric-row"><dt>対象期間</dt><dd>${selectedEvidence.coveragePeriod}</dd></div>
-            <div class="metric-row"><dt>時点適合度</dt><dd>${selectedLink.timeFit}</dd></div>
-            <div class="metric-row"><dt>判断時点で利用可能</dt><dd>${selectedLink.availableAtDecisionTime ? "はい" : "いいえ"}</dd></div>
-            <div class="metric-row"><dt>分析者が知り得た</dt><dd>${selectedLink.availableToAnalysts ? "はい" : "いいえ"}</dd></div>
+            <dl class="metric-list">
+              <div class="metric-row"><dt>刊行/生成</dt><dd>${selectedEvidence.publishedDate}</dd></div>
+              <div class="metric-row"><dt>対象期間</dt><dd>${selectedEvidence.coveragePeriod}</dd></div>
+              <div class="metric-row"><dt>時点適合度</dt><dd>${selectedLink.timeFit}</dd></div>
+              <div class="metric-row"><dt>判断時点で利用可能</dt><dd>${selectedLink.availableAtDecisionTime ? "はい" : "いいえ"}</dd></div>
+              <div class="metric-row"><dt>分析者が知り得た</dt><dd>${selectedLink.availableToAnalysts ? "はい" : "いいえ"}</dd></div>
+            </dl>
             <p class="metric-group-label">信頼性</p>
-            <div class="metric-row"><dt>真正性</dt><dd>${selectedEvidence.authenticity}</dd></div>
-            <div class="metric-row"><dt>解釈信頼性</dt><dd>${selectedEvidence.interpretiveReliability}</dd></div>
+            <dl class="metric-list">
+              <div class="metric-row"><dt>真正性</dt><dd>${selectedEvidence.authenticity}</dd></div>
+              <div class="metric-row"><dt>解釈信頼性</dt><dd>${selectedEvidence.interpretiveReliability}</dd></div>
+            </dl>
             <p class="metric-group-label">リンク</p>
-            <div class="metric-row"><dt>関係</dt><dd>${badge(selectedLink.relationship)}</dd></div>
-            <div class="metric-row"><dt>対象</dt><dd>${selectedLink.target}</dd></div>
-            <div class="metric-row"><dt>関連度</dt><dd>${selectedLink.relevance}</dd></div>
-            <div class="metric-row"><dt>意思決定者が知っていた</dt><dd>${selectedLink.knownByDecisionMakers}</dd></div>
-            <div class="metric-row"><dt>認識根拠</dt><dd>${selectedLink.knownByDecisionMakersBasis}</dd></div>
+            <dl class="metric-list">
+              <div class="metric-row"><dt>関係</dt><dd>${badge(selectedLink.relationship)}</dd></div>
+              <div class="metric-row"><dt>対象</dt><dd>${selectedLink.target}</dd></div>
+              <div class="metric-row"><dt>関連度</dt><dd>${selectedLink.relevance}</dd></div>
+              <div class="metric-row"><dt>意思決定者が知っていた</dt><dd>${selectedLink.knownByDecisionMakers}</dd></div>
+              <div class="metric-row"><dt>認識根拠</dt><dd>${selectedLink.knownByDecisionMakersBasis}</dd></div>
+            </dl>
             <h3>このリンクから言えること</h3>
             <p>${selectedLink.canSay}</p>
             <h3>このリンクだけでは言えないこと</h3>
@@ -1137,15 +1151,19 @@ function renderOpinion() {
         <h3>補助格付け</h3>
         <p><strong>${auditData.warCase.rating}</strong></p>
         <p>監査意見の要約であり、単独で責任を断定するものではない。</p>
-        ${auditData.ratingBasis
-          .map((item) => `<div class="metric-row"><dt>${item.cell}</dt><dd>重み ${item.weight}</dd></div>`)
-          .join("")}
+        <dl class="metric-list">
+          ${auditData.ratingBasis
+            .map((item) => `<div class="metric-row"><dt>${item.cell}</dt><dd>重み ${item.weight}</dd></div>`)
+            .join("")}
+        </dl>
       </section>
       <section class="section">
         <h3>反対仮説</h3>
-        <div class="metric-row"><dt>英国反応は限定的</dt><dd>弱体化。実際に機動部隊派遣と奪還作戦が行われたため。ただし、開戦前の予見可能性はなお要検証。</dd></div>
-        <div class="metric-row"><dt>米国は中立仲介</dt><dd>要検証。開戦前の米国姿勢には曖昧さがあり、資料確認が必要。</dd></div>
-        <div class="metric-row"><dt>短期占領で外交優位</dt><dd>弱体化。英国の軍事奪還意思が明確化した後、既成事実化戦略は成立しにくくなった。</dd></div>
+        <dl class="metric-list">
+          <div class="metric-row"><dt>英国反応は限定的</dt><dd>弱体化。実際に機動部隊派遣と奪還作戦が行われたため。ただし、開戦前の予見可能性はなお要検証。</dd></div>
+          <div class="metric-row"><dt>米国は中立仲介</dt><dd>要検証。開戦前の米国姿勢には曖昧さがあり、資料確認が必要。</dd></div>
+          <div class="metric-row"><dt>短期占領で外交優位</dt><dd>弱体化。英国の軍事奪還意思が明確化した後、既成事実化戦略は成立しにくくなった。</dd></div>
+        </dl>
       </section>
     </div>
 
