@@ -422,7 +422,7 @@ const auditData = {
       source: "Falkland Islands Review (Franks Report), Cmnd 8787, HMSO, 1983",
       collectionState: "一次資料入手可",
       authenticity: "高", // 政府公式刊行
-      interpretiveReliability: "低〜中", // #5: 結論が英政府を免責する方向のバイアスを含む
+      interpretiveReliability: "低", // #5/E-3: レンジ値を避け、免責方向バイアスを保守的に低として扱う
     },
     {
       id: "E-004",
@@ -1027,8 +1027,6 @@ function renderEvidence() {
                         ${badge(link.relationship)}
                         <span class="cell-meta">真正性: ${evidence.authenticity}</span>
                         <span class="cell-meta">解釈信頼性: ${evidence.interpretiveReliability}</span>
-                        <span class="cell-meta">関連度: ${link.relevance}</span>
-                        <span class="cell-meta">時点適合度: ${link.timeFit}</span>
                       </div>
                     </td>
                   </tr>
