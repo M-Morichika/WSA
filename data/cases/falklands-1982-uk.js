@@ -494,6 +494,69 @@ export const falklands1982UkCase = {
       cannotSay:
         "ベルグラノは攻撃時の針路に関わらず機動部隊への戦略的脅威であり、排他水域外での撃沈という一事だけで、作戦全体が奪還目的を逸脱した懲罰的拡大だったと結論することはできない。",
     },
+    {
+      id: "UK-EL-009",
+      evidenceId: "UK-E-002",
+      claimId: "uk_claim_deterrence_signal",
+      assessmentCellId: "uk_cell_deterrence_prewar",
+      claimLabel: "抑止シグナル因果への反証",
+      target: "監査仮説への反証: 英国シグナルがアルゼンチンの誤算を助長した",
+      relationship: "反証",
+      reviewState: "要検証",
+      relevance: "中",
+      timeFit: "間接",
+      availableAtDecisionTime: false,
+      availableToAnalysts: false,
+      knownByDecisionMakers: "不明",
+      knownByDecisionMakersBasis:
+        "フランクス報告書は戦後調査であり、侵攻前の英国中枢が同報告書を利用できたわけではない。",
+      canSay:
+        "戦後調査は、侵攻前の抑止失敗を単一の国防再編シグナルだけに還元しにくいことを示し、英国シグナルが誤算を助長したという因果主張への反証材料になる。",
+      cannotSay:
+        "この報告書だけで、HMS Endurance撤収や国防再編シグナルがアルゼンチン側に影響しなかったとは言えない。",
+    },
+    {
+      id: "UK-EL-010",
+      evidenceId: "UK-E-005",
+      claimId: "uk_claim_taskforce_reasonable",
+      assessmentCellId: "uk_cell_diplomacy_response",
+      claimLabel: "機動部隊派遣合理性への反証",
+      target: "反対仮説への反証: 機動部隊派遣は合理的だった",
+      relationship: "反証",
+      reviewState: "要検証",
+      relevance: "中",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: false,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "米国仲介は英国戦時内閣が同時代に対応した外交過程であり、中枢は交渉条件と軍事圧力の相互作用を認識していた。",
+      canSay:
+        "米国仲介外交と出口条件の不明確さは、機動部隊派遣が常に交渉圧力として合理的に働いたとは限らないことを示し、派遣合理性の主張を弱める。",
+      cannotSay:
+        "外交出口の難しさだけで、機動部隊派遣そのものが不合理だった、または外交解決を決定的に妨げたとは言えない。",
+    },
+    {
+      id: "UK-EL-011",
+      evidenceId: "UK-E-006",
+      claimId: "uk_claim_termination_limited",
+      assessmentCellId: "uk_cell_termination_end",
+      claimLabel: "終結条件限定への反証",
+      target: "反対仮説への反証: 終結判断は目的限定的だった",
+      relationship: "反証",
+      reviewState: "要検証",
+      relevance: "中",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "撃沈と交戦規則変更は英国戦時内閣が承認した同時代の自国行動であり、中枢に既知。",
+      canSay:
+        "排他水域外でのベルグラノ撃沈は、英国の戦争運営が常に狭い目的限定に収まっていたという読みを弱め、終結条件の限定性にも留保を付ける。",
+      cannotSay:
+        "ベルグラノ撃沈だけで、ポートスタンリー陥落後の終結判断が本土攻撃や懲罰的拡大を志向していたとは言えない。",
+    },
   ],
   ratingBasis: [
     { cellId: "uk_cell_deterrence_prewar", weight: 2 },

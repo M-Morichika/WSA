@@ -644,6 +644,27 @@ export const falklands1982Case = {
       cannotSay:
         "売却合意だけでは、英国が危機時に空母を投入しない、または売却を延期しないと結論できない。実際には戦争勃発後に売却は停止・撤回された。",
     },
+    {
+      id: "EL-008",
+      evidenceId: "E-005",
+      claimId: "claim_uk_response",
+      assessmentCellId: "cell_war_capacity_opening",
+      claimLabel: "英国反応過小評価への反証",
+      target: "監査仮説への反証: 英国の全面的軍事奪還を過小評価した",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "中",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "不明",
+      knownByDecisionMakersBasis:
+        "1981年国防白書とHMS Endurance撤収方針は公開情報として同時代に入手可能。ただし、アルゼンチン中枢がこの資料を実際にどの程度重視したかは未確認。",
+      canSay:
+        "英国の南大西洋関与縮小シグナルは、アルゼンチン側が英国反応を限定的と見る同時代的根拠になり得たため、過小評価を単なる無根拠な誤認と断定する見方を弱める。",
+      cannotSay:
+        "公開シグナルがあったことだけでは、アルゼンチン軍事政権の英国反応見積もりが妥当だった、または全面奪還を予見不能だったとは言えない。",
+    },
   ],
   // S-2: ratingBasis を表示文字列(cell)から参照(cellId)へ正規化し UK ケースとスキーマを統一。
   //   weight は表示専用（格付けは warCase.rating にハードコード）。最初の4件は phase 特定済みで

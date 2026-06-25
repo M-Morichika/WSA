@@ -43,7 +43,7 @@
   - **`hypothesisTracking` は検査対象外と判断**：`checkpoints[].phase` は phase.name への参照ではなく自由記述のチェックポイント名で ID 参照を持たないため（誤検知回避。コメントで明記済み）。
 - **S-2（スキーマ統一）**: ア軍 `ratingBasis` を `cell`（表示文字列）→`cellId`（参照）へ正規化。UK と一致。旧「結果との乖離」（軸集約・weight 0.5）は代表セル `cell_outcome_opening` に寄せた（weight は表示専用＝格付けは `warCase.rating` ハードコードで不変）。レンダラ `ui/renderers.js` の死にコード化した `item.cell` フォールバックを撤去。
 - 検証: `node --check` 全6 OK／両ケース `validateCaseReferences` 参照整合0件／UK 反証リンク1（UK-EL-008）で `no_counter_evidence` 解消／実UI で Evidence・Assessment・Audit Opinion 描画・コンソールエラー0。
-- **残課題**: UK の `one_sided_counter_claim` が `uk_claim_taskforce_reasonable`／`uk_claim_termination_limited` の2件残存（＝U-2「擁護一色」の正体）。消さず方法論TODOとして可視化継続する方針。
+- **更新**: U-2 適用により、現時点の `lintCaseMethodology` は両ケースとも 0 件。
 
 ### 2-A. モジュール化＋複数ケース化＋英国側ケース追加（`3ece311`）※前セッションの主成果
 - `app.js`（1479行モノリス）→ スキーマ / ケースデータ / レンダラの3層に分離。
@@ -106,9 +106,15 @@
 - **S-4（整形）**: UK `preWarChecklist` 末尾の余分な空行を削除。
 - **U-1（ケース切替時の view 維持）**: `stateForCase(caseData, activeView)` に変更し、ケース切替後も現在の view を維持。
 
+### 2-4. U-2 適用: one_sided_claim 解消
+- ア軍 `claim_uk_response` に `EL-008`（E-005を反証として接続）を追加。
+- UK `uk_claim_deterrence_signal` に `UK-EL-009`（UK-E-002を反証として接続）を追加。
+- UK `uk_claim_taskforce_reasonable` に `UK-EL-010`（UK-E-005を反証として接続）を追加。
+- UK `uk_claim_termination_limited` に `UK-EL-011`（UK-E-006を反証として接続）を追加。
+- 検証: `validateCaseReferences` は両ケース0件、`lintCaseMethodology` も両ケース0件。
+
 **残りの未適用（優先度順）:**
-4. 旧来残（軽・要判断）:
-   - **U-2（一部進展）**: UK は依然 `one_sided_claim` 複数（counter_claim: `taskforce_reasonable`/`termination_limited`、audit_issue: `deterrence_signal` ＝R-4 で新検出）。リント可視化済み。各 claim に実反証/保留を足すか現状維持かは要判断。
+- 現時点で軽掃除・方法論lint由来の未適用項目はなし。
 
 **凍結中（過剰設計リスク。やるなら独立セッション）:**
 - **M-1**: claim 単位の支持/反証集計ビュー。`claims[]` は現状どの renderer も非参照（死蔵）。活用 or 削除の去就決定が要る。
@@ -137,8 +143,7 @@
 ---
 
 ## 7. 次セッションの推奨アクション
-1. まず本ファイルを読む。A-1＋S-1＋S-2 はコミット済み（§2-0）。
-2. 残りの着手候補（§4）:
-   - **判断系（中）**: U-2 残り（`one_sided_claim` に実反証/保留を足すか現状維持か）。
-3. または**湾岸戦争1990–91（イラク侵攻判断）を3例目として着手**。設計メモ: 監査対象=イラク（サダム政権）、3フェーズ（侵攻8/2→撤退拒否〜期限1/15→停戦2月末）、ex-ante の核＝グラスピー会談（1990/7/25）＝イラク版 E-005、ex-post（連合軍展開・Desert Storm 戦果）を直接証拠にしない。新ケースは起動時に `lintCaseMethodology` の `no_counter_evidence` が出ないよう反証を最初から入れる。
+1. まず本ファイルを読む。
+2. 未コミット差分を確認し、必要ならコミットする。
+3. 次の大きな作業候補は**湾岸戦争1990–91（イラク侵攻判断）を3例目として着手**。設計メモ: 監査対象=イラク（サダム政権）、3フェーズ（侵攻8/2→撤退拒否〜期限1/15→停戦2月末）、ex-ante の核＝グラスピー会談（1990/7/25）＝イラク版 E-005、ex-post（連合軍展開・Desert Storm 戦果）を直接証拠にしない。新ケースは起動時に `lintCaseMethodology` の `no_counter_evidence` が出ないよう反証を最初から入れる。
 4. いずれも §3 の蒸し返し禁止に抵触しないか確認してから進める。
