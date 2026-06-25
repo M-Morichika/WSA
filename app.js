@@ -3,6 +3,7 @@ import {
   getFirstMatchingEvidenceLink,
   lintCaseMethodology,
   validateCaseReferences,
+  validateCaseRegistry,
   viewMeta,
 } from "./data/auditSchema.js";
 import { cases } from "./data/cases/index.js";
@@ -21,6 +22,13 @@ function stateForCase(caseData, activeView = "overview") {
     opinionMode: "summary",
     evidenceFilters: getDefaultEvidenceFilters(),
   };
+}
+
+function validateCaseRegistryOnce() {
+  const registryIssues = validateCaseRegistry(cases);
+  if (registryIssues.length > 0) {
+    console.warn("Case registry issues", registryIssues);
+  }
 }
 
 function validateActiveCase() {
@@ -151,8 +159,8 @@ document.addEventListener("change", (event) => {
 });
 
 renderCaseSelector();
+validateCaseRegistryOnce();
 validateActiveCase();
 updateShellCaseMetadata();
 render();
-
 

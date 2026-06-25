@@ -129,6 +129,19 @@
   - ケース切替テスト: `#case-selector` に value 設定→`change` イベント dispatch。
   - ⚠️ `preview_screenshot` はこの環境で**タイムアウトしがち** → `preview_eval` で構造取得が確実。
   - reload 後の "Inspected target navigated" は正常（次の eval で再取得）。
+### 3例目受入チェックリスト
+- `data/cases/index.js` に新ケースを import し、`cases` 配列へ追加している。
+- `warCase.id` とケース内の `id` 群（phase / assumption / assessmentCell / evidence / claim / evidenceLink / preWar）は重複していない。
+- `node --check` を app / schema / 全 case / renderer に対して通す。
+- `validateCaseRegistry(cases)` が0件、`validateCaseReferences(caseData)` が全ケース0件。
+- `lintCaseMethodology(caseData)` が全ケース0件、または残す警告の理由を `HANDOFF.md` に明記。
+- ブラウザで全ビュー（Overview / Timeline / Pre-War / Assessment / Evidence / Audit Opinion）を開く。
+- Evidence で各フィルタ（証拠種類 / 真正性 / 関連度 / 支持・反証・保留）を最低1回ずつ試す。
+- Evidence で0件フィルタ状態とフィルター解除を確認する。
+- 未接続セル一覧がある場合、Assessment への遷移が壊れていないことを確認する。
+- 主要リンクの `canSay` / `cannotSay` が空でなく、判断時点より後の結果を直接証拠として扱っていないことを確認する。
+- ケース切替後も現在ビューが維持され、見出し・監査対象・格付けが切り替わることを確認する。
+- 必要に応じてモバイル幅でも表・長いケース名・Evidence詳細が読めることを確認する。
 
 ---
 

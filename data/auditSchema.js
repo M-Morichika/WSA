@@ -92,13 +92,56 @@ export function getFirstMatchingEvidenceLink(caseData, filters) {
 }
 
 export function validateCaseReferences(caseData) {
-  const evidenceIds = new Set(caseData.evidence.map((item) => item.id));
-  const assessmentCellIds = new Set(caseData.assessmentCells.map((item) => item.id));
-  const assumptionIds = new Set(caseData.phases.flatMap((phase) => phase.assumptions.map((item) => item.id)));
-  const claimIds = new Set((caseData.claims || []).map((item) => item.id));
+  const evidence = Array.isArray(caseData.evidence) ? caseData.evidence : [];
+  const phases = Array.isArray(caseData.phases) ? caseData.phases : [];
+  const assessmentCells = Array.isArray(caseData.assessmentCells) ? caseData.assessmentCells : [];
+  const claims = Array.isArray(caseData.claims) ? caseData.claims : [];
+  const evidenceLinks = Array.isArray(caseData.evidenceLinks) ? caseData.evidenceLinks : [];
+  const preWarChecklist = Array.isArray(caseData.preWarChecklist) ? caseData.preWarChecklist : [];
+  const ratingBasis = Array.isArray(caseData.ratingBasis) ? caseData.ratingBasis : [];
   const issues = [];
 
-  caseData.evidenceLinks.forEach((link) => {
+  const addMissingArrayIssue = (fieldName, value) => {
+    if (!Array.isArray(value)) issues.push({ type: "missing_array", field: fieldName });
+  };
+  const addDuplicateIdIssues = (type, items, getId = (item) => item.id) => {
+    const seen = new Map();
+    items.forEach((item, index) => {
+      const id = getId(item);
+      if (!id) return;
+      if (seen.has(id)) issues.push({ type, id, firstIndex: seen.get(id), index });
+      else seen.set(id, index);
+    });
+  };
+
+  addMissingArrayIssue("evidence", caseData.evidence);
+  addMissingArrayIssue("phases", caseData.phases);
+  addMissingArrayIssue("assessmentCells", caseData.assessmentCells);
+  addMissingArrayIssue("evidenceLinks", caseData.evidenceLinks);
+  addMissingArrayIssue("preWarChecklist", caseData.preWarChecklist);
+
+  addDuplicateIdIssues("duplicate_evidence_id", evidence);
+  addDuplicateIdIssues("duplicate_phase_id", phases);
+  addDuplicateIdIssues("duplicate_assessment_cell_id", assessmentCells);
+  addDuplicateIdIssues("duplicate_claim_id", claims);
+  addDuplicateIdIssues("duplicate_evidence_link_id", evidenceLinks);
+  addDuplicateIdIssues("duplicate_prewar_item_id", preWarChecklist);
+  addDuplicateIdIssues(
+    "duplicate_assumption_id",
+    phases.flatMap((phase) => (Array.isArray(phase.assumptions) ? phase.assumptions : [])),
+  );
+  addDuplicateIdIssues("duplicate_assessment_axis_phase", assessmentCells, (cell) => `${cell.axis} / ${cell.phase}`);
+
+  const evidenceIds = new Set(evidence.map((item) => item.id));
+  const assessmentCellIds = new Set(assessmentCells.map((item) => item.id));
+  const assumptionIds = new Set(phases.flatMap((phase) => (Array.isArray(phase.assumptions) ? phase.assumptions : []).map((item) => item.id)));
+  const claimIds = new Set(claims.map((item) => item.id));
+
+  phases.forEach((phase, index) => {
+    if (!Array.isArray(phase.assumptions)) issues.push({ type: "missing_phase_assumptions", id: phase.id, index });
+  });
+
+  evidenceLinks.forEach((link) => {
     if (!evidenceIds.has(link.evidenceId)) {
       issues.push({ type: "missing_evidence", id: link.evidenceId, linkId: link.id });
     }
@@ -111,19 +154,26 @@ export function validateCaseReferences(caseData) {
     }
   });
 
-  caseData.preWarChecklist.forEach((item) => {
-    item.linkedCells.forEach((id) => {
-      if (!assessmentCellIds.has(id)) issues.push({ type: "missing_prewar_cell", id, itemId: item.id });
-    });
-    item.linkedAssumptions.forEach((id) => {
-      if (!assumptionIds.has(id)) issues.push({ type: "missing_prewar_assumption", id, itemId: item.id });
-    });
+  preWarChecklist.forEach((item) => {
+    if (!Array.isArray(item.linkedCells)) {
+      issues.push({ type: "missing_prewar_linked_cells", itemId: item.id });
+    } else {
+      item.linkedCells.forEach((id) => {
+        if (!assessmentCellIds.has(id)) issues.push({ type: "missing_prewar_cell", id, itemId: item.id });
+      });
+    }
+    if (!Array.isArray(item.linkedAssumptions)) {
+      issues.push({ type: "missing_prewar_linked_assumptions", itemId: item.id });
+    } else {
+      item.linkedAssumptions.forEach((id) => {
+        if (!assumptionIds.has(id)) issues.push({ type: "missing_prewar_assumption", id, itemId: item.id });
+      });
+    }
   });
 
   // S-1: ratingBasis → assessmentCell の参照整合。
-  // ※ スキーマ不一致（S-2 未適用）対応: cellId（参照）を持つ項目のみ検査し、
-  //   ア軍側の cell（表示文字列）は参照ではないため skip する。
-  (caseData.ratingBasis || []).forEach((basis, index) => {
+  // S-2: 全ケース cellId 統一済み。cellId を持つ項目を参照検査する。
+  ratingBasis.forEach((basis, index) => {
     if (basis.cellId && !assessmentCellIds.has(basis.cellId)) {
       issues.push({ type: "missing_rating_cell", id: basis.cellId, index });
     }
@@ -136,11 +186,50 @@ export function validateCaseReferences(caseData) {
   return issues;
 }
 
+
+export function validateCaseRegistry(cases) {
+  const issues = [];
+  const seen = new Map();
+  (Array.isArray(cases) ? cases : []).forEach((caseData, index) => {
+    const id = caseData?.warCase?.id;
+    if (!id) {
+      issues.push({ type: "missing_case_id", index });
+      return;
+    }
+    if (seen.has(id)) issues.push({ type: "duplicate_case_id", id, firstIndex: seen.get(id), index });
+    else seen.set(id, index);
+  });
+  return issues;
+}
 // S-1（方法論リント）: 第一原則「反証を隠さない」を口頭原則からコード化された検査へ昇格。
 // validateCaseReferences が「参照の整合」を見るのに対し、こちらは「監査としての健全性」を見る。
 export function lintCaseMethodology(caseData) {
   const findings = [];
-  const links = caseData.evidenceLinks || [];
+  const links = Array.isArray(caseData.evidenceLinks) ? caseData.evidenceLinks : [];
+  const claims = Array.isArray(caseData.claims) ? caseData.claims : [];
+  const validTimeFits = new Set(["直接", "間接"]);
+  const requiredTextFields = ["canSay", "cannotSay"];
+
+  links.forEach((link) => {
+    requiredTextFields.forEach((field) => {
+      if (typeof link[field] !== "string" || link[field].trim() === "") {
+        findings.push({ type: "missing_link_limitation", id: link.id, field, severity: "注意" });
+      }
+    });
+
+    if (!validTimeFits.has(link.timeFit)) {
+      findings.push({ type: "invalid_time_fit", id: link.id, value: link.timeFit, severity: "注意" });
+    }
+    if (typeof link.availableAtDecisionTime !== "boolean") {
+      findings.push({ type: "missing_decision_time_flag", id: link.id, severity: "注意" });
+    }
+    if (link.timeFit === "直接" && link.availableAtDecisionTime !== true) {
+      findings.push({ type: "direct_evidence_not_available_at_decision_time", id: link.id, severity: "重大" });
+    }
+    if (link.relationship === "反証" && (!link.claimId || !link.assessmentCellId)) {
+      findings.push({ type: "counter_link_without_claim_or_cell", id: link.id, severity: "注意" });
+    }
+  });
 
   // (1) ケース全体で反証リンクが 0 件 ＝ 支持一色。原則がデータで破れている【重大】。
   const counterCount = links.filter((link) => link.relationship === "反証").length;
@@ -160,7 +249,7 @@ export function lintCaseMethodology(caseData) {
     if (link.relationship === "支持") supportByClaim.set(link.claimId, (supportByClaim.get(link.claimId) || 0) + 1);
     if (link.relationship === "反証") counterByClaim.set(link.claimId, (counterByClaim.get(link.claimId) || 0) + 1);
   });
-  (caseData.claims || []).forEach((claim) => {
+  claims.forEach((claim) => {
     const supports = supportByClaim.get(claim.id) || 0;
     const counters = counterByClaim.get(claim.id) || 0;
     if (supports > 0 && counters === 0) {
