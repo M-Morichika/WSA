@@ -281,6 +281,20 @@ export const falklands1982UkCase = {
       authenticity: "中",
       interpretiveReliability: "中",
     },
+    {
+      id: "UK-E-006",
+      title: "ARA ヘネラル・ベルグラノ撃沈と交戦規則の変更（1982年5月2日）",
+      type: "政府・軍事行動資料",
+      // A-1: 第一原則「反証を隠さない」の回復。英国側ケースは支持6/保留1で反証ゼロだったため、
+      // uk_claim_limited_war（作戦は島嶼奪還に限定）への最有力反証として撃沈の事実関係を入力する。
+      publishedDate: "1982年5月2日（行動）／2005年（戦後公式戦史で詳述）",
+      coveragePeriod: "1982年5月（奪還作戦・海上交戦・交戦規則）",
+      source:
+        "Lawrence Freedman, The Official History of the Falklands Campaign, Vol.2 (Routledge, 2005)（交戦規則の変更とベルグラノ撃沈の経緯）。撃沈の事実関係（排他水域外・約323名死亡）は英国防省発表および各種戦史で確認可。",
+      collectionState: "二次研究で確認可",
+      authenticity: "高", // 撃沈の事実・ROE変更の存在は確立
+      interpretiveReliability: "中", // 攻撃時針路の戦術的含意は論争的
+    },
   ],
   claims: [
     {
@@ -435,6 +449,31 @@ export const falklands1982UkCase = {
       knownByDecisionMakersBasis: "戦後の公式戦史であり、終戦時点の戦時内閣内部判断は別資料で確認が必要。",
       canSay: "英国側の戦争目的がポートスタンリー陥落と島嶼奪還で実質的に閉じたことを整理できる。",
       cannotSay: "終戦直後の戦後統治・防衛負担の見積もりが十分だったことまでは単独で示さない。",
+    },
+    {
+      id: "UK-EL-008",
+      evidenceId: "UK-E-006",
+      claimId: "uk_claim_limited_war",
+      // A-1: uk_cell_escalation_ops（エスカレーション管理）上の唯一の反証。UK-EL-006（同セル/同claimへの支持）
+      // と対になり、「作戦は島嶼奪還に限定」という counter_claim を支持一色から是正する。
+      // 撃沈は英国戦時内閣が ROE を変更して承認した自国の行動であるため、ex-post の結果ではなく
+      // 当該フェーズの監査対象そのもの（同時代・中枢既知）として扱える。
+      assessmentCellId: "uk_cell_escalation_ops",
+      claimLabel: "目的限定への反証（排他水域外での撃沈）",
+      target: "反対仮説への反証: 作戦は島嶼奪還に限定されていた",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "高",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "撃沈は英国戦時内閣が交戦規則を変更して承認した自国の軍事行動であり、判断時点で中枢に既知。",
+      canSay:
+        "英国が宣言した全面排他水域（TEZ）の外で、かつ攻撃時点で島嶼から離れる針路にあった巡洋艦を、交戦規則を変更して撃沈し約323名が死亡したことは、作戦が島嶼奪還に厳密に限定されていたとする見方への有力な反証になる。",
+      cannotSay:
+        "ベルグラノは攻撃時の針路に関わらず機動部隊への戦略的脅威であり、排他水域外での撃沈という一事だけで、作戦全体が奪還目的を逸脱した懲罰的拡大だったと結論することはできない。",
     },
   ],
   ratingBasis: [

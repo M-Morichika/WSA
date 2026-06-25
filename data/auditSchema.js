@@ -95,6 +95,7 @@ export function validateCaseReferences(caseData) {
   const evidenceIds = new Set(caseData.evidence.map((item) => item.id));
   const assessmentCellIds = new Set(caseData.assessmentCells.map((item) => item.id));
   const assumptionIds = new Set(caseData.phases.flatMap((phase) => phase.assumptions.map((item) => item.id)));
+  const claimIds = new Set((caseData.claims || []).map((item) => item.id));
   const issues = [];
 
   caseData.evidenceLinks.forEach((link) => {
@@ -103,6 +104,10 @@ export function validateCaseReferences(caseData) {
     }
     if (link.assessmentCellId && !assessmentCellIds.has(link.assessmentCellId)) {
       issues.push({ type: "missing_assessment_cell", id: link.assessmentCellId, linkId: link.id });
+    }
+    // S-1: evidenceLink → claim の参照整合（claimId は dangling になりやすい）
+    if (link.claimId && !claimIds.has(link.claimId)) {
+      issues.push({ type: "missing_claim", id: link.claimId, linkId: link.id });
     }
   });
 
@@ -115,5 +120,51 @@ export function validateCaseReferences(caseData) {
     });
   });
 
+  // S-1: ratingBasis → assessmentCell の参照整合。
+  // ※ スキーマ不一致（S-2 未適用）対応: cellId（参照）を持つ項目のみ検査し、
+  //   ア軍側の cell（表示文字列）は参照ではないため skip する。
+  (caseData.ratingBasis || []).forEach((basis, index) => {
+    if (basis.cellId && !assessmentCellIds.has(basis.cellId)) {
+      issues.push({ type: "missing_rating_cell", id: basis.cellId, index });
+    }
+  });
+
+  // 注: hypothesisTracking[].checkpoints[].phase は phase.name への参照ではなく
+  //   自由記述のチェックポイント名（例「機動部隊派遣後」）であり、ID 参照を持たない。
+  //   よって参照整合の検査対象にはしない（誤検知を避ける）。
+
   return issues;
+}
+
+// S-1（方法論リント）: 第一原則「反証を隠さない」を口頭原則からコード化された検査へ昇格。
+// validateCaseReferences が「参照の整合」を見るのに対し、こちらは「監査としての健全性」を見る。
+export function lintCaseMethodology(caseData) {
+  const findings = [];
+  const links = caseData.evidenceLinks || [];
+
+  // (1) ケース全体で反証リンクが 0 件 ＝ 支持一色。原則がデータで破れている【重大】。
+  const counterCount = links.filter((link) => link.relationship === "反証").length;
+  if (counterCount === 0) {
+    findings.push({ type: "no_counter_evidence", severity: "重大" });
+  }
+
+  // (2) counter_claim（免責方向の対抗仮説）が支持を持ちながら反証ゼロ ＝ 一方的擁護。
+  const supportByClaim = new Map();
+  const counterByClaim = new Map();
+  links.forEach((link) => {
+    if (!link.claimId) return;
+    if (link.relationship === "支持") supportByClaim.set(link.claimId, (supportByClaim.get(link.claimId) || 0) + 1);
+    if (link.relationship === "反証") counterByClaim.set(link.claimId, (counterByClaim.get(link.claimId) || 0) + 1);
+  });
+  (caseData.claims || [])
+    .filter((claim) => claim.type === "counter_claim")
+    .forEach((claim) => {
+      const supports = supportByClaim.get(claim.id) || 0;
+      const counters = counterByClaim.get(claim.id) || 0;
+      if (supports > 0 && counters === 0) {
+        findings.push({ type: "one_sided_counter_claim", id: claim.id, severity: "注意", supports });
+      }
+    });
+
+  return findings;
 }

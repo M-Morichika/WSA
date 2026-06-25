@@ -497,8 +497,9 @@ function renderOpinion() {
         <dl class="metric-list">
           ${auditData.ratingBasis
             .map((item) => {
+              // S-2: 両ケースとも cellId に統一済み。旧 item.cell（表示文字列）フォールバックは撤去。
               const cell = item.cellId ? getAssessmentCell(item.cellId) : null;
-              const label = cell ? `${cell.axis} / ${cell.phase}` : item.cell || item.cellId || "未設定";
+              const label = cell ? `${cell.axis} / ${cell.phase}` : item.cellId || "未設定";
               return `<div class="metric-row"><dt>${label}</dt><dd>重み ${item.weight}</dd></div>`;
             })
             .join("")}

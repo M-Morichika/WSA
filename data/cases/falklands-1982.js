@@ -643,12 +643,15 @@ export const falklands1982Case = {
         "売却合意だけでは、英国が危機時に空母を投入しない、または売却を延期しないと結論できない。実際には戦争勃発後に売却は停止・撤回された。",
     },
   ],
+  // S-2: ratingBasis を表示文字列(cell)から参照(cellId)へ正規化し UK ケースとスキーマを統一。
+  //   weight は表示専用（格付けは warCase.rating にハードコード）。最初の4件は phase 特定済みで
+  //   1対1対応。旧「結果との乖離」(軸集約・weight 0.5) は最も代表的な cell_outcome_opening に寄せる。
   ratingBasis: [
-    { cell: "継戦能力見積もり / 開戦判断", weight: 3 },
-    { cell: "意思決定プロセス / 開戦判断", weight: 3 },
-    { cell: "継戦能力見積もり / 転換点", weight: 3 },
-    { cell: "意思決定プロセス / 転換点", weight: 2 },
-    { cell: "結果との乖離", weight: 0.5 },
+    { cellId: "cell_war_capacity_opening", weight: 3 },
+    { cellId: "cell_decision_process_opening", weight: 3 },
+    { cellId: "cell_war_capacity_turning", weight: 3 },
+    { cellId: "cell_decision_process_turning", weight: 2 },
+    { cellId: "cell_outcome_opening", weight: 0.5 },
   ],
 };
 

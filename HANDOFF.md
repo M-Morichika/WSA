@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-25（モジュール化＋複数ケース化＋英国側ケース追加セッション）
+最終更新: 2026-06-25（A-1＋S-1＋S-2 適用セッション：反証追加・方法論リント・ratingBasis 正規化）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -31,9 +31,21 @@
 
 ---
 
-## 2. 直近セッションで完了したこと（すべてコミット＋push 済み・作業ツリー clean）
+## 2. 直近セッションで完了したこと
 
-### 2-A. モジュール化＋複数ケース化＋英国側ケース追加（`3ece311`）※今セッションの主成果
+### 2-0. A-1＋S-1＋S-2 の適用（※今セッションの主成果。コミット予定）
+- **A-1（原則回復）**: UK ケースに反証を追加。第一原則「反証を隠さない」が UK データで破れていた状態を是正。
+  - `UK-E-006`（ARA ヘネラル・ベルグラノ撃沈＋交戦規則変更、1982/5/2）を新規追加。
+  - `UK-EL-008` = `uk_claim_limited_war` / `uk_cell_escalation_ops` への**反証**。フレーミングは「単一反証・針路含む（保守的）」を選択（canSay＝排他水域外・ROE変更・約323名死亡・攻撃時の離脱針路の事実／cannotSay＝「一事で作戦全体の逸脱とは結論できない」）。撃沈は英戦時内閣が ROE 変更で承認した自国行動のため ex-post の結果ではなく当該フェーズの監査対象として `timeFit:直接`／`knownByDecisionMakers:明白` で扱った。
+- **S-1（検査のコード化）**: `data/auditSchema.js`。
+  - `validateCaseReferences` 拡張：`evidenceLinks[].claimId`→claims、`ratingBasis[].cellId`→cells を追加検査（`missing_claim`/`missing_rating_cell`）。
+  - **`lintCaseMethodology(caseData)` 新設**＝「反証を隠さない」をコード化。`no_counter_evidence`（ケース反証ゼロ＝重大）／`one_sided_counter_claim`（支持ありで反証ゼロの counter_claim）。`app.js` 起動時に `console.warn`。
+  - **`hypothesisTracking` は検査対象外と判断**：`checkpoints[].phase` は phase.name への参照ではなく自由記述のチェックポイント名で ID 参照を持たないため（誤検知回避。コメントで明記済み）。
+- **S-2（スキーマ統一）**: ア軍 `ratingBasis` を `cell`（表示文字列）→`cellId`（参照）へ正規化。UK と一致。旧「結果との乖離」（軸集約・weight 0.5）は代表セル `cell_outcome_opening` に寄せた（weight は表示専用＝格付けは `warCase.rating` ハードコードで不変）。レンダラ `ui/renderers.js` の死にコード化した `item.cell` フォールバックを撤去。
+- 検証: `node --check` 全6 OK／両ケース `validateCaseReferences` 参照整合0件／UK 反証リンク1（UK-EL-008）で `no_counter_evidence` 解消／実UI で Evidence・Assessment・Audit Opinion 描画・コンソールエラー0。
+- **残課題**: UK の `one_sided_counter_claim` が `uk_claim_taskforce_reasonable`／`uk_claim_termination_limited` の2件残存（＝U-2「擁護一色」の正体）。消さず方法論TODOとして可視化継続する方針。
+
+### 2-A. モジュール化＋複数ケース化＋英国側ケース追加（`3ece311`）※前セッションの主成果
 - `app.js`（1479行モノリス）→ スキーマ / ケースデータ / レンダラの3層に分離。
 - **複数ケース・エンジン＋ケースセレクタ**（サイドバー）。`setActiveCase` で切替、`stateForCase` で state 初期化。
 - **2例目「フォークランド英国側」追加**（監査対象＝英国サッチャー政権・戦時内閣）。抑止失敗・危機対応・奪還・停戦の4フェーズ。勝者/抑止失敗側の監査でも枠が成立することを実証。
@@ -58,23 +70,28 @@
 - **校正β**: 「評価したが妥当でなかった」軸は追加しない。1軸（評価形跡の有無）に意図的に留める。
 - **ア軍 EL-003 = (a)**: `claim_uk_limited` への `支持`（claim 付け替えはしない）。
 - **#2 = A＋B**: 同時代史料追加＋opinion 酌量併記。criteria への E-005 投入は方向逆のため不採用。
+- **D（S-1）**: 「反証を隠さない」はコード化された検査（`lintCaseMethodology`）として常設。`one_sided_counter_claim` は noise でなく方法論TODOとして残す（消さない）。`hypothesisTracking` は ID 参照を持たないため参照整合の対象外。
+- **E（S-2）**: `ratingBasis` は全ケース `cellId` 参照に統一。weight は表示専用（格付けは `warCase.rating` ハードコード）。「結果との乖離」軸集約は代表セル `cell_outcome_opening` で表現。
+- **A-1 フレーミング**: ベルグラノ反証は「単一反証・針路含む（保守的）」を採用。針路の事実は canSay、戦術的含意の留保は cannotSay。
 
 ---
 
 ## 4. 未適用のレビュー指摘（今セッションの複数ケース・レビュー）※記号は本レビュー内のもの
 > ⚠️ 旧モノリス時代のレビュー記号（A-1/U-1 等）とは**別物**。下記は複数ケース化後のレビュー結果。
 
-**優先度順:**
-1. **A-1【重大】UK ケースに反証リンクがゼロ**（支持6/保留1/反証0。ア軍は反証1）。第一原則「反証を隠さない」が新ケースのデータで破れている。特に `uk_claim_limited_war`／`uk_cell_escalation_ops` への最有力反証＝**ベルグラノ撃沈**（排他water外・離脱中、1982/5/2）が欠落。反証を追加して支持一色を是正。※史実枠組みは入力前に要確認。
-2. **S-1【中】＋メタ: `validateCaseReferences` の検査範囲不足**。`evidenceLinks[].claimId`（→claims）、`ratingBasis[].cellId`（→cells）、`hypothesisTracking` 未検証。さらに**「方法論リント」を追加**＝反証0件ケースや、counter_claim に反証ゼロを `warn` する。**「反証を隠さない」を口頭原則からコード化された検査へ昇格**（A-1 の再発防止）。
-3. **S-2【軽〜中】ratingBasis のスキーマがケース間で不一致**。ア軍=`cell`（表示文字列）、UK=`cellId`（参照）。レンダラが両対応フォールバックで吸収しているため**バグではない**が、ア軍側を `cellId` に正規化すべき。
+**✅ 完了（今セッション・§2-0 参照）: A-1 / S-1 / S-2**
+- A-1: UK に反証 `UK-EL-008`（ベルグラノ）追加で原則回復。
+- S-1: `validateCaseReferences` 拡張＋`lintCaseMethodology` 新設でコード化。
+- S-2: ア軍 `ratingBasis` を `cellId` 正規化＋レンダラ死にコード撤去。
+
+**残りの未適用（優先度順）:**
 4. その他（軽〜中）:
    - **A-2**: UK は校正α上 **重大懸念に到達不能な構造**（prewar 全項目が評価可能性「中」）。格付け B-/C+ の寛容さが判断でなく入力構造由来の疑い。設定の妥当性を sanity-check。
    - **A-3**: `UK-EL-005` の `timeFit:直接` × `availableAtDecisionTime:false` の語彙ズレ。
    - **S-3**: `issues[].evidence/open` の件数が各ケース手書き固定（実 link/evidence 数と無連動）。ケース増で増殖する飾り数字。
    - **S-4**: UK `preWarChecklist` 末尾の空行（整形）。
    - **U-1**: ケース切替で必ず Overview に戻る（`stateForCase` が activeView リセット）。
-   - **U-2**: A-1 の帰結で UK ケースが Evidence 上「擁護一色」に見える。
+   - **U-2（一部進展）**: A-1 で反証1件追加したが、UK は依然 `one_sided_counter_claim` 2件（`taskforce_reasonable`/`termination_limited`）＝Evidence 上やや擁護寄り。リント可視化済み。残2件に実反証を足す（A-1 の横展開）か、現状維持かは要判断。
 
 **凍結中（過剰設計リスク。やるなら独立セッション）:**
 - **M-1**: claim 単位の支持/反証集計ビュー。`claims[]` は現状どの renderer も非参照（死蔵）。活用 or 削除の去就決定が要る。
@@ -103,10 +120,9 @@
 ---
 
 ## 7. 次セッションの推奨アクション
-1. まず本ファイルを読む。作業ツリーは clean（`3ece311` まで push 済み）。
-2. 推奨着手順（§4）:
-   - **最優先 A-1＋S-1**（セット）: UK に反証追加＝原則回復＋方法論リストで再発防止。プロジェクトの背骨を強くする。
-   - 次点 **S-2**（ratingBasis スキーマ統一）。
-   - 残りは掃除・確認レベル。
-3. または**湾岸戦争1990–91（イラク侵攻判断）を3例目として着手**。設計メモ: 監査対象=イラク（サダム政権）、3フェーズ（侵攻8/2→撤退拒否〜期限1/15→停戦2月末）、ex-ante の核＝グラスピー会談（1990/7/25）＝イラク版 E-005、ex-post（連合軍展開・Desert Storm 戦果）を直接証拠にしない。
+1. まず本ファイルを読む。A-1＋S-1＋S-2 はコミット済み（§2-0）。
+2. 残りの着手候補（§4）:
+   - **掃除系（軽）**: S-4（空行）、S-3（issues 飾り数字を実 link/evidence 数と連動 or 撤去）、U-1（ケース切替で view 維持）、A-3（UK-EL-005 の語彙ズレ）。
+   - **判断系（中）**: A-2（UK が校正α上 重大懸念に到達不能な構造の sanity-check）、U-2 残り（`one_sided_counter_claim` 2件に実反証を足すか現状維持か）。
+3. または**湾岸戦争1990–91（イラク侵攻判断）を3例目として着手**。設計メモ: 監査対象=イラク（サダム政権）、3フェーズ（侵攻8/2→撤退拒否〜期限1/15→停戦2月末）、ex-ante の核＝グラスピー会談（1990/7/25）＝イラク版 E-005、ex-post（連合軍展開・Desert Storm 戦果）を直接証拠にしない。新ケースは起動時に `lintCaseMethodology` の `no_counter_evidence` が出ないよう反証を最初から入れる。
 4. いずれも §3 の蒸し返し禁止に抵触しないか確認してから進める。

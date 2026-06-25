@@ -1,6 +1,7 @@
 import {
   getDefaultEvidenceFilters,
   getFirstMatchingEvidenceLink,
+  lintCaseMethodology,
   validateCaseReferences,
   viewMeta,
 } from "./data/auditSchema.js";
@@ -26,6 +27,11 @@ function validateActiveCase() {
   const referenceIssues = validateCaseReferences(activeCase);
   if (referenceIssues.length > 0) {
     console.warn("Case data reference issues", referenceIssues);
+  }
+  // S-1: 方法論リント（「反証を隠さない」のコード化）。参照整合とは別レイヤーで監査健全性を警告。
+  const methodologyFindings = lintCaseMethodology(activeCase);
+  if (methodologyFindings.length > 0) {
+    console.warn("Case methodology findings", activeCase.warCase.id, methodologyFindings);
   }
 }
 
