@@ -11,11 +11,12 @@ export const falklands1982UkCase = {
   },
   overviewOpinion:
     "現時点の証拠に基づく限り、英国サッチャー政権の戦時判断は、アルゼンチンによる武力占領後の領土回復と国際法秩序の回復という目的において一定の合理性を持つ。一方で、侵攻前の抑止シグナル、危機初動での外交・軍事選択肢、作戦拡大を避けるための終結条件については、後から検証可能な説明責任が残る。特に、HMS Endurance 撤収方針などが誤ったシグナルとして働いた可能性と、奪還作戦中のエスカレーション管理は追加検証を要する。",
+  // R-3: issues は名称＋status のみ（飾り数字 evidence/open を撤去）。詳細は §falklands-1982.js 参照。
   issues: [
-    { name: "侵攻前抑止シグナル", status: "要注意", evidence: 3, open: 3 },
-    { name: "危機初動の代替案比較", status: "要検証", evidence: 2, open: 4 },
-    { name: "奪還作戦の目的限定", status: "要注意", evidence: 4, open: 2 },
-    { name: "停戦条件と損耗抑制", status: "要検証", evidence: 2, open: 3 },
+    { name: "侵攻前抑止シグナル", status: "要注意" },
+    { name: "危機初動の代替案比較", status: "要検証" },
+    { name: "奪還作戦の目的限定", status: "要注意" },
+    { name: "停戦条件と損耗抑制", status: "要検証" },
   ],
   counterHypotheses: [
     "アルゼンチンによる武力占領後、英国が軍事的奪還を準備したことは、国際法上・国内政治上の責任から見て合理的だった。",
@@ -296,11 +297,14 @@ export const falklands1982UkCase = {
       type: "政府・軍事行動資料",
       // A-1: 第一原則「反証を隠さない」の回復。英国側ケースは支持6/保留1で反証ゼロだったため、
       // uk_claim_limited_war（作戦は島嶼奪還に限定）への最有力反証として撃沈の事実関係を入力する。
-      publishedDate: "1982年5月2日（行動）／2005年（戦後公式戦史で詳述）",
+      // R-1: 出典は同時代記録（5/2 国防省発表・戦時内閣の ROE 変更）を一次的根拠に据える。
+      //   これにより UK-EL-008 の timeFit:直接／availableAtDecisionTime:true が source 定義と自己整合する
+      //   （Freedman 2005 は戦後の二次詳述として併用。同じ書を引く UK-EL-004 は間接扱いで矛盾しない）。
+      publishedDate: "1982年5月2日（同時代発表）／2005年（戦後公式戦史で詳述）",
       coveragePeriod: "1982年5月（奪還作戦・海上交戦・交戦規則）",
       source:
-        "Lawrence Freedman, The Official History of the Falklands Campaign, Vol.2 (Routledge, 2005)（交戦規則の変更とベルグラノ撃沈の経緯）。撃沈の事実関係（排他水域外・約323名死亡）は英国防省発表および各種戦史で確認可。",
-      collectionState: "二次研究で確認可",
+        "英国国防省による撃沈発表（1982年5月2日・同時代公開）および戦時内閣の交戦規則変更決定が一次的根拠。経緯・排他水域外・約323名死亡の詳述は Lawrence Freedman, The Official History of the Falklands Campaign, Vol.2 (Routledge, 2005) で確認可（二次）。",
+      collectionState: "同時代発表は公開・戦後史で詳述",
       authenticity: "高", // 撃沈の事実・ROE変更の存在は確立
       interpretiveReliability: "中", // 攻撃時針路の戦術的含意は論争的
     },

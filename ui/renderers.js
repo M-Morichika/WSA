@@ -99,8 +99,6 @@ function renderOverview() {
             <div class="issue-row">
               <strong>${issue.name}</strong>
               ${badge(issue.status)}
-              <span>根拠 ${issue.evidence}件</span>
-              <span>未確認 ${issue.open}件</span>
             </div>
           `,
         )
@@ -481,8 +479,6 @@ function renderOpinion() {
             <div class="finding-row">
               <strong>${issue.name}</strong>
               ${badge(issue.status)}
-              <span>証拠 ${issue.evidence}</span>
-              <span>未確認 ${issue.open}</span>
             </div>
           `,
         )

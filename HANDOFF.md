@@ -73,6 +73,8 @@
 - **D（S-1）**: 「反証を隠さない」はコード化された検査（`lintCaseMethodology`）として常設。`one_sided_counter_claim` は noise でなく方法論TODOとして残す（消さない）。`hypothesisTracking` は ID 参照を持たないため参照整合の対象外。
 - **E（S-2）**: `ratingBasis` は全ケース `cellId` 参照に統一。weight は表示専用（格付けは `warCase.rating` ハードコード）。「結果との乖離」軸集約は代表セル `cell_outcome_opening` で表現。
 - **A-1 フレーミング**: ベルグラノ反証は「単一反証・針路含む（保守的）」を採用。針路の事実は canSay、戦術的含意の留保は cannotSay。
+- **F（A-2）**: UK が重大懸念に達しないのは入力構造でなく「評価され覆された」(校正β対象外)ゆえの判断。校正α/β は不変のまま、評価可能性を honest な値（deterrence_signal=高）に補正して確認した。B-/C+ 据え置き。
+- **G（A-3）**: `availableAtDecisionTime`（意思決定者の入手可能性）と `availableToAnalysts`（外部分析者の入手可能性）は別概念として維持する。機密解除文書は前者 true／後者 false がありうる。`knownByDecisionMakers` は中枢の認識を表す第3の軸。
 
 ---
 
@@ -84,14 +86,25 @@
 - S-1: `validateCaseReferences` 拡張＋`lintCaseMethodology` 新設でコード化。
 - S-2: ア軍 `ratingBasis` を `cellId` 正規化＋レンダラ死にコード撤去。
 
+**✅ 完了（今セッション後半）: A-2 / A-3**
+- A-2: UK prewar を再検証。`uk_pw_deterrence_signal` を `中`→`高`（英国自身が統制するシグナルゆえ ex-ante 高評価可能、Endurance 撤収には FCO 等が事前懸念）。結果 高×限定的＝要注意で重大懸念には達しないが、これは「評価され覆された」(校正β対象外)ゆえの判断＝all-中 の artifact ではないと確認。マトリクス上は 高×形跡なし→重大懸念 が到達可能に。B-/C+ 据え置き。
+- A-3: `UK-EL-005` を `availableAtDecisionTime:true`／`knownByDecisionMakers:明白` に修正（米国仲介は英戦時内閣が交渉当事者として既知）。`availableToAnalysts:false` は維持（機密解除文書は後年公開＝外部分析者には事後的。意思決定者の認識と分析者の入手可能性を分離）。
+
+### 2-1. サブエージェントレビュー（A-1〜A-3 後）＋ R-1/R-2/R-3 適用
+- **R-1（時点性の自己整合）**: A-1 で入れた `UK-E-006` の `source` が Freedman 2005 主導なのに UK-EL-008 が `直接/true` で、A-3 で正した「文書入手可能性≠中枢認識」原則に自己違反していた。→ source を**同時代記録（5/2 国防省発表・ROE変更）主導**に再フレーム（Freedman は二次併用）。第3原則=時点性の規律を回復。
+- **R-2（lint 可読化）**: 起動時 warn の `[object Object]` を `type(id)` の要約文字列＋生配列（devtools 用）に。
+- **R-3（=S-3 解決）**: `issues[].evidence/open`（実 link 数と無連動の飾り数字。A-1 でズレ拡大）を**撤去**。issues→links の ID 連結が無く正確な実数連動は不能なため、名称＋status のみに。両レンダラ（Overview/Opinion）と両ケース data を修正。
+- 検証: `node --check` OK／UK-EL-008 出典が同時代主導＝判断時点利用可能と自己整合／Overview から飾り数字消滅／warn 可読化／エラー0。
+
 **残りの未適用（優先度順）:**
-4. その他（軽〜中）:
-   - **A-2**: UK は校正α上 **重大懸念に到達不能な構造**（prewar 全項目が評価可能性「中」）。格付け B-/C+ の寛容さが判断でなく入力構造由来の疑い。設定の妥当性を sanity-check。
-   - **A-3**: `UK-EL-005` の `timeFit:直接` × `availableAtDecisionTime:false` の語彙ズレ。
-   - **S-3**: `issues[].evidence/open` の件数が各ケース手書き固定（実 link/evidence 数と無連動）。ケース増で増殖する飾り数字。
+4. レビュー残（R-4〜R-6・要判断/軽）:
+   - **R-4【中・要判断】**: 方法論リントが counter_claim（免責側）一方向のみ監視。audit_issue（訴追側）の一方的化は不問＝非対称。対称化するか、非対称を意図として明記するか。
+   - **R-5【軽・凍結】**: UK prewar 3項目（ア軍7）で薄く、格付け寛容さに項目数由来の面。拡張は過剰設計 → 非対称を意図として明記が無難。
+   - **R-6【軽】**: A-2 の評価可能性「高」化が `uk_cell_deterrence_prewar.opinion`/overviewOpinion に未反映（インラインコメントのみ）。
+5. 旧来残（軽）:
    - **S-4**: UK `preWarChecklist` 末尾の空行（整形）。
    - **U-1**: ケース切替で必ず Overview に戻る（`stateForCase` が activeView リセット）。
-   - **U-2（一部進展）**: A-1 で反証1件追加したが、UK は依然 `one_sided_counter_claim` 2件（`taskforce_reasonable`/`termination_limited`）＝Evidence 上やや擁護寄り。リント可視化済み。残2件に実反証を足す（A-1 の横展開）か、現状維持かは要判断。
+   - **U-2（一部進展）**: UK は依然 `one_sided_counter_claim` 2件（`taskforce_reasonable`/`termination_limited`）。リント可視化済み。残2件に実反証を足す（A-1 横展開）か現状維持かは要判断（R-4 と関連）。
 
 **凍結中（過剰設計リスク。やるなら独立セッション）:**
 - **M-1**: claim 単位の支持/反証集計ビュー。`claims[]` は現状どの renderer も非参照（死蔵）。活用 or 削除の去就決定が要る。

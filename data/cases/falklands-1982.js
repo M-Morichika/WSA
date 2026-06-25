@@ -11,11 +11,13 @@ export const falklands1982Case = {
   },
   overviewOpinion:
     "現時点の証拠に基づく限り、アルゼンチン軍事政権の開戦判断は、英国の軍事的反応、米国・国際社会の反応、限定戦争としての制御可能性について、楽観的な前提に依存していた可能性が高い。ただし、開戦前時点で英国の全面的軍事奪還がどこまで予見可能だったかについては、追加検証を要する。",
+  // R-3: issues は名称＋status のみ。旧 evidence/open は実 link 数と無連動の手書き固定（飾り数字）で、
+  //   A-1 の反証追加でズレが拡大したため撤去（issues→links の ID 連結が無く正確な実数連動は不能）。
   issues: [
-    { name: "英国反応の見積もり", status: "重大懸念", evidence: 5, open: 3 },
-    { name: "国際環境の誤認", status: "要注意", evidence: 3, open: 3 },
-    { name: "継戦能力の過大評価", status: "重大懸念", evidence: 6, open: 2 },
-    { name: "国内政治動機の影響", status: "要検証", evidence: 2, open: 4 },
+    { name: "英国反応の見積もり", status: "重大懸念" },
+    { name: "国際環境の誤認", status: "要注意" },
+    { name: "継戦能力の過大評価", status: "重大懸念" },
+    { name: "国内政治動機の影響", status: "要検証" },
   ],
   counterHypotheses: [
     "英国の軍事反応は、距離・財政・国内政治を踏まえると、限定的にとどまると予測する余地があった。",

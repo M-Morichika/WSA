@@ -31,7 +31,9 @@ function validateActiveCase() {
   // S-1: 方法論リント（「反証を隠さない」のコード化）。参照整合とは別レイヤーで監査健全性を警告。
   const methodologyFindings = lintCaseMethodology(activeCase);
   if (methodologyFindings.length > 0) {
-    console.warn("Case methodology findings", activeCase.warCase.id, methodologyFindings);
+    // R-2: 要約文字列を併記して [object Object] 表示を避ける（生配列は devtools 用に第2引数で残す）。
+    const summary = methodologyFindings.map((f) => (f.id ? `${f.type}(${f.id})` : f.type)).join(", ");
+    console.warn(`Case methodology findings [${activeCase.warCase.id}]: ${summary}`, methodologyFindings);
   }
 }
 
