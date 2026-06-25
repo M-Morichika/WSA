@@ -1,6 +1,7 @@
 export const gulfWar1990IraqCase = {
   warCase: {
     id: "gulf-war-1990-iraq",
+    conflict: "湾岸戦争1990-91",
     name: "湾岸戦争1990-91（イラク側）",
     auditedActor: "イラク・サダム政権",
     opponentActor: "クウェート、米国主導の多国籍軍、国連安保理",
@@ -8,6 +9,7 @@ export const gulfWar1990IraqCase = {
     primaryResponsibility: "侵攻判断と継戦可能性見積もり責任",
     uncertainty: "中",
     rating: "D+/D",
+    counterpartCaseId: "gulf-war-1990-coalition",
   },
   overviewOpinion:
     "現時点の証拠に基づく限り、イラク・サダム政権のクウェート侵攻判断は、国際的な強制力、米国の軍事介入意思、制裁と連合形成の速度、占領維持の政治・軍事コストを過小評価した可能性が高い。一方で、1990年7月時点の米国外交シグナルやアラブ間紛争としての処理期待には一定の曖昧さがあり、開戦前の認識を単純な無根拠な誤算と断定するには留保が必要である。",
@@ -87,6 +89,9 @@ export const gulfWar1990IraqCase = {
       noEvidenceReason: "該当証拠なし",
       statusOverride: null,
       evidenceStrength: "中",
+      evidenceBasis:
+        "GW-EL-014（捕獲一次資料・Iraqi Perspectives Project）で侵攻判断過程を照合した範囲では、米国の直接軍事介入リスクを組織的に比較評価した痕跡は乏しい。ただし捕獲資料は網羅性に限界があるため、形跡なしは暫定評価。",
+      linkedEvidenceLinks: ["GW-EL-014"],
       auditQuestion: "米国がクウェート侵攻を地域紛争として放置せず、軍事介入へ進む可能性を評価したか。",
       counterPoint: "7月25日の米イラク会談など、米国が明確な軍事警告を発していなかったと読める材料もあり、全面介入の確率評価には不確実性があった。",
       asymmetry: null,
@@ -150,7 +155,10 @@ export const gulfWar1990IraqCase = {
       actuallyEvaluated: "形跡なし",
       noEvidenceReason: "該当証拠なし",
       statusOverride: null,
-      evidenceStrength: "弱",
+      evidenceStrength: "弱〜中",
+      evidenceBasis:
+        "GW-EL-014（捕獲一次資料・Iraqi Perspectives Project）で確認できる中枢審議では、長期占領行政・国際承認不在・補給/統治コストの体系的比較は乏しい。一方、同資料だけでは全ての軍政・行政計画を網羅できないため、根拠強度は弱〜中に留める。",
+      linkedEvidenceLinks: ["GW-EL-014"],
       auditQuestion: "占領行政、国際承認不在、抵抗、補給、油田管理のコストを評価したか。",
       counterPoint: "短期既成事実化を狙う構想なら、長期占領コストを主前提にしなかった可能性はある。",
       asymmetry: null,
@@ -176,7 +184,7 @@ export const gulfWar1990IraqCase = {
       status: "重大懸念",
       impact: "高",
       evidenceStrength: "中",
-      opinion: "イラクは米国・国連・湾岸諸国の反応を限定的に見積もった可能性が高い。7月時点の米国シグナルには曖昧さがあったが、国境集結と侵攻という高リスク行動に対して、下振れリスクを十分に織り込んだ形跡は未確認である。",
+      opinion: "イラクは米国・国連・湾岸諸国の反応を限定的に見積もった可能性が高い。7月時点の米国シグナルには曖昧さがあったが、国境集結と侵攻という高リスク行動に対して、下振れリスクを十分に織り込んだ形跡は未確認である。なお決議660は侵攻後資料であり、侵攻判断時点の直接証拠ではなく、限定反応期待が侵攻直後に早期弱体化したことを示す補助証拠として扱う。",
       criteria: ["米国介入リスクの下振れが極めて大きい", "国連・アラブ諸国の反応見積もりが楽観的"],
       changeConditions: ["イラク中枢が米国大規模介入を高確率で想定していた資料が確認される", "米国が不介入を明確に示した同時代資料が確認される"],
     },
@@ -220,7 +228,7 @@ export const gulfWar1990IraqCase = {
       status: "要検証",
       impact: "中",
       evidenceStrength: "中",
-      opinion: "サフワン会談と決議686/687の停戦条件受諾は、最終局面で損耗拡大を止めた具体的行動であり損耗抑制の側面を持つ。ただし受諾条件は過酷で、より早い撤退・停戦が可能だったかは戦闘中の内部判断資料が要る。",
+      opinion: "決議686とサフワン会談に基づく停戦条件受諾は、最終局面で損耗拡大を止めた具体的行動であり損耗抑制の側面を持つ。ただし停戦後に決議687で確定した武装解除・賠償等の条件は過酷で、遅い受諾の代償を示す補助材料になる。より早い撤退・停戦が可能だったかは、戦闘中の内部判断資料が要る。",
       criteria: ["終盤の選択肢は狭い", "早期撤退との比較が未確認", "受諾条件は過酷"],
       changeConditions: ["戦闘中の停戦・撤退判断過程の内部資料が確認される"],
     },
@@ -294,13 +302,25 @@ export const gulfWar1990IraqCase = {
     },
     {
       id: "GW-E-007",
-      title: "停戦仲介と連合結束をめぐる同時代の論争（ソ連プリマコフ仲介・仏提案・米議会の僅差容認）",
-      type: "外交・政治資料",
-      publishedDate: "1990年10月〜1991年1月（同時代公開・報道）",
+      title: "ソ連・フランスによる停戦仲介と撤退条件提案（1990年10月〜1991年1月）",
+      type: "外交資料",
+      publishedDate: "1990年10月〜1991年1月（同時代外交・報道）",
       coveragePeriod: "撤退拒否・期限前判断",
       source:
-        "ソ連プリマコフ特使のバグダッド訪問（1990年10月）、フランスの停戦提案（1991年1月）、米上院の武力行使容認決議の僅差可決（52対47、1991年1月12日）、および西側の反戦世論に関する同時代報道・議会記録。",
-      collectionState: "同時代報道・議会記録で確認可",
+        "ソ連プリマコフ特使のバグダッド訪問（1990年10月）およびフランスの停戦提案（1991年1月）に関する同時代外交記録・報道。イラクが直接の交渉当事者だった仲介過程を扱う。",
+      collectionState: "同時代報道・外交資料で確認可",
+      authenticity: "高",
+      interpretiveReliability: "中",
+    },
+    {
+      id: "GW-E-011",
+      title: "米国内の武力行使容認をめぐる政治的分裂（米上院 52対47・反戦世論）",
+      type: "議会・世論資料",
+      publishedDate: "1991年1月（同時代公開・報道）",
+      coveragePeriod: "撤退拒否・期限前判断",
+      source:
+        "米上院の武力行使容認決議の僅差可決（52対47、1991年1月12日）および西側反戦世論に関する同時代議会記録・報道。イラク中枢が直接関与した資料ではなく、同時代に観測可能だった政治環境として扱う。",
+      collectionState: "同時代議会記録・報道で確認可",
       authenticity: "高",
       interpretiveReliability: "中",
     },
@@ -330,12 +350,24 @@ export const gulfWar1990IraqCase = {
     },
     {
       id: "GW-E-010",
-      title: "停戦の同時代直接資料（安保理決議686/687・サフワン会談 1991年3月）",
+      title: "停戦受諾の同時代直接資料（安保理決議686・サフワン会談 1991年3月）",
       type: "停戦・国連資料",
-      publishedDate: "1991年3月〜4月（同時代公開）",
+      publishedDate: "1991年3月（同時代公開・会談）",
       coveragePeriod: "戦闘・停戦受容",
       source:
-        "United Nations Security Council Resolution 686 (1991), S/RES/686 ／ Resolution 687 (1991), S/RES/687、および1991年3月3日のサフワン停戦会談記録。",
+        "United Nations Security Council Resolution 686 (1991), S/RES/686、および1991年3月3日のサフワン停戦会談記録。停戦受諾時点でイラク側に明示された条件を扱う。",
+      collectionState: "一次資料入手可",
+      authenticity: "高",
+      interpretiveReliability: "高",
+    },
+    {
+      id: "GW-E-012",
+      title: "停戦後条件の確定（安保理決議687・1991年4月）",
+      type: "国連資料",
+      publishedDate: "1991年4月3日（同時代公開）",
+      coveragePeriod: "停戦後条件・武装解除/賠償枠組み",
+      source:
+        "United Nations Security Council Resolution 687 (1991), S/RES/687。停戦受諾後に確定した武装解除・賠償等の条件を示す。",
       collectionState: "一次資料入手可",
       authenticity: "高",
       interpretiveReliability: "高",
@@ -563,15 +595,15 @@ export const gulfWar1990IraqCase = {
       availableToAnalysts: true,
       knownByDecisionMakers: "明白",
       knownByDecisionMakersBasis:
-        "ソ連・仏の仲介はイラクが直接の交渉相手であり、米議会の審議・採決は同時代に公開・報道されていた。",
+        "ソ連・仏の仲介はイラクが直接の交渉相手であり、期限前判断時点で中枢に既知だった。",
       canSay:
-        "期限前の時点でも、大国による停戦仲介が進行し、米国内の武力行使容認が僅差であったことは、連合の政治的結束や開戦意思に同時代から見て不確実性があったことを示し、撤退拒否を単なる再評価の欠如と断定する見方を弱める。",
+        "期限前の時点でも、大国による停戦仲介が進行していたことは、外交的出口や連合結束に同時代から見て不確実性があったことを示し、撤退拒否を単なる再評価の欠如と断定する見方を弱める。",
       cannotSay:
-        "仲介の存在や採決の僅差だけで、撤退拒否が合理的だった、または期限後に武力行使が回避されると予見できたとは言えない。",
+        "仲介の存在だけで、撤退拒否が合理的だった、または期限後に武力行使が回避されると予見できたとは言えない。",
     },
     {
       id: "GW-EL-013",
-      evidenceId: "GW-E-007",
+      evidenceId: "GW-E-011",
       claimId: "gw_claim_sanctions_endurance",
       assessmentCellId: "gw_cell_sustainment_deadline",
       claimLabel: "連合の政治的持続性への同時代の疑問",
@@ -582,13 +614,13 @@ export const gulfWar1990IraqCase = {
       timeFit: "直接",
       availableAtDecisionTime: true,
       availableToAnalysts: true,
-      knownByDecisionMakers: "明白",
+      knownByDecisionMakers: "推定",
       knownByDecisionMakersBasis:
-        "大国の仲介と西側世論・議会の動向は同時代に観測可能で、イラク中枢は仲介の当事者だった。",
+        "米議会採決と西側世論は同時代に公開・報道されていたためイラク側が観測可能だったが、中枢がどの程度重視したかは未確認。",
       canSay:
-        "連合の政治的結束に同時代から不確実性があったことは、「耐えて譲歩を引き出す」期待に一定の当時の基盤があったことを示し、制裁耐性の過大評価を単純な無知と断定する見方を弱める。",
+        "米国内の武力行使容認が僅差で、西側世論にも反戦圧力があったことは、連合の政治的持続性に同時代から疑問があったことを示し、「耐えて譲歩を引き出す」期待を単純な無知と断定する見方を弱める。",
       cannotSay:
-        "政治的結束への疑問があったことだけで、イラクが経済制裁や軍事圧力に実際に耐えられた、または占領維持が可能だったとは言えない。",
+        "米国内政治の分裂や世論だけで、イラク中枢が連合崩壊を合理的に予測できた、または経済制裁・軍事圧力に実際に耐えられたとは言えない。",
     },
     {
       id: "GW-EL-014",
@@ -647,11 +679,32 @@ export const gulfWar1990IraqCase = {
       availableToAnalysts: true,
       knownByDecisionMakers: "明白",
       knownByDecisionMakersBasis:
-        "サフワン会談と決議686/687の条件は停戦受諾の時点でイラク側に明示され、当事者として既知だった。",
+        "サフワン会談と決議686の条件は停戦受諾の時点でイラク側に明示され、当事者として既知だった。決議687は停戦後条件として別証拠に分離。",
       canSay:
-        "サフワン会談で停戦条件を受諾し戦闘を終結させたことは、最終局面で損耗のさらなる拡大を止める具体的行動だったことを示す。",
+        "決議686とサフワン会談で停戦条件を受諾し戦闘を終結させたことは、最終局面で損耗のさらなる拡大を止める具体的行動だったことを示す。",
       cannotSay:
-        "受諾した条件（武装解除・賠償等）は過酷で、遅い受諾が高い代償を伴ったことも示しており、より早い停戦・撤退が不可能だったとは言えない。",
+        "決議687で後に確定した武装解除・賠償等の条件は過酷で、遅い受諾が高い代償を伴ったことも示しており、より早い停戦・撤退が不可能だったとは言えない。",
+    },
+    {
+      id: "GW-EL-017",
+      evidenceId: "GW-E-012",
+      claimId: "gw_claim_late_termination",
+      assessmentCellId: "gw_cell_termination_ceasefire",
+      claimLabel: "停戦後条件の過酷化",
+      target: "終結条件・損耗抑制 / 戦闘後半",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "中",
+      timeFit: "間接",
+      availableAtDecisionTime: false,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "不明",
+      knownByDecisionMakersBasis:
+        "決議687は停戦受諾後に採択されたため、停戦受諾時点の直接判断材料ではない。停戦後条件の確定を示す補助資料として扱う。",
+      canSay:
+        "決議687で確定した武装解除・賠償等の条件は、遅い停戦受諾がイラクに重い戦後条件を残したことを示し、より早い撤退・停戦の余地を検討すべき反証材料になる。",
+      cannotSay:
+        "停戦後に確定した条件だけで、停戦受諾時点の内部判断や、より早い撤退・停戦が実際に可能だったことを直接立証するものではない。",
     },
   ],
   ratingBasis: [
@@ -662,4 +715,3 @@ export const gulfWar1990IraqCase = {
     { cellId: "gw_cell_termination_ceasefire", weight: 1 },
   ],
 };
-

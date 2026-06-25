@@ -5,9 +5,9 @@ import {
   validateCaseReferences,
   validateCaseRegistry,
   viewMeta,
-} from "./data/auditSchema.js";
-import { cases } from "./data/cases/index.js";
-import { createRenderers } from "./ui/renderers.js";
+} from "./data/auditSchema.js?v=20260625-review";
+import { cases } from "./data/cases/index.js?v=20260625-review";
+import { createRenderers } from "./ui/renderers.js?v=20260625-review";
 
 let activeCase = cases.find((item) => item.warCase.id === "gulf-war-1990-iraq") || cases[0];
 let state = stateForCase(activeCase);
@@ -59,10 +59,30 @@ function updateShellCaseMetadata() {
 function renderCaseSelector() {
   const selector = document.querySelector("#case-selector");
   if (!selector) return;
-  selector.innerHTML = cases
+  // 戦争（conflict）単位で optgroup にまとめ、同一戦争の加害側/連合側など対の関係を可視化する。
+  // 出現順を保持しつつグループ化（conflict 未設定のケースは name を単独グループ扱い）。
+  const groups = [];
+  const byLabel = new Map();
+  cases.forEach((caseData) => {
+    const label = caseData.warCase.conflict || caseData.warCase.name;
+    if (!byLabel.has(label)) {
+      const group = { label, items: [] };
+      byLabel.set(label, group);
+      groups.push(group);
+    }
+    byLabel.get(label).items.push(caseData);
+  });
+  selector.innerHTML = groups
     .map(
-      (caseData) => `
-        <option value="${caseData.warCase.id}">${caseData.warCase.name} / ${caseData.warCase.auditedActor}</option>
+      (group) => `
+        <optgroup label="${group.label}">
+          ${group.items
+            .map(
+              (caseData) =>
+                `<option value="${caseData.warCase.id}">${caseData.warCase.auditedActor}</option>`,
+            )
+            .join("")}
+        </optgroup>
       `,
     )
     .join("");
@@ -163,4 +183,3 @@ validateCaseRegistryOnce();
 validateActiveCase();
 updateShellCaseMetadata();
 render();
-

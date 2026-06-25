@@ -1,3 +1,5 @@
+// cache-busting: ?v= は app.js / index.html / data/cases/index.js / 本ファイルの4箇所で同一文字列に揃えること。
+// ズレると同一モジュールが別URLとして二重ロードされ、モジュール状態が分裂する。
 import {
   actuallyEvaluatedOrder,
   deriveStatus,
@@ -9,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js";
+} from "../data/auditSchema.js?v=20260625-review";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -32,6 +34,10 @@ function badge(label) {
 
 function getEvidence(id) {
   return auditData.evidence.find((item) => item.id === id);
+}
+
+function getEvidenceLink(id) {
+  return auditData.evidenceLinks.find((item) => item.id === id);
 }
 
 function getAssessmentCell(id) {
@@ -544,7 +550,7 @@ function renderPreWar() {
     <table class="assessment-table prewar-matrix">
       <thead>
         <tr>
-          <th>評価形跡 \\ 評価可能性</th>
+          <th>評価形跡 / 評価可能性</th>
           ${evaluabilityOrder.map((e) => `<th>${e}</th>`).join("")}
         </tr>
       </thead>
@@ -608,6 +614,14 @@ function renderPreWar() {
               <div class="mini-card"><h3>評価形跡</h3><p>${item.actuallyEvaluated}${item.noEvidenceReason ? `（${item.noEvidenceReason}）` : ""}</p></div>
             </div>
             <p><strong>監査の問い:</strong> ${item.auditQuestion}</p>
+            ${item.evidenceBasis ? `<p><strong>評価形跡の根拠:</strong> ${item.evidenceBasis}</p>` : ""}
+            ${item.linkedEvidenceLinks?.length ? `<p class="cell-meta">根拠リンク: ${item.linkedEvidenceLinks
+              .map((id) => {
+                const link = getEvidenceLink(id);
+                const evidence = link ? getEvidence(link.evidenceId) : null;
+                return evidence ? `${id}（${evidence.id}）` : id;
+              })
+              .join(" / ")}</p>` : ""}
             <p class="prewar-counter"><strong>反証・留保:</strong> ${item.counterPoint}</p>
             ${item.asymmetry ? `<p class="prewar-asymmetry"><strong>非対称性:</strong> ${item.asymmetry}</p>` : ""}
             ${
@@ -698,5 +712,3 @@ function renderPreWar() {
     opinion: renderOpinion,
   };
 }
-
-

@@ -136,6 +136,7 @@ export function validateCaseReferences(caseData) {
   const assessmentCellIds = new Set(assessmentCells.map((item) => item.id));
   const assumptionIds = new Set(phases.flatMap((phase) => (Array.isArray(phase.assumptions) ? phase.assumptions : []).map((item) => item.id)));
   const claimIds = new Set(claims.map((item) => item.id));
+  const evidenceLinkIds = new Set(evidenceLinks.map((item) => item.id));
 
   phases.forEach((phase, index) => {
     if (!Array.isArray(phase.assumptions)) issues.push({ type: "missing_phase_assumptions", id: phase.id, index });
@@ -169,6 +170,15 @@ export function validateCaseReferences(caseData) {
         if (!assumptionIds.has(id)) issues.push({ type: "missing_prewar_assumption", id, itemId: item.id });
       });
     }
+    if (item.linkedEvidenceLinks !== undefined) {
+      if (!Array.isArray(item.linkedEvidenceLinks)) {
+        issues.push({ type: "invalid_prewar_linked_evidence_links", itemId: item.id });
+      } else {
+        item.linkedEvidenceLinks.forEach((id) => {
+          if (!evidenceLinkIds.has(id)) issues.push({ type: "missing_prewar_evidence_link", id, itemId: item.id });
+        });
+      }
+    }
   });
 
   // S-1: ratingBasis → assessmentCell の参照整合。
@@ -190,7 +200,9 @@ export function validateCaseReferences(caseData) {
 export function validateCaseRegistry(cases) {
   const issues = [];
   const seen = new Map();
-  (Array.isArray(cases) ? cases : []).forEach((caseData, index) => {
+  const list = Array.isArray(cases) ? cases : [];
+  const counterpartById = new Map();
+  list.forEach((caseData, index) => {
     const id = caseData?.warCase?.id;
     if (!id) {
       issues.push({ type: "missing_case_id", index });
@@ -198,6 +210,22 @@ export function validateCaseRegistry(cases) {
     }
     if (seen.has(id)) issues.push({ type: "duplicate_case_id", id, firstIndex: seen.get(id), index });
     else seen.set(id, index);
+    const counterpart = caseData?.warCase?.counterpartCaseId;
+    if (counterpart !== undefined) counterpartById.set(id, counterpart);
+  });
+  // 対照ケース（counterpartCaseId）の相互参照整合: 実在・双方向・自己参照禁止を検査。
+  counterpartById.forEach((counterpart, id) => {
+    if (counterpart === id) {
+      issues.push({ type: "counterpart_self_reference", id });
+      return;
+    }
+    if (!seen.has(counterpart)) {
+      issues.push({ type: "missing_counterpart_case", id, counterpartCaseId: counterpart });
+      return;
+    }
+    if (counterpartById.get(counterpart) !== id) {
+      issues.push({ type: "counterpart_not_mutual", id, counterpartCaseId: counterpart });
+    }
   });
   return issues;
 }

@@ -1,6 +1,7 @@
 export const falklands1982Case = {
   warCase: {
     id: "falklands-1982-argentina",
+    conflict: "フォークランド紛争1982",
     name: "フォークランド紛争",
     auditedActor: "アルゼンチン軍事政権",
     opponentActor: "英国サッチャー政権",
