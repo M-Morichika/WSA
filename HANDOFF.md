@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-25（湾岸ケースのサブエージェントレビュー適用セッション：M-1 同時代反証追加・M-2/M-3 注記・S-2 整形）
+最終更新: 2026-06-25（湾岸ケースのレビュー適用＋一次資料投入セッション：M-1〜M-3/S-2/S-3 適用、A+B+C で証拠空白を解消）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -23,7 +23,7 @@
 - `data/cases/index.js` — ケースレジストリ（`cases` 配列）。
 - `data/cases/falklands-1982.js` — **アルゼンチン側監査**（id: `falklands-1982-argentina`, 格付 C-/D+, phase3/cell12/evidence6/link7/prewar7）。旧モノリスの `auditData` の移設先。
 - `data/cases/falklands-1982-uk.js` — **英国側監査**（id: `falklands-1982-uk`, 格付 B-/C+, phase4/cell5/evidence6/link11/prewar3）。
-- `data/cases/gulf-war-1990-iraq.js` — **湾岸戦争1990-91 イラク側監査**（id: `gulf-war-1990-iraq`, 格付 D+/D, phase3/cell5/evidence7/link13/prewar5）。現行既定 activeCase。
+- `data/cases/gulf-war-1990-iraq.js` — **湾岸戦争1990-91 イラク側監査**（id: `gulf-war-1990-iraq`, 格付 D+/D, phase3/cell5/evidence10/link16/claim6/prewar5）。現行既定 activeCase。
 - `ui/renderers.js` — 全ビューのレンダラ（ケース非依存。`createRenderers(caseData, state)`）。
 - `styles.css` — `.case-picker` 等を追加。
 - `.claude/launch.json` — プレビュー静的サーバー（`python -m http.server 8123`）。
@@ -131,7 +131,19 @@
 - **S-2（整形）**: evidenceLinks 末尾 `},  ],` を整形解消。
 - **S-1 はクリア（非欠陥）と確定**: `resolveStatus`/`STATUS_MATRIX` が読むのは `preWarChecklist` の `exAnteEvaluability`/`actuallyEvaluated` のみ。`assessmentCells[].status`/`phases[].status` の直書きはキュレートデータでレンダラが直接消費＝§3-B（status 単一情報源）のスコープ外。
 - **検証**: `node --check` OK／`validateCaseRegistry` 0／全3ケース `validateCaseReferences` 0／全3ケース `lintCaseMethodology` 0。⚠️ ブラウザ実機確認はこのセッションのワークツリーが湾岸ケース未含有の旧状態を配信したため未実行（主リポジトリ側で静的サーバーを立てれば確認可能）。
-- **未適用で残った湾岸レビュー指摘**: **U-1**（重大懸念×証拠0セルの「未接続」表示の実機確認）、**U-2**（反対仮説3件中1件のみ追跡）、**S-3**（issues に重大懸念セル `意思決定プロセス` 未掲載）。U-2/S-3 は凍結寄り・任意。
+- **S-3（適用済）**: 外部評価の推奨を容れ、`issues` に重大懸念セル「意思決定プロセス」を「侵攻判断プロセスの記録欠落」として1行追加（Overview の網羅性回復）。
+- **U-2（凍結確定）**: `hypothesisTracking` 1件で「初期の限定反応期待が段階的に崩れほぼ棄却される過程」を十分追跡できており、3件全追跡は UI を煩雑にするため現状維持。
+- **未適用で残った湾岸レビュー指摘**: なし。**U-1 は §2-7 で解消**（証拠ゼロの重大懸念セルが消滅し未接続セル0件＝表示問題自体が発生しない）。
+
+### 2-7. 湾岸ケース 一次資料投入（A+B+C）
+> 完成度向上の優先①（ケースデータの厚み）。証拠空白を一次資料で埋め、未接続セル0・証拠ゼロ理由付きセル0を達成。
+- **A（意思決定プロセスの空白を埋める）**: `gw_cell_decision_process_opening`（証拠リンク0・重大懸念・weight2）が最大の穴だった。`GW-E-008`（**Iraqi Perspectives Project**／Conflict Records Research Center 所蔵の捕獲記録・サダム会議録音、Kevin M. Woods 分析）＋`GW-E-009`（**FBIサダム尋問** 2004聴取/2009機密解除）を追加。新 claim `gw_claim_decision_process`（audit_issue）に `GW-EL-014`（支持・GW-E-008）/`GW-EL-015`（反証・GW-E-009）を接続。
+  - **時点性（A-3/R-1 先例準拠）**: 捕獲記録は `availableAtDecisionTime:true`／`availableToAnalysts:false`／`knownByDecisionMakers:明白`、`timeFit:間接`（監査が消費するのは戦後再構成）。FBI尋問は `availableAtDecisionTime:false` の事後回想（`interpretiveReliability:低〜中`、自己正当化バイアス明記）。
+  - セルは `evidenceStrength` 弱→中、`noEvidenceReason`/`nextEvidenceActionType` を撤去、opinion を捕獲記録の知見（中枢集中・審議乏しい）＋反証（目的志向の論拠は存在）で書換え。重大懸念は「形跡なし→」から「捕獲記録照合済みで裏づけ」へ格上げ。
+- **B（停戦フェーズ補強）**: `GW-E-010`（安保理決議686/687・サフワン会談1991/3）＋`GW-EL-016`（支持・直接・`gw_claim_late_termination`）。`gw_cell_termination_ceasefire` の `evidenceStrength` 弱→中、証拠ゼロ解消。受諾条件の過酷さを cannotSay/criteria に反映。
+- **C（preWarChecklist 格上げ）**: `gw_pw_us_intervention`/`gw_pw_occupation_cost` を `noEvidenceReason` 証拠未収集→**該当証拠なし**（捕獲文書照合済みの evidenced な「形跡なし」）。`gw_pw_coalition_formation` は genuine な不確実性ゆえ「不明／証拠未収集」を据え置き。
+- **結果**: evidence 7→10、links 13→16、claims 5→6。**未接続セル0／証拠ゼロ理由付きセル0**。
+- **検証**: `node --check` OK／`validateCaseRegistry` 0／全3ケース `validateCaseReferences`・`lintCaseMethodology` 0（新 audit claim も支持1/反証1）。⚠️ ブラウザ実機はワークツリーが湾岸ケース未含有の旧状態を配信するため未実行（主リポジトリで preview 起動が必要）。
 
 **残りの未適用（優先度順）:**
 - 現時点で軽掃除・方法論lint由来の未適用項目はなし。
