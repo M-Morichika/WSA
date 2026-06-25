@@ -82,6 +82,28 @@ select {
   color: #8fd3bd;
 }
 
+.case-picker {
+  display: grid;
+  gap: 8px;
+  padding: 0 8px;
+  color: #d8e3e8;
+  font-size: 13px;
+}
+
+.case-picker span {
+  color: #8fd3bd;
+  font-weight: 700;
+}
+
+.case-picker select {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 6px;
+  color: #102027;
+  background: #f8fafc;
+}
+
 .nav-tabs {
   display: grid;
   gap: 8px;
@@ -693,6 +715,7 @@ ul.clean {
     position: static;
   }
 }
+
 
 
 

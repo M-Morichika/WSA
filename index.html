@@ -11,9 +11,14 @@
       <aside class="sidebar" aria-label="監査ナビゲーション">
         <div class="brand-block">
           <p class="eyebrow">War Accountability Audit</p>
-          <h1>フォークランド紛争</h1>
-          <p>アルゼンチン軍事政権</p>
+          <h1>戦争監査</h1>
+          <p>ケース読込中</p>
         </div>
+
+        <label class="case-picker" for="case-selector">
+          <span>監査ケース</span>
+          <select id="case-selector" aria-label="監査ケースを選択"></select>
+        </label>
 
         <nav class="nav-tabs" aria-label="画面切り替え">
           <button class="nav-tab is-active" type="button" data-view="overview">
@@ -54,7 +59,7 @@
           </div>
           <div class="rating-pill" aria-label="補助格付け">
             <span>暫定</span>
-            <strong>C-/D+</strong>
+            <strong>--</strong>
           </div>
         </header>
 
@@ -62,6 +67,8 @@
       </main>
     </div>
 
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>
+
+
