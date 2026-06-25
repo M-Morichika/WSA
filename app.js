@@ -12,9 +12,9 @@ let activeCase = cases.find((item) => item.warCase.id === "falklands-1982-uk") |
 let state = stateForCase(activeCase);
 let renderers = createRenderers(activeCase, state);
 
-function stateForCase(caseData) {
+function stateForCase(caseData, activeView = "overview") {
   return {
-    activeView: "overview",
+    activeView,
     activeTimelinePhaseId: caseData.phases[0]?.id || null,
     activeEvidenceLinkId: caseData.evidenceLinks[0]?.id || null,
     activeAssessmentCellId: caseData.assessmentCells[0]?.id || null,
@@ -32,7 +32,10 @@ function validateActiveCase() {
   const methodologyFindings = lintCaseMethodology(activeCase);
   if (methodologyFindings.length > 0) {
     // R-2: 要約文字列を併記して [object Object] 表示を避ける（生配列は devtools 用に第2引数で残す）。
-    const summary = methodologyFindings.map((f) => (f.id ? `${f.type}(${f.id})` : f.type)).join(", ");
+    // R-4: claimType を併記し、whitewash(counter_claim)/witch-hunt(audit_issue) を区別可能にする。
+    const summary = methodologyFindings
+      .map((f) => (f.id ? `${f.type}(${f.id}${f.claimType ? ":" + f.claimType : ""})` : f.type))
+      .join(", ");
     console.warn(`Case methodology findings [${activeCase.warCase.id}]: ${summary}`, methodologyFindings);
   }
 }
@@ -67,8 +70,9 @@ function setActiveView(view) {
 function setActiveCase(caseId) {
   const nextCase = cases.find((item) => item.warCase.id === caseId);
   if (!nextCase || nextCase === activeCase) return;
+  const currentView = state.activeView;
   activeCase = nextCase;
-  state = stateForCase(activeCase);
+  state = stateForCase(activeCase, currentView);
   renderers = createRenderers(activeCase, state);
   setActiveView(state.activeView);
   validateActiveCase();

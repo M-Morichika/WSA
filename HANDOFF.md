@@ -96,15 +96,19 @@
 - **R-3（=S-3 解決）**: `issues[].evidence/open`（実 link 数と無連動の飾り数字。A-1 でズレ拡大）を**撤去**。issues→links の ID 連結が無く正確な実数連動は不能なため、名称＋status のみに。両レンダラ（Overview/Opinion）と両ケース data を修正。
 - 検証: `node --check` OK／UK-EL-008 出典が同時代主導＝判断時点利用可能と自己整合／Overview から飾り数字消滅／warn 可読化／エラー0。
 
+### 2-2. R-4 / R-6 適用
+- **R-4（方法論リント対称化）**: `lintCaseMethodology` の一方的検査を全 claim へ拡張。旧 `one_sided_counter_claim`（counter_claim のみ）→ `one_sided_claim`（finding に `claimType` 付与）。原則「反証を隠さない」は claim 種別に依らず対称ゆえ、audit_issue（witch-hunt リスク）も検査。結果: ア軍 `claim_uk_response:audit_issue`／UK `uk_claim_deterrence_signal:audit_issue` が新規検出（従来の counter_claim 2件＋）。R-2 warn にも claimType 併記。
+- **R-6（narrative 反映）**: `uk_cell_deterrence_prewar.opinion` に A-2 の知見（シグナルは英国統制下ゆえ評価可能性「高」だが評価形跡は限定的＝要注意止まり）を追記。
+- 検証: `node --check` OK／lint が両ケースで audit_issue＋counter_claim を対称検出／warn 可読／エラー0。
+
+### 2-3. 軽い掃除: R-5 / S-4 / U-1 適用
+- **R-5（非対称の明記）**: UK `preWarChecklist` はア軍ケースより少ないが、勝者側全責任ではなく「抑止失敗・危機対応」に絞る監査として意図的に非対称と明記。項目数合わせの過剰拡張は凍結。
+- **S-4（整形）**: UK `preWarChecklist` 末尾の余分な空行を削除。
+- **U-1（ケース切替時の view 維持）**: `stateForCase(caseData, activeView)` に変更し、ケース切替後も現在の view を維持。
+
 **残りの未適用（優先度順）:**
-4. レビュー残（R-4〜R-6・要判断/軽）:
-   - **R-4【中・要判断】**: 方法論リントが counter_claim（免責側）一方向のみ監視。audit_issue（訴追側）の一方的化は不問＝非対称。対称化するか、非対称を意図として明記するか。
-   - **R-5【軽・凍結】**: UK prewar 3項目（ア軍7）で薄く、格付け寛容さに項目数由来の面。拡張は過剰設計 → 非対称を意図として明記が無難。
-   - **R-6【軽】**: A-2 の評価可能性「高」化が `uk_cell_deterrence_prewar.opinion`/overviewOpinion に未反映（インラインコメントのみ）。
-5. 旧来残（軽）:
-   - **S-4**: UK `preWarChecklist` 末尾の空行（整形）。
-   - **U-1**: ケース切替で必ず Overview に戻る（`stateForCase` が activeView リセット）。
-   - **U-2（一部進展）**: UK は依然 `one_sided_counter_claim` 2件（`taskforce_reasonable`/`termination_limited`）。リント可視化済み。残2件に実反証を足す（A-1 横展開）か現状維持かは要判断（R-4 と関連）。
+4. 旧来残（軽・要判断）:
+   - **U-2（一部進展）**: UK は依然 `one_sided_claim` 複数（counter_claim: `taskforce_reasonable`/`termination_limited`、audit_issue: `deterrence_signal` ＝R-4 で新検出）。リント可視化済み。各 claim に実反証/保留を足すか現状維持かは要判断。
 
 **凍結中（過剰設計リスク。やるなら独立セッション）:**
 - **M-1**: claim 単位の支持/反証集計ビュー。`claims[]` は現状どの renderer も非参照（死蔵）。活用 or 削除の去就決定が要る。
@@ -135,7 +139,6 @@
 ## 7. 次セッションの推奨アクション
 1. まず本ファイルを読む。A-1＋S-1＋S-2 はコミット済み（§2-0）。
 2. 残りの着手候補（§4）:
-   - **掃除系（軽）**: S-4（空行）、S-3（issues 飾り数字を実 link/evidence 数と連動 or 撤去）、U-1（ケース切替で view 維持）、A-3（UK-EL-005 の語彙ズレ）。
-   - **判断系（中）**: A-2（UK が校正α上 重大懸念に到達不能な構造の sanity-check）、U-2 残り（`one_sided_counter_claim` 2件に実反証を足すか現状維持か）。
+   - **判断系（中）**: U-2 残り（`one_sided_claim` に実反証/保留を足すか現状維持か）。
 3. または**湾岸戦争1990–91（イラク侵攻判断）を3例目として着手**。設計メモ: 監査対象=イラク（サダム政権）、3フェーズ（侵攻8/2→撤退拒否〜期限1/15→停戦2月末）、ex-ante の核＝グラスピー会談（1990/7/25）＝イラク版 E-005、ex-post（連合軍展開・Desert Storm 戦果）を直接証拠にしない。新ケースは起動時に `lintCaseMethodology` の `no_counter_evidence` が出ないよう反証を最初から入れる。
 4. いずれも §3 の蒸し返し禁止に抵触しないか確認してから進める。
