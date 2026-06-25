@@ -94,12 +94,21 @@ export const falklands1982UkCase = {
       auditQuestion: "英国政府は、軍事的勝利後に目的を限定し、戦争を過剰に拡大しない終結判断を行ったか。",
     },
   ],
+  // A-2 サニティチェック（2026-06-25）: 全3項目を再検証。当初は全て exAnteEvaluability:"中" で、
+  //   校正α（高×形跡なし）に構造的に到達できず「重大懸念ゼロ」が入力構造由来の疑いがあった。
+  //   再検証の結果: deterrence_signal のみ「高」が honest（英国自身が統制するシグナル）。残2項目
+  //   （相手意図の読み・遠距離作戦の実行可能性）は他者内情・高難度ゆえ「中」が妥当。
+  //   結論: 高に補正後も UK は要注意止まりで重大懸念に達しないが、これは「評価され、しかし覆された」
+  //   （校正β対象外の失敗類型）ゆえの判断であり、all-中 の artifact ではない。B-/C+ は据え置き。
   preWarChecklist: [
     {
       id: "uk_pw_deterrence_signal",
       name: "南大西洋関与縮小シグナル",
       category: "抑止",
-      exAnteEvaluability: "中",
+      // A-2: シグナルは英国自身が統制する行動で、関与後退リスクは ex-ante に高く評価可能
+      //   （Endurance 撤収には FCO 等から事前に懸念が出ていた）。actuallyEvaluated は「限定的」
+      //   （懸念は出たが国防予算判断が優先）。高×限定的＝要注意。
+      exAnteEvaluability: "高",
       evaluationDifficulty: "中",
       actuallyEvaluated: "限定的",
       noEvidenceReason: null,
@@ -407,10 +416,16 @@ export const falklands1982UkCase = {
       reviewState: "要検証",
       relevance: "中",
       timeFit: "直接",
-      availableAtDecisionTime: false,
+      // A-3: 米国の仲介外交（ヘイグのシャトル外交）は英国戦時内閣が直接の交渉当事者として
+      //   判断時点で内容を把握していた。よって意思決定者の入手可能性・中枢認識は当時成立。
+      //   一方、出典の機密解除文書「そのもの」は後年公開のため外部分析者には事後的
+      //   （availableToAnalysts:false は維持）。timeFit:直接 × availableAtDecisionTime:false の
+      //   語彙ズレを解消し、意思決定者の認識と分析者の入手可能性を分けて表す。
+      availableAtDecisionTime: true,
       availableToAnalysts: false,
-      knownByDecisionMakers: "不明",
-      knownByDecisionMakersBasis: "同時代生成文書だが、後年公開資料を含むため、公開入手可能性と中枢認識を分ける必要がある。",
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "米国の仲介外交は英国戦時内閣が交渉当事者として直接関与しており、その内容は判断時点で中枢に既知。",
       canSay: "英国・米国間の外交出口や仲介案を検証する材料になる。",
       cannotSay: "英国政府が妥協を不当に拒否したとは単独では言えない。",
     },
