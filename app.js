@@ -9,7 +9,7 @@ import {
 import { cases } from "./data/cases/index.js";
 import { createRenderers } from "./ui/renderers.js";
 
-let activeCase = cases.find((item) => item.warCase.id === "falklands-1982-uk") || cases[0];
+let activeCase = cases.find((item) => item.warCase.id === "gulf-war-1990-iraq") || cases[0];
 let state = stateForCase(activeCase);
 let renderers = createRenderers(activeCase, state);
 
