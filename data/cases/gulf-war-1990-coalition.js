@@ -13,9 +13,10 @@ export const gulfWar1990CoalitionCase = {
     counterpartCaseId: "gulf-war-1990-iraq",
   },
   overviewOpinion:
-    "この対照ケースは、イラク側監査と同じ湾岸戦争1990-91を米国主導の多国籍軍側から見る。米国は国連決議、多国籍軍形成、クウェート解放という限定目的の設定において高い説明力を持つ。一方で、地上戦停止、バグダッド不進撃、サダム政権存続、長期封じ込めコストについては、短期合理性と長期副作用を分けて検証する必要がある。追加した同時代公開資料により、戦後地域安定化・封じ込めの評価形跡は限定的に確認できるが、長期コストの体系的な比較評価はなお薄く、格付け B+/B は最大 weight の長期封じ込めコストが暫定要検証であることを含む暫定評価である。",
+    "この対照ケースは、イラク側監査と同じ湾岸戦争1990-91を米国主導の多国籍軍側から見る。米国は国連決議、多国籍軍形成、クウェート解放という限定目的の設定において高い説明力を持つ。ただし国際的正統性とは別に、サウジ国内では非ムスリム軍駐留の宗教政治的正統性が同時代に係争的であり（ファトワ取得・サフワ系反対・ビンラディン申し出拒絶）、正統性軸の一様な強さには留保が要る。一方で、地上戦停止、バグダッド不進撃、サダム政権存続、長期封じ込めコストについては、短期合理性と長期副作用を分けて検証する必要がある。追加した同時代公開資料により、戦後地域安定化・封じ込めの評価形跡は限定的に確認できるが、長期コストの体系的な比較評価はなお薄く、格付け B+/B は最大 weight の長期封じ込めコストが暫定要検証であることを含む暫定評価である。",
   issues: [
     { name: "正統性・連合形成", status: "軽度" },
+    { name: "駐留正統性（ホスト国・宗教政治）", status: "軽度" },
     { name: "戦争目的の限定", status: "軽度" },
     { name: "地上戦停止判断", status: "要検証" },
     { name: "バグダッド不進撃判断", status: "要検証" },
@@ -25,6 +26,7 @@ export const gulfWar1990CoalitionCase = {
   ],
   counterHypotheses: [
     "クウェート解放に限定したことは、国連決議・アラブ諸国参加・同盟維持の条件を守る合理的な制約だった。",
+    "サウジへの非ムスリム軍駐留はファトワで正統性を確保し、サウジ防衛という喫緊の必要に基づく判断であり、国内反発は当時の選択肢の中では受容可能なコストだった。",
     "バグダッド進撃や体制転換は、軍事的勝利後の占領統治・地域不安定化・連合崩壊リスクを高めた可能性がある。",
     "長期封じ込めの負担は後年から見れば重いが、1991年時点で全ての副作用を高精度に予見することには限界があった。",
   ],
@@ -119,6 +121,26 @@ export const gulfWar1990CoalitionCase = {
       linkedEvidenceLinks: ["GWC-EL-002", "GWC-EL-003", "GWC-EL-009"],
       linkedAssumptions: ["gwc_asm_coalition_requires_limits"],
       linkedCells: ["gwc_cell_legitimacy_objective", "gwc_cell_limited_objective"],
+    },
+    {
+      id: "gwc_pw_basing_legitimacy",
+      name: "駐留正統性（ホスト国・宗教政治）",
+      category: "正統性",
+      exAnteEvaluability: "高",
+      evaluationDifficulty: "中",
+      actuallyEvaluated: "形跡あり",
+      noEvidenceReason: null,
+      statusOverride: null,
+      evidenceStrength: "中",
+      auditQuestion: "非ムスリム軍を二聖地の国に駐留させる宗教政治的正統性コストを、開戦前に評価したか。",
+      counterPoint:
+        "ファトワで正統性を確保しても、サフワ系の反対やビンラディン申し出拒絶が示す国内反発は残余コストとして残る。一方、長期ブローバックは ex-post であり当時の判断を後知恵で断罪してはいけない。",
+      asymmetry: null,
+      evidenceBasis:
+        "GWC-EL-019 が示すとおり、サウジ政府は上級ウラマー評議会のファトワを意図的に取得して駐留の宗教政治的正統性を確保しており、中枢が係争性を認識し管理していた評価形跡がある。ただし反対派の存在は残余コストとして残った。",
+      linkedEvidenceLinks: ["GWC-EL-019"],
+      linkedAssumptions: ["gwc_asm_coalition_requires_limits"],
+      linkedCells: ["gwc_cell_legitimacy_objective"],
     },
     {
       id: "gwc_pw_iraqi_capability",
@@ -254,9 +276,17 @@ export const gulfWar1990CoalitionCase = {
       impact: "高",
       evidenceStrength: "中",
       opinion:
-        "国連決議と多国籍軍形成を通じた正統性確保は、米国側判断の強い点である。ただし正統性は目的限定と一体であり、バグダッド進撃や体制転換を選びにくくする制約でもあった。",
-      criteria: ["安保理決議に基づく武力行使容認", "アラブ諸国を含む連合形成", "目的限定との接続"],
-      changeConditions: ["連合形成が実質的に目的限定を強制していなかった資料が確認される"],
+        "国連決議と多国籍軍形成を通じた国際的正統性の確保は、米国側判断の強い点である。ただし正統性は目的限定と一体であり、バグダッド進撃や体制転換を選びにくくする制約でもあった。さらに、国際的正統性とホスト国正統性は別であり、サウジでは非ムスリム軍駐留の正統性が同時代に係争的で、上級ウラマー評議会のファトワ取得・サフワ系の反対・ビンラディン申し出拒絶という宗教政治的コストを伴った（GWC-EL-019）。中枢はこれを認識し管理したが、残余の国内反発コストは正統性軸の一様な強さに留保を付す。",
+      criteria: [
+        "安保理決議に基づく武力行使容認",
+        "アラブ諸国を含む連合形成",
+        "目的限定との接続",
+        "ホスト国（サウジ）駐留の宗教政治的正統性",
+      ],
+      changeConditions: [
+        "連合形成が実質的に目的限定を強制していなかった資料が確認される",
+        "サウジ国内の駐留正統性論争が中枢の判断にどう織り込まれたかを示す同時代資料が確認される",
+      ],
     },
     {
       id: "gwc_cell_limited_objective",
@@ -266,9 +296,12 @@ export const gulfWar1990CoalitionCase = {
       impact: "高",
       evidenceStrength: "中",
       opinion:
-        "クウェート解放に目的を限定したことは、国際的正統性と出口戦略を明確にした。一方で、サダム政権存続と長期封じ込めという問題を戦後に残す構造も作った。",
+        "クウェート解放に目的を限定したことは、国際的正統性と出口戦略を明確にした。一方で、サダム政権存続と長期封じ込めという問題を戦後に残す構造も作った。なお、決議678の授権は『当該地域の平和と安全の回復』まで含む広範なもので（GWC-EL-020）、目的のクウェート解放への限定は国連授権が課した法的天井ではなく政治的選択だった点に留意する。",
       criteria: ["目的がクウェート解放に絞られている", "同盟・国連正統性と整合", "体制転換を目的化しない副作用"],
-      changeConditions: ["当時から体制転換まで正統性を確保できたと示す資料が確認される"],
+      changeConditions: [
+        "当時から体制転換まで正統性を確保できたと示す資料が確認される",
+        "決議678の授権範囲が実際に作戦目的を法的に限定していたことを示す資料が確認される",
+      ],
     },
     {
       id: "gwc_cell_ground_stop",
@@ -339,7 +372,7 @@ export const gulfWar1990CoalitionCase = {
       publishedDate: "1990年11月29日（同時代公開）",
       coveragePeriod: "目的設定・武力行使前",
       source:
-        "United Nations Security Council Resolution 678 (1990), S/RES/678。1991年1月15日後の必要な手段を容認し、クウェート解放目的と国連正統性の基礎になった。",
+        "United Nations Security Council Resolution 678 (1990), S/RES/678（1990年11月29日採択、賛成12・反対2〔キューバ・イエメン〕・棄権1〔中国〕）。作動条項は、クウェート政府に協力する加盟国に対し、イラクが1991年1月15日までに決議660ほか関連決議を完全履行しない場合、『決議660(1990)および以後の全関連決議を支持・履行し、当該地域における国際の平和と安全を回復するため、あらゆる必要な手段（all necessary means to uphold and implement resolution 660 ... and to restore international peace and security in the area）』を用いる権限を与えた。武力行使の国連正統性の基礎であると同時に、授権文言が『当該地域の平和と安全の回復』まで及ぶ広範なものだった点に留意（GWC-EL-020）。",
       collectionState: "一次資料入手可",
       authenticity: "高",
       interpretiveReliability: "高",
@@ -471,8 +504,9 @@ export const gulfWar1990CoalitionCase = {
       publishedDate: "1991年2月〜4月（同時代発信・戦後整理）",
       coveragePeriod: "作戦停止・戦後設計",
       source:
-        "(1) ブッシュ大統領1991年2月15日の発信（イラク軍と国民にサダム打倒を促す。American Presidency Project に記録）、(2) 1991年3月3日サフワン飛行場の停戦会談で、シュワルツコフ司令官がイラク側のヘリ運用要請に対し（武装ヘリを含む）飛行容認をワシントンの指示なく口頭で認めた経緯（回想録 It Doesn't Take a Hero, 1992 ほか）、(3) Human Rights Watch『Endless Torment: The 1991 Uprising in Iraq and Its Aftermath』(1992) 等の蜂起鎮圧・難民・不介入に関する整理。米側発信と不介入、ヘリ運用容認の接続を扱う。",
-      collectionState: "大統領発言記録・回想録・人権報告で確認可（ヘリ容認の口頭経緯は回想録依拠で要精査）",
+        "(1) ブッシュ大統領1991年2月15日の発信（イラク軍と国民にサダム打倒を促す。American Presidency Project に記録）、(2) 1991年3月3日サフワン飛行場の停戦会談の機密解除トランスクリプトによれば、イラク側代表 Lt. Gen. Sultan Hashim Ahmad al-Tai が道路・橋梁の破壊を理由にヘリ運用許可を求め、シュワルツコフ司令官が『連合軍がいる区域の上空でない限り全く問題ない（As long as it is not over the part we are in, that is absolutely no problem）』『我々の側はイラク領内のヘリを攻撃しない（we will not attack any helicopters inside Iraq）』と口頭で容認した（固定翼機は飛行禁止、ヘリは事実上容認）。ワシントンの事前指示を経ない現場容認だった点を含む。回想録 It Doesn't Take a Hero (1992) と同時代報道（Baltimore Sun / Washington Post 1991年3月4日）も整合する、(3) Human Rights Watch『Endless Torment: The 1991 Uprising in Iraq and Its Aftermath』(1992) 等の蜂起鎮圧・難民・不介入に関する整理。米側発信と不介入、ヘリ運用容認の接続を扱う。",
+      collectionState:
+        "大統領発言記録・サフワン停戦会談の機密解除トランスクリプト・同時代報道・人権報告で確認可（ヘリ容認の文言はトランスクリプトで確認＝回想録単独依拠を脱した）",
       authenticity: "中〜高",
       interpretiveReliability: "中",
     },
@@ -486,6 +520,20 @@ export const gulfWar1990CoalitionCase = {
         "(1) U.S. Department of Defense『Conduct of the Persian Gulf War: Final Report to Congress』(1992年4月、Public Law 102-25 Title V に基づく議会報告)、(2) Eliot A. Cohen 監修・Thomas A. Keaney ほか『Gulf War Air Power Survey』(全5巻＋要約報告、U.S. Air Force、1993年)、(3) CENTCOM/DoD の作戦計画整理。いずれも公開は戦後公刊だが、当時のイラク軍戦力・損耗・航空作戦効果・地上作戦の実行可能性見積もりを再構成する資料として扱う。",
       collectionState: "公的報告・公刊戦史で確認可（開戦前の内部原見積もりそのものは未確認＝要精査）",
       authenticity: "高",
+      interpretiveReliability: "中",
+    },
+    {
+      id: "GWC-E-014",
+      title:
+        "サウジアラビア国内の外国軍駐留をめぐる正統性論争（上級ウラマー評議会ファトワ・サフワ系反対・ビンラディン申し出拒絶／1990年）",
+      type: "宗教・国内政治資料",
+      publishedDate: "1990年8月〜（同時代）",
+      coveragePeriod: "目的設定・連合形成・駐留決定",
+      source:
+        "(1) サウジ上級ウラマー評議会（Hay'at Kibar al-'Ulama、大ムフティ Abd al-Aziz ibn Baz 主導）が、チェイニー米国防長官との協議を経たファハド国王の外国軍受け入れ決定を容認するファトワを発出（複数研究は1990年8月13日とする）。条件として、外国軍はサウジ指揮下に置く・聖地と財産名誉を尊重する・国王の命令で速やかに撤退する、等を付した。政府がわざわざファトワを取得したこと自体、非ムスリム軍を二聖地の国に駐留させる正統性が同時代に係争的だったことを示す。(2) サフワ（覚醒）系のサファル・アル＝ハワーリーが1990年9月以降、駐留と対米従属を批判する説教をカセットで広範に流布。サルマーン・アル＝アウダも金曜説教で同様の批判を展開しテープで拡散した。(3) アフガン帰りのウサーマ・ビンラディンがファハド国王・スルターン国防相にムジャヒディンによる自前防衛を申し出て非ムスリム軍依存を諫めたが拒絶され、約50万の米軍受け入れに至った。※1996年以降のブローバック（テロ）は ex-post であり本ケースの直接証拠には用いない。",
+      collectionState:
+        "ファトワ条文・同時代報道・二次研究で確認可（ビンラディン申し出の経緯は伝記・回想依拠で要精査）",
+      authenticity: "中〜高",
       interpretiveReliability: "中",
     },
   ],
@@ -846,7 +894,7 @@ export const gulfWar1990CoalitionCase = {
       availableToAnalysts: true,
       knownByDecisionMakers: "推定",
       knownByDecisionMakersBasis:
-        "米側発信とサフワン停戦会談は当時の中枢判断に接続するが、蜂起鎮圧・難民危機の全体像は戦後整理を含む。",
+        "米側発信とサフワン停戦会談は当時の中枢判断に接続し、ヘリ運用容認の文言は同会談の機密解除トランスクリプトで確認できる。ただし蜂起鎮圧・難民危機の全体像は戦後整理を含む。",
       canSay:
         "米側発信、不介入方針、サフワン後のヘリ運用容認は、蜂起鎮圧・難民・人道危機を米国側監査の論点に含める根拠になる。",
       cannotSay:
@@ -893,6 +941,48 @@ export const gulfWar1990CoalitionCase = {
         "米国側は戦争目的をクウェート解放と国連枠組みに限定しており、イラク国内政治への直接介入を主要目的としていなかった。",
       cannotSay:
         "目的限定を掲げていたことだけで、蜂起を促す発信や停戦後のヘリ運用容認が生んだ人道責任論点を消せるわけではない。",
+    },
+    {
+      id: "GWC-EL-019",
+      evidenceId: "GWC-E-014",
+      claimId: "gwc_claim_legitimacy",
+      assessmentCellId: "gwc_cell_legitimacy_objective",
+      claimLabel: "ホスト国・宗教政治的正統性の係争",
+      target: "正統性・連合形成への批判方向反証（国際的正統性≠ホスト国正統性）",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "中",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "サウジ政府は駐留容認のファトワを意図的に取得しており、非ムスリム軍を二聖地の国に置く宗教政治的敏感さを中枢が認識していたことを示す。米側もチェイニー協議で駐留交渉の当事者だった。",
+      canSay:
+        "国連決議に基づく国際的正統性が強い一方、サウジ国内では外国軍駐留の正統性が同時代に係争的で、上級ウラマー評議会のファトワ取得・サフワ系の駐留反対・ビンラディンの申し出拒絶という宗教政治的コストを伴っていた。中枢はこれを認識し管理した。",
+      cannotSay:
+        "駐留が係争的だったことだけで、駐留や武力行使そのものが不当だったとは言えない。また1996年以降のテロ等の長期ブローバックは ex-post であり、1990年時点で高精度に予見可能だったとは言えず、本リンクの射程外とする。",
+    },
+    {
+      id: "GWC-EL-020",
+      evidenceId: "GWC-E-001",
+      claimId: "gwc_claim_legitimacy",
+      assessmentCellId: "gwc_cell_limited_objective",
+      claimLabel: "決議678授権の広範性と目的限定の選択性",
+      target: "正統性・目的限定への批判方向反証（限定は法的強制でなく政治的選択）",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "中",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "決議678は米国が起草・推進して採択された文書であり、その授権範囲は米国中枢が最もよく認識していた。",
+      canSay:
+        "決議678は『当該地域における国際の平和と安全の回復』まで含む広範な授権であり、戦争目的をクウェート解放に限定したことは国連授権が課した法的天井ではなく、米国主導連合の政治的・戦略的選択だった。停止やバグダッド不進撃を『法的に限定されていた』と説明する論拠を弱める。",
+      cannotSay:
+        "授権が広範だったことは、バグダッド進撃が明確に合法だったことや、より広い作戦が賢明だったことを意味しない。『当該地域』の文言は決議660のクウェート回復目的と結びつき解釈が争われており、限定が法的強制ではなかったという点に射程を限る。",
     },
   ],
   ratingBasis: [
