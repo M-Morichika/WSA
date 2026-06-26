@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-26（連合側ケース深掘り精査①②③は `7e5d8d6`、HANDOFF反映は `ad6597b` まで origin/master と同期済み。④ CIA/DIA/CENTCOM 原見積もり本体は調査したが未特定のため、`GWC-E-013` を公刊再構成として明確化中＝未コミット作業あり）
+最終更新: 2026-06-26（①②③は `7e5d8d6`／HANDOFF反映 `ad6597b` まで origin/master と同期済み。④ GWC-E-013 公刊再構成明確化は `b680f2e` でコミット済み。R-2＝サフワン・トランスクリプト出所特定は本作業で適用。⚠️ `b680f2e` 以降は**ハーネスの auto-mode 分類器が master への直 push をブロックしており未push**＝ユーザーが手動 push か push 許可ルール追加を要する）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -68,7 +68,8 @@
 > ✅ 2-NEW-A／2-NEW-B はコミット+push 済み（`19c28b1`, origin/master）。2-NEW-C（連合側ケース証拠増補＋再レビュー反映）も `610088a` でコミット+push 済み。正式作業リストの HANDOFF 更新は `ab3f6cd` でコミット+push 済み。
 > ✅ **本セッション（前半）**: E-1/E-2/E-3 増補を `5ce393f`、証拠出典の一次資料精密化を `25c4b23`、サブエージェントレビュー後のラベリング/表示是正を `10851e9` で反映。
 > ✅ **本セッション（後半・連合側深掘り精査）**: ①サウジ駐留正統性・②決議678広範性・③サフワン原記録化を `7e5d8d6`、HANDOFF反映を `ad6597b` で反映し **push 済み（origin/master と同期）**。
-> 🔄 **本セッション（現在作業・④）**: CIA/DIA/CENTCOM の開戦前内部原見積もり本体を探索したが、現時点で公開一次資料として特定できず。`GWC-E-013` / `GWC-EL-017` を「公刊再構成」であり「原見積もり本体ではない」と明確化中。
+> ✅ **本セッション（④）**: CIA/DIA/CENTCOM の開戦前内部原見積もり本体を探索したが公開一次資料として特定できず。`GWC-E-013` / `GWC-EL-017` を「公刊再構成」であり「原見積もり本体ではない」と明確化＝`b680f2e` でコミット済み（**未push**）。
+> ✅ **本セッション（R-2）**: サフワン機密解除トランスクリプトの出所を特定（一次的開示 = Laurie Mylroie, WaPo 1992/6/28／再録 = Gordon & Trainor『The Generals' War』1995）。`GWC-E-012` の source/collectionState・`GWC-EL-016` 認識根拠に反映。残る隙間（DoD/NARA 文書管理番号）は狭い `要精査` として明記。**未コミット**。
 
 ### 2-NEW-E. 連合側ケース深掘り精査 ①②③（`7e5d8d6`・本セッション後半）
 > §7 が挙げた「残る粒度向上候補」のうち①②③を適用（④＝CIA/DIA/CENTCOM 原見積もり本体は未着手）。証拠量ではなく**正統性軸の反証強化**と**出典の時点性精密化**が主眼。
@@ -78,12 +79,19 @@
 - **検証**: `node --check` 全JS OK／`validateCaseRegistry` 0／全4ケース `validateCaseReferences`・`lintCaseMethodology` 0（正統性claimは支持4/反証4で両建て維持）／実機で `GWC-EL-020` 詳細に678広範性・`GWC-EL-016` 選択で `GWC-E-012` のサフワン逐語描画・コンソール0。cache-bust 全4箇所 `20260626-res678-safwan`。
 - **未適用で残ったレビュー指摘**: ①レビューの **M-1**（`gwc_pw_basing_legitimacy.actuallyEvaluated` を `形跡あり`↔`限定的`。下げると 高×限定的→要注意 に懸念上昇。現状は撤退条件付きファトワ＝評価管理形跡ありとみて `形跡あり` 維持）／**M-2**（`GWC-EL-019` を coalition_maintenance 側にも露出）／**S-1**（駐留正統性専用 assumption 新設）。②③レビューの **R-1**（`GWC-EL-020` を termination 側にも露出）／**R-2**（サフワン・トランスクリプトの所蔵アーカイブID未特定＝二次情報が「機密解除トランスクリプトによれば」と引用する段階。完全な一次記録化には文書特定が残課題＝④と同種の `要精査`）。
 
-### 2-NEW-F. ④ CIA/DIA/CENTCOM 原見積もり本体の扱い（現在作業・未コミット）
+### 2-NEW-G. R-2 サフワン・トランスクリプトの出所特定（③の一次記録化を前進・本作業・未コミット）
+> §2-NEW-E の残課題 R-2＝「機密解除トランスクリプトによれば」の宙吊りを、特定の開示出典に接地。
+- Web 調査で機密解除トランスクリプトの**一次的開示**を特定: **Laurie Mylroie「Iraq's Real Coup: Did Saddam Snooker Schwarzkopf?」(The Washington Post, 1992/6/28 Outlook)** が機密解除トランスクリプトを最初に公刊。**Michael R. Gordon & Bernard E. Trainor『The Generals' War』(Little, Brown, 1995)** も同種の機密解除文書群を用いて再構成。
+- `GWC-E-012` の `source`・`collectionState` と `GWC-EL-016` の `knownByDecisionMakersBasis` に上記出所を併記。「二次情報が『トランスクリプトによれば』と引用する段階」→「特定の開示出典に接地」へ前進。
+- ⚠️ 残: 単独の NSArchive Electronic Briefing Book / NARA・DoD の文書管理番号自体は公開検索で未特定。R-2 は**実質前進だが完全な所蔵特定（文書番号レベル）は引き続き狭い `要精査`**として残す（④と同種）。
+- 検証: `node --check` 全JS OK／`validateCaseRegistry` 0／全4ケース `validateCaseReferences`・`lintCaseMethodology` 0／実機（:8125）で `GWC-E-012` 新出所が module ロード・コンソールエラー0。cache-bust 全4箇所 `20260626-safwan-provenance`。
+
+### 2-NEW-F. ④ CIA/DIA/CENTCOM 原見積もり本体の扱い（`b680f2e`・コミット済み／未push）
 > §7 の④に着手。目的は `GWC-E-013` を「原見積もり本体」へ格上げできるかの確認。
 - Web/公式系検索で CIA/DIA/CENTCOM の開戦前内部見積もり本体（個別メモ、J-2 estimate、DIA assessment、CENTCOM intelligence estimate 等）を探したが、現時点では公開一次資料として未特定。
 - 利用可能な核は、DoD『Conduct of the Persian Gulf War: Final Report to Congress』(1992) と GWAPS（USAF, 1993、DTIC/FASで公刊確認可）であり、これは「当時見積もりの公刊再構成」としては有用だが、開戦前内部原資料そのものではない。
 - そのため `gwc_pw_iraqi_capability` / `gwc_pw_ground_cost` の `actuallyEvaluated: "限定的"` と `evidenceStrength: "弱〜中"` は維持。`GWC-E-013` の title/source/collectionState と `GWC-EL-017.reviewState` を、原本未特定が読めるように是正。
-- cache-busting は `20260626-estimate-provenance` に更新中。
+- cache-busting は `20260626-estimate-provenance`（その後 R-2 で `20260626-safwan-provenance` に更新）。
 - 次に必要なら、CIA CREST/Reading Room・DIA FOIA logs・DTIC・NARA/George H. W. Bush Library の文書番号レベルで追加探索。見つからない場合は `nextEvidenceActionType` 相当の未収集タスクとして残す。
 ### 2-NEW-D. 証拠出典の一次資料単位への精密化（`25c4b23`・本セッション）
 - 概括的だった `source` を Web 裏取りの上で一次資料単位に書き換え（Evidence ビューの選択リンク詳細パネルに表示される）。
@@ -166,7 +174,7 @@
 - **H（対照ケース設計）**: 同一戦争を加害側/連合側の両面から監査する「対照ケース」は `warCase.counterpartCaseId` の**相互（双方向）参照**で表現。`validateCaseRegistry` が実在・双方向・自己参照禁止を検査。UI 導線（I-9）は新機能ゆえ凍結中＝データ整合のみ先行確保。
 - **I（skeleton ケースの扱い）**: skeleton 段階のケースに対しては「証拠数を増やす系の指摘（反証リンク追加・セル新設・evidenceBasis 補充）はオミット」が方針。証拠未収集セルは `provisional:true`＋`noEvidenceReason` で**誠実に暫定**と明示する（確定評価に変換しない）。証拠量に依存しない構造・コード・ラベリングの是正のみ先行。
 - **J（conflict グルーピング）**: ケースセレクタの戦争単位グルーピングは `warCase.conflict` フィールド（データ駆動）で行う。ケース名の文字列分割はア軍ケース名が陣営サフィックス無しで脆弱なため不採用。
-- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行は深掘り精査（2-NEW-E）の `20260626-res678-safwan`。
+- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行は R-2（2-NEW-G）の `20260626-safwan-provenance`。
 - **L（連合側 正統性の二層化）**: 連合側の正統性は **国際的正統性（国連決議・連合形成＝強い）とホスト国正統性（サウジ駐留の宗教政治＝同時代に係争的）を別軸**として扱う。サウジ駐留正統性は `gwc_pw_basing_legitimacy`＝高×形跡あり（撤退条件付きファトワ取得＝中枢が係争性を認識し管理した形跡）で `要検証`（最低懸念）。`GWC-EL-019` は正統性claimへの批判方向反証。長期ブローバック（1996/2001）は **ex-post ＝射程外**（第3原則）。決議678の授権は「地域の平和と安全の回復」まで広範＝目的のクウェート解放への限定は**法的天井でなく政治的選択**（`GWC-EL-020`）。サフワンのヘリ容認は**機密解除トランスクリプト主導**で扱い回想録単独依拠を脱した（ただし所蔵アーカイブID未特定＝R-2 残課題）。
 
 ---
@@ -304,7 +312,7 @@
 3. 次にやるなら、まず `git status` で clean / 同期状態を確認してから新しい作業単位を選ぶ。
 4. その後の大きな作業候補:
    - **連合側ケースの深掘り精査（続き）**。①②③は適用済み（2-NEW-E）。④＝CIA/DIA/CENTCOM 原見積もり本体は調査着手済みだが未特定（2-NEW-F）。`GWC-E-013` は「公刊再構成」として明確化し、原見積もり本体は引き続き `要精査`。
-   - **未適用レビューの反映**: M-1（`gwc_pw_basing_legitimacy` 形跡あり↔限定的）／M-2（`GWC-EL-019` を coalition_maintenance 露出）／S-1（駐留正統性専用 assumption）／R-1（`GWC-EL-020` を termination 露出）／**R-2（サフワン・トランスクリプトの所蔵アーカイブID特定＝③の一次記録化を完了させる）**。
+   - **未適用レビューの反映**: M-1（`gwc_pw_basing_legitimacy` 形跡あり↔限定的）／M-2（`GWC-EL-019` を coalition_maintenance 露出）／S-1（駐留正統性専用 assumption）／R-1（`GWC-EL-020` を termination 露出）／~~R-2（サフワン・トランスクリプトの所蔵アーカイブID特定）~~ ＝**本作業で出所特定まで前進（2-NEW-G）。文書管理番号レベルの所蔵特定のみ狭い `要精査` で残置**。
    - または I-9（対照ケースの UI 導線＝counterpart へのボタン/対比ビュー）を独立セッションで。
    - または UI-8 系（Assessment の疎マトリクス、aria-live、色覚対応）を全ケース共通 UI 改善として扱う。
    - または湾岸イラク側の一次資料名精密化（グラスピー会談、Desert Shield 展開資料）。

@@ -504,9 +504,9 @@ export const gulfWar1990CoalitionCase = {
       publishedDate: "1991年2月〜4月（同時代発信・戦後整理）",
       coveragePeriod: "作戦停止・戦後設計",
       source:
-        "(1) ブッシュ大統領1991年2月15日の発信（イラク軍と国民にサダム打倒を促す。American Presidency Project に記録）、(2) 1991年3月3日サフワン飛行場の停戦会談の機密解除トランスクリプトによれば、イラク側代表 Lt. Gen. Sultan Hashim Ahmad al-Tai が道路・橋梁の破壊を理由にヘリ運用許可を求め、シュワルツコフ司令官が『連合軍がいる区域の上空でない限り全く問題ない（As long as it is not over the part we are in, that is absolutely no problem）』『我々の側はイラク領内のヘリを攻撃しない（we will not attack any helicopters inside Iraq）』と口頭で容認した（固定翼機は飛行禁止、ヘリは事実上容認）。ワシントンの事前指示を経ない現場容認だった点を含む。回想録 It Doesn't Take a Hero (1992) と同時代報道（Baltimore Sun / Washington Post 1991年3月4日）も整合する、(3) Human Rights Watch『Endless Torment: The 1991 Uprising in Iraq and Its Aftermath』(1992) 等の蜂起鎮圧・難民・不介入に関する整理。米側発信と不介入、ヘリ運用容認の接続を扱う。",
+        "(1) ブッシュ大統領1991年2月15日の発信（イラク軍と国民にサダム打倒を促す。American Presidency Project に記録）、(2) 1991年3月3日サフワン飛行場の停戦会談の機密解除トランスクリプトによれば、イラク側代表 Lt. Gen. Sultan Hashim Ahmad al-Tai が道路・橋梁の破壊を理由にヘリ運用許可を求め、シュワルツコフ司令官が『連合軍がいる区域の上空でない限り全く問題ない（As long as it is not over the part we are in, that is absolutely no problem）』『我々の側はイラク領内のヘリを攻撃しない（we will not attack any helicopters inside Iraq）』と口頭で容認した（固定翼機は飛行禁止、ヘリは事実上容認）。ワシントンの事前指示を経ない現場容認だった点を含む。この逐語の出所はペンタゴンが機密解除した同会談記録であり、Laurie Mylroie「Iraq's Real Coup: Did Saddam Snooker Schwarzkopf?」(The Washington Post, 1992年6月28日 Outlook) が機密解除トランスクリプトとして最初に公刊し、Michael R. Gordon & Bernard E. Trainor『The Generals' War: The Inside Story of the Conflict in the Gulf』(Little, Brown, 1995) も同種の機密解除文書群を用いて再構成している。ただし DoD/NARA における当該記録の正確な文書管理番号は未特定で、完全な一次記録の所蔵特定は要精査として残す。回想録 It Doesn't Take a Hero (1992) と同時代報道（Baltimore Sun / Washington Post 1991年3月4日）も整合する、(3) Human Rights Watch『Endless Torment: The 1991 Uprising in Iraq and Its Aftermath』(1992) 等の蜂起鎮圧・難民・不介入に関する整理。米側発信と不介入、ヘリ運用容認の接続を扱う。",
       collectionState:
-        "大統領発言記録・サフワン停戦会談の機密解除トランスクリプト・同時代報道・人権報告で確認可（ヘリ容認の文言はトランスクリプトで確認＝回想録単独依拠を脱した）",
+        "大統領発言記録・サフワン停戦会談の機密解除トランスクリプト・同時代報道・人権報告で確認可。ヘリ容認の逐語は機密解除トランスクリプトで確認＝回想録単独依拠を脱した。トランスクリプトの一次的開示は Mylroie（WaPo 1992/6/28）で特定でき Gordon & Trainor (1995) も再録するが、DoD/NARA の文書管理番号自体は未特定＝完全な所蔵特定は要精査",
       authenticity: "中〜高",
       interpretiveReliability: "中",
     },
@@ -894,7 +894,7 @@ export const gulfWar1990CoalitionCase = {
       availableToAnalysts: true,
       knownByDecisionMakers: "推定",
       knownByDecisionMakersBasis:
-        "米側発信とサフワン停戦会談は当時の中枢判断に接続し、ヘリ運用容認の文言は同会談の機密解除トランスクリプトで確認できる。ただし蜂起鎮圧・難民危機の全体像は戦後整理を含む。",
+        "米側発信とサフワン停戦会談は当時の中枢判断に接続し、ヘリ運用容認の文言は同会談の機密解除トランスクリプト（一次的開示は Mylroie WaPo 1992/6/28、Gordon & Trainor 1995 も再録。DoD/NARA 文書番号は未特定で要精査）で確認できる。ただし蜂起鎮圧・難民危機の全体像は戦後整理を含む。",
       canSay:
         "米側発信、不介入方針、サフワン後のヘリ運用容認は、蜂起鎮圧・難民・人道危機を米国側監査の論点に含める根拠になる。",
       cannotSay:
