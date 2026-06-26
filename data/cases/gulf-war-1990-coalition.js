@@ -156,7 +156,7 @@ export const gulfWar1990CoalitionCase = {
       counterPoint: "軍事的排除可能性は、戦後政治問題の解決可能性とは別である。",
       asymmetry: null,
       evidenceBasis:
-        "GWC-EL-017（DoD/CENTCOM/GWAPS による当時見積もりの再構成）は、イラク軍排除の実行可能性が作戦計画に組み込まれていた可能性を示す。ただし公開資料は戦後整理を含み、内部見積もり原資料の直接確認ではないため、評価形跡は限定的に留める。",
+        "GWC-EL-017（DoD/CENTCOM/GWAPS による当時見積もりの公刊再構成）は、イラク軍排除の実行可能性が作戦計画に組み込まれていた可能性を示す。ただし CIA/DIA/CENTCOM の開戦前内部見積もり本体は未特定であり、原資料確認済みとは扱わないため、評価形跡は限定的に留める。",
       linkedEvidenceLinks: ["GWC-EL-010", "GWC-EL-017"],
       linkedAssumptions: ["gwc_asm_iraqi_forces_beatable"],
       linkedCells: ["gwc_cell_ground_stop"],
@@ -175,7 +175,7 @@ export const gulfWar1990CoalitionCase = {
       counterPoint: "短期地上戦の成功は、停止後の政権存続リスクを直接解決しない。",
       asymmetry: null,
       evidenceBasis:
-        "GWC-EL-017 は当時の作戦計画・戦力見積もりが存在したことを示し、GWC-EL-010 は攻勢停止時点の損耗抑制説明を示す。ただし損耗・停止条件の体系比較は戦後整理と公的説明からの限定的確認に留まる。",
+        "GWC-EL-017 は当時の作戦計画・戦力見積もりの公刊再構成を示し、GWC-EL-010 は攻勢停止時点の損耗抑制説明を示す。ただし CIA/DIA/CENTCOM の開戦前内部見積もり本体は未特定であり、損耗・停止条件の体系比較は戦後整理と公的説明からの限定的確認に留まる。",
       linkedEvidenceLinks: ["GWC-EL-010", "GWC-EL-017"],
       linkedAssumptions: ["gwc_asm_limited_victory_sufficient"],
       linkedCells: ["gwc_cell_ground_stop"],
@@ -512,13 +512,13 @@ export const gulfWar1990CoalitionCase = {
     },
     {
       id: "GWC-E-013",
-      title: "開戦前・作戦中のイラク軍能力/損耗見積もり（DoD/CENTCOM/Gulf War Air Power Survey）",
+      title: "イラク軍能力/損耗見積もりの公刊再構成（DoD/CENTCOM/Gulf War Air Power Survey）",
       type: "軍事計画・戦力評価資料",
       publishedDate: "見積もりは1990-91年／公刊整理は1992-93年以降",
       coveragePeriod: "目的設定・作戦計画・作戦停止",
       source:
-        "(1) U.S. Department of Defense『Conduct of the Persian Gulf War: Final Report to Congress』(1992年4月、Public Law 102-25 Title V に基づく議会報告)、(2) Eliot A. Cohen 監修・Thomas A. Keaney ほか『Gulf War Air Power Survey』(全5巻＋要約報告、U.S. Air Force、1993年)、(3) CENTCOM/DoD の作戦計画整理。いずれも公開は戦後公刊だが、当時のイラク軍戦力・損耗・航空作戦効果・地上作戦の実行可能性見積もりを再構成する資料として扱う。",
-      collectionState: "公的報告・公刊戦史で確認可（開戦前の内部原見積もりそのものは未確認＝要精査）",
+        "(1) U.S. Department of Defense『Conduct of the Persian Gulf War: Final Report to Congress』(1992年4月、Public Law 102-25 Title V に基づく議会報告)、(2) Eliot A. Cohen 監修・Thomas A. Keaney ほか『Gulf War Air Power Survey』(全5巻＋要約報告、U.S. Air Force、1993年。DTIC/FAS で公刊確認可)、(3) CENTCOM/DoD の作戦計画整理。いずれも公開は戦後公刊で、当時のイラク軍戦力・損耗・航空作戦効果・地上作戦の実行可能性見積もりを再構成する資料としては使える。ただし CIA/DIA/CENTCOM が開戦前に作成・配布した内部見積もり本体（個別メモ、J-2 estimate、DIA assessment、CENTCOM intelligence estimate 等）は現時点で未特定であり、本証拠を原見積もり本体とは扱わない。",
+      collectionState: "公的報告・公刊戦史で確認可。CIA/DIA/CENTCOM の開戦前内部原見積もり本体は未特定＝要精査継続",
       authenticity: "高",
       interpretiveReliability: "中",
     },
@@ -908,18 +908,18 @@ export const gulfWar1990CoalitionCase = {
       claimLabel: "イラク軍能力・損耗見積もり",
       target: "イラク軍事能力・地上戦コスト / 作戦計画",
       relationship: "支持",
-      reviewState: "確認中",
+      reviewState: "要精査",
       relevance: "高",
       timeFit: "間接",
       availableAtDecisionTime: false,
       availableToAnalysts: true,
       knownByDecisionMakers: "推定",
       knownByDecisionMakersBasis:
-        "公開報告は戦後公刊であり、判断時点の資料そのものではない。ただし、そこに再構成された DoD/CENTCOM の戦力・損耗見積もりは作戦計画時点の内部評価を反映する可能性が高い。",
+        "公開報告は戦後公刊であり、判断時点の資料そのものではない。DoD/CENTCOM の戦力・損耗見積もりを反映する可能性は高いが、CIA/DIA/CENTCOM の開戦前内部原見積もり本体は未特定である。",
       canSay:
         "米国側にはイラク軍能力、航空作戦効果、地上作戦の実行可能性を評価する軍事計画・見積もりの基盤があったと見られる。",
       cannotSay:
-        "戦後公刊報告だけで、全ての開戦前内部見積もりの内容や不確実性処理を直接確認したとは言えない。",
+        "戦後公刊報告だけで、CIA/DIA/CENTCOM の開戦前内部見積もり本体、見積もりの数値レンジ、反対意見、不確実性処理を直接確認したとは言えない。",
     },
     {
       id: "GWC-EL-018",

@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-26（連合側ケース深掘り精査＝サウジ駐留正統性・決議678広範性・サフワン原記録を `7e5d8d6` で反映。HANDOFF反映 `ad6597b` まで **origin/master と同期済み（push済）**。※本サマリの同期更新コミット自体のみ未pushの場合あり）
+最終更新: 2026-06-26（連合側ケース深掘り精査①②③は `7e5d8d6`、HANDOFF反映は `ad6597b` まで origin/master と同期済み。④ CIA/DIA/CENTCOM 原見積もり本体は調査したが未特定のため、`GWC-E-013` を公刊再構成として明確化中＝未コミット作業あり）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -68,6 +68,7 @@
 > ✅ 2-NEW-A／2-NEW-B はコミット+push 済み（`19c28b1`, origin/master）。2-NEW-C（連合側ケース証拠増補＋再レビュー反映）も `610088a` でコミット+push 済み。正式作業リストの HANDOFF 更新は `ab3f6cd` でコミット+push 済み。
 > ✅ **本セッション（前半）**: E-1/E-2/E-3 増補を `5ce393f`、証拠出典の一次資料精密化を `25c4b23`、サブエージェントレビュー後のラベリング/表示是正を `10851e9` で反映。
 > ✅ **本セッション（後半・連合側深掘り精査）**: ①サウジ駐留正統性・②決議678広範性・③サフワン原記録化を `7e5d8d6`、HANDOFF反映を `ad6597b` で反映し **push 済み（origin/master と同期）**。
+> 🔄 **本セッション（現在作業・④）**: CIA/DIA/CENTCOM の開戦前内部原見積もり本体を探索したが、現時点で公開一次資料として特定できず。`GWC-E-013` / `GWC-EL-017` を「公刊再構成」であり「原見積もり本体ではない」と明確化中。
 
 ### 2-NEW-E. 連合側ケース深掘り精査 ①②③（`7e5d8d6`・本セッション後半）
 > §7 が挙げた「残る粒度向上候補」のうち①②③を適用（④＝CIA/DIA/CENTCOM 原見積もり本体は未着手）。証拠量ではなく**正統性軸の反証強化**と**出典の時点性精密化**が主眼。
@@ -77,6 +78,13 @@
 - **検証**: `node --check` 全JS OK／`validateCaseRegistry` 0／全4ケース `validateCaseReferences`・`lintCaseMethodology` 0（正統性claimは支持4/反証4で両建て維持）／実機で `GWC-EL-020` 詳細に678広範性・`GWC-EL-016` 選択で `GWC-E-012` のサフワン逐語描画・コンソール0。cache-bust 全4箇所 `20260626-res678-safwan`。
 - **未適用で残ったレビュー指摘**: ①レビューの **M-1**（`gwc_pw_basing_legitimacy.actuallyEvaluated` を `形跡あり`↔`限定的`。下げると 高×限定的→要注意 に懸念上昇。現状は撤退条件付きファトワ＝評価管理形跡ありとみて `形跡あり` 維持）／**M-2**（`GWC-EL-019` を coalition_maintenance 側にも露出）／**S-1**（駐留正統性専用 assumption 新設）。②③レビューの **R-1**（`GWC-EL-020` を termination 側にも露出）／**R-2**（サフワン・トランスクリプトの所蔵アーカイブID未特定＝二次情報が「機密解除トランスクリプトによれば」と引用する段階。完全な一次記録化には文書特定が残課題＝④と同種の `要精査`）。
 
+### 2-NEW-F. ④ CIA/DIA/CENTCOM 原見積もり本体の扱い（現在作業・未コミット）
+> §7 の④に着手。目的は `GWC-E-013` を「原見積もり本体」へ格上げできるかの確認。
+- Web/公式系検索で CIA/DIA/CENTCOM の開戦前内部見積もり本体（個別メモ、J-2 estimate、DIA assessment、CENTCOM intelligence estimate 等）を探したが、現時点では公開一次資料として未特定。
+- 利用可能な核は、DoD『Conduct of the Persian Gulf War: Final Report to Congress』(1992) と GWAPS（USAF, 1993、DTIC/FASで公刊確認可）であり、これは「当時見積もりの公刊再構成」としては有用だが、開戦前内部原資料そのものではない。
+- そのため `gwc_pw_iraqi_capability` / `gwc_pw_ground_cost` の `actuallyEvaluated: "限定的"` と `evidenceStrength: "弱〜中"` は維持。`GWC-E-013` の title/source/collectionState と `GWC-EL-017.reviewState` を、原本未特定が読めるように是正。
+- cache-busting は `20260626-estimate-provenance` に更新中。
+- 次に必要なら、CIA CREST/Reading Room・DIA FOIA logs・DTIC・NARA/George H. W. Bush Library の文書番号レベルで追加探索。見つからない場合は `nextEvidenceActionType` 相当の未収集タスクとして残す。
 ### 2-NEW-D. 証拠出典の一次資料単位への精密化（`25c4b23`・本セッション）
 - 概括的だった `source` を Web 裏取りの上で一次資料単位に書き換え（Evidence ビューの選択リンク詳細パネルに表示される）。
 - **連合側**: `GWC-E-011`＝52-47 は **S.J.Res.2 への上院採決（Senate Roll Call Vote No. 2, 1991/1/12）**と明示（下院は H.J.Res.77 を 250-183=House Vote No.9 で可決し同文が PL 102-1）。`GWC-E-012`＝ブッシュ1991/2/15 発信（American Presidency Project）・サフワン3/3 のヘリ容認（回想録依拠＝要精査注記）・HRW『Endless Torment』(1992)。`GWC-E-013`＝Conduct of the Persian Gulf War（DoD,1992/4, PL102-25 TitleV）・GWAPS（Cohen 監修, USAF,1993,全5巻）・CENTCOM 計画整理を著者/刊行年付きで。
@@ -295,7 +303,7 @@
 2. 本セッション後半で連合側深掘り精査①②③（`7e5d8d6`）＋HANDOFF反映（`ad6597b`）をコミットし **push 済み＝`origin/master` と同期**。
 3. 次にやるなら、まず `git status` で clean / 同期状態を確認してから新しい作業単位を選ぶ。
 4. その後の大きな作業候補:
-   - **連合側ケースの深掘り精査（続き）**。①②③は適用済み（2-NEW-E）。**残るは④＝CIA/DIA/CENTCOM 原見積もり本体**（公刊報告経由でなく内部見積もり本体。最難＝原資料未公開の可能性）。`GWC-E-013` は依然 `要精査`。
+   - **連合側ケースの深掘り精査（続き）**。①②③は適用済み（2-NEW-E）。④＝CIA/DIA/CENTCOM 原見積もり本体は調査着手済みだが未特定（2-NEW-F）。`GWC-E-013` は「公刊再構成」として明確化し、原見積もり本体は引き続き `要精査`。
    - **未適用レビューの反映**: M-1（`gwc_pw_basing_legitimacy` 形跡あり↔限定的）／M-2（`GWC-EL-019` を coalition_maintenance 露出）／S-1（駐留正統性専用 assumption）／R-1（`GWC-EL-020` を termination 露出）／**R-2（サフワン・トランスクリプトの所蔵アーカイブID特定＝③の一次記録化を完了させる）**。
    - または I-9（対照ケースの UI 導線＝counterpart へのボタン/対比ビュー）を独立セッションで。
    - または UI-8 系（Assessment の疎マトリクス、aria-live、色覚対応）を全ケース共通 UI 改善として扱う。
