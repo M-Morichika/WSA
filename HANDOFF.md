@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-26（連合側ケース E-1/E-2/E-3 増補・出典精密化・サブエージェントレビュー是正を `10851e9` まで反映。origin/master と同期済み）
+最終更新: 2026-06-26（連合側ケース深掘り精査＝サウジ駐留正統性・決議678広範性・サフワン原記録を `7e5d8d6` で反映。⚠️ `master` は `origin/master` より **2コミット先行**＝`75f882f`〔HANDOFF更新〕＋`7e5d8d6`〔本作業〕が**未push**）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -53,7 +53,7 @@
 - `data/cases/falklands-1982.js` — **アルゼンチン側監査**（id: `falklands-1982-argentina`, 格付 C-/D+, phase3/cell12/evidence6/link7/prewar7）。旧モノリスの `auditData` の移設先。
 - `data/cases/falklands-1982-uk.js` — **英国側監査**（id: `falklands-1982-uk`, 格付 B-/C+, phase4/cell5/evidence6/link11/prewar3）。
 - `data/cases/gulf-war-1990-iraq.js` — **湾岸戦争1990-91 イラク側監査**（id: `gulf-war-1990-iraq`, 格付 D+/D, phase3/cell5/evidence12/link17/claim6/prewar5）。現行既定 activeCase。`counterpartCaseId: gulf-war-1990-coalition`。
-- `data/cases/gulf-war-1990-coalition.js` — **湾岸戦争1990-91 多国籍軍側（米国主導）監査**（id: `gulf-war-1990-coalition`, 格付 B+/B, phase3/cell7/evidence13/link18/claim4/prewar8）。iraq の対照ケース（`counterpartCaseId: gulf-war-1990-iraq`）。E-1/E-2/E-3 を反映し、蜂起・人道危機セルと批判方向反証を追加済み。長期封じ込めコストはなお暫定要検証。
+- `data/cases/gulf-war-1990-coalition.js` — **湾岸戦争1990-91 多国籍軍側（米国主導）監査**（id: `gulf-war-1990-coalition`, 格付 B+/B, phase3/cell7/**evidence14/link20/claim4/prewar9**）。iraq の対照ケース（`counterpartCaseId: gulf-war-1990-iraq`）。E-1/E-2/E-3＋深掘り精査（①サウジ駐留正統性 `GWC-E-014`/`GWC-EL-019`/新Pre-War `gwc_pw_basing_legitimacy`、②決議678広範性 `GWC-EL-020`、③サフワン原記録化）を反映。正統性軸は支持4/反証4で両建て。長期封じ込めコストはなお暫定要検証。
 - 全 warCase に `conflict`（戦争グループ名）フィールドあり＝セレクタの `<optgroup>` グルーピングに使用（命名文字列分割でなくデータ駆動）。
 - `ui/renderers.js` — 全ビューのレンダラ（ケース非依存。`createRenderers(caseData, state)`）。
 - `styles.css` — `.case-picker` 等を追加。
@@ -66,7 +66,16 @@
 ## 2. 直近セッションで完了したこと
 
 > ✅ 2-NEW-A／2-NEW-B はコミット+push 済み（`19c28b1`, origin/master）。2-NEW-C（連合側ケース証拠増補＋再レビュー反映）も `610088a` でコミット+push 済み。正式作業リストの HANDOFF 更新は `ab3f6cd` でコミット+push 済み。
-> ✅ **本セッション**: E-1/E-2/E-3 増補を `5ce393f`、証拠出典の一次資料精密化を `25c4b23`、サブエージェントレビュー後のラベリング/表示是正を `10851e9` で反映。現時点で `master` は `origin/master` と同期済み。
+> ✅ **本セッション（前半）**: E-1/E-2/E-3 増補を `5ce393f`、証拠出典の一次資料精密化を `25c4b23`、サブエージェントレビュー後のラベリング/表示是正を `10851e9` で反映。
+> ✅ **本セッション（後半・連合側深掘り精査）**: ①サウジ駐留正統性・②決議678広範性・③サフワン原記録化を `7e5d8d6` で反映。⚠️ `master` は `origin/master` より2コミット先行＝**未push**（前回 master 直 push はガードで要明示承認）。
+
+### 2-NEW-E. 連合側ケース深掘り精査 ①②③（`7e5d8d6`・本セッション後半）
+> §7 が挙げた「残る粒度向上候補」のうち①②③を適用（④＝CIA/DIA/CENTCOM 原見積もり本体は未着手）。証拠量ではなく**正統性軸の反証強化**と**出典の時点性精密化**が主眼。
+- **①サウジ駐留の正統性論争**: 連合側の正統性軸が一様に強い構造的な穴（同時代反証の薄さ）を是正。`GWC-E-014`（上級ウラマー評議会ファトワ〔イブン・バーズ主導、複数研究で1990/8/13、駐留容認＋撤退条件付き〕／サフワ系ハワーリー・アウダの駐留反対カセット説教1990/9〜／ビンラディンの自前防衛申し出と拒絶）を追加。`GWC-EL-019`＝`gwc_claim_legitimacy`/`gwc_cell_legitimacy_objective` への**批判方向反証**（`timeFit:直接`・`availableAtDecisionTime:true`・`knownByDecisionMakers:明白`＝政府が意図的にファトワ取得＝係争性を中枢が認識）。新Pre-War項目 `gwc_pw_basing_legitimacy`（高×形跡あり→要検証＝最低懸念バケット＝評価・管理済み）。正統性セル opinion/criteria/changeConditions・issues・counterHypotheses・overviewOpinion に「国際的正統性≠ホスト国正統性」を反映。**ex-post ブローバック（1996コバール/9.11等）は cannotSay で射程外**と明記。
+- **②決議678の広範性**: `GWC-E-001` 出典を作動条項の正文に精密化（採択1990/11/29・採決12-2-1〔反対キューバ・イエメン／棄権中国〕・"all necessary means to uphold and implement resolution 660 … and **to restore international peace and security in the area**"）。`GWC-EL-020`＝`gwc_claim_legitimacy`/`gwc_cell_limited_objective` への**反証**。canSay＝授権は「地域の平和と安全の回復」まで及ぶ広範なもので、クウェート解放への限定は**法的天井でなく政治的選択**。cannotSay でバグダッド進撃の合法性・「area」解釈の係争性を射程外に。
+- **③サフワン会談原記録**: `GWC-E-012` のヘリ運用容認根拠を**回想録依拠 → 機密解除トランスクリプト主導**に格上げ（Lt. Gen. Sultan Hashim Ahmad al-Tai の要請・シュワルツコフ逐語容認 "As long as it is not over the part we are in…" ／ "we will not attack any helicopters inside Iraq"）。回想録 It Doesn't Take a Hero (1992)・同時代報道（Baltimore Sun/WaPo 1991/3/4）は corroboration に降格。`collectionState` を「回想録単独依拠を脱した」に更新。`GWC-EL-016` 認識根拠にもトランスクリプト確認を併記。
+- **検証**: `node --check` 全JS OK／`validateCaseRegistry` 0／全4ケース `validateCaseReferences`・`lintCaseMethodology` 0（正統性claimは支持4/反証4で両建て維持）／実機で `GWC-EL-020` 詳細に678広範性・`GWC-EL-016` 選択で `GWC-E-012` のサフワン逐語描画・コンソール0。cache-bust 全4箇所 `20260626-res678-safwan`。
+- **未適用で残ったレビュー指摘**: ①レビューの **M-1**（`gwc_pw_basing_legitimacy.actuallyEvaluated` を `形跡あり`↔`限定的`。下げると 高×限定的→要注意 に懸念上昇。現状は撤退条件付きファトワ＝評価管理形跡ありとみて `形跡あり` 維持）／**M-2**（`GWC-EL-019` を coalition_maintenance 側にも露出）／**S-1**（駐留正統性専用 assumption 新設）。②③レビューの **R-1**（`GWC-EL-020` を termination 側にも露出）／**R-2**（サフワン・トランスクリプトの所蔵アーカイブID未特定＝二次情報が「機密解除トランスクリプトによれば」と引用する段階。完全な一次記録化には文書特定が残課題＝④と同種の `要精査`）。
 
 ### 2-NEW-D. 証拠出典の一次資料単位への精密化（`25c4b23`・本セッション）
 - 概括的だった `source` を Web 裏取りの上で一次資料単位に書き換え（Evidence ビューの選択リンク詳細パネルに表示される）。
@@ -149,7 +158,8 @@
 - **H（対照ケース設計）**: 同一戦争を加害側/連合側の両面から監査する「対照ケース」は `warCase.counterpartCaseId` の**相互（双方向）参照**で表現。`validateCaseRegistry` が実在・双方向・自己参照禁止を検査。UI 導線（I-9）は新機能ゆえ凍結中＝データ整合のみ先行確保。
 - **I（skeleton ケースの扱い）**: skeleton 段階のケースに対しては「証拠数を増やす系の指摘（反証リンク追加・セル新設・evidenceBasis 補充）はオミット」が方針。証拠未収集セルは `provisional:true`＋`noEvidenceReason` で**誠実に暫定**と明示する（確定評価に変換しない）。証拠量に依存しない構造・コード・ラベリングの是正のみ先行。
 - **J（conflict グルーピング）**: ケースセレクタの戦争単位グルーピングは `warCase.conflict` フィールド（データ駆動）で行う。ケース名の文字列分割はア軍ケース名が陣営サフィックス無しで脆弱なため不採用。
-- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行は出典精密化（2-NEW-D）の `20260626-source-precision`。
+- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行は深掘り精査（2-NEW-E）の `20260626-res678-safwan`。
+- **L（連合側 正統性の二層化）**: 連合側の正統性は **国際的正統性（国連決議・連合形成＝強い）とホスト国正統性（サウジ駐留の宗教政治＝同時代に係争的）を別軸**として扱う。サウジ駐留正統性は `gwc_pw_basing_legitimacy`＝高×形跡あり（撤退条件付きファトワ取得＝中枢が係争性を認識し管理した形跡）で `要検証`（最低懸念）。`GWC-EL-019` は正統性claimへの批判方向反証。長期ブローバック（1996/2001）は **ex-post ＝射程外**（第3原則）。決議678の授権は「地域の平和と安全の回復」まで広範＝目的のクウェート解放への限定は**法的天井でなく政治的選択**（`GWC-EL-020`）。サフワンのヘリ容認は**機密解除トランスクリプト主導**で扱い回想録単独依拠を脱した（ただし所蔵アーカイブID未特定＝R-2 残課題）。
 
 ---
 
@@ -282,10 +292,11 @@
 
 ## 7. 次セッションの推奨アクション
 1. まず本ファイルを読む。
-2. 本セッションで E-1/E-2/E-3 増補（`5ce393f`）、証拠出典の一次資料精密化（`25c4b23`）、サブエージェントレビュー後のラベリング/表示是正（`10851e9`）までコミット済み。`master` は `origin/master` と同期済み。
-3. 次にやるなら、まず `git status` で clean / 同期状態を確認してから新しい作業単位を選ぶ。
+2. 本セッション後半で連合側深掘り精査①②③を `7e5d8d6` までコミット済み。⚠️ `master` は `origin/master` より **2コミット先行＝未push**（`75f882f`＋`7e5d8d6`）。push は前回ガードで止まったため**ユーザーの明示承認が要る**。
+3. 次にやるなら、まず `git status` で先行/同期状態を確認してから新しい作業単位を選ぶ。
 4. その後の大きな作業候補:
-   - **連合側ケースの深掘り精査（続き）**。`GWC-E-011`〜`013` の出典は一次資料単位に精密化済み（2-NEW-D）。残る粒度向上候補: サウジ駐留正統性論争・決議678の広範性・サフワン会談**原記録**（回想録依拠を一次記録に置換）・CIA/DIA/CENTCOM **原見積もり**（公刊報告経由でなく内部見積もり本体）。
+   - **連合側ケースの深掘り精査（続き）**。①②③は適用済み（2-NEW-E）。**残るは④＝CIA/DIA/CENTCOM 原見積もり本体**（公刊報告経由でなく内部見積もり本体。最難＝原資料未公開の可能性）。`GWC-E-013` は依然 `要精査`。
+   - **未適用レビューの反映**: M-1（`gwc_pw_basing_legitimacy` 形跡あり↔限定的）／M-2（`GWC-EL-019` を coalition_maintenance 露出）／S-1（駐留正統性専用 assumption）／R-1（`GWC-EL-020` を termination 露出）／**R-2（サフワン・トランスクリプトの所蔵アーカイブID特定＝③の一次記録化を完了させる）**。
    - または I-9（対照ケースの UI 導線＝counterpart へのボタン/対比ビュー）を独立セッションで。
    - または UI-8 系（Assessment の疎マトリクス、aria-live、色覚対応）を全ケース共通 UI 改善として扱う。
    - または湾岸イラク側の一次資料名精密化（グラスピー会談、Desert Shield 展開資料）。
