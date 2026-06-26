@@ -1,5 +1,5 @@
-import { cases } from './data/cases/index.js?v=20260626-fpw-france';
-import { validateCaseRegistry, validateCaseReferences, lintCaseMethodology } from './data/auditSchema.js?v=20260626-fpw-france';
+import { cases } from './data/cases/index.js?v=20260626-prussia-exante';
+import { validateCaseRegistry, validateCaseReferences, lintCaseMethodology } from './data/auditSchema.js?v=20260626-prussia-exante';
 
 console.log("=== Running Validations ===");
 console.log("1. validateCaseRegistry:");

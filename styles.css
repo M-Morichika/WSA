@@ -595,28 +595,6 @@ dd {
   color: var(--blue);
 }
 
-.mode-toggle {
-  display: inline-flex;
-  padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #eef3f2;
-}
-
-.mode-toggle button {
-  min-height: 34px;
-  padding: 0 14px;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  cursor: pointer;
-}
-
-.mode-toggle button.is-active {
-  background: #fff;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
-}
-
 ul.clean {
   margin: 0;
   padding-left: 20px;

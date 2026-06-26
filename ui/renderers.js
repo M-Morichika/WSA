@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260626-fpw-france";
+} from "../data/auditSchema.js?v=20260626-prussia-exante";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -464,15 +464,7 @@ function renderEvidence() {
 }
 
 function renderOpinion() {
-  const full = state.opinionMode === "full";
   return `
-    <section class="section">
-      <div class="mode-toggle" aria-label="表示モード">
-        <button class="${!full ? "is-active" : ""}" type="button" data-mode="summary">要約</button>
-        <button class="${full ? "is-active" : ""}" type="button" data-mode="full">全文</button>
-      </div>
-    </section>
-
     <section class="section">
       <h3>総合監査意見</h3>
       <p>${auditData.overviewOpinion}</p>
@@ -517,22 +509,6 @@ function renderOpinion() {
         </ul>
       </section>
     </div>
-
-    ${
-      full
-        ? `
-          <section class="section">
-            <h3>全文モード</h3>
-            <div class="grid two">
-              <div class="mini-card"><h3>判断時点別の意見</h3><p>Timeline と Assessment の各判断時点を根拠元として参照する。</p></div>
-              <div class="mini-card"><h3>証拠一覧</h3><p>Evidence Graph の証拠リンクを根拠元として参照する。</p></div>
-              <div class="mini-card"><h3>評価が変わりうる条件</h3><p>Assessment の各評価セルに記載された changeConditions を参照する。</p></div>
-              <div class="mini-card"><h3>監査方法</h3><p>当時利用可能だった情報と、実際に意思決定者が知っていた情報を分けて評価する。</p></div>
-            </div>
-          </section>
-        `
-        : ""
-    }
   `;
 }
 function renderPreWar() {

@@ -10,7 +10,7 @@ export const francoPrussianWarPrussiaCase = {
     primaryResponsibility: "開戦の外交的誘導・動員優位性の確保・他大国不介入の担保・戦後処理",
     uncertainty: "中",
     rating: "未確定",
-    ratingNote: "現在 skeleton 段階であり、検証と反証データの拡充を継続中。"
+    ratingNote: "格付けは未確定（skeleton 段階・編集判断として意図的に保留）。能力肯定面（外交誘導・動員優位）に加え、訴追面（戦争長期化リスク・アルザス＝ロレーヌ併合コスト）も同時代一次で ex-ante に接地し、双方の ratingBasis セルは証拠強度『中〜強』に到達した（＝『証拠量』の条件は概ね充足）。残る rating-readiness 条件は証拠量ではなく**争点の決着**＝訴追セルが支持/反証の両建て（ACH 上 未決着）であり、能力肯定が訴追を上回ると編集判断できる段階に未達であること。決着には作戦計画・講和審議の内部記録（長期化・併合是非の事前衡量度合い）の確認を要する。"
   },
 
   overviewOpinion: "プロイセン側の開戦判断と遂行は、結果論としてはドイツ統一という最大の戦略目標を達成し「完全な成功」と見なされがちである。しかし、本監査では結果の成功バイアス（勝者の後知恵）を排し、開戦前（エムス電報の時点）でフランスの軍事力や他大国（オーストリア・ロシア）の介入リスク、そして南ドイツ諸邦の離反リスクをどのように客観的に見積もっていたかを検証する。モルトケの緻密な動員計画やビスマルクの周到な外交的孤立化工作は高く評価できる一方、パリ包囲の長期化や対仏報復感情の固定化（アルザス・ロレーヌ併合）などの長期的リスクがどこまで算定されていたかも重要な監査対象となる。",
@@ -188,8 +188,8 @@ export const francoPrussianWarPrussiaCase = {
       phase: "セダンとパリ包囲",
       status: "要検証",
       impact: "高",
-      evidenceStrength: "中",
-      opinion: "モルトケの作戦設計は会戦による主力撃滅（Vernichtungsschlacht）を志向しており、セダン後の共和政樹立・国民戦争・約4か月のパリ包囲という長期化局面を主眼に置いていなかった疑いがある。一方で、プロイセンは砲撃の是非をめぐる首脳対立を経つつも包囲を遂行・講和を強制しており、長期化は制御不能な破綻には至らなかった。事前計画が長期化を織り込んでいたかは引き続き要検証。",
+      evidenceStrength: "中〜強",
+      opinion: "モルトケの作戦設計は会戦による主力撃滅（Vernichtungsschlacht）を志向しており、セダン後の共和政樹立・国民戦争・約4か月のパリ包囲という長期化局面を主眼に置いていなかった疑いがある。この会戦中心の射程は、長期化という結果（ex-post）ではなく1868-69展開計画そのもの（FPWP-E-002）から ex-ante に読め、支持側の接地が結果依存を脱した。一方で、プロイセンは砲撃の是非をめぐる首脳対立を経つつも包囲を遂行・講和を強制しており、長期化は制御不能な破綻には至らなかった。支持・反証は両建てのままで、事前計画が長期化を織り込んでいたか（規範的に織り込むべきだったか）は引き続き要検証。",
       criteria: ["会戦的勝利の後に生じうる長期国民戦争・包囲戦を開戦前に想定し、兵站と外交的カバーを準備していたか"],
       changeConditions: ["開戦前の作戦計画に長期化・占領統治の想定が含まれていたことを示す一次資料が確認された場合"]
     },
@@ -199,8 +199,8 @@ export const francoPrussianWarPrussiaCase = {
       phase: "ドイツ帝国樹立と講和",
       status: "要検証",
       impact: "高",
-      evidenceStrength: "中",
-      opinion: "アルザス・ロレーヌ併合は軍部（モルトケ）の戦略的要塞確保要求に強く主導され、フランス国民議会のボルドー抗議（1871/3/1）など対仏敵対固定化の警告が講和時点で既に同時代に存在した。ビスマルクは併合の長期的危険を認識し限定的要求や戦後の対仏孤立外交でコストを管理しようとした形跡もあるが、回顧録依拠で事後正当化を含みうる。第一次大戦等の後年の帰結（ex-post）は本監査の射程外とし、ここでは『講和時点で可視だったコストをどこまで衡量したか』に限定して要検証とする。",
+      evidenceStrength: "中〜強",
+      opinion: "アルザス・ロレーヌ併合は軍部（モルトケ）の戦略的要塞確保要求に強く主導され、フランス国民議会のボルドー抗議（1871/3/1）に加えドイツ国内の同時代反対論（社会民主主義者の帝国議会反対など）と、対仏敵対固定化の警告が講和時点で既に複数方面に存在した（＝コストは当時から可視）。ビスマルクは併合の長期的危険を認識し限定的要求や戦後の対仏孤立外交でコストを管理しようとした形跡もあるが、回顧録依拠で事後正当化を含みうる。第一次大戦等の後年の帰結（ex-post）は本監査の射程外とし、ここでは『講和時点で可視だったコストをどこまで衡量したか』に限定して要検証とする。",
       criteria: ["領土併合がもたらす対仏敵対の長期コストを、講和時点で利用可能だった同時代の警告・反対に照らして比較検討した形跡があるか"],
       changeConditions: ["併合の範囲・是非をめぐる開戦前〜講和時点の内部審議記録が確認された場合"]
     }
@@ -335,6 +335,17 @@ export const francoPrussianWarPrussiaCase = {
       type: "公開資料",
       publishedDate: "1871",
       coveragePeriod: "1871",
+      authenticity: "高",
+      interpretiveReliability: "中",
+      collectionState: "要検証"
+    },
+    {
+      id: "FPWP-E-013",
+      title: "アルザス・ロレーヌ併合に対するドイツ国内の同時代の反対・警告",
+      source: "1870–71年、併合が恒久的な対仏敵対を招くとするドイツ国内の反対論（社会民主労働党ベーベル／リープクネヒトの帝国議会での反対表明など）および同時代の論評",
+      type: "公開資料",
+      publishedDate: "1871",
+      coveragePeriod: "1870-1871",
       authenticity: "高",
       interpretiveReliability: "中",
       collectionState: "要検証"
@@ -589,6 +600,42 @@ export const francoPrussianWarPrussiaCase = {
       knownByDecisionMakersBasis: "ビスマルク回顧録（事後）",
       canSay: "ビスマルクは併合の長期的危険を認識し、より限定的な要求や戦後の対仏孤立外交でコストを管理しようとしたと主張しており、『全く衡量しなかった』わけではないこと",
       cannotSay: "回顧録は事後の自己正当化を含みうるため、講和時点での実際の衡量度合いをそのまま立証するものではないこと",
+      reviewState: "要検証"
+    },
+    {
+      id: "FPWP-EL-013",
+      evidenceId: "FPWP-E-002",
+      claimId: "fpwp_claim_protracted_war_underestimated",
+      assessmentCellId: "fpwp_cell_siege_escalation",
+      claimLabel: "戦争長期化リスク",
+      target: "事前過小評価",
+      relationship: "支持",
+      relevance: "高",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis: "参謀本部自身の事前展開計画（FPWP-E-002 を動員優位とは別側面＝戦争計画の時間的射程として参照）",
+      canSay: "モルトケの1868-69年展開計画が会戦による主力撃滅を前提とし、政体崩壊後の長期占領・国民戦争への備えを欠いていたことが、結果（ex-post）ではなく事前計画そのものから ex-ante に読めること",
+      cannotSay: "長期化を完全に予見し計画へ織り込むべきだったと規範的に断定できること",
+      reviewState: "要検証"
+    },
+    {
+      id: "FPWP-EL-014",
+      evidenceId: "FPWP-E-013",
+      claimId: "fpwp_claim_annexation_cost_underweighed",
+      assessmentCellId: "fpwp_cell_annexation_cost",
+      claimLabel: "併合の長期コスト",
+      target: "過小衡量",
+      relationship: "支持",
+      relevance: "中",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis: "帝国議会など公開の場での同時代の反対表明",
+      canSay: "併合が恒久的な対仏敵対を招くとの警告が、ドイツ国内（社会民主主義者の帝国議会反対論など）にも併合決定の同時代に存在し、コストが当時から指摘可能だったこと",
+      cannotSay: "それらの警告が第一次大戦等の後年の具体的帰結を正確に予見したこと（ex-post＝本監査の射程外）",
       reviewState: "要検証"
     }
   ],

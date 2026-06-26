@@ -5,9 +5,9 @@ import {
   validateCaseReferences,
   validateCaseRegistry,
   viewMeta,
-} from "./data/auditSchema.js?v=20260626-fpw-france";
-import { cases } from "./data/cases/index.js?v=20260626-fpw-france";
-import { createRenderers } from "./ui/renderers.js?v=20260626-fpw-france";
+} from "./data/auditSchema.js?v=20260626-prussia-exante";
+import { cases } from "./data/cases/index.js?v=20260626-prussia-exante";
+import { createRenderers } from "./ui/renderers.js?v=20260626-prussia-exante";
 
 let activeCase = cases.find((item) => item.warCase.id === "gulf-war-1990-iraq") || cases[0];
 let state = stateForCase(activeCase);
@@ -19,7 +19,6 @@ function stateForCase(caseData, activeView = "overview") {
     activeTimelinePhaseId: caseData.phases[0]?.id || null,
     activeEvidenceLinkId: caseData.evidenceLinks[0]?.id || null,
     activeAssessmentCellId: caseData.assessmentCells[0]?.id || null,
-    opinionMode: "summary",
     evidenceFilters: getDefaultEvidenceFilters(),
   };
 }
@@ -190,13 +189,6 @@ document.addEventListener("click", (event) => {
     render();
     const phase = activeCase.phases.find((item) => item.id === state.activeTimelinePhaseId);
     if (phase) announce(`局面を選択: ${phase.title}`);
-  }
-
-  const modeButton = event.target.closest("[data-mode]");
-  if (modeButton) {
-    state.opinionMode = modeButton.dataset.mode;
-    render();
-    announce(`${modeButton.textContent.trim()} を表示`);
   }
 
   const assessmentButton = event.target.closest("[data-assessment-cell]");
