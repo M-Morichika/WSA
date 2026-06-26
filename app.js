@@ -5,9 +5,9 @@ import {
   validateCaseReferences,
   validateCaseRegistry,
   viewMeta,
-} from "./data/auditSchema.js?v=20260626-counterpart-a11y";
-import { cases } from "./data/cases/index.js?v=20260626-counterpart-a11y";
-import { createRenderers } from "./ui/renderers.js?v=20260626-counterpart-a11y";
+} from "./data/auditSchema.js?v=20260626-review-brushup";
+import { cases } from "./data/cases/index.js?v=20260626-review-brushup";
+import { createRenderers } from "./ui/renderers.js?v=20260626-review-brushup";
 
 let activeCase = cases.find((item) => item.warCase.id === "gulf-war-1990-iraq") || cases[0];
 let state = stateForCase(activeCase);
@@ -72,20 +72,19 @@ function renderCaseSelector() {
     }
     byLabel.get(label).items.push(caseData);
   });
-  selector.innerHTML = groups
-    .map(
-      (group) => `
-        <optgroup label="${group.label}">
-          ${group.items
-            .map(
-              (caseData) =>
-                `<option value="${caseData.warCase.id}">${caseData.warCase.auditedActor}</option>`,
-            )
-            .join("")}
-        </optgroup>
-      `,
-    )
-    .join("");
+
+  selector.replaceChildren();
+  groups.forEach((group) => {
+    const optgroup = document.createElement("optgroup");
+    optgroup.label = group.label;
+    group.items.forEach((caseData) => {
+      const option = document.createElement("option");
+      option.value = caseData.warCase.id;
+      option.textContent = caseData.warCase.auditedActor;
+      optgroup.append(option);
+    });
+    selector.append(optgroup);
+  });
 }
 
 // I-9: 対照ケース（counterpartCaseId）への軽量導線。renderers はケース局所のため、
@@ -97,25 +96,36 @@ function renderCounterpartNav() {
   const counterpart = counterpartId
     ? cases.find((item) => item.warCase.id === counterpartId)
     : null;
+  container.replaceChildren();
   if (!counterpart) {
     container.hidden = true;
-    container.innerHTML = "";
     return;
   }
+
+  const label = document.createElement("span");
+  label.className = "counterpart-label";
+  label.textContent = "対照ケース";
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "counterpart-button";
+  button.dataset.gotoCase = counterpart.warCase.id;
+  button.setAttribute("aria-label", `対照ケース: ${counterpart.warCase.auditedActor}へ切替`);
+  button.textContent = `${counterpart.warCase.auditedActor} を見る`;
+
   container.hidden = false;
-  container.innerHTML = `
-    <span class="counterpart-label">対照ケース</span>
-    <button type="button" class="counterpart-button" data-goto-case="${counterpart.warCase.id}">
-      ${counterpart.warCase.auditedActor} を見る
-    </button>
-  `;
+  container.append(label, button);
 }
 
 // UI-8: 大領域（#view-root）の aria-live を撤去した代わりに、簡潔な操作結果のみを
 // 専用の視覚非表示ライブ領域へ流す。ビュー全文の冗長読み上げを避ける。
 function announce(message) {
   const region = document.querySelector("#sr-status");
-  if (region) region.textContent = message;
+  if (!region) return;
+  region.textContent = "";
+  window.requestAnimationFrame(() => {
+    region.textContent = message;
+  });
 }
 
 function setActiveView(view) {
@@ -125,7 +135,7 @@ function setActiveView(view) {
   });
 }
 
-function setActiveCase(caseId) {
+function setActiveCase(caseId, options = {}) {
   const nextCase = cases.find((item) => item.warCase.id === caseId);
   if (!nextCase || nextCase === activeCase) return;
   const currentView = state.activeView;
@@ -138,6 +148,9 @@ function setActiveCase(caseId) {
   renderCounterpartNav();
   render();
   announce(`ケースを切替: ${activeCase.warCase.name}`);
+  if (options.focusTitle) {
+    document.querySelector("#view-title")?.focus({ preventScroll: true });
+  }
 }
 
 function render() {
@@ -160,7 +173,7 @@ document.querySelectorAll("[data-view]").forEach((button) => {
 document.addEventListener("click", (event) => {
   const gotoCaseButton = event.target.closest("[data-goto-case]");
   if (gotoCaseButton) {
-    setActiveCase(gotoCaseButton.dataset.gotoCase);
+    setActiveCase(gotoCaseButton.dataset.gotoCase, { focusTitle: true });
     return;
   }
 
@@ -175,12 +188,15 @@ document.addEventListener("click", (event) => {
   if (timelinePhaseButton) {
     state.activeTimelinePhaseId = timelinePhaseButton.dataset.timelinePhase;
     render();
+    const phase = activeCase.phases.find((item) => item.id === state.activeTimelinePhaseId);
+    if (phase) announce(`局面を選択: ${phase.title}`);
   }
 
   const modeButton = event.target.closest("[data-mode]");
   if (modeButton) {
     state.opinionMode = modeButton.dataset.mode;
     render();
+    announce(`${modeButton.textContent.trim()} を表示`);
   }
 
   const assessmentButton = event.target.closest("[data-assessment-cell]");
@@ -196,6 +212,8 @@ document.addEventListener("click", (event) => {
     state.activeAssessmentCellId = queueAssessmentButton.dataset.queueAssessmentCell;
     setActiveView("assessment");
     render();
+    const queuedCell = activeCase.assessmentCells.find((item) => item.id === state.activeAssessmentCellId);
+    announce(queuedCell ? `Assessmentへ移動: ${queuedCell.axis} / ${queuedCell.phase}` : "Assessmentへ移動");
   }
 
   const resetFiltersButton = event.target.closest("[data-reset-filters]");
@@ -203,6 +221,7 @@ document.addEventListener("click", (event) => {
     state.evidenceFilters = getDefaultEvidenceFilters();
     state.activeEvidenceLinkId = getFirstMatchingEvidenceLink(activeCase, state.evidenceFilters)?.id || null;
     render();
+    announce("証拠フィルターを解除");
   }
 });
 
@@ -218,6 +237,7 @@ document.addEventListener("change", (event) => {
   state.evidenceFilters[filter.dataset.filter] = filter.value;
   state.activeEvidenceLinkId = getFirstMatchingEvidenceLink(activeCase, state.evidenceFilters)?.id || null;
   render();
+  announce(`証拠フィルターを更新: ${filter.value}`);
 });
 
 renderCaseSelector();

@@ -139,6 +139,7 @@ select {
 .counterpart-button:focus-visible {
   border-color: #f7d77c;
   outline: none;
+  box-shadow: 0 0 0 3px rgba(247, 215, 124, 0.22);
 }
 
 .nav-tabs {

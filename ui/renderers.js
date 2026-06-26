@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260626-counterpart-a11y";
+} from "../data/auditSchema.js?v=20260626-review-brushup";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -267,7 +267,7 @@ function renderAssessment() {
                                 <span class="cell-meta">証拠: ${cell.evidenceStrength}</span>
                               </button>
                             `
-                            : `<span class="cell-undefined" role="img" aria-label="未評価（この評価軸×局面は監査対象としていない）">—</span>`}
+                            : `<span class="cell-undefined" aria-hidden="true">—</span>`}
                         </td>
                       `;
                     })
