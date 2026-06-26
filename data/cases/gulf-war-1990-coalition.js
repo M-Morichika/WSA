@@ -12,7 +12,7 @@ export const gulfWar1990CoalitionCase = {
     counterpartCaseId: "gulf-war-1990-iraq",
   },
   overviewOpinion:
-    "この対照ケースは、イラク側監査と同じ湾岸戦争1990-91を米国主導の多国籍軍側から見る。現時点の skeleton 評価では、米国は国連決議、多国籍軍形成、クウェート解放という限定目的の設定において高い説明力を持つ。一方で、地上戦停止、バグダッド不進撃、サダム政権存続、長期封じ込めコストについては、短期合理性と長期副作用を分けて検証する必要がある。",
+    "この対照ケースは、イラク側監査と同じ湾岸戦争1990-91を米国主導の多国籍軍側から見る。米国は国連決議、多国籍軍形成、クウェート解放という限定目的の設定において高い説明力を持つ。一方で、地上戦停止、バグダッド不進撃、サダム政権存続、長期封じ込めコストについては、短期合理性と長期副作用を分けて検証する必要がある。追加した同時代公開資料により、戦後地域安定化・封じ込めの評価形跡は限定的に確認できるが、長期コストの体系的な比較評価はなお薄い。",
   issues: [
     { name: "正統性・連合形成", status: "軽度" },
     { name: "戦争目的の限定", status: "軽度" },
@@ -198,14 +198,14 @@ export const gulfWar1990CoalitionCase = {
       category: "戦後コスト",
       exAnteEvaluability: "中",
       evaluationDifficulty: "高",
-      actuallyEvaluated: "形跡なし",
+      actuallyEvaluated: "不明",
       noEvidenceReason: "証拠未収集",
       statusOverride: {
         value: "重大懸念",
         provisional: true,
-        rationale: "1991年時点で完全な長期予測は難しいが、サダム政権存続を選ぶ以上、制裁・査察・地域駐留・飛行禁止区域の持続コストは主要な評価対象になる。ただし現状は証拠未収集の暫定評価であり、重大懸念は確定ではない。",
+        rationale: "1991年時点で完全な長期予測は難しいが、サダム政権存続を選ぶ以上、制裁・査察・地域駐留・飛行禁止区域の持続コストは主要な評価対象になる。ただし現状は開戦前評価資料が未収集の暫定評価であり、重大懸念は確定ではない。戦闘停止後の同時代公開説明は戦後設計の限定的反証として別途扱う。",
       },
-      evidenceStrength: "弱",
+      evidenceStrength: "弱〜中",
       auditQuestion: "制裁、査察、飛行禁止区域、湾岸地域駐留が長期化するコストを評価したか。",
       counterPoint: "封じ込めはバグダッド占領より低コストと見えた可能性があり、後年の長期化だけで当時判断を断罪してはいけない。",
       asymmetry: null,
@@ -278,9 +278,9 @@ export const gulfWar1990CoalitionCase = {
       phase: "戦後設計",
       status: "要注意",
       impact: "高",
-      evidenceStrength: "弱",
+      evidenceStrength: "弱〜中",
       opinion:
-        "サダム政権存続は、占領と体制転換の高リスクを避ける代替策だったが、国内弾圧、反乱、人道危機、再抑止の問題を残した。skeleton 段階では要注意として、停戦前後の評価資料を追加収集する。",
+        "サダム政権存続は、占領と体制転換の高リスクを避ける代替策だったが、国内弾圧、反乱、人道危機、再抑止の問題を残した。戦闘停止時点で米国は戦後協議と地域安定化を掲げていたが、国内反乱・人道危機への具体的な評価はなお薄い。",
       criteria: ["体制転換回避の合理性", "国内反乱・弾圧リスク", "再抑止コスト"],
       changeConditions: ["政権存続後の国内反乱・弾圧リスクを体系的に比較した資料が確認される"],
     },
@@ -290,9 +290,9 @@ export const gulfWar1990CoalitionCase = {
       phase: "戦後設計",
       status: "重大懸念",
       impact: "高",
-      evidenceStrength: "弱",
+      evidenceStrength: "弱〜中",
       opinion:
-        "長期封じ込めは、1991年時点ではバグダッド占領より低コストに見えた可能性がある。しかし、制裁・査察・飛行禁止区域・湾岸地域駐留が長期化する構造をどこまで見積もったかは、米国側監査の中心的な重大懸念である。",
+        "長期封じ込めは、1991年時点ではバグダッド占領より低コストに見えた可能性がある。戦闘停止後の同時代公開説明には、地域安全保障、米軍の限定的関与、イラク再武装阻止、国連枠組みの継続が現れており、「全く評価していなかった」という強い見方への限定的反証になる。ただし、制裁・査察・飛行禁止区域・湾岸地域駐留が長期化するコストを、開戦前または作戦停止前に代替案と体系的に比較した資料は未確認であり、重大懸念は維持する。",
       criteria: ["制裁と査察の持続性", "飛行禁止区域と地域駐留", "1991年時点で予見可能だった封じ込め持続性の論点"],
       changeConditions: ["長期封じ込めコストを明示的に評価し、代替案と比較した同時代資料が確認される"],
     },
@@ -369,6 +369,54 @@ export const gulfWar1990CoalitionCase = {
       collectionState: "概説資料で確認可",
       authenticity: "中〜高",
       interpretiveReliability: "中",
+    },
+    {
+      id: "GWC-E-007",
+      title: "ブッシュ大統領・開戦演説（1991年1月16日）",
+      type: "大統領演説",
+      publishedDate: "1991年1月16日（同時代公開）",
+      coveragePeriod: "目的設定・開戦時",
+      source:
+        "George H. W. Bush, Address to the Nation on the Invasion of Iraq, 1991年1月16日（Miller Center / National Archives transcript）。目的をクウェート解放と国連決議履行に置き、イラク征服を目的化しないと説明。",
+      collectionState: "公開一次資料で確認可",
+      authenticity: "高",
+      interpretiveReliability: "高",
+    },
+    {
+      id: "GWC-E-008",
+      title: "ブッシュ大統領・攻勢戦闘停止演説（1991年2月27日）",
+      type: "大統領演説",
+      publishedDate: "1991年2月27日（同時代公開）",
+      coveragePeriod: "作戦停止・停戦条件",
+      source:
+        "George H. W. Bush, Address on the End of the Gulf War, 1991年2月27日（Miller Center / George Bush Presidential Library transcript）。100時間での攻勢停止、停戦条件、戦後協議と地域課題への言及を含む。",
+      collectionState: "公開一次資料で確認可",
+      authenticity: "高",
+      interpretiveReliability: "高",
+    },
+    {
+      id: "GWC-E-009",
+      title: "ブッシュ大統領・湾岸戦争終結後の議会演説（1991年3月6日）",
+      type: "大統領演説",
+      publishedDate: "1991年3月6日（同時代公開）",
+      coveragePeriod: "戦後設計・地域安全保障",
+      source:
+        "George H. W. Bush, Address Before a Joint Session of Congress on the End of the Gulf War, 1991年3月6日（Miller Center / National Archives transcript）。地域安全保障、米軍プレゼンス、イラク再武装阻止、国連枠組みを戦後課題として提示。",
+      collectionState: "公開一次資料で確認可",
+      authenticity: "高",
+      interpretiveReliability: "高",
+    },
+    {
+      id: "GWC-E-010",
+      title: "対イラク武力行使承認決議（Public Law 102-1・1991年1月14日）",
+      type: "米国法令・議会資料",
+      publishedDate: "1991年1月14日（同時代公開）",
+      coveragePeriod: "目的設定・開戦前",
+      source:
+        "Authorization for Use of Military Force Against Iraq Resolution, Public Law 102-1。国連安保理決議678に基づく米軍使用を承認し、目的限定と国内正統性の根拠になった。",
+      collectionState: "米国公文書で確認可",
+      authenticity: "高",
+      interpretiveReliability: "高",
     },
   ],
   claims: [
@@ -524,7 +572,7 @@ export const gulfWar1990CoalitionCase = {
       claimId: "gwc_claim_containment",
       assessmentCellId: "gwc_cell_baghdad_no_go",
       claimLabel: "封じ込めコスト評価への留保",
-      target: "長期封じ込め重大懸念への反証",
+      target: "長期封じ込め重大懸念への限定的反証",
       relationship: "反証",
       reviewState: "要検証",
       relevance: "中",
@@ -560,6 +608,132 @@ export const gulfWar1990CoalitionCase = {
       cannotSay:
         "後年の副作用だけで、1991年時点にバグダッド進撃や体制転換がよりよい選択だったとは言えない。",
     },
+    {
+      id: "GWC-EL-009",
+      evidenceId: "GWC-E-007",
+      claimId: "gwc_claim_legitimacy",
+      assessmentCellId: "gwc_cell_limited_objective",
+      claimLabel: "イラク征服を目的化しない限定目的",
+      target: "戦争目的の限定 / 目的設定",
+      relationship: "支持",
+      reviewState: "確認済",
+      relevance: "高",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "開戦時の大統領演説は米国政府自身の同時代公開説明であり、政策中枢の目的設定を反映する。",
+      canSay:
+        "米国側は開戦時点で、戦争目的をクウェート解放・国連決議履行に置き、イラク征服を目的化しないと明示していた。",
+      cannotSay:
+        "公開演説だけで、戦後のサダム政権存続や長期封じ込めコストを十分比較したとは言えない。",
+    },
+    {
+      id: "GWC-EL-010",
+      evidenceId: "GWC-E-008",
+      claimId: "gwc_claim_termination",
+      assessmentCellId: "gwc_cell_ground_stop",
+      claimLabel: "100時間での攻勢停止と停戦条件",
+      target: "地上戦停止判断 / 作戦停止",
+      relationship: "支持",
+      reviewState: "確認済",
+      relevance: "高",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "攻勢停止は大統領・国防長官・統合参謀本部議長・連合国との協議後に公表された同時代判断である。",
+      canSay:
+        "米国側はクウェート解放と軍事目的達成を理由に、100時間で攻勢戦闘を停止し、停戦条件を国連決議履行に結びつけた。",
+      cannotSay:
+        "攻勢停止演説だけで、共和国防衛隊残存や長期封じ込めコストを十分に比較したとは言えない。",
+    },
+    {
+      id: "GWC-EL-011",
+      evidenceId: "GWC-E-008",
+      claimId: "gwc_claim_containment",
+      assessmentCellId: "gwc_cell_containment_cost",
+      claimLabel: "戦後協議と地域課題への着手",
+      target: "強い仮説への限定的反証: 戦後課題を全く評価していなかった",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "中",
+      timeFit: "間接",
+      availableAtDecisionTime: false,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "戦闘停止時の公表方針であり、米国中枢が戦後課題を認識し、国務長官の地域協議を予定していたことを示す。ただし開戦前・作戦停止前の評価資料ではない。",
+      canSay:
+        "米国側が戦後課題を全く評価していなかったという見方を弱める。戦闘停止時点で、地域課題・連合国協議・国連を通じた終戦処理が明示されていた。",
+      cannotSay:
+        "戦後協議への言及だけで、封じ込め長期化の費用・人道影響・代替案比較が十分だったとは言えない。",
+    },
+    {
+      id: "GWC-EL-012",
+      evidenceId: "GWC-E-009",
+      claimId: "gwc_claim_containment",
+      assessmentCellId: "gwc_cell_containment_cost",
+      claimLabel: "戦後地域安全保障とイラク再武装阻止",
+      target: "強い仮説への限定的反証: 封じ込め設計を全く評価していなかった",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "高",
+      timeFit: "間接",
+      availableAtDecisionTime: false,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "1991年3月6日の議会演説は、湾岸戦争終結直後の米国政府の戦後構想を公的に示す中枢資料である。ただし開戦前・作戦停止前の評価資料ではない。",
+      canSay:
+        "米国側は戦後の地域安全保障、米軍の限定的関与、イラク再武装阻止、国連枠組みを政策課題として提示しており、封じ込め設計の評価形跡は限定的に確認できる。",
+      cannotSay:
+        "演説は政策方針の提示であり、制裁・査察・飛行禁止区域・駐留が長期化するコストを数量的に比較した資料ではない。",
+    },
+    {
+      id: "GWC-EL-013",
+      evidenceId: "GWC-E-009",
+      claimId: "gwc_claim_termination",
+      assessmentCellId: "gwc_cell_regime_survival",
+      claimLabel: "サダム政権存続後の再武装警戒",
+      target: "強い仮説への限定的反証: 政権存続後の再武装を全く評価していなかった",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "中",
+      timeFit: "間接",
+      availableAtDecisionTime: false,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "湾岸戦争終結直後の議会演説で、イラクの再武装阻止と地域安全保障を戦後課題として明示している。ただし開戦前・作戦停止前の評価資料ではない。",
+      canSay:
+        "米国側はサダム政権存続後の再武装・地域脅威を完全に見落としていたわけではなく、戦後の警戒対象として扱っていた。",
+      cannotSay:
+        "再武装警戒への言及だけで、国内反乱・人道危機・体制存続の政治的副作用を十分評価したとは言えない。",
+    },
+    {
+      id: "GWC-EL-014",
+      evidenceId: "GWC-E-010",
+      claimId: "gwc_claim_legitimacy",
+      assessmentCellId: "gwc_cell_legitimacy_objective",
+      claimLabel: "米国内正統性と国連決議678への接続",
+      target: "正統性・連合形成 / 目的設定",
+      relationship: "支持",
+      reviewState: "確認済",
+      relevance: "高",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "武力行使直前に成立した米国法であり、政権・議会が国連決議678を国内法上の根拠として扱ったことを示す。",
+      canSay:
+        "米国の武力行使は、国連決議678と議会承認に接続されており、正統性の制度的根拠を持っていた。",
+      cannotSay:
+        "国内承認があったことだけで、作戦停止後の政治設計や長期封じ込めコストが十分検討されたとは言えない。",
+    },
   ],
   ratingBasis: [
     { cellId: "gwc_cell_legitimacy_objective", weight: 1 },
@@ -570,3 +744,4 @@ export const gulfWar1990CoalitionCase = {
     { cellId: "gwc_cell_containment_cost", weight: 3 },
   ],
 };
+

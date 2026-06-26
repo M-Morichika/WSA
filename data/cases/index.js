@@ -1,6 +1,6 @@
-import { falklands1982Case } from "./falklands-1982.js?v=20260625-review";
-import { falklands1982UkCase } from "./falklands-1982-uk.js?v=20260625-review";
-import { gulfWar1990IraqCase } from "./gulf-war-1990-iraq.js?v=20260625-review";
-import { gulfWar1990CoalitionCase } from "./gulf-war-1990-coalition.js?v=20260625-review";
+import { falklands1982Case } from "./falklands-1982.js?v=20260625-coalition-evidence";
+import { falklands1982UkCase } from "./falklands-1982-uk.js?v=20260625-coalition-evidence";
+import { gulfWar1990IraqCase } from "./gulf-war-1990-iraq.js?v=20260625-coalition-evidence";
+import { gulfWar1990CoalitionCase } from "./gulf-war-1990-coalition.js?v=20260625-coalition-evidence";
 
 export const cases = [falklands1982Case, falklands1982UkCase, gulfWar1990IraqCase, gulfWar1990CoalitionCase];
