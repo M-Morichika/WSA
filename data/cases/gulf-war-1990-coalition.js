@@ -9,17 +9,19 @@ export const gulfWar1990CoalitionCase = {
     primaryResponsibility: "限定戦争目的と戦後コスト見積もり責任",
     uncertainty: "中",
     rating: "B+/B",
+    ratingNote: "B+/B は限定目的・正統性・連合形成の強さを重く見た暫定格付け。最大 weight の長期封じ込めコストは、現時点では確定重大懸念ではなく暫定的な要検証として扱う。",
     counterpartCaseId: "gulf-war-1990-iraq",
   },
   overviewOpinion:
-    "この対照ケースは、イラク側監査と同じ湾岸戦争1990-91を米国主導の多国籍軍側から見る。米国は国連決議、多国籍軍形成、クウェート解放という限定目的の設定において高い説明力を持つ。一方で、地上戦停止、バグダッド不進撃、サダム政権存続、長期封じ込めコストについては、短期合理性と長期副作用を分けて検証する必要がある。追加した同時代公開資料により、戦後地域安定化・封じ込めの評価形跡は限定的に確認できるが、長期コストの体系的な比較評価はなお薄い。",
+    "この対照ケースは、イラク側監査と同じ湾岸戦争1990-91を米国主導の多国籍軍側から見る。米国は国連決議、多国籍軍形成、クウェート解放という限定目的の設定において高い説明力を持つ。一方で、地上戦停止、バグダッド不進撃、サダム政権存続、長期封じ込めコストについては、短期合理性と長期副作用を分けて検証する必要がある。追加した同時代公開資料により、戦後地域安定化・封じ込めの評価形跡は限定的に確認できるが、長期コストの体系的な比較評価はなお薄く、格付け B+/B は最大 weight の長期封じ込めコストが暫定要検証であることを含む暫定評価である。",
   issues: [
     { name: "正統性・連合形成", status: "軽度" },
     { name: "戦争目的の限定", status: "軽度" },
     { name: "地上戦停止判断", status: "要検証" },
     { name: "バグダッド不進撃判断", status: "要検証" },
     { name: "サダム政権存続リスク", status: "要注意" },
-    { name: "長期封じ込めコスト", status: "重大懸念" },
+    { name: "蜂起・人道危機への不介入", status: "要検証" },
+    { name: "長期封じ込めコスト（暫定）", status: "要検証" },
   ],
   counterHypotheses: [
     "クウェート解放に限定したことは、国連決議・アラブ諸国参加・同盟維持の条件を守る合理的な制約だった。",
@@ -93,6 +95,9 @@ export const gulfWar1990CoalitionCase = {
       auditQuestion: "武力行使を国連決議とクウェート解放目的に結びつける必要を評価したか。",
       counterPoint: "正統性が強いほど目的は限定され、戦後の選択肢も狭まる。",
       asymmetry: null,
+      evidenceBasis:
+        "GWC-EL-001（安保理決議678）と GWC-EL-014（Public Law 102-1）により、国連決議と国内承認を根拠に武力行使を正当化していた評価形跡を確認できる。",
+      linkedEvidenceLinks: ["GWC-EL-001", "GWC-EL-014"],
       linkedAssumptions: ["gwc_asm_un_authority"],
       linkedCells: ["gwc_cell_legitimacy_objective"],
     },
@@ -109,6 +114,9 @@ export const gulfWar1990CoalitionCase = {
       auditQuestion: "アラブ諸国を含む多国籍軍を維持するため、作戦目的の限定を評価したか。",
       counterPoint: "連合維持を重視すると、サダム政権存続リスクを受け入れる構造になりうる。",
       asymmetry: null,
+      evidenceBasis:
+        "GWC-EL-002/GWC-EL-009 の目的限定説明と GWC-EL-003 の連合維持制約により、多国籍軍維持と目的限定を接続して評価していた形跡を確認できる。",
+      linkedEvidenceLinks: ["GWC-EL-002", "GWC-EL-003", "GWC-EL-009"],
       linkedAssumptions: ["gwc_asm_coalition_requires_limits"],
       linkedCells: ["gwc_cell_legitimacy_objective", "gwc_cell_limited_objective"],
     },
@@ -125,6 +133,9 @@ export const gulfWar1990CoalitionCase = {
       auditQuestion: "イラク軍をクウェートから排除する軍事的実行可能性を評価したか。",
       counterPoint: "軍事的排除可能性は、戦後政治問題の解決可能性とは別である。",
       asymmetry: null,
+      evidenceBasis:
+        "GWC-EL-017（DoD/CENTCOM/GWAPS による当時見積もりの再構成）と GWC-EL-010 により、イラク軍排除の実行可能性は作戦計画に組み込まれていたと見られる。ただし公開資料は戦後整理を含むため、内部見積もり原資料の直接確認ではない。",
+      linkedEvidenceLinks: ["GWC-EL-010", "GWC-EL-017"],
       linkedAssumptions: ["gwc_asm_iraqi_forces_beatable"],
       linkedCells: ["gwc_cell_ground_stop"],
     },
@@ -141,6 +152,9 @@ export const gulfWar1990CoalitionCase = {
       auditQuestion: "地上戦の米軍・連合軍損耗、イラク軍損耗、停止条件を評価したか。",
       counterPoint: "短期地上戦の成功は、停止後の政権存続リスクを直接解決しない。",
       asymmetry: null,
+      evidenceBasis:
+        "GWC-EL-017 は当時の作戦計画・戦力見積もりが存在したことを示し、GWC-EL-010 は攻勢停止時点の損耗抑制説明を示す。ただし損耗・停止条件の体系比較は戦後整理と公的説明からの限定的確認に留まる。",
+      linkedEvidenceLinks: ["GWC-EL-010", "GWC-EL-017"],
       linkedAssumptions: ["gwc_asm_limited_victory_sufficient"],
       linkedCells: ["gwc_cell_ground_stop"],
     },
@@ -157,6 +171,9 @@ export const gulfWar1990CoalitionCase = {
       auditQuestion: "クウェート解放に目的を限定する利点と副作用を評価したか。",
       counterPoint: "目的限定は短期合理性を持つが、長期封じ込めコストを後段に移す可能性がある。",
       asymmetry: null,
+      evidenceBasis:
+        "GWC-EL-002/GWC-EL-009 の公開説明は、クウェート解放・国連決議履行に目的を限定する設計を示す。GWC-EL-003 は、その限定が連合維持制約とも結びつくことを示す留保材料。",
+      linkedEvidenceLinks: ["GWC-EL-002", "GWC-EL-003", "GWC-EL-009"],
       linkedAssumptions: ["gwc_asm_un_authority", "gwc_asm_no_occupation"],
       linkedCells: ["gwc_cell_limited_objective", "gwc_cell_baghdad_no_go"],
     },
@@ -173,6 +190,9 @@ export const gulfWar1990CoalitionCase = {
       auditQuestion: "サダム政権を残した場合の再武装、国内弾圧、地域不安定化リスクを評価したか。",
       counterPoint: "体制転換を選べば占領統治と連合崩壊のリスクも発生するため、単純な失敗とは言えない。",
       asymmetry: null,
+      evidenceBasis:
+        "GWC-EL-013 は終戦直後の再武装警戒を示し、サダム政権存続後の脅威を全く評価していなかったという見方への限定的反証になる。ただし開戦前・作戦停止前の内部比較資料ではない。",
+      linkedEvidenceLinks: ["GWC-EL-013"],
       linkedAssumptions: ["gwc_asm_regime_containable", "gwc_asm_saddam_weakened"],
       linkedCells: ["gwc_cell_regime_survival"],
     },
@@ -182,15 +202,19 @@ export const gulfWar1990CoalitionCase = {
       category: "人道・国内政治",
       exAnteEvaluability: "中",
       evaluationDifficulty: "高",
-      actuallyEvaluated: "不明",
-      noEvidenceReason: "証拠未収集",
+      actuallyEvaluated: "限定的",
+      noEvidenceReason: null,
       statusOverride: null,
-      evidenceStrength: "弱",
+      evidenceStrength: "弱〜中",
       auditQuestion: "戦後のシーア派・クルド蜂起、難民、人道危機への波及を評価したか。",
       counterPoint: "国内反乱の時期・規模・米国責任の範囲は、停戦前に高精度で予測しにくい。",
       asymmetry: null,
+      evidenceBasis:
+        "GWC-EL-016 は、蜂起を促す米側発信、サフワン停戦後のヘリ運用容認、不介入方針が戦後人道危機と接続しうることを示す。ただし蜂起規模と米国責任範囲の事前評価を直接示す内部資料ではない。",
+      linkedEvidenceLinks: ["GWC-EL-016", "GWC-EL-018"],
+      nextEvidenceActionType: "collect_primary_source",
       linkedAssumptions: ["gwc_asm_uprisings_manageable"],
-      linkedCells: ["gwc_cell_regime_survival", "gwc_cell_containment_cost"],
+      linkedCells: ["gwc_cell_regime_survival", "gwc_cell_uprisings_humanitarian", "gwc_cell_containment_cost"],
     },
     {
       id: "gwc_pw_containment_cost",
@@ -209,6 +233,7 @@ export const gulfWar1990CoalitionCase = {
       auditQuestion: "制裁、査察、飛行禁止区域、湾岸地域駐留が長期化するコストを評価したか。",
       counterPoint: "封じ込めはバグダッド占領より低コストと見えた可能性があり、後年の長期化だけで当時判断を断罪してはいけない。",
       asymmetry: null,
+      nextEvidenceActionType: "collect_primary_source",
       linkedAssumptions: ["gwc_asm_containment_sustainable"],
       linkedCells: ["gwc_cell_containment_cost"],
     },
@@ -285,14 +310,25 @@ export const gulfWar1990CoalitionCase = {
       changeConditions: ["政権存続後の国内反乱・弾圧リスクを体系的に比較した資料が確認される"],
     },
     {
+      id: "gwc_cell_uprisings_humanitarian",
+      axis: "蜂起・人道危機への不介入",
+      phase: "戦後設計",
+      status: "要検証",
+      impact: "中〜高",
+      evidenceStrength: "弱〜中",
+      opinion:
+        "米国側の発信はイラク国内の反サダム行動を促す方向に働きえた一方、停戦後の不介入方針とサフワン会談後のヘリ運用容認は、蜂起鎮圧・難民・人道危機への責任論点を残す。ただし、蜂起の規模・時期・米国の法的責任範囲は単純に断定できず、戦後政治目的と連合維持制約を分けて検証する必要がある。",
+      criteria: ["蜂起を促す発信", "サフワン停戦条件とヘリ運用", "不介入方針と人道危機"],
+      changeConditions: ["米国中枢が蜂起・難民・鎮圧リスクを停戦前に体系比較した資料が確認される"],
+    },    {
       id: "gwc_cell_containment_cost",
       axis: "長期封じ込めコスト",
       phase: "戦後設計",
-      status: "重大懸念",
+      status: "要検証",
       impact: "高",
-      evidenceStrength: "弱〜中",
+      evidenceStrength: "弱",
       opinion:
-        "長期封じ込めは、1991年時点ではバグダッド占領より低コストに見えた可能性がある。戦闘停止後の同時代公開説明には、地域安全保障、米軍の限定的関与、イラク再武装阻止、国連枠組みの継続が現れており、「全く評価していなかった」という強い見方への限定的反証になる。ただし、制裁・査察・飛行禁止区域・湾岸地域駐留が長期化するコストを、開戦前または作戦停止前に代替案と体系的に比較した資料は未確認であり、重大懸念は維持する。",
+        "長期封じ込めは、1991年時点ではバグダッド占領より低コストに見えた可能性がある。戦闘停止後の同時代公開説明には、地域安全保障、米軍の限定的関与、イラク再武装阻止、国連枠組みの継続が現れており、「全く評価していなかった」という強い見方への限定的反証になる。ただし、制裁・査察・飛行禁止区域・湾岸地域駐留が長期化するコストを、開戦前または作戦停止前に代替案と体系的に比較した資料は未確認であり、現時点では暫定的な要検証に留める。",
       criteria: ["制裁と査察の持続性", "飛行禁止区域と地域駐留", "1991年時点で予見可能だった封じ込め持続性の論点"],
       changeConditions: ["長期封じ込めコストを明示的に評価し、代替案と比較した同時代資料が確認される"],
     },
@@ -417,6 +453,41 @@ export const gulfWar1990CoalitionCase = {
       collectionState: "米国公文書で確認可",
       authenticity: "高",
       interpretiveReliability: "高",
+    },    {
+      id: "GWC-E-011",
+      title: "米国内の武力行使承認をめぐる政治的分裂（上院52対47・1991年1月12日）",
+      type: "議会・世論資料",
+      publishedDate: "1991年1月12日（同時代公開）",
+      coveragePeriod: "目的設定・開戦前",
+      source:
+        "Congress.gov の S.J.Res.2 / H.J.Res.77 行動記録および Public Law 102-1。上院承認は52対47で、武力行使の国内正統性には制度的承認と政治的分裂が併存していた。",
+      collectionState: "議会記録で確認可",
+      authenticity: "高",
+      interpretiveReliability: "高",
+    },
+    {
+      id: "GWC-E-012",
+      title: "1991年イラク蜂起・米側発信・サフワン停戦後のヘリ運用容認",
+      type: "蜂起・停戦・人道資料",
+      publishedDate: "1991年2月〜4月（同時代発信・戦後整理）",
+      coveragePeriod: "作戦停止・戦後設計",
+      source:
+        "ブッシュ大統領の対イラク国民向け発信、Voice of Free Iraq/VOA 関連記録、1991年3月3日のサフワン停戦会談、Human Rights Watch 等の蜂起鎮圧・難民・不介入に関する整理。米側発信と不介入、ヘリ運用容認の接続を扱う。",
+      collectionState: "同時代発信・人権報告・戦後整理で確認可（要一次資料精査）",
+      authenticity: "中〜高",
+      interpretiveReliability: "中",
+    },
+    {
+      id: "GWC-E-013",
+      title: "開戦前・作戦中のイラク軍能力/損耗見積もり（DoD/CENTCOM/Gulf War Air Power Survey）",
+      type: "軍事計画・戦力評価資料",
+      publishedDate: "見積もりは1990-91年／公刊整理は1992-93年以降",
+      coveragePeriod: "目的設定・作戦計画・作戦停止",
+      source:
+        "Conduct of the Persian Gulf War: Final Report to Congress、CENTCOM/DoD の作戦計画整理、Gulf War Air Power Survey。公開資料は戦後公刊だが、当時の戦力・損耗・作戦見積もりを再構成する資料として扱う。",
+      collectionState: "公的報告・戦史で確認可（原見積もり資料は要精査）",
+      authenticity: "高",
+      interpretiveReliability: "中",
     },
   ],
   claims: [
@@ -433,6 +504,11 @@ export const gulfWar1990CoalitionCase = {
       text: "地上戦停止とバグダッド不進撃は短期合理性を持つが、政権存続と封じ込めコストの比較が十分だったかは要検証である。",
     },
     {
+      id: "gwc_claim_uprisings_humanitarian",
+      type: "audit_issue",
+      label: "蜂起・人道危機への不介入は要検証",
+      text: "米側発信が反サダム行動を促しえた一方、停戦後の不介入とヘリ運用容認が蜂起鎮圧・難民・人道危機への責任論点を残した。",
+    },    {
       id: "gwc_claim_containment",
       type: "audit_issue",
       label: "長期封じ込めコストは重大懸念",
@@ -501,7 +577,7 @@ export const gulfWar1990CoalitionCase = {
       canSay:
         "多国籍軍維持は正統性を強める一方、戦争目的をクウェート解放に限定し、バグダッド進撃や体制転換を選びにくくする制約でもあった。",
       cannotSay:
-        "連合制約だけで、バグダッド不進撃やサダム政権存続が誤りだったとは言えない。",
+        "連合制約だけで、バグダッド不進撃やサダム政権存続が誤りだったとは言えない。また GWC-EL-002 と同じ目的限定構造の表裏を見ているため、独立した反証1件として過大評価しない。",
     },
     {
       id: "GWC-EL-004",
@@ -733,6 +809,89 @@ export const gulfWar1990CoalitionCase = {
         "米国の武力行使は、国連決議678と議会承認に接続されており、正統性の制度的根拠を持っていた。",
       cannotSay:
         "国内承認があったことだけで、作戦停止後の政治設計や長期封じ込めコストが十分検討されたとは言えない。",
+    },    {
+      id: "GWC-EL-015",
+      evidenceId: "GWC-E-011",
+      claimId: "gwc_claim_legitimacy",
+      assessmentCellId: "gwc_cell_legitimacy_objective",
+      claimLabel: "国内承認の僅差と正統性への留保",
+      target: "正統性・連合形成への批判方向反証",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "中",
+      timeFit: "直接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "上院52対47の承認は開戦前の公開議会記録であり、政権・議会・世論が認識可能だった国内政治環境を示す。",
+      canSay:
+        "米国内の武力行使承認には制度的根拠があった一方、上院採決は僅差で、国内正統性には政治的分裂が残っていた。",
+      cannotSay:
+        "僅差採決だけで、国連正統性や多国籍軍形成そのものが無効だったとは言えない。",
+    },
+    {
+      id: "GWC-EL-016",
+      evidenceId: "GWC-E-012",
+      claimId: "gwc_claim_uprisings_humanitarian",
+      assessmentCellId: "gwc_cell_uprisings_humanitarian",
+      claimLabel: "蜂起・人道危機への不介入責任",
+      target: "蜂起・人道危機 / 戦後設計",
+      relationship: "支持",
+      reviewState: "要検証",
+      relevance: "高",
+      timeFit: "間接",
+      availableAtDecisionTime: false,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "推定",
+      knownByDecisionMakersBasis:
+        "米側発信とサフワン停戦会談は当時の中枢判断に接続するが、蜂起鎮圧・難民危機の全体像は戦後整理を含む。",
+      canSay:
+        "米側発信、不介入方針、サフワン後のヘリ運用容認は、蜂起鎮圧・難民・人道危機を米国側監査の論点に含める根拠になる。",
+      cannotSay:
+        "蜂起の発生・鎮圧を米国だけに帰責できるとは言えず、停戦前に規模と結果を高精度で予見できたとも断定できない。",
+    },
+    {
+      id: "GWC-EL-017",
+      evidenceId: "GWC-E-013",
+      claimId: "gwc_claim_termination",
+      assessmentCellId: "gwc_cell_ground_stop",
+      claimLabel: "イラク軍能力・損耗見積もり",
+      target: "イラク軍事能力・地上戦コスト / 作戦計画",
+      relationship: "支持",
+      reviewState: "確認中",
+      relevance: "高",
+      timeFit: "間接",
+      availableAtDecisionTime: true,
+      availableToAnalysts: false,
+      knownByDecisionMakers: "推定",
+      knownByDecisionMakersBasis:
+        "公開報告は戦後公刊だが、そこに再構成された DoD/CENTCOM の戦力・損耗見積もりは作戦計画時点の内部評価を反映する可能性が高い。",
+      canSay:
+        "米国側にはイラク軍能力、航空作戦効果、地上作戦の実行可能性を評価する軍事計画・見積もりの基盤があったと見られる。",
+      cannotSay:
+        "戦後公刊報告だけで、全ての開戦前内部見積もりの内容や不確実性処理を直接確認したとは言えない。",
+    },
+    {
+      id: "GWC-EL-018",
+      evidenceId: "GWC-E-009",
+      claimId: "gwc_claim_uprisings_humanitarian",
+      assessmentCellId: "gwc_cell_uprisings_humanitarian",
+      claimLabel: "限定目的と不介入への留保",
+      target: "蜂起・人道危機責任への反証的留保",
+      relationship: "反証",
+      reviewState: "確認済",
+      relevance: "中",
+      timeFit: "間接",
+      availableAtDecisionTime: false,
+      availableToAnalysts: true,
+      knownByDecisionMakers: "明白",
+      knownByDecisionMakersBasis:
+        "湾岸戦争終結直後の議会演説は米国政府の戦後構想を示すが、開戦前・作戦停止前の内部評価資料ではない。",
+      canSay:
+        "米国側は戦争目的をクウェート解放と国連枠組みに限定しており、イラク国内政治への直接介入を主要目的としていなかった。",
+      cannotSay:
+        "目的限定を掲げていたことだけで、蜂起を促す発信や停戦後のヘリ運用容認が生んだ人道責任論点を消せるわけではない。",
     },
   ],
   ratingBasis: [
@@ -741,7 +900,15 @@ export const gulfWar1990CoalitionCase = {
     { cellId: "gwc_cell_ground_stop", weight: 2 },
     { cellId: "gwc_cell_baghdad_no_go", weight: 2 },
     { cellId: "gwc_cell_regime_survival", weight: 2 },
+    { cellId: "gwc_cell_uprisings_humanitarian", weight: 2 },
     { cellId: "gwc_cell_containment_cost", weight: 3 },
   ],
 };
+
+
+
+
+
+
+
 

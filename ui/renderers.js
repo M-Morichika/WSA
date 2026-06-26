@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260625-coalition-evidence";
+} from "../data/auditSchema.js?v=20260626-coalition-e123";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -496,6 +496,7 @@ function renderOpinion() {
         <h3>補助格付け</h3>
         <p><strong>${auditData.warCase.rating}</strong></p>
         <p>監査意見の要約であり、単独で責任を断定するものではない。</p>
+        ${auditData.warCase.ratingNote ? `<p class="muted">${auditData.warCase.ratingNote}</p>` : ""}
         <dl class="metric-list">
           ${auditData.ratingBasis
             .map((item) => {
@@ -622,6 +623,7 @@ function renderPreWar() {
                 return evidence ? `${id}（${evidence.id}）` : id;
               })
               .join(" / ")}</p>` : ""}
+            ${item.nextEvidenceActionType ? `<p><strong>次アクション:</strong> ${getEvidenceActionLabel(item.nextEvidenceActionType)}</p>` : ""}
             <p class="prewar-counter"><strong>反証・留保:</strong> ${item.counterPoint}</p>
             ${item.asymmetry ? `<p class="prewar-asymmetry"><strong>非対称性:</strong> ${item.asymmetry}</p>` : ""}
             ${

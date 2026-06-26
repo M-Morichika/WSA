@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-26（連合側ケース証拠増補＋サブエージェント再レビュー反映。未コミット）
+最終更新: 2026-06-26（連合側ケース E-1/E-2/E-3 本格増補反映。未コミット）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -42,7 +42,7 @@
 - `data/cases/falklands-1982.js` — **アルゼンチン側監査**（id: `falklands-1982-argentina`, 格付 C-/D+, phase3/cell12/evidence6/link7/prewar7）。旧モノリスの `auditData` の移設先。
 - `data/cases/falklands-1982-uk.js` — **英国側監査**（id: `falklands-1982-uk`, 格付 B-/C+, phase4/cell5/evidence6/link11/prewar3）。
 - `data/cases/gulf-war-1990-iraq.js` — **湾岸戦争1990-91 イラク側監査**（id: `gulf-war-1990-iraq`, 格付 D+/D, phase3/cell5/evidence12/link17/claim6/prewar5）。現行既定 activeCase。`counterpartCaseId: gulf-war-1990-coalition`。
-- `data/cases/gulf-war-1990-coalition.js` — **湾岸戦争1990-91 多国籍軍側（米国主導）監査**（id: `gulf-war-1990-coalition`, 格付 B+/B, phase3/cell6/evidence10/link14/claim3/prewar8）。iraq の対照ケース（`counterpartCaseId: gulf-war-1990-iraq`）。skeleton から一部補強済みだが、長期封じ込めコストはなお暫定重大懸念。
+- `data/cases/gulf-war-1990-coalition.js` — **湾岸戦争1990-91 多国籍軍側（米国主導）監査**（id: `gulf-war-1990-coalition`, 格付 B+/B, phase3/cell7/evidence13/link18/claim4/prewar8）。iraq の対照ケース（`counterpartCaseId: gulf-war-1990-iraq`）。E-1/E-2/E-3 を反映し、蜂起・人道危機セルと批判方向反証を追加済み。長期封じ込めコストはなお暫定要検証。
 - 全 warCase に `conflict`（戦争グループ名）フィールドあり＝セレクタの `<optgroup>` グルーピングに使用（命名文字列分割でなくデータ駆動）。
 - `ui/renderers.js` — 全ビューのレンダラ（ケース非依存。`createRenderers(caseData, state)`）。
 - `styles.css` — `.case-picker` 等を追加。
@@ -54,7 +54,7 @@
 
 ## 2. 直近セッションで完了したこと
 
-> ✅ 2-NEW-A／2-NEW-B はコミット+push 済み（`19c28b1`, origin/master）。現在は **2-NEW-C（連合側ケース証拠増補＋再レビュー反映）と HANDOFF 更新が未コミット**。
+> ✅ 2-NEW-A／2-NEW-B はコミット+push 済み（`19c28b1`, origin/master）。2-NEW-C（連合側ケース証拠増補＋再レビュー反映）も `610088a` でコミット+push 済み。正式作業リストの HANDOFF 更新は `ab3f6cd` でコミット+push 済み。
 
 ### 2-NEW-A. 4ケース目「湾岸戦争 多国籍軍側（連合側）」追加（`19c28b1`）
 - `data/cases/gulf-war-1990-coalition.js` を新規追加し `data/cases/index.js` に登録（4ケース構成）。既定 activeCase は `gulf-war-1990-iraq` のまま。
@@ -72,14 +72,16 @@
 - **オミット（skeleton ゆえ時期尚早＝証拠数依存）**: I-1（claim反証を批判方向に追加）/I-4（蜂起 claim・decision_process セル新設）/I-7（形跡なしセルへ evidenceBasis 補充）。
 - **凍結**: I-9（`counterpartCaseId` の UI 導線＝対照ケースへのボタン/対比ビュー。新機能ゆえ独立セッション）。UI-8 系（疎マトリクス・aria-live冗長・色覚対応）は全ケース共通の既存問題で範囲外。
 
-### 2-NEW-C. 連合側ケースの証拠増補＋サブエージェント再レビュー反映（未コミット）
+### 2-NEW-C. 連合側ケースの証拠増補＋サブエージェント再レビュー反映（`610088a`）
 - ユーザー判断「スキーム自体に大きな問題が無ければ、エビデンス数を増やせば P1/P2 は解決するのでは？」を受け、連合側ケースに同時代公開資料を追加。追加証拠: `GWC-E-007`（ブッシュ開戦演説 1991/1/16）、`GWC-E-008`（攻勢戦闘停止演説 1991/2/27）、`GWC-E-009`（湾岸戦争終結後の議会演説 1991/3/6）、`GWC-E-010`（Public Law 102-1）。追加リンク: `GWC-EL-009`〜`GWC-EL-014`。連合側は evidence10/link14/claim3。
 - 初回実装では `gwc_pw_containment_cost` を `限定的`/`要注意` に下げたが、サブエージェント再レビュー（UIデザイナー/シニアエンジニア/監査方法論）で「Pre-War に戦闘停止後・戦後資料を根拠リンクしている」「公開演説だけで重大懸念を要注意へ下げるのは早い」「反証ラベルが強すぎる」と指摘。
-- レビュー反映後の確定状態: `gwc_pw_containment_cost` は `actuallyEvaluated: "不明"`、`noEvidenceReason: "証拠未収集"`、`statusOverride.provisional: true`。`resolveStatus` は `pending:true` となり、C-1（provisional が `形跡なし` で確定扱いになる問題）を回避。`gwc_cell_containment_cost` は **重大懸念** 維持、`evidenceStrength: "弱〜中"`。
+- 追加レビュー C-1 反映後、`gwc_pw_containment_cost` は `actuallyEvaluated: "不明"`、`noEvidenceReason: "証拠未収集"`、`statusOverride.provisional: true` を維持しつつ、UI 側の `issues[]` と `gwc_cell_containment_cost` も確定重大懸念ではなく **要検証（暫定重大懸念相当）** に寄せた。`gwc_cell_containment_cost.evidenceStrength` は `弱` に下げ、暫定性を片側だけに出す問題を是正。
 - 戦闘停止後・戦後構想資料（`GWC-EL-011`/`012`/`013`）は Pre-War の直接根拠には使わず、`timeFit: "間接"` / `availableAtDecisionTime:false` とし、「全く評価していなかった」という強い仮説への**限定的反証**として整理。
-- `gwc_pw_uprisings_humanitarian` は `不明`＋`証拠未収集` に戻し、矛盾していた `evidenceBasis` / `linkedEvidenceLinks` を撤去。
-- cache-busting は全4箇所（`index.html` / `app.js` / `data/cases/index.js` / `ui/renderers.js`）で `20260625-coalition-evidence` に統一。
+- `gwc_pw_uprisings_humanitarian` は `不明`＋`証拠未収集` に戻し、矛盾していた `evidenceBasis` / `linkedEvidenceLinks` を撤去。追加レビュー後は `nextEvidenceActionType: "collect_primary_source"` を付与し、空欄が手抜きに見える問題を軽減。
+- cache-busting は全4箇所（`index.html` / `app.js` / `data/cases/index.js` / `ui/renderers.js`）で `20260626-coalition-e123` に統一。
 - 検証: `node --check` 全JS OK／`validateCaseRegistry(cases)` 0／全4ケース `validateCaseReferences` 0／全4ケース `lintCaseMethodology` 0。`gwc_pw_containment_cost` は `resolveStatus` で `{ value: "要検証", basis: "derived", derived: "要検証", pending: true }` を確認。
+- 追加レビュー C-2/C-3/AUD-4 反映: `gwc_pw_iraqi_capability` は `形跡あり` から `限定的` に下げ、戦後戦史・開戦後演説だけで事前評価を強く主張しない表現に修正。`GWC-EL-003` は `GWC-EL-002` と同一構造の表裏であるため独立反証として過大評価しない注記を追加。格付け `B+/B` には、長期封じ込めコストが暫定要検証である旨の `ratingNote` を追加し、Audit Opinion に表示。
+- E-1/E-2/E-3 反映: `GWC-E-011`（上院52対47・国内正統性の分裂）、`GWC-E-012`（蜂起・米側発信・サフワン後ヘリ運用・不介入）、`GWC-E-013`（DoD/CENTCOM/GWAPS 系のイラク軍能力/損耗見積もり）を追加。`gwc_cell_uprisings_humanitarian` と `gwc_claim_uprisings_humanitarian` を新設し、連合側は evidence13/link18/claim4/cell7/prewar8。`gwc_pw_iraqi_capability` は `形跡あり` に戻しつつ、公開資料は戦後整理を含むため原見積もり精査が必要と注記。
 
 
 ### 2-0. A-1＋S-1＋S-2 の適用（※前回までの成果）
@@ -127,7 +129,7 @@
 - **H（対照ケース設計）**: 同一戦争を加害側/連合側の両面から監査する「対照ケース」は `warCase.counterpartCaseId` の**相互（双方向）参照**で表現。`validateCaseRegistry` が実在・双方向・自己参照禁止を検査。UI 導線（I-9）は新機能ゆえ凍結中＝データ整合のみ先行確保。
 - **I（skeleton ケースの扱い）**: skeleton 段階のケースに対しては「証拠数を増やす系の指摘（反証リンク追加・セル新設・evidenceBasis 補充）はオミット」が方針。証拠未収集セルは `provisional:true`＋`noEvidenceReason` で**誠実に暫定**と明示する（確定評価に変換しない）。証拠量に依存しない構造・コード・ラベリングの是正のみ先行。
 - **J（conflict グルーピング）**: ケースセレクタの戦争単位グルーピングは `warCase.conflict` フィールド（データ駆動）で行う。ケース名の文字列分割はア軍ケース名が陣営サフィックス無しで脆弱なため不採用。
-- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行未コミット差分では `20260625-coalition-evidence`。
+- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行の連合側 E-1/E-2/E-3 増補では `20260626-coalition-e123`。
 
 ---
 
@@ -260,14 +262,18 @@
 
 ## 7. 次セッションの推奨アクション
 1. まず本ファイルを読む。
-2. 連合側ケース追加＋I-3/I-5/I-8/I-10 は **`19c28b1` でコミット+push 済み**（origin/master）。現在の未コミット差分は、連合側ケース証拠増補・レビュー反映・cache-bust 更新・本 HANDOFF 更新。`git status` で確認すること。
-3. 次にやるなら、まず未コミット差分をレビューして必要ならコミットする（対象候補: `data/cases/gulf-war-1990-coalition.js`, `app.js`, `data/cases/index.js`, `index.html`, `ui/renderers.js`, `HANDOFF.md`）。
+2. 連合側ケース追加＋I-3/I-5/I-8/I-10 は **`19c28b1` でコミット+push 済み**（origin/master）。連合側ケース証拠増補・レビュー反映・cache-bust 更新は **`610088a` でコミット+push 済み**。正式作業リストの HANDOFF 更新は **`ab3f6cd` でコミット+push 済み**。現在の未コミット差分は E-1/E-2/E-3 本格増補、cache-bust 更新、HANDOFF 更新。
+3. 次にやるなら、まず `git status` で clean を確認してから新しい作業単位を選ぶ。
 4. その後の大きな作業候補:
-   - **連合側ケースの本格増補**。今回の演説・法令追加は skeleton からの一部補強に留めた。次は一次資料で I-1（連合**批判方向**の反証を各 claim に）・I-4（シーア派/クルド蜂起鎮圧の責任計上・米国意思決定プロセスセル）・I-7（形跡なしセルの evidenceBasis）に対応。**AUD-4（格付け B+/B の導出根拠＝懸念セル加重82%との整合）の明文化**も未解決。
+   - **連合側ケースの深掘り精査**。E-1/E-2/E-3 は反映済み（上院52-47、蜂起・人道危機セル、DoD/CENTCOM/GWAPS 系見積もり資料）。次にやるなら、追加した `GWC-E-011`〜`013` の出典を一次資料単位で精密化し、サウジ駐留正統性論争・決議678の広範性・サフワン会談原記録・CIA/DIA/CENTCOM 原見積もりの粒度を上げる。
    - または I-9（対照ケースの UI 導線＝counterpart へのボタン/対比ビュー）を独立セッションで。
    - または UI-8 系（Assessment の疎マトリクス、aria-live、色覚対応）を全ケース共通 UI 改善として扱う。
    - または湾岸イラク側の一次資料名精密化（グラスピー会談、Desert Shield 展開資料）。
 5. いずれも §3 の蒸し返し禁止に抵触しないか確認してから進める。
 
 > ⚠️ プレビュー注: 本体は `master` ブランチ＋メインディレクトリ。worktree 内で作業した場合、preview MCP は worktree 基準で起動するため launch.json の python http.server を `--directory <メインパス>` 付き・別ポートで指す必要がある（ポート8123は前セッションの常駐 python が掴んでいることがある）。
+
+
+
+
 
