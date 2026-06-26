@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260626-safwan-provenance";
+} from "../data/auditSchema.js?v=20260626-counterpart-a11y";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -267,7 +267,7 @@ function renderAssessment() {
                                 <span class="cell-meta">証拠: ${cell.evidenceStrength}</span>
                               </button>
                             `
-                            : `<span class="muted">未定義</span>`}
+                            : `<span class="cell-undefined" role="img" aria-label="未評価（この評価軸×局面は監査対象としていない）">—</span>`}
                         </td>
                       `;
                     })
@@ -278,6 +278,7 @@ function renderAssessment() {
             .join("")}
         </tbody>
       </table>
+      <p class="matrix-note muted">評価軸×局面は直積で表示しているため、監査対象としていない組み合わせ（—）は意図的に空白です。各ケースは責任範囲を絞った監査であり、全マスを埋めることは目的ではありません。</p>
     </section>
 
     <section class="section">

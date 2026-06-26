@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-26（①②③は `7e5d8d6`／HANDOFF反映 `ad6597b` まで origin/master と同期済み。④ GWC-E-013 公刊再構成明確化は `b680f2e` でコミット済み。R-2＝サフワン・トランスクリプト出所特定は本作業で適用。⚠️ `b680f2e` 以降は**ハーネスの auto-mode 分類器が master への直 push をブロックしており未push**＝ユーザーが手動 push か push 許可ルール追加を要する）
+最終更新: 2026-06-26（①②③は `7e5d8d6`／HANDOFF反映 `ad6597b` まで origin/master と同期済み。④ GWC-E-013 公刊再構成明確化 `b680f2e`／R-2 サフワン出所特定 `a26926d` はコミット済み。本作業で **I-9（対照ケース軽量ボタン導線）＋ UI-8 一部（疎マトリクス未定義表示是正・aria-live 冗長解消）** を適用。⚠️ `b680f2e` 以降は**ハーネスの auto-mode 分類器が master への直 push をブロックしており未push**＝ユーザーが手動 push か push 許可ルール追加を要する）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -78,6 +78,14 @@
 - **③サフワン会談原記録**: `GWC-E-012` のヘリ運用容認根拠を**回想録依拠 → 機密解除トランスクリプト主導**に格上げ（Lt. Gen. Sultan Hashim Ahmad al-Tai の要請・シュワルツコフ逐語容認 "As long as it is not over the part we are in…" ／ "we will not attack any helicopters inside Iraq"）。回想録 It Doesn't Take a Hero (1992)・同時代報道（Baltimore Sun/WaPo 1991/3/4）は corroboration に降格。`collectionState` を「回想録単独依拠を脱した」に更新。`GWC-EL-016` 認識根拠にもトランスクリプト確認を併記。
 - **検証**: `node --check` 全JS OK／`validateCaseRegistry` 0／全4ケース `validateCaseReferences`・`lintCaseMethodology` 0（正統性claimは支持4/反証4で両建て維持）／実機で `GWC-EL-020` 詳細に678広範性・`GWC-EL-016` 選択で `GWC-E-012` のサフワン逐語描画・コンソール0。cache-bust 全4箇所 `20260626-res678-safwan`。
 - **未適用で残ったレビュー指摘**: ①レビューの **M-1**（`gwc_pw_basing_legitimacy.actuallyEvaluated` を `形跡あり`↔`限定的`。下げると 高×限定的→要注意 に懸念上昇。現状は撤退条件付きファトワ＝評価管理形跡ありとみて `形跡あり` 維持）／**M-2**（`GWC-EL-019` を coalition_maintenance 側にも露出）／**S-1**（駐留正統性専用 assumption 新設）。②③レビューの **R-1**（`GWC-EL-020` を termination 側にも露出）／**R-2**（サフワン・トランスクリプトの所蔵アーカイブID未特定＝二次情報が「機密解除トランスクリプトによれば」と引用する段階。完全な一次記録化には文書特定が残課題＝④と同種の `要精査`）。
+
+### 2-NEW-H. I-9（対照ケース軽量導線）＋ UI-8 一部（疎マトリクス・aria-live）適用（本作業・未コミット）
+> §4 凍結中だった I-9 と UI-8 系をユーザー指示で解凍。スコープは **I-9＝軽量ボタン導線のみ（対比ビュー新設は凍結維持）／UI-8＝疎マトリクス是正＋aria-live 冗長解消の2点（色覚対応は今回除外）**。
+- **I-9（対照ケース導線）**: `warCase.counterpartCaseId`（相互参照・I-5で実装済み）への UI 導線。renderers はケース局所のため、横断ナビ（`cases` 参照）は **app.js 側**で描画＝関心分離を維持。`index.html` サイドバーに `#counterpart-nav` を追加し、`renderCounterpartNav()` が counterpart 実在時のみ「⇄ ◯◯側 を見る」ボタンを描画（`data-goto-case`）。click 委譲で `setActiveCase` を呼ぶ。counterpart 無しのケース（フォークランド2件）では `hidden`。`styles.css` に `.counterpart-nav/.counterpart-button` 追加（サイドバーのダークテーマ準拠）。
+- **UI-8①（疎マトリクス）**: Assessment の軸×局面 直積で未定義マスに出ていた `未定義` テキスト氾濫を、控えめな `—`（`.cell-undefined`・`opacity .45`・`role="img"` ＋ `aria-label="未評価（…監査対象としていない）"`）に置換。表下に `.matrix-note` キャプションを追加し「疎は意図的（各ケースは責任範囲を絞った監査）」と明示。
+- **UI-8②（aria-live 冗長）**: `#view-root` の `aria-live="polite"`（クリック毎にビュー全文を読み上げる冗長）を撤去。代わりに視覚非表示の `#sr-status`（`role="status" aria-live="polite"`・`.sr-only`）を新設し、`announce()` で**簡潔な操作結果のみ**を流す（ビュー切替＝タイトル／ケース切替／評価セル選択＝軸/局面／証拠リンク選択＝ID）。
+- **検証**: `node --check` 全JS OK／`validateCaseRegistry` 0／全4ケース `validateCaseReferences`・`lintCaseMethodology` 0／実機（:8125）で湾岸2ケースの導線双方向切替・フォークランドで導線非表示・`sr-status` が各操作で簡潔読み上げ・連合側マトリクスで `—`14マス＋キャプション・`#view-root` の aria-live 撤去・コンソール warn/error 0。cache-bust 全4箇所 `20260626-counterpart-a11y`。
+- **残置（凍結維持）**: I-9 の**対比ビュー新設**（同等局面の両ケース並置）／UI-8③ **色覚対応**（バッジは既にテキスト併記ゆえ色のみ依存ではない＝上積み扱い）。
 
 ### 2-NEW-G. R-2 サフワン・トランスクリプトの出所特定（③の一次記録化を前進・本作業・未コミット）
 > §2-NEW-E の残課題 R-2＝「機密解除トランスクリプトによれば」の宙吊りを、特定の開示出典に接地。
@@ -171,10 +179,10 @@
 - **A-1 フレーミング**: ベルグラノ反証は「単一反証・針路含む（保守的）」を採用。針路の事実は canSay、戦術的含意の留保は cannotSay。
 - **F（A-2）**: UK が重大懸念に達しないのは入力構造でなく「評価され覆された」(校正β対象外)ゆえの判断。校正α/β は不変のまま、評価可能性を honest な値（deterrence_signal=高）に補正して確認した。B-/C+ 据え置き。
 - **G（A-3）**: `availableAtDecisionTime`（意思決定者の入手可能性）と `availableToAnalysts`（外部分析者の入手可能性）は別概念として維持する。機密解除文書は前者 true／後者 false がありうる。`knownByDecisionMakers` は中枢の認識を表す第3の軸。
-- **H（対照ケース設計）**: 同一戦争を加害側/連合側の両面から監査する「対照ケース」は `warCase.counterpartCaseId` の**相互（双方向）参照**で表現。`validateCaseRegistry` が実在・双方向・自己参照禁止を検査。UI 導線（I-9）は新機能ゆえ凍結中＝データ整合のみ先行確保。
+- **H（対照ケース設計）**: 同一戦争を加害側/連合側の両面から監査する「対照ケース」は `warCase.counterpartCaseId` の**相互（双方向）参照**で表現。`validateCaseRegistry` が実在・双方向・自己参照禁止を検査。UI 導線（I-9）は**軽量ボタン導線を 2-NEW-H で実装**（counterpart 実在時のみサイドバーに表示、`setActiveCase` で双方向切替）。対比ビュー新設のみ凍結維持。
 - **I（skeleton ケースの扱い）**: skeleton 段階のケースに対しては「証拠数を増やす系の指摘（反証リンク追加・セル新設・evidenceBasis 補充）はオミット」が方針。証拠未収集セルは `provisional:true`＋`noEvidenceReason` で**誠実に暫定**と明示する（確定評価に変換しない）。証拠量に依存しない構造・コード・ラベリングの是正のみ先行。
 - **J（conflict グルーピング）**: ケースセレクタの戦争単位グルーピングは `warCase.conflict` フィールド（データ駆動）で行う。ケース名の文字列分割はア軍ケース名が陣営サフィックス無しで脆弱なため不採用。
-- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行は R-2（2-NEW-G）の `20260626-safwan-provenance`。
+- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行は I-9/UI-8（2-NEW-H）の `20260626-counterpart-a11y`。
 - **L（連合側 正統性の二層化）**: 連合側の正統性は **国際的正統性（国連決議・連合形成＝強い）とホスト国正統性（サウジ駐留の宗教政治＝同時代に係争的）を別軸**として扱う。サウジ駐留正統性は `gwc_pw_basing_legitimacy`＝高×形跡あり（撤退条件付きファトワ取得＝中枢が係争性を認識し管理した形跡）で `要検証`（最低懸念）。`GWC-EL-019` は正統性claimへの批判方向反証。長期ブローバック（1996/2001）は **ex-post ＝射程外**（第3原則）。決議678の授権は「地域の平和と安全の回復」まで広範＝目的のクウェート解放への限定は**法的天井でなく政治的選択**（`GWC-EL-020`）。サフワンのヘリ容認は**機密解除トランスクリプト主導**で扱い回想録単独依拠を脱した（ただし所蔵アーカイブID未特定＝R-2 残課題）。
 
 ---
@@ -266,8 +274,8 @@
 **凍結中（過剰設計リスク。やるなら独立セッション）:**
 - **M-1**: claim 単位の支持/反証集計ビュー。`claims[]` は現状どの renderer も非参照（死蔵）。活用 or 削除の去就決定が要る。
 - **M-2**: claim 間（`claim_uk_limited`⇄`claim_uk_response`）の横断リンク。
-- **I-9（連合側レビュー）**: `counterpartCaseId` の UI 導線＝対照ケースへのボタン/同等局面の対比ビュー。データ相互参照（I-5）は実装済み、UI 表現は新機能ゆえ凍結。
-- **UI-8 系（連合側レビュー）**: Assessment の軸×局面 直積マトリクスが疎で「未定義」だらけ／aria-live 冗長／色覚多様性対応。**全ケース共通の既存問題**で連合ケース固有でない＝範囲外。
+- ~~**I-9（連合側レビュー）**: `counterpartCaseId` の UI 導線~~ ＝**軽量ボタン導線は 2-NEW-H で実装済み**。残るは**対比ビュー新設（同等局面の両ケース並置）のみ凍結維持**（マルチケース renderer が要る大きな新機能）。
+- **UI-8 系（連合側レビュー）**: ~~疎マトリクス「未定義」だらけ／aria-live 冗長~~ ＝**2-NEW-H で適用済み**。残るは**色覚多様性対応のみ**（バッジはテキスト併記済み＝色のみ依存ではないため上積み扱いで凍結）。
 - **I-6（連合側レビュー）**: `nextEvidenceActionType` 欠落で renderer が「未設定」退行（iraq も同様）。撤去/必須化の去就決定が未了ゆえ保留。
 
 ---
@@ -313,8 +321,7 @@
 4. その後の大きな作業候補:
    - **連合側ケースの深掘り精査（続き）**。①②③は適用済み（2-NEW-E）。④＝CIA/DIA/CENTCOM 原見積もり本体は調査着手済みだが未特定（2-NEW-F）。`GWC-E-013` は「公刊再構成」として明確化し、原見積もり本体は引き続き `要精査`。
    - **未適用レビューの反映**: M-1（`gwc_pw_basing_legitimacy` 形跡あり↔限定的）／M-2（`GWC-EL-019` を coalition_maintenance 露出）／S-1（駐留正統性専用 assumption）／R-1（`GWC-EL-020` を termination 露出）／~~R-2（サフワン・トランスクリプトの所蔵アーカイブID特定）~~ ＝**本作業で出所特定まで前進（2-NEW-G）。文書管理番号レベルの所蔵特定のみ狭い `要精査` で残置**。
-   - または I-9（対照ケースの UI 導線＝counterpart へのボタン/対比ビュー）を独立セッションで。
-   - または UI-8 系（Assessment の疎マトリクス、aria-live、色覚対応）を全ケース共通 UI 改善として扱う。
+   - I-9 軽量ボタン導線・UI-8 疎マトリクス/aria-live は 2-NEW-H で適用済み。残る I-9 対比ビュー新設／UI-8 色覚対応を独立セッションで扱うか判断する。
    - または湾岸イラク側の一次資料名精密化（グラスピー会談、Desert Shield 展開資料）。
 5. いずれも §3 の蒸し返し禁止に抵触しないか確認してから進める。
 

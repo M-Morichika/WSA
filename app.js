@@ -5,9 +5,9 @@ import {
   validateCaseReferences,
   validateCaseRegistry,
   viewMeta,
-} from "./data/auditSchema.js?v=20260626-safwan-provenance";
-import { cases } from "./data/cases/index.js?v=20260626-safwan-provenance";
-import { createRenderers } from "./ui/renderers.js?v=20260626-safwan-provenance";
+} from "./data/auditSchema.js?v=20260626-counterpart-a11y";
+import { cases } from "./data/cases/index.js?v=20260626-counterpart-a11y";
+import { createRenderers } from "./ui/renderers.js?v=20260626-counterpart-a11y";
 
 let activeCase = cases.find((item) => item.warCase.id === "gulf-war-1990-iraq") || cases[0];
 let state = stateForCase(activeCase);
@@ -88,6 +88,36 @@ function renderCaseSelector() {
     .join("");
 }
 
+// I-9: 対照ケース（counterpartCaseId）への軽量導線。renderers はケース局所のため、
+// 横断ナビゲーション（cases を参照）は app.js 側で描画する。
+function renderCounterpartNav() {
+  const container = document.querySelector("#counterpart-nav");
+  if (!container) return;
+  const counterpartId = activeCase.warCase.counterpartCaseId;
+  const counterpart = counterpartId
+    ? cases.find((item) => item.warCase.id === counterpartId)
+    : null;
+  if (!counterpart) {
+    container.hidden = true;
+    container.innerHTML = "";
+    return;
+  }
+  container.hidden = false;
+  container.innerHTML = `
+    <span class="counterpart-label">対照ケース</span>
+    <button type="button" class="counterpart-button" data-goto-case="${counterpart.warCase.id}">
+      ${counterpart.warCase.auditedActor} を見る
+    </button>
+  `;
+}
+
+// UI-8: 大領域（#view-root）の aria-live を撤去した代わりに、簡潔な操作結果のみを
+// 専用の視覚非表示ライブ領域へ流す。ビュー全文の冗長読み上げを避ける。
+function announce(message) {
+  const region = document.querySelector("#sr-status");
+  if (region) region.textContent = message;
+}
+
 function setActiveView(view) {
   state.activeView = view;
   document.querySelectorAll("[data-view]").forEach((item) => {
@@ -105,7 +135,9 @@ function setActiveCase(caseId) {
   setActiveView(state.activeView);
   validateActiveCase();
   updateShellCaseMetadata();
+  renderCounterpartNav();
   render();
+  announce(`ケースを切替: ${activeCase.warCase.name}`);
 }
 
 function render() {
@@ -121,14 +153,22 @@ document.querySelectorAll("[data-view]").forEach((button) => {
   button.addEventListener("click", () => {
     setActiveView(button.dataset.view);
     render();
+    announce(`${viewMeta[button.dataset.view][1]} を表示`);
   });
 });
 
 document.addEventListener("click", (event) => {
+  const gotoCaseButton = event.target.closest("[data-goto-case]");
+  if (gotoCaseButton) {
+    setActiveCase(gotoCaseButton.dataset.gotoCase);
+    return;
+  }
+
   const evidenceButton = event.target.closest("[data-evidence-link]");
   if (evidenceButton) {
     state.activeEvidenceLinkId = evidenceButton.dataset.evidenceLink;
     render();
+    announce(`証拠リンクを選択: ${state.activeEvidenceLinkId}`);
   }
 
   const timelinePhaseButton = event.target.closest("[data-timeline-phase]");
@@ -147,6 +187,8 @@ document.addEventListener("click", (event) => {
   if (assessmentButton) {
     state.activeAssessmentCellId = assessmentButton.dataset.assessmentCell;
     render();
+    const cell = activeCase.assessmentCells.find((item) => item.id === state.activeAssessmentCellId);
+    if (cell) announce(`評価セルを選択: ${cell.axis} / ${cell.phase}`);
   }
 
   const queueAssessmentButton = event.target.closest("[data-queue-assessment-cell]");
@@ -182,5 +224,6 @@ renderCaseSelector();
 validateCaseRegistryOnce();
 validateActiveCase();
 updateShellCaseMetadata();
+renderCounterpartNav();
 render();
 

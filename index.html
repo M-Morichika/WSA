@@ -20,6 +20,8 @@
           <select id="case-selector" aria-label="監査ケースを選択"></select>
         </label>
 
+        <div id="counterpart-nav" class="counterpart-nav" hidden></div>
+
         <nav class="nav-tabs" aria-label="画面切り替え">
           <button class="nav-tab is-active" type="button" data-view="overview">
             <span>Overview</span>
@@ -72,11 +74,13 @@
           </div>
         </header>
 
-        <section id="view-root" class="view-root" aria-live="polite"></section>
+        <section id="view-root" class="view-root"></section>
       </main>
+
+      <div id="sr-status" class="sr-only" role="status" aria-live="polite"></div>
     </div>
 
-    <script type="module" src="app.js?v=20260626-safwan-provenance"></script>
+    <script type="module" src="app.js?v=20260626-counterpart-a11y"></script>
   </body>
 </html>
 
