@@ -5,9 +5,9 @@ import {
   validateCaseReferences,
   validateCaseRegistry,
   viewMeta,
-} from "./data/auditSchema.js?v=20260626-review-brushup";
-import { cases } from "./data/cases/index.js?v=20260626-review-brushup";
-import { createRenderers } from "./ui/renderers.js?v=20260626-review-brushup";
+} from "./data/auditSchema.js?v=20260626-fpw-france";
+import { cases } from "./data/cases/index.js?v=20260626-fpw-france";
+import { createRenderers } from "./ui/renderers.js?v=20260626-fpw-france";
 
 let activeCase = cases.find((item) => item.warCase.id === "gulf-war-1990-iraq") || cases[0];
 let state = stateForCase(activeCase);
