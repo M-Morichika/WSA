@@ -460,8 +460,8 @@ export const gulfWar1990CoalitionCase = {
       publishedDate: "1991年1月12日（同時代公開）",
       coveragePeriod: "目的設定・開戦前",
       source:
-        "Congress.gov の S.J.Res.2 / H.J.Res.77 行動記録および Public Law 102-1。上院承認は52対47で、武力行使の国内正統性には制度的承認と政治的分裂が併存していた。",
-      collectionState: "議会記録で確認可",
+        "U.S. Senate Roll Call Vote No. 2（102nd Congress, 1st Session）= S.J.Res.2「イラクに対する武力行使容認決議」を1991年1月12日に賛成52・反対47で可決（提案者 John Warner 上院議員）。下院は同日 H.J.Res.77 を賛成250・反対183（House Roll Call Vote No. 9）で可決し、同文の H.J.Res.77 が Public Law 102-1（1991年1月14日署名）として成立。Congressional Record 1991年1月12日。武力行使の国内正統性は、国連決議678に基づく制度的承認と上院の僅差という政治的分裂が併存していたことを示す。",
+      collectionState: "上院・下院ロールコール記録（senate.gov / congress.gov）で確認可",
       authenticity: "高",
       interpretiveReliability: "高",
     },
@@ -472,8 +472,8 @@ export const gulfWar1990CoalitionCase = {
       publishedDate: "1991年2月〜4月（同時代発信・戦後整理）",
       coveragePeriod: "作戦停止・戦後設計",
       source:
-        "ブッシュ大統領の対イラク国民向け発信、Voice of Free Iraq/VOA 関連記録、1991年3月3日のサフワン停戦会談、Human Rights Watch 等の蜂起鎮圧・難民・不介入に関する整理。米側発信と不介入、ヘリ運用容認の接続を扱う。",
-      collectionState: "同時代発信・人権報告・戦後整理で確認可（要一次資料精査）",
+        "(1) ブッシュ大統領1991年2月15日の発信（イラク軍と国民にサダム打倒を促す。American Presidency Project に記録）、(2) 1991年3月3日サフワン飛行場の停戦会談で、シュワルツコフ司令官がイラク側のヘリ運用要請に対し（武装ヘリを含む）飛行容認をワシントンの指示なく口頭で認めた経緯（回想録 It Doesn't Take a Hero, 1992 ほか）、(3) Human Rights Watch『Endless Torment: The 1991 Uprising in Iraq and Its Aftermath』(1992) 等の蜂起鎮圧・難民・不介入に関する整理。米側発信と不介入、ヘリ運用容認の接続を扱う。",
+      collectionState: "大統領発言記録・回想録・人権報告で確認可（ヘリ容認の口頭経緯は回想録依拠で要精査）",
       authenticity: "中〜高",
       interpretiveReliability: "中",
     },
@@ -484,8 +484,8 @@ export const gulfWar1990CoalitionCase = {
       publishedDate: "見積もりは1990-91年／公刊整理は1992-93年以降",
       coveragePeriod: "目的設定・作戦計画・作戦停止",
       source:
-        "Conduct of the Persian Gulf War: Final Report to Congress、CENTCOM/DoD の作戦計画整理、Gulf War Air Power Survey。公開資料は戦後公刊だが、当時の戦力・損耗・作戦見積もりを再構成する資料として扱う。",
-      collectionState: "公的報告・戦史で確認可（原見積もり資料は要精査）",
+        "(1) U.S. Department of Defense『Conduct of the Persian Gulf War: Final Report to Congress』(1992年4月、Public Law 102-25 Title V に基づく議会報告)、(2) Eliot A. Cohen 監修・Thomas A. Keaney ほか『Gulf War Air Power Survey』(全5巻＋要約報告、U.S. Air Force、1993年)、(3) CENTCOM/DoD の作戦計画整理。いずれも公開は戦後公刊だが、当時のイラク軍戦力・損耗・航空作戦効果・地上作戦の実行可能性見積もりを再構成する資料として扱う。",
+      collectionState: "公的報告・公刊戦史で確認可（開戦前の内部原見積もりそのものは未確認＝要精査）",
       authenticity: "高",
       interpretiveReliability: "中",
     },

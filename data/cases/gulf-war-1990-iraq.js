@@ -240,8 +240,9 @@ export const gulfWar1990IraqCase = {
       type: "外交資料",
       publishedDate: "1990年7月25日（同時代会談・記録は後年公開/争いあり）",
       coveragePeriod: "侵攻前（米国シグナルとイラク側認識）",
-      source: "米国務省・議会証言・イラク側公表記録で確認されるグラスピー会談。発言内容とニュアンスには争いがある。",
-      collectionState: "一次資料入手可（要精査）",
+      source:
+        "1990年7月25日バグダッドでのサダム・フセインと米大使エイプリル・グラスピーの会談（イラク外相タリク・アジズ同席）。(1) イラク政府が会談記録として公表し ABC News 経由で New York Times が1990年9月に英訳・報道した文書、(2) グラスピーの本国宛公電（1998年機密解除）、(3) 1991年4月のグラスピー上院外交委員会証言。発言のニュアンス（米国が侵攻を黙認したと読めるか否か）には争いがあり、イラク側公表版と米側証言で食い違う。",
+      collectionState: "一次資料入手可（イラク公表版・米公電・証言で内容に相違あり＝要突合）",
       authenticity: "中",
       interpretiveReliability: "中",
     },
@@ -284,8 +285,9 @@ export const gulfWar1990IraqCase = {
       type: "政府・軍事行動資料",
       publishedDate: "1990年8月以降（同時代公開）",
       coveragePeriod: "撤退拒否・期限前判断",
-      source: "米国防総省・議会報告・公的戦史による Desert Shield の展開記録",
-      collectionState: "公的資料で確認可",
+      source:
+        "1990年8月7日に開始された Operation Desert Shield のサウジ展開記録。U.S. Army Center of Military History『Operation DESERT SHIELD』、U.S. Department of Defense『Conduct of the Persian Gulf War: Final Report to Congress』(1992)、および CENTCOM（シュワルツコフ司令官）の展開記録。XVIII空挺軍団・第82空挺師団の先遣展開から、ピーク約60万人規模の米軍と多国籍軍構築に至る経緯を含む。",
+      collectionState: "公的戦史・議会報告で確認可",
       authenticity: "高",
       interpretiveReliability: "中",
     },
