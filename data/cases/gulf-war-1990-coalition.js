@@ -126,15 +126,15 @@ export const gulfWar1990CoalitionCase = {
       category: "敵戦力",
       exAnteEvaluability: "高",
       evaluationDifficulty: "中",
-      actuallyEvaluated: "形跡あり",
+      actuallyEvaluated: "限定的",
       noEvidenceReason: null,
       statusOverride: null,
-      evidenceStrength: "中",
+      evidenceStrength: "弱〜中",
       auditQuestion: "イラク軍をクウェートから排除する軍事的実行可能性を評価したか。",
       counterPoint: "軍事的排除可能性は、戦後政治問題の解決可能性とは別である。",
       asymmetry: null,
       evidenceBasis:
-        "GWC-EL-017（DoD/CENTCOM/GWAPS による当時見積もりの再構成）と GWC-EL-010 により、イラク軍排除の実行可能性は作戦計画に組み込まれていたと見られる。ただし公開資料は戦後整理を含むため、内部見積もり原資料の直接確認ではない。",
+        "GWC-EL-017（DoD/CENTCOM/GWAPS による当時見積もりの再構成）は、イラク軍排除の実行可能性が作戦計画に組み込まれていた可能性を示す。ただし公開資料は戦後整理を含み、内部見積もり原資料の直接確認ではないため、評価形跡は限定的に留める。",
       linkedEvidenceLinks: ["GWC-EL-010", "GWC-EL-017"],
       linkedAssumptions: ["gwc_asm_iraqi_forces_beatable"],
       linkedCells: ["gwc_cell_ground_stop"],
@@ -202,16 +202,13 @@ export const gulfWar1990CoalitionCase = {
       category: "人道・国内政治",
       exAnteEvaluability: "中",
       evaluationDifficulty: "高",
-      actuallyEvaluated: "限定的",
-      noEvidenceReason: null,
+      actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       statusOverride: null,
-      evidenceStrength: "弱〜中",
+      evidenceStrength: "弱",
       auditQuestion: "戦後のシーア派・クルド蜂起、難民、人道危機への波及を評価したか。",
-      counterPoint: "国内反乱の時期・規模・米国責任の範囲は、停戦前に高精度で予測しにくい。",
+      counterPoint: "国内反乱の時期・規模・米国責任の範囲は、停戦前に高精度で予測しにくい。GWC-EL-016/GWC-EL-018 は監査論点化の根拠であり、停戦前評価形跡の直接証拠ではない。",
       asymmetry: null,
-      evidenceBasis:
-        "GWC-EL-016 は、蜂起を促す米側発信、サフワン停戦後のヘリ運用容認、不介入方針が戦後人道危機と接続しうることを示す。ただし蜂起規模と米国責任範囲の事前評価を直接示す内部資料ではない。",
-      linkedEvidenceLinks: ["GWC-EL-016", "GWC-EL-018"],
       nextEvidenceActionType: "collect_primary_source",
       linkedAssumptions: ["gwc_asm_uprisings_manageable"],
       linkedCells: ["gwc_cell_regime_survival", "gwc_cell_uprisings_humanitarian", "gwc_cell_containment_cost"],
@@ -225,11 +222,11 @@ export const gulfWar1990CoalitionCase = {
       actuallyEvaluated: "不明",
       noEvidenceReason: "証拠未収集",
       statusOverride: {
-        value: "重大懸念",
+        value: "要検証",
         provisional: true,
-        rationale: "1991年時点で完全な長期予測は難しいが、サダム政権存続を選ぶ以上、制裁・査察・地域駐留・飛行禁止区域の持続コストは主要な評価対象になる。ただし現状は開戦前評価資料が未収集の暫定評価であり、重大懸念は確定ではない。戦闘停止後の同時代公開説明は戦後設計の限定的反証として別途扱う。",
+        rationale: "1991年時点で完全な長期予測は難しいが、サダム政権存続を選ぶ以上、制裁・査察・地域駐留・飛行禁止区域の持続コストは主要な評価対象になる。ただし現状は開戦前評価資料が未収集の暫定評価であり、確定重大懸念ではなく要検証に留める。戦闘停止後の同時代公開説明は戦後設計の限定的反証として別途扱う。",
       },
-      evidenceStrength: "弱〜中",
+      evidenceStrength: "弱",
       auditQuestion: "制裁、査察、飛行禁止区域、湾岸地域駐留が長期化するコストを評価したか。",
       counterPoint: "封じ込めはバグダッド占領より低コストと見えた可能性があり、後年の長期化だけで当時判断を断罪してはいけない。",
       asymmetry: null,
@@ -320,7 +317,8 @@ export const gulfWar1990CoalitionCase = {
         "米国側の発信はイラク国内の反サダム行動を促す方向に働きえた一方、停戦後の不介入方針とサフワン会談後のヘリ運用容認は、蜂起鎮圧・難民・人道危機への責任論点を残す。ただし、蜂起の規模・時期・米国の法的責任範囲は単純に断定できず、戦後政治目的と連合維持制約を分けて検証する必要がある。",
       criteria: ["蜂起を促す発信", "サフワン停戦条件とヘリ運用", "不介入方針と人道危機"],
       changeConditions: ["米国中枢が蜂起・難民・鎮圧リスクを停戦前に体系比較した資料が確認される"],
-    },    {
+    },
+    {
       id: "gwc_cell_containment_cost",
       axis: "長期封じ込めコスト",
       phase: "戦後設計",
@@ -453,7 +451,8 @@ export const gulfWar1990CoalitionCase = {
       collectionState: "米国公文書で確認可",
       authenticity: "高",
       interpretiveReliability: "高",
-    },    {
+    },
+    {
       id: "GWC-E-011",
       title: "米国内の武力行使承認をめぐる政治的分裂（上院52対47・1991年1月12日）",
       type: "議会・世論資料",
@@ -508,11 +507,12 @@ export const gulfWar1990CoalitionCase = {
       type: "audit_issue",
       label: "蜂起・人道危機への不介入は要検証",
       text: "米側発信が反サダム行動を促しえた一方、停戦後の不介入とヘリ運用容認が蜂起鎮圧・難民・人道危機への責任論点を残した。",
-    },    {
+    },
+    {
       id: "gwc_claim_containment",
       type: "audit_issue",
-      label: "長期封じ込めコストは重大懸念",
-      text: "サダム政権存続を前提にした制裁・査察・飛行禁止区域・地域駐留の長期コストは、米国側監査の中心的な懸念である。",
+      label: "長期封じ込めコストは暫定要検証",
+      text: "サダム政権存続を前提にした制裁・査察・飛行禁止区域・地域駐留の長期コストは、米国側監査の中心的な要検証論点である。",
     },
   ],
   evidenceLinks: [
@@ -648,7 +648,7 @@ export const gulfWar1990CoalitionCase = {
       claimId: "gwc_claim_containment",
       assessmentCellId: "gwc_cell_baghdad_no_go",
       claimLabel: "封じ込めコスト評価への留保",
-      target: "長期封じ込め重大懸念への限定的反証",
+      target: "長期封じ込め暫定要検証への限定的反証",
       relationship: "反証",
       reviewState: "要検証",
       relevance: "中",
@@ -809,7 +809,8 @@ export const gulfWar1990CoalitionCase = {
         "米国の武力行使は、国連決議678と議会承認に接続されており、正統性の制度的根拠を持っていた。",
       cannotSay:
         "国内承認があったことだけで、作戦停止後の政治設計や長期封じ込めコストが十分検討されたとは言えない。",
-    },    {
+    },
+    {
       id: "GWC-EL-015",
       evidenceId: "GWC-E-011",
       claimId: "gwc_claim_legitimacy",
@@ -862,11 +863,11 @@ export const gulfWar1990CoalitionCase = {
       reviewState: "確認中",
       relevance: "高",
       timeFit: "間接",
-      availableAtDecisionTime: true,
-      availableToAnalysts: false,
+      availableAtDecisionTime: false,
+      availableToAnalysts: true,
       knownByDecisionMakers: "推定",
       knownByDecisionMakersBasis:
-        "公開報告は戦後公刊だが、そこに再構成された DoD/CENTCOM の戦力・損耗見積もりは作戦計画時点の内部評価を反映する可能性が高い。",
+        "公開報告は戦後公刊であり、判断時点の資料そのものではない。ただし、そこに再構成された DoD/CENTCOM の戦力・損耗見積もりは作戦計画時点の内部評価を反映する可能性が高い。",
       canSay:
         "米国側にはイラク軍能力、航空作戦効果、地上作戦の実行可能性を評価する軍事計画・見積もりの基盤があったと見られる。",
       cannotSay:
@@ -904,11 +905,4 @@ export const gulfWar1990CoalitionCase = {
     { cellId: "gwc_cell_containment_cost", weight: 3 },
   ],
 };
-
-
-
-
-
-
-
 

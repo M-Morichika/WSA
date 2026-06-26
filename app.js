@@ -183,3 +183,4 @@ validateCaseRegistryOnce();
 validateActiveCase();
 updateShellCaseMetadata();
 render();
+

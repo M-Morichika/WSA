@@ -128,6 +128,7 @@ function renderOverview() {
           <div class="metric-row"><dt>不確実性</dt><dd>${snapshot.uncertainty}</dd></div>
           <div class="metric-row"><dt>補助格付け</dt><dd>${snapshot.rating}</dd></div>
         </dl>
+        ${auditData.warCase.ratingNote ? `<p class="muted">${auditData.warCase.ratingNote}</p>` : ""}
       </section>
     </div>
   `;
@@ -605,7 +606,7 @@ function renderPreWar() {
             ${badge(res.value)}
             <strong>${item.name}</strong>
             <span class="cell-meta">${item.category}</span>
-            ${res.pending ? '<span class="prewar-flag">⏳重大懸念へ昇格候補</span>' : ""}
+            ${res.pending ? '<span class="prewar-flag">暫定評価</span>' : ""}
             ${res.basis === "override" && !res.pending ? '<span class="prewar-flag">▸判断(override)</span>' : ""}
           </summary>
           <div class="prewar-card-body">
@@ -620,7 +621,7 @@ function renderPreWar() {
               .map((id) => {
                 const link = getEvidenceLink(id);
                 const evidence = link ? getEvidence(link.evidenceId) : null;
-                return evidence ? `${id}（${evidence.id}）` : id;
+                return link && evidence ? `${id}（${evidence.id} / ${link.timeFit} / 判断時点${link.availableAtDecisionTime ? "可" : "不可"} / ${link.reviewState}）` : id;
               })
               .join(" / ")}</p>` : ""}
             ${item.nextEvidenceActionType ? `<p><strong>次アクション:</strong> ${getEvidenceActionLabel(item.nextEvidenceActionType)}</p>` : ""}
@@ -714,3 +715,6 @@ function renderPreWar() {
     opinion: renderOpinion,
   };
 }
+
+
+
