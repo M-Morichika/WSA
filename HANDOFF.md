@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-26（`4b66469` まで origin/master と同期済み。現在はサブエージェントレビュー後のブラッシュアップ中＝HANDOFF同期記述・GWC-E-012/GWC-EL-010方法論ラベル・I-9/UI-8アクセシビリティ補正を未コミットで反映中）
+最終更新: 2026-06-26（`3e1f04b` まで origin/master と同期済み。サブエージェントレビュー後のブラッシュアップ＝HANDOFF同期記述・GWC-E-012/GWC-EL-010方法論ラベル・I-9/UI-8アクセシビリティ補正は push 済み。現在の未整理差分は cache-busting 検証スクリプト `tools/check-cache-busting.mjs` の採否のみ）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -71,7 +71,7 @@
 > ✅ **本セッション（④）**: CIA/DIA/CENTCOM の開戦前内部原見積もり本体を探索したが公開一次資料として特定できず。`GWC-E-013` / `GWC-EL-017` を「公刊再構成」であり「原見積もり本体ではない」と明確化＝`b680f2e` でコミット+push 済み。
 > ✅ **本セッション（R-2）**: サフワン機密解除トランスクリプトの出所を特定（一次的開示 = Laurie Mylroie, WaPo 1992/6/28／再録 = Gordon & Trainor『The Generals' War』1995）。`GWC-E-012` の source/collectionState・`GWC-EL-016` 認識根拠に反映。残る隙間（DoD/NARA 文書管理番号）は狭い `要精査` として明記＝`a26926d` でコミット+push 済み。
 > ✅ **本セッション（I-9/UI-8）**: I-9 対照ケース軽量ボタン導線＋ UI-8 一部（疎マトリクス未定義表示是正・aria-live 冗長解消）を `a4eaf06` でコミット+push 済み。
-> 🔄 **本セッション（レビュー後ブラッシュアップ・未コミット）**: サブエージェントレビューを受け、HANDOFFの未push記述を現状同期済みに修正。`GWC-E-012` は「原本確認」ではなく「公刊引用・再録で確認」に弱め、Pre-War の `gwc_pw_iraqi_capability` / `gwc_pw_ground_cost` から開戦後説明 `GWC-EL-010` を直接根拠として外した。`app.js` はケースセレクタ/対照導線を DOM API 化し、対照ケース切替後のフォーカス、`announce()` の再通知、Timeline/Evidence/Opinion/Assessment 移動の通知を補強。疎マトリクスの未評価セルは個別長文 aria-label をやめた。cache-bust は `20260626-review-brushup`。
+> ✅ **レビュー後ブラッシュアップ（push済み: `3e1f04b`）**: サブエージェントレビューを受け、HANDOFFの古い未同期記述を現状同期済みに修正。`GWC-E-012` は「原本確認」ではなく「公刊引用・再録で確認」に弱め、Pre-War の `gwc_pw_iraqi_capability` / `gwc_pw_ground_cost` から開戦後説明 `GWC-EL-010` を直接根拠として外した。`app.js` はケースセレクタ/対照導線を DOM API 化し、対照ケース切替後のフォーカス、`announce()` の再通知、Timeline/Evidence/Opinion/Assessment 移動の通知を補強。疎マトリクスの未評価セルは個別長文 aria-label をやめた。cache-bust は `20260626-review-brushup`。
 
 ### 2-NEW-E. 連合側ケース深掘り精査 ①②③（`7e5d8d6`・本セッション後半）
 > §7 が挙げた「残る粒度向上候補」のうち①②③を適用（④＝CIA/DIA/CENTCOM 原見積もり本体は未着手）。証拠量ではなく**正統性軸の反証強化**と**出典の時点性精密化**が主眼。
@@ -84,7 +84,7 @@
 ### 2-NEW-H. I-9（対照ケース軽量導線）＋ UI-8 一部（疎マトリクス・aria-live）適用（`a4eaf06`・コミット+push済み）
 > §4 凍結中だった I-9 と UI-8 系をユーザー指示で解凍。スコープは **I-9＝軽量ボタン導線のみ（対比ビュー新設は凍結維持）／UI-8＝疎マトリクス是正＋aria-live 冗長解消の2点（色覚対応は今回除外）**。
 - **I-9（対照ケース導線）**: `warCase.counterpartCaseId`（相互参照・I-5で実装済み）への UI 導線。renderers はケース局所のため、横断ナビ（`cases` 参照）は **app.js 側**で描画＝関心分離を維持。`index.html` サイドバーに `#counterpart-nav` を追加し、`renderCounterpartNav()` が counterpart 実在時のみ「⇄ ◯◯側 を見る」ボタンを描画（`data-goto-case`）。click 委譲で `setActiveCase` を呼ぶ。counterpart 無しのケース（フォークランド2件）では `hidden`。`styles.css` に `.counterpart-nav/.counterpart-button` 追加（サイドバーのダークテーマ準拠）。
-- **UI-8①（疎マトリクス）**: Assessment の軸×局面 直積で未定義マスに出ていた `未定義` テキスト氾濫を、控えめな `—`（`.cell-undefined`・`opacity .45`・`role="img"` ＋ `aria-label="未評価（…監査対象としていない）"`）に置換。表下に `.matrix-note` キャプションを追加し「疎は意図的（各ケースは責任範囲を絞った監査）」と明示。
+- **UI-8①（疎マトリクス）**: Assessment の軸×局面 直積で未定義マスに出ていた `未定義` テキスト氾濫を、控えめな `—`（`.cell-undefined`・`opacity .45`・`aria-hidden="true"`）に置換。表下に `.matrix-note` キャプションを追加し「疎は意図的（各ケースは責任範囲を絞った監査）」と明示。
 - **UI-8②（aria-live 冗長）**: `#view-root` の `aria-live="polite"`（クリック毎にビュー全文を読み上げる冗長）を撤去。代わりに視覚非表示の `#sr-status`（`role="status" aria-live="polite"`・`.sr-only`）を新設し、`announce()` で**簡潔な操作結果のみ**を流す（ビュー切替＝タイトル／ケース切替／評価セル選択＝軸/局面／証拠リンク選択＝ID）。
 - **検証**: `node --check` 全JS OK／`validateCaseRegistry` 0／全4ケース `validateCaseReferences`・`lintCaseMethodology` 0／実機（:8125）で湾岸2ケースの導線双方向切替・フォークランドで導線非表示・`sr-status` が各操作で簡潔読み上げ・連合側マトリクスで `—`14マス＋キャプション・`#view-root` の aria-live 撤去・コンソール warn/error 0。cache-bust 全4箇所 `20260626-counterpart-a11y`。
 - **残置（凍結維持）**: I-9 の**対比ビュー新設**（同等局面の両ケース並置）／UI-8③ **色覚対応**（バッジは既にテキスト併記ゆえ色のみ依存ではない＝上積み扱い）。
@@ -318,7 +318,7 @@
 
 ## 7. 次セッションの推奨アクション
 1. まず本ファイルを読む。
-2. `4b66469` までは `origin/master` と同期済み。現在のレビュー後ブラッシュアップは未コミットなので、まず `git status` と差分確認、検証、必要ならコミット/ push する。
+2. `3e1f04b` までは `origin/master` と同期済み。現在の未整理差分は `tools/check-cache-busting.mjs` と HANDOFF 現状補正のみ。採用する場合は小コミット化し、必要なら push する。
 3. 次にやるなら、まず `git status` で clean / 同期状態を確認してから新しい作業単位を選ぶ。
 4. その後の大きな作業候補:
    - **連合側ケースの深掘り精査（続き）**。①②③は適用済み（2-NEW-E）。④＝CIA/DIA/CENTCOM 原見積もり本体は調査着手済みだが未特定（2-NEW-F）。`GWC-E-013` は「公刊再構成」として明確化し、原見積もり本体は引き続き `要精査`。
