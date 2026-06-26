@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-26（**本コミットで 普 prussia の訴追2セルを ex-ante 接地強化＋仏/普/露の格付け「未確定」を rating-readiness 条件付きで明文化＋Opinion ビューの要約/全文モードトグルを撤去**。詳細は §2-NEW-J。直前のコミット `287bb21`〔4→7ケース拡張＝普仏 仏/普・ウクライナ露 skeleton 追加＋サブエージェントレビュー★★以上適用＋普仏エビデンス補強。詳細は §2-NEW-I〕は **未push**＝`origin/master` より先行。cache-bust 現行 `20260626-prussia-exante`。`verify.js`（7ケース一括検証ヘルパ）同梱。`97c3912`〔Add cache-busting verification helper〕までが origin/master と同期済みで、`287bb21`＋本コミットは未push）
+最終更新: 2026-06-26（**本コミットで 普 prussia の訴追2セルを ex-ante 接地強化＋仏/普/露の格付け「未確定」を rating-readiness 条件付きで明文化＋Opinion ビューの要約/全文モードトグルを撤去**。詳細は §2-NEW-J。直前のコミット `287bb21`〔4→7ケース拡張＝普仏 仏/普・ウクライナ露 skeleton 追加＋サブエージェントレビュー★★以上適用＋普仏エビデンス補強。詳細は §2-NEW-I〕。cache-bust 現行 `20260626-prussia-exante`。`verify.js`（7ケース一括検証ヘルパ）同梱。**`9ad43d1` まで origin/master と同期済み（push 済み）**。次セッションは仏 france のエビデンス埋め＝§2-NEW-J 末尾「次セッション計画」を参照）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -76,7 +76,7 @@
 > ✅ **本セッション（I-9/UI-8）**: I-9 対照ケース軽量ボタン導線＋ UI-8 一部（疎マトリクス未定義表示是正・aria-live 冗長解消）を `a4eaf06` でコミット+push 済み。
 > ✅ **レビュー後ブラッシュアップ（push済み: `3e1f04b`）**: サブエージェントレビューを受け、HANDOFFの古い未同期記述を現状同期済みに修正。`GWC-E-012` は「原本確認」ではなく「公刊引用・再録で確認」に弱め、Pre-War の `gwc_pw_iraqi_capability` / `gwc_pw_ground_cost` から開戦後説明 `GWC-EL-010` を直接根拠として外した。`app.js` はケースセレクタ/対照導線を DOM API 化し、対照ケース切替後のフォーカス、`announce()` の再通知、Timeline/Evidence/Opinion/Assessment 移動の通知を補強。疎マトリクスの未評価セルは個別長文 aria-label をやめた。cache-bust は `20260626-review-brushup`。
 
-### 2-NEW-J. 普 prussia 訴追セルの ex-ante 接地強化＋格付け「未確定」の明文化＋Opinion モードトグル撤去（本コミット・未push）
+### 2-NEW-J. 普 prussia 訴追セルの ex-ante 接地強化＋格付け「未確定」の明文化＋Opinion モードトグル撤去（`1f571bc`＋ratingNote是正 `9ad43d1`・push済み）
 > 直前コミット `287bb21`（§2-NEW-I）の上に積む差分。証拠を新規大量追加するのではなく、**既存の訴追セルの支持側が結果（ex-post）依存だった弱点を事前資料へ接地し直す**監査品質の補強と、**「未確定」格付けの根拠を明文化**する誠実性整理、および**死蔵 UI の撤去**が主眼。検証は `node --check` 全OK／`verify.js` で `validateCaseRegistry` 0・全7ケース `validateCaseReferences`/`lintCaseMethodology` 0（全 claim 支持≥1・反証≥1 を維持）。cache-bust 全コードファイル＋`verify.js` を `20260626-fpw-france`→`20260626-prussia-exante` に更新。
 - **普 prussia の訴追2セルを ex-ante 接地強化**:
   - `fpwp_cell_siege_escalation`（戦争長期化）・`fpwp_cell_annexation_cost`（ア・ロ併合コスト）の `evidenceStrength` を `中`→`中〜強` に昇格。支持側の根拠を「長期化という**結果**」から、**事前計画そのもの**（モルトケ1868-69展開計画＝`FPWP-E-002` を会戦中心の時間的射程として参照）へ移し、結果依存を脱した。opinion 文に「ex-post ではなく ex-ante に読める／支持・反証は両建てのまま」を明記。
@@ -87,9 +87,19 @@
   - **普 prussia**: 証拠量条件は概ね充足（双方セルが中〜強に到達）。残る条件は**争点の決着**（訴追セルが ACH 上 両建て未決着＝能力肯定が訴追を上回ると編集判断できる段階に未達）。決着には作戦計画・講和審議の内部記録を要する旨。
   - **露 russia**: 仏/普とは**性質が異なる構造的未確定**と明記。開戦判断の核心の ex-ante 直接証拠（露内部意思決定資料・軍内部評価・作戦計画文書）が封鎖されている間に事後資料から逆算すると**第3原則（開戦後の証拠を直接根拠にしない）に抵触**するため、構造的に未確定を維持。
 - **Opinion ビューの要約/全文モードトグル撤去（UI 整理）**: 中身が薄いプレースホルダ（「全文モード」の mini-card 4枚＝Timeline/Evidence/changeConditions/監査方法への参照案内）だった `opinionMode` 機構を撤去。`app.js`（`state.opinionMode`・`[data-mode]` クリックハンドラ）／`ui/renderers.js`（`renderOpinion` の mode-toggle・full 分岐）／`styles.css`（`.mode-toggle` 一式）を削除。Opinion ビューは常に総合監査意見＋各セクションを表示。
-- **未了（次セッション候補）**: §2-NEW-I の未了は継続（露の ex-ante 直接証拠は構造的に未収集／仏 phase2・4 未セル化／**ウクライナ西側支援側ケース未実装**）。加えて `287bb21`＋本コミットの **push が未実施**（origin/master より2コミット先行）。
+- **ratingNote 是正（`9ad43d1`）**: 普 prussia の `ratingNote` 冒頭「skeleton 段階」が同 note 後段「証拠量条件は概ね充足（双方セル中〜強）」と自己矛盾していたため、`skeleton 段階` 表記を撤去し「編集判断として意図的に保留」に一本化。仏 france は Pre-War が『不明』で実際に skeleton 段階のため表記維持。
+- **未了（次セッション候補）**: §2-NEW-I の未了は継続（露の ex-ante 直接証拠は構造的に未収集／仏 phase2・4 未セル化／**ウクライナ西側支援側ケース未実装**）。`287bb21`〜`9ad43d1` は **push 済み**（master = origin/master 同期）。
 
-### 2-NEW-I. 新規3ケース（普仏 仏/普・ウクライナ 露）の追加・レビュー反映・普仏エビデンス補強（`287bb21`・未push）
+### 次セッション計画: 仏 france ケース エビデンス埋め（本セッションで実測のみ・着手は次回）
+> 「仏ケースのエビデンス埋め」をユーザーが提起。残りトークンでの着手は見送り、**現状実測と優先順位だけ確定**して次セッションへ申し送る。
+- **現状実測**: 証拠9・リンク14・claim6・セル4（phase1〜3＋セダン `fpw_cell_sedan_decision`）。証拠内訳＝事後二次2件（`FPW-E-001` Howard／`FPW-E-002` Wawro）＋同時代一次7件（`FPW-E-003`〜`009`＝エムス電報／1870年7月議会記録／オリヴィエ回顧録／ル・ブフ陸軍省事前計画／同盟外交失敗／バゼーヌ救援電報／グラモン7月escalation）。**`collectionState` は9件中8件が `要検証`**（精密化済みは `FPW-E-004` 議会記録の1件＝`収集済み` のみ）。
+- **優先順位（高→低）**:
+  1. **訴追側の一次接地（最優先・監査品質に最も効く）**: 訴追論点の支持が事後二次（Howard/Wawro）依存の箇所を、普 prussia §2-NEW-J と同型に**同時代一次へ接地し直す**。`FPW-E-006`（同盟外交失敗）／`FPW-E-007`（バゼーヌ救援強行電報）／`FPW-E-008`（グラモン escalation）を軸に、ex-ante 直接証拠としての出所を固める。2〜3件に集中。
+  2. **`collectionState` 精密化**: 上記一次7件の所蔵・文書ID・正確な日付/頁を Web 調査で特定し `要検証`→`収集済み` へ。湾岸 R-2（Safwan provenance, §2-NEW-G）と同種の作業＝1件あたり重い。高価値2〜3件から。
+  3. **phase2/4 のセル化**: 未セル化局面に新セル＋証拠＋リンクを追加しカバレッジ拡張（横展開）。
+- **注意**: いずれも Web 調査（WebSearch/WebFetch）が前提。手元知識のみの出典文字列いじりは品質基準（§2-NEW-D）を満たさず `要検証` のまま残るため不可。rating-readiness（仏 `ratingNote`）の解錠には ratingBasis 各セルが証拠強度『中』以上＋Pre-War が『不明』→解決、が必要＝上記1・2が直接効く。
+
+### 2-NEW-I. 新規3ケース（普仏 仏/普・ウクライナ 露）の追加・レビュー反映・普仏エビデンス補強（`287bb21`・push済み）
 > 正式作業リストの普仏戦争（仏/普）・ウクライナ戦争（ロシア側）を skeleton で追加（前セッション着手・未コミット・HANDOFF未記載だった）。本セッションで**サブエージェントレビュー → ★★以上適用 → 普仏エビデンス補強**まで実施し、本コミットでまとめて反映。ID 名前空間は `fpw_`/`FPW-`（仏）・`fpwp_`/`FPWP-`（普）・`ruw_`/`RUW-`（露）で横断衝突なし。
 - **サブエージェントレビュー → ★★以上を適用（AUD-1/ENG-1/ENG-2/UI-1/AUD-2）**:
   - **AUD-1（honesty・最重要）**: france の 2 Pre-War 項目（`fpw_pw_french_mobilization` 高×形跡なし／`fpw_pw_system_gap` 低〜中×形跡なし）が、`resolveStatus` の「`形跡なし` で provisional override 自動発火」（`auditSchema.js:51`）により派生 重大懸念（校正α）を**確定 要検証へ降格**させ、かつ `rationale`/`noEvidenceReason:"未接続"` が「未精査」と自己矛盾＝I-3 の non-honesty 再発。→ `actuallyEvaluated:"不明"`＋`noEvidenceReason:"証拠未収集"`（russia流）へ。override 不発火・pending 化し「収集後に 形跡なし→重大懸念 へ昇格」の経路を rationale に明記。
