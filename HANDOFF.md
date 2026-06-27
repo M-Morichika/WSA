@@ -1,15 +1,15 @@
 # HANDOFF.md — 現在状態と次手順
 
 最終再編成: 2026-06-27  
-最終更新: 2026-06-27（Phase A P1 実施: 仏France Pre-War 形跡なし→不明 是正。ブランチ topology の落とし穴を明記）  
+最終更新: 2026-06-27（Phase B 実施・push 済み: rating 透明化ノックアウト基準を湾岸2ケースに試験導入。CANON/HISTORY を追跡化。worktree 片付け）  
 由来: `HANDOFF(3).md` から、次セッションで必要な現在状態と次手順だけを抽出・整理。
 
 > ⚠️ ブランチ topology（最重要・嵌まりやすい）
-> - プロジェクト本体は **`master` / `origin/master`**（このメインチェックアウト `C:\Users\Masayuki\Documents\war_sustainability_audit`）。
+> - プロジェクト本体は **`master` / `origin/master`**（このメインチェックアウト `C:\Users\Masayuki\Documents\war_sustainability_audit`）。現在の tip は **`6b7115e`（origin/master と同期済み）**。
 > - `main`（`023e43c Initial commit`）は **LICENSE だけの空コミット**。`claude/*` worktree は main 起点で作られ初期状態は空 → 新 worktree では最初に `git reset --hard master` で揃える。
-> - `CANON.md` / `HISTORY.md` は **git 管理外（untracked）**。worktree で読むには master からコピーする。
-> - この master チェックアウトの `HANDOFF.md`（再編成版）と CANON.md / HISTORY.md は **未コミットの作業ツリー状態**。コミット済み HANDOFF（272d0eb）は旧版なので注意。
-> - 本セッションの France 修正コミット `61d0d13` は worktree ブランチ **`claude/festive-poitras-5f9ac3` 上のみ**。master/origin には未反映。次セッションで取り込むか判断すること。
+> - `CANON.md` / `HISTORY.md` は **`6b7115e` で git 追跡対象に変更済み**（以前の untracked 運用は終了）。新 worktree では `git reset --hard master` すれば揃う（手動コピー不要）。
+> - **作業場所の罠**: worktree がセットアップ済みでも、Read/Edit でメインチェックアウトの絶対パスを使うと編集がメイン側に入り、worktree の検証に出ない。作業中の Read/Edit は常に worktree パス（`...\.claude\worktrees\<name>\...`）を使うこと。食い違ったらメイン側を `git checkout -- <files>` で巻き戻し、worktree へ再適用。
+> - 旧 worktree `claude/festive-poitras-5f9ac3`（Phase A/B セッション）は **片付け済み**。Phase B は master に cherry-pick（`fac05c7`）、France 精緻化は master 作業ツリー版を `6b7115e` で確定済み。
 
 ## 0. このファイルの目的
 
@@ -81,7 +81,20 @@ styles.css
 
 ## 3. 直近で完了した内容（要約）
 
-### 本セッション（2026-06-27）: Phase A P1 — 仏France Pre-War 是正
+### 本セッション（2026-06-27 後半）: Phase B — rating 透明化 試験導入 ＋ master 確定
+
+- **Phase B（rating 透明化）を湾岸2ケースに試験導入**。CANON 6B-1 に基づき `ratingRules.knockoutCriteria` を追加（rating は編集判断のまま、自動算出には使わない上限制約の説明）。
+  - イラク側（D+/D）: 外部介入見積もりの重大懸念で上限 D+、期限後の継戦・再評価不全で上限 D。`applies:true` で**発火**し実 cap。
+  - 連合側（B+/B）: 長期封じ込めコスト確定で上限 C+、政権存続＋人道危機 複合確定で上限 B-。`applies:false` で**未発火**＝条件付き上限のみ提示。
+  - `applies` フィールドで発火/未発火を明示し、**低評価=発火 / 高評価=未発火**の対照を可視化。renderers が「該当（発火）/非該当（未発火）」を Audit Opinion に表示。
+  - `auditSchema.js`: `knockoutCriteria[].cellIds` の参照整合検査を追加（`missing_knockout_cell`）。
+  - CANON 6B-1 に `cellIds`/`applies` を正典化。
+- cache-busting を **`20260627-phaseb-coalition`** に同期（5箇所＋CANON §K）。
+- **master 確定とpush**: Phase B を master に cherry-pick（`fac05c7`）。CANON.md/HISTORY.md を追跡化し France/Ukraine 精緻化を確定（`6b7115e`）。`origin/master` に push 済み（同期）。
+- 検証: `node --check` 全OK / `verify.js` 全8ケース 0件 ALL CHECKS PASSED。
+- **未着手（次の候補）**: Phase B のウクライナ等への横展開 / P3（Ukraine 10件の標準形統一）/ 「未収集なのに形跡なし」検出 lint / Phase C（依存関係）。
+
+### 前半セッション（2026-06-27）: Phase A P1 — 仏France Pre-War 是正
 
 - Pre-War 全43項目を棚卸しスクリプトで集計し、`不明` と `形跡なし` の使い分けに3流儀の混在を確認。
   - 流儀A（Ukraine 両側）: `不明` + `nextEvidenceActionType:"collect_primary_source"`（正）
@@ -91,8 +104,7 @@ styles.css
   - 前者の **偽の `重大懸念`（高×形跡なし）を解消** → 両者とも `要検証(derived)`。
 - 結果: `形跡なし` 全体が 4件→2件（残2は流儀Bの適正）。
 - 検証: `node --check` OK / `verify.js` 全0件 ALL CHECKS PASSED。
-- コミット `61d0d13`（worktree ブランチ `claude/festive-poitras-5f9ac3` 上のみ）。
-- **未着手（次の候補）**: P3（Ukraine 10件に `noEvidenceReason:"証拠未収集"` 付与で標準形に統一）/ 「未収集なのに形跡なし」検出 lint の追加 / Phase B。
+- この是正は当初 worktree の `61d0d13`（狭い6行版）だったが、master 作業ツリーにより広い版（動員セル格下げ・evidence type 精緻化を含む）があり、**後者を `6b7115e` で master に確定**。`61d0d13` は master には乗せていない。
 
 ### 仏 France ケース
 
@@ -136,7 +148,7 @@ styles.css
 
 ## 4. 現在の注意点
 
-- cache-busting の実値は **`20260627-ruu-time-caveats`**（index.html / app.js / data/cases/index.js / ui/renderers.js / verify.js の5箇所で一致確認済み。2026-06-27）。CANON §K の `20260626-fpw-france` は古い記述。
+- cache-busting の実値は **`20260627-phaseb-coalition`**（index.html / app.js / data/cases/index.js / ui/renderers.js / verify.js の5箇所で一致。CANON §K も同値に更新済み。2026-06-27）。
 - 原文には複数時点の cache-bust 文字列が残っている。次回も実ファイルの import を直接確認すること。
 - `verify.js` がある前提の記述があるが、実在を確認してから使うこと。
 - `preview_screenshot` はタイムアウトしがちなので、`preview_eval` または Node import 検証を優先する。
@@ -156,9 +168,10 @@ styles.css
 
 候補（本セッションの続き優先）:
 
+- **Phase B 横展開**: ウクライナ両側・普仏両側などに `ratingRules.knockoutCriteria` を展開。湾岸2ケース（イラク=発火 / 連合=未発火）が雛形。`applies` で発火/未発火を明示する流儀を踏襲。
 - **P3**: Ukraine 両側10件の `不明` 項目に `noEvidenceReason:"証拠未収集"` を付与し CANON §6 標準形へ統一。
 - **lint 追加**: 「`形跡なし` なのに証拠探索状態が不十分」を検出する検査を `auditSchema.js` に追加（Gulf イラク2件のような `noEvidenceReason:"該当証拠なし"`＋調査範囲明記は許容、France 旧状態のような未収集の `形跡なし` を弾く）。再発防止。
-- **Phase B**: rating 透明化（`ratingRules.knockoutCriteria` の1ケース試験導入）。
+- **Phase C**: 依存関係（`dependencyRules`）のデータのみ試験導入。
 
 その他候補:
 
