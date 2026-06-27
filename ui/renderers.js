@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260627-ruu-ukraine";
+} from "../data/auditSchema.js?v=20260627-ruu-expost-cleanup";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -138,7 +138,7 @@ function renderOverview() {
           <div class="metric-row"><dt>監査対象</dt><dd>${snapshot.auditedActor}</dd></div>
           <div class="metric-row"><dt>評価単位</dt><dd>戦争単位</dd></div>
           <div class="metric-row"><dt>監査範囲</dt><dd>${snapshot.scope}</dd></div>
-          <div class="metric-row"><dt>主評価</dt><dd>${snapshot.primaryResponsibility}</dd></div>
+          <div class="metric-row"><dt>主要な責任評価</dt><dd>${snapshot.primaryResponsibility}</dd></div>
           <div class="metric-row"><dt>不確実性</dt><dd>${snapshot.uncertainty}</dd></div>
           <div class="metric-row"><dt>補助格付け</dt><dd>${snapshot.rating}</dd></div>
         </dl>
@@ -153,7 +153,7 @@ function renderTimeline() {
   const selected =
     auditData.phases.find((phase) => phase.id === state.activeTimelinePhaseId) || auditData.phases[0];
   const hypothesisTrack = auditData.hypothesisTracking?.[0] || null;
-  const hypothesisCheckpoints = hypothesisTrack?.checkpoints || auditData.legacyHypothesisTracking || [];
+  const hypothesisCheckpoints = hypothesisTrack?.checkpoints || [];
   return `
     <section class="section">
       <h3>意思決定タイムライン</h3>
@@ -171,7 +171,7 @@ function renderTimeline() {
                 >${index + 1}. ${phase.name}</button>
                 <dl>
                   <dt>状態</dt><dd>${badge(phase.status)}</dd>
-                  <dt>修正余地</dt><dd>${phase.revisionRoom}</dd>
+                  <dt>修正余地</dt><dd>${badge(phase.revisionRoom)}</dd>
                   <dt>論点</dt><dd>${phase.mainIssue}</dd>
                 </dl>
               </article>
@@ -190,16 +190,18 @@ function renderTimeline() {
       <section class="section">
         <h3>判断前提の監査</h3>
         <dl class="metric-list">
-          ${selected.assumptions
-            .map(
-              (item) => `
-                <div class="metric-row">
-                  <dt>${item.type}</dt>
-                  <dd>${item.content}<br><span class="muted">根拠レベル: ${item.basis}</span></dd>
-                </div>
-              `,
-            )
-            .join("")}
+          ${selected.assumptions.length
+            ? selected.assumptions
+                .map(
+                  (item) => `
+                    <div class="metric-row">
+                      <dt>${item.type}</dt>
+                      <dd>${item.content}<br><span class="muted">根拠レベル: ${item.basis}</span></dd>
+                    </div>
+                  `,
+                )
+                .join("")
+            : `<p class="muted">なし</p>`}
         </dl>
       </section>
       <section class="section">
@@ -207,7 +209,7 @@ function renderTimeline() {
         <dl class="metric-list">
           <div class="metric-row"><dt>当時利用可能だった情報</dt><dd>${selected.availableInfo}</dd></div>
           <div class="metric-row"><dt>代替案</dt><dd>${formatValue(selected.alternatives)}</dd></div>
-          <div class="metric-row"><dt>判断修正余地</dt><dd>${selected.revisionRoom}。${selected.revisionNote}</dd></div>
+          <div class="metric-row"><dt>判断修正余地</dt><dd>${badge(selected.revisionRoom)}<br><span class="muted">${selected.revisionNote}</span></dd></div>
           <div class="metric-row"><dt>監査上の疑問</dt><dd>${selected.auditQuestion}</dd></div>
         </dl>
       </section>
@@ -656,16 +658,16 @@ function renderPreWar() {
       pending.length
         ? `
       <section class="section prewar-pending">
-        <h3>⏳ 保留中の昇格候補</h3>
-        <p class="muted">事前のリスク構造から重大懸念に相当しうるが、現在の証拠状態では断定できないため保留。証拠が「形跡なし」を裏づけ次第、自動的に重大懸念へ昇格する。</p>
+        <h3>未評価ギャップ</h3>
+        <p class="muted">開戦前に評価可能だったが、現在の証拠状態では評価形跡を断定できない項目。追加資料で「形跡あり/なし」が確認されるまで中立的に保留する。</p>
         ${pending
           .map(
             ({ item }) => `
               <div class="issue-row">
                 <strong>${item.name}</strong>
                 ${badge("要検証")}
-                <span class="cell-meta">→ 重大懸念候補</span>
-                <span class="cell-meta">収集最優先</span>
+                <span class="cell-meta">未評価ギャップ（高）</span>
+                <span class="cell-meta">一次資料待ち</span>
               </div>
             `,
           )

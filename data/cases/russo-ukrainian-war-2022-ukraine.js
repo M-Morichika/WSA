@@ -169,9 +169,7 @@ export const russoUkrainianWarUkraineCase = {
       evidenceStrength: "弱〜中",
       opinion: "米英などの侵攻警告は存在したが、ウクライナ側が全面侵攻の規模・時期をどこまで確信し、どの程度の準備を意図的に選択したかは未確定。",
       criteria: ["全面侵攻リスクを政策決定にどう反映したか", "過剰警報による社会・経済混乱とのトレードオフを記録していたか"],
-      changeConditions: ["2021年末〜2022年2月の国家安全保障・国防会議資料が確認された場合"],
-      noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
+      changeConditions: ["2021年末〜2022年2月の国家安全保障・国防会議資料が確認された場合"]
     },
     {
       id: "ruu_cell_kyiv_defense",
@@ -180,11 +178,9 @@ export const russoUkrainianWarUkraineCase = {
       status: "要検証",
       impact: "高",
       evidenceStrength: "中",
-      opinion: "首都残留と抗戦継続は、事後的には国家士気と国際支援獲得に寄与した可能性がある。ただし、このセルの ex-ante 評価では、開戦直後に利用可能だった情報から指導部喪失リスクと代替政府継続計画の有無をどこまで評価していたかを検証対象に限定する。",
+      opinion: "首都残留と抗戦継続は、事後的には国家士気と国際支援獲得に寄与した可能性がある。ただし、このセルの ex-ante 評価では、開戦直後に利用可能だった情報から指導部喪失リスクと代替政府継続計画の有無をどこまで評価していたかを検証対象に限定する。ex-ante 根拠として重く見るのは戒厳令・総動員発表に基づく RUU-EL-004 であり、RUU-EL-005 / RUU-EL-006 / RUU-EL-021 は後知恵対照として扱い、セル評価の直接根拠には算入しない。",
       criteria: ["政府残留のリスクと効果をどう評価したか", "指導部喪失時の代替指揮系統が準備されていたか"],
-      changeConditions: ["政府継続計画や首都防衛計画の詳細が確認された場合"],
-      noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
+      changeConditions: ["政府継続計画や首都防衛計画の詳細が確認された場合"]
     },
     {
       id: "ruu_cell_military_readiness",
@@ -195,22 +191,18 @@ export const russoUkrainianWarUkraineCase = {
       evidenceStrength: "弱〜中",
       opinion: "2014年以降の軍改革と実戦経験は防衛能力を高めた可能性がある一方、帳簿上の軍事バランスではロシア優位が大きく、準備十分性は内部資料待ち。",
       criteria: ["全面侵攻に備えた部隊配備・予備役・防空・通信の準備状況", "ロシア軍優位を前提にした防衛計画が存在したか"],
-      changeConditions: ["開戦前の作戦命令・部隊展開・防衛準備資料が確認された場合"],
-      noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
+      changeConditions: ["開戦前の作戦命令・部隊展開・防衛準備資料が確認された場合"]
     },
     {
       id: "ruu_cell_western_support",
-      axis: "外部支援・外交環境",
+      axis: "西側支援・外交環境",
       phase: "西側支援獲得・国家総動員",
       status: "要検証",
       impact: "高",
       evidenceStrength: "弱〜中",
       opinion: "西側支援は防衛継続の中核となったが、その規模・速度・持続性は開戦前に完全確定しておらず、支援依存リスクの事前評価が焦点となる。",
       criteria: ["支援遅延・支援不足時の代替計画", "制裁・武器供与・情報支援の持続性評価"],
-      changeConditions: ["開戦前の外交調整文書や支援見通し評価が確認された場合"],
-      noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
+      changeConditions: ["開戦前の外交調整文書や支援見通し評価が確認された場合"]
     },
     {
       id: "ruu_cell_mobilization_cost",
@@ -219,11 +211,9 @@ export const russoUkrainianWarUkraineCase = {
       status: "要検証",
       impact: "高",
       evidenceStrength: "弱",
-      opinion: "総動員と長期防衛は国家存続に寄与した一方、人的・経済的コストをどこまで事前・初期段階で評価していたかは未確定。",
+      opinion: "総動員と長期防衛は国家存続に寄与した一方、人的・経済的コストをどこまで事前・初期段階で評価していたかは未確定。現状リンクは全て開戦後・戦中/事後資料に基づくため、このセルは ratingBasis から外し、一次資料収集待ちの論点として扱う。",
       criteria: ["動員負担と社会耐久力の評価", "長期戦化時の財政・避難民・インフラ負担の見積もり"],
-      changeConditions: ["2022年春〜夏の政府内部コスト評価が確認された場合"],
-      noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
+      changeConditions: ["2022年春〜夏の政府内部コスト評価が確認された場合"]
     },
     {
       id: "ruu_cell_negotiation_space",
@@ -234,9 +224,7 @@ export const russoUkrainianWarUkraineCase = {
       evidenceStrength: "弱",
       opinion: "早期交渉や限定停戦の可能性は検証対象だが、早期妥協が主権喪失や占領被害を避けたと断定することもできない。",
       criteria: ["交渉条件と軍事情勢の比較", "占領リスク・主権維持・人的被害の比較評価"],
-      changeConditions: ["2022年春の交渉記録と軍事情勢評価が照合できた場合"],
-      noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
+      changeConditions: ["2022年春の交渉記録と軍事情勢評価が照合できた場合"]
     },
     {
       id: "ruu_cell_long_war_boundary",
@@ -247,9 +235,7 @@ export const russoUkrainianWarUkraineCase = {
       evidenceStrength: "弱",
       opinion: "2022年春以降の長期抗戦判断は初期防衛判断から連続するが、2023年以降の戦時経済・反攻・支援疲れは別ケースとして切り分けるべきである。このセルは境界管理のメモであり、初期ケースの格付け訴追には直接算入しない。",
       criteria: ["初期防衛成功後の戦争目的再定義", "長期戦化以降の判断を初期判断と混同していないか"],
-      changeConditions: ["2022年春〜夏の戦略再評価資料が確認された場合"],
-      noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
+      changeConditions: ["2022年春〜夏の戦略再評価資料が確認された場合"]
     }
   ],
 
@@ -498,7 +484,7 @@ export const russoUkrainianWarUkraineCase = {
       claimId: "ruu_claim_kyiv_stand_preserved_state",
       assessmentCellId: "ruu_cell_kyiv_defense",
       claimLabel: "首都残留",
-      target: "国家継続",
+      target: "事後対照: 国家継続",
       relationship: "支持",
       reviewState: "要検証",
       relevance: "高",
@@ -516,7 +502,7 @@ export const russoUkrainianWarUkraineCase = {
       claimId: "ruu_claim_kyiv_stand_risky",
       assessmentCellId: "ruu_cell_kyiv_defense",
       claimLabel: "首都残留",
-      target: "リスクへの留保",
+      target: "事後対照: リスクへの留保",
       relationship: "反証",
       reviewState: "要検証",
       relevance: "中",
@@ -662,7 +648,7 @@ export const russoUkrainianWarUkraineCase = {
       claimLabel: "防衛戦争",
       target: "文脈",
       relationship: "支持",
-      reviewState: "完了",
+      reviewState: "要検証",
       relevance: "高",
       timeFit: "間接",
       availableAtDecisionTime: false,
@@ -786,7 +772,7 @@ export const russoUkrainianWarUkraineCase = {
       claimId: "ruu_claim_kyiv_stand_preserved_state",
       assessmentCellId: "ruu_cell_kyiv_defense",
       claimLabel: "首都残留",
-      target: "国家継続への留保",
+      target: "事後対照: 国家継続への留保",
       relationship: "反証",
       reviewState: "要検証",
       relevance: "中",
@@ -823,7 +809,6 @@ export const russoUkrainianWarUkraineCase = {
     { cellId: "ruu_cell_kyiv_defense", weight: 1 },
     { cellId: "ruu_cell_military_readiness", weight: 1 },
     { cellId: "ruu_cell_western_support", weight: 1 },
-    { cellId: "ruu_cell_mobilization_cost", weight: 1 },
     { cellId: "ruu_cell_negotiation_space", weight: 1 }
   ]
 };

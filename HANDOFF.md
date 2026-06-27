@@ -91,7 +91,7 @@
 ### 2-NEW-L. ウクライナ戦争 ウクライナ／西側支援側 skeleton ケース追加（本セッション・未コミット）
 > ロシア側の対照ケースとして `russo-ukrainian-war-2022-ukraine` を追加。既存 UI は変更せず、ケースレジストリと相互 `counterpartCaseId`、cache-busting を `20260627-ruu-ukraine` に同期。
 - **新ケース方針**: ウクライナ政府・ゼレンスキー政権・ウクライナ軍を主対象とし、西側支援国は支援環境として扱う。侵略開始責任ではなく、防衛継続・首都防衛・国家動員・西側支援依存・長期抗戦化入口の判断を監査する。
-- **構成**: phase4 / preWar5 / assessment cell7 / evidence10 / claim10 / evidenceLink22 / ratingBasis6。各 claim は支持・反証を最低1本ずつ持ち、`lintCaseMethodology` 0。
+- **構成**: phase4 / preWar5 / assessment cell7 / evidence10 / claim10 / evidenceLink22 / ratingBasis5。各 claim は支持・反証を最低1本ずつ持ち、`lintCaseMethodology` 0。
 - **相互リンク**: ロシア側 `warCase.counterpartCaseId = "russo-ukrainian-war-2022-ukraine"`、ウクライナ側 `counterpartCaseId = "russo-ukrainian-war-2022-russia"`。
 - **検証**: `node --check` 対象主要ファイル OK、`node verify.js` で全8ケース `validateCaseRegistry` 0 / `validateCaseReferences` 0 / `lintCaseMethodology` 0。renderer HTML 生成も Overview/Timeline/Pre-War/Assessment/Evidence/Opinion 全ビューで成功。ブラウザ実機確認は環境ポリシーで `127.0.0.1:8123` アクセスがブロックされたため未実施。
 
@@ -115,8 +115,9 @@
 - Pre-War の provisional statusOverride を撤去し、内部資料未収集の項目は `不明` に戻した。西側支援依存の linkedEvidenceLinks は軍事バランス系 `RUU-EL-007/008` から専用 `RUU-EL-009/010` へ修正。
 - `RUU-EL-022` は「警告がなかった」風の見せかけ反証から、警告の実用的確度への反証に修正。
 - キーウ防衛セルと `RUU-EL-005/006` は ex-post 成功を直接免責に見せないよう、「事後的再構成」と明記。
-- `ruu_cell_long_war_boundary` は境界管理メモとして `ratingBasis` から除外し、Ukraine 側 ratingBasis は7→6。
+- `ruu_cell_long_war_boundary` と `ruu_cell_mobilization_cost` は境界管理/開戦後資料依存セルとして `ratingBasis` から除外し、Ukraine 側 ratingBasis は7→5。
 - 共有 UI: Timeline の alternatives 配列表示を ` / ` 区切りへ修正し、Overview/Opinion の `overviewOpinion` 改段落を段落表示する `renderParagraphs()` を追加。
+- Q1〜Q7/Q8一部の追加検討を反映: `RUU-EL-014` を `要検証` へ戻し、キーウ防衛セルに ex-ante 直接根拠は `RUU-EL-004` で後知恵対照は直接算入外と明記。接続済み assessment cell の `noEvidenceReason` を撤去。Timeline の修正余地表示をバッジ化し、空 assumptions に「なし」表示を追加。pending 表示は「未評価ギャップ」へ中立化。`primaryResponsibility` 表示ラベルと西側支援語彙も調整。`legacyHypothesisTracking` フォールバックは撤去。
 - 検証: `node --check data/cases/russo-ukrainian-war-2022-ukraine.js` OK / `node --check ui/renderers.js` OK / `node verify.js` 全8ケース 0 / render smoke 全8ケース全ビュー OK。
 
 ### 2-NEW-J. 普 prussia 訴追セルの ex-ante 接地強化＋格付け「未確定」の明文化＋Opinion モードトグル撤去（`1f571bc`＋ratingNote是正 `9ad43d1`・push済み）
