@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260627-ruu-time-caveats";
+} from "../data/auditSchema.js?v=20260627-phaseb-coalition";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -536,6 +536,26 @@ function renderOpinion() {
               })
               .join("")}
           </ul>
+        ` : ""}
+        ${auditData.ratingRules?.knockoutCriteria?.length ? `
+          <h3>ノックアウト基準（上限制約）</h3>
+          <p class="muted">平均点では相殺できない致命的欠落により rating 上限を制限する説明。自動算出ではない。</p>
+          <ul class="clean">
+            ${auditData.ratingRules.knockoutCriteria
+              .map((ko) => {
+                const cells = (Array.isArray(ko.cellIds) ? ko.cellIds : [])
+                  .map((id) => getAssessmentCell(id))
+                  .filter(Boolean)
+                  .map((cell) => `${cell.axis} / ${cell.phase}`)
+                  .join("、");
+                const applies = ko.applies === true ? "該当（発火）" : ko.applies === false ? "非該当（未発火）" : null;
+                return `<li><strong>上限 ${ko.capRatingAt}</strong>${applies ? ` <span class="muted">［現状: ${applies}］</span>` : ""}：${ko.condition}<br><span class="muted">${ko.rationale}${cells ? `（対象: ${cells}）` : ""}</span></li>`;
+              })
+              .join("")}
+          </ul>
+          ${auditData.ratingRules.weightedScore?.enabled === false
+            ? `<p class="muted">加重平均は自動算出に使用しない。${auditData.ratingRules.weightedScore.note || ""}</p>`
+            : ""}
         ` : ""}
       </section>
       <section class="section">

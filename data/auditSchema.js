@@ -189,6 +189,19 @@ export function validateCaseReferences(caseData) {
     }
   });
 
+  // Phase B: ratingRules.knockoutCriteria[].cellIds → assessmentCell の参照整合（任意フィールド）。
+  const knockoutCriteria = Array.isArray(caseData.ratingRules?.knockoutCriteria)
+    ? caseData.ratingRules.knockoutCriteria
+    : [];
+  knockoutCriteria.forEach((ko, index) => {
+    const cellIds = Array.isArray(ko.cellIds) ? ko.cellIds : [];
+    cellIds.forEach((id) => {
+      if (!assessmentCellIds.has(id)) {
+        issues.push({ type: "missing_knockout_cell", id, koId: ko.id, index });
+      }
+    });
+  });
+
   // 注: hypothesisTracking[].checkpoints[].phase は phase.name への参照ではなく
   //   自由記述のチェックポイント名（例「機動部隊派遣後」）であり、ID 参照を持たない。
   //   よって参照整合の検査対象にはしない（誤検知を避ける）。

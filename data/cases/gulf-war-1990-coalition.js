@@ -9,7 +9,7 @@ export const gulfWar1990CoalitionCase = {
     primaryResponsibility: "限定戦争目的と戦後コスト見積もり責任",
     uncertainty: "中",
     rating: "B+/B",
-    ratingNote: "B+/B は限定目的・正統性・連合形成の強さを重く見た暫定格付け。最大 weight の長期封じ込めコストは、現時点では確定重大懸念ではなく暫定的な要検証として扱う。",
+    ratingNote: "B+/B は限定目的・正統性・連合形成の強さを重く見た暫定格付け。最大 weight の長期封じ込めコストは、現時点では確定重大懸念ではなく暫定的な要検証として扱う。下記ノックアウト基準は現状いずれも未発火（applies:false）だが、最大 weight の長期封じ込めコスト等が重大懸念に確定すれば総合評価の上限が引き下がる条件付き上限を示す。",
     counterpartCaseId: "gulf-war-1990-iraq",
   },
   overviewOpinion:
@@ -994,5 +994,37 @@ export const gulfWar1990CoalitionCase = {
     { cellId: "gwc_cell_uprisings_humanitarian", weight: 2 },
     { cellId: "gwc_cell_containment_cost", weight: 3 },
   ],
+
+  // Phase B（rating 透明化）試験導入。CANON 6B-1 準拠。
+  // 連合側は高評価ケース（B+/B）であり、ノックアウト基準は現状いずれも未発火（applies:false）。
+  // イラク側（発火して D に cap）との対照で、条件付き上限の性質を示す。
+  ratingRules: {
+    knockoutCriteria: [
+      {
+        id: "ko_containment_cost_critical",
+        cellIds: ["gwc_cell_containment_cost"],
+        applies: false,
+        condition:
+          "長期封じ込めコスト（最大 weight・高重要度）が重大懸念に確定した場合。制裁・査察・飛行禁止区域・地域駐留の長期コストを作戦停止前に代替案と体系比較していなかったと立証された場合。",
+        capRatingAt: "C+",
+        rationale:
+          "最大 weight の戦後設計コストが致命的欠落と確定すれば、限定目的・正統性・連合形成の強さでは相殺できない。現状は同時代公開説明により暫定要検証に留まり、本基準は未発火。",
+      },
+      {
+        id: "ko_postwar_humanitarian_critical",
+        cellIds: ["gwc_cell_regime_survival", "gwc_cell_uprisings_humanitarian"],
+        applies: false,
+        condition:
+          "サダム政権存続リスクと蜂起・人道危機への不介入（ともに高重要度）が同時に重大懸念へ確定した場合。",
+        capRatingAt: "B-",
+        rationale:
+          "戦後設計の人道・再抑止コストが複合的な致命欠落と確定すれば B 圏上限を維持できない。現状は要注意／要検証であり、本基準は未発火。",
+      },
+    ],
+    weightedScore: {
+      enabled: false,
+      note: "ratingBasis の weight は参考指標であり、rating の自動決定には使わない。",
+    },
+  },
 };
 

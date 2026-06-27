@@ -9,6 +9,8 @@ export const gulfWar1990IraqCase = {
     primaryResponsibility: "侵攻判断と継戦可能性見積もり責任",
     uncertainty: "中",
     rating: "D+/D",
+    ratingNote:
+      "格付け D+/D は加重平均の自動算出ではなく編集判断である。下記ノックアウト基準（外部介入見積もりの重大懸念で上限 D+、期限後の継戦・再評価不全で上限 D）により、平均点では相殺できない致命的欠落として総合評価の上限が D 圏に制限される。ratingBasis の weight は参考指標であり、rating を機械的に決定しない。",
     counterpartCaseId: "gulf-war-1990-coalition",
   },
   overviewOpinion:
@@ -716,4 +718,36 @@ export const gulfWar1990IraqCase = {
     { cellId: "gw_cell_reassessment_deadline", weight: 3 },
     { cellId: "gw_cell_termination_ceasefire", weight: 1 },
   ],
+
+  // Phase B（rating 透明化）試験導入。CANON 6B-1 準拠。
+  // knockoutCriteria は rating の上限制約の説明に留め、自動算出には使わない。
+  // 平均点では相殺できない致命的欠落だけを対象にする。
+  ratingRules: {
+    knockoutCriteria: [
+      {
+        id: "ko_external_reaction_critical",
+        cellIds: ["gw_cell_external_reaction_opening"],
+        applies: true,
+        condition:
+          "外部介入見積もり（高重要度）が重大懸念。米国・国連・湾岸諸国の大規模反応リスクを下振れ視し、限定反応で交渉材料化できるとの前提に立った形跡。",
+        capRatingAt: "D+",
+        rationale:
+          "侵攻判断の中核前提（限定反応仮説）が崩れている場合、他項目が相対的に良好でも総合評価の上限を引き上げられない。",
+      },
+      {
+        id: "ko_sustainment_reassessment_failure",
+        cellIds: ["gw_cell_sustainment_deadline", "gw_cell_reassessment_deadline"],
+        applies: true,
+        condition:
+          "継戦・占領維持能力と判断修正能力（ともに高重要度）が重大懸念。決議678・多国籍軍展開で前提が明白に弱体化した後も無条件撤退を拒否。",
+        capRatingAt: "D",
+        rationale:
+          "前提弱体化が明白化した後の再評価不全は、平均点では相殺できない致命的欠落であり、総合評価の上限を D まで抑える。",
+      },
+    ],
+    weightedScore: {
+      enabled: false,
+      note: "ratingBasis の weight は参考指標であり、rating の自動決定には使わない。",
+    },
+  },
 };
