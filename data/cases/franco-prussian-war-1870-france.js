@@ -121,30 +121,30 @@ export const francoPrussianWarFranceCase = {
       name: "自国の動員制度・兵站準備",
       category: "戦略・動員",
       exAnteEvaluability: "高",
-      actuallyEvaluated: "形跡なし",
+      actuallyEvaluated: "不明",
       evaluationDifficulty: "低",
       auditQuestion: "自国の鉄道輸送や補給の未整備を把握していたか？",
       counterPoint: "一定の自信はあった",
-      evidenceBasis: "自国の鉄道輸送や補給の未整備は自国組織の問題であり評価可能性は高いが、事前評価の有無を確かめる一次資料（陸軍省の事前計画・兵站見積もり）が未収集のため、現段階では『形跡なし』とは断定できない。",
+      evidenceBasis: "自国の鉄道輸送や補給の未整備は自国組織の問題であり評価可能性は高いが、事前評価の有無を確かめる一次資料（陸軍省の事前計画・兵站見積もり）が未収集のため、現段階では『不明』に留める。",
       linkedCells: ["fpw_cell_mobilization_crisis"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["FPW-EL-005", "FPW-EL-006"],
-      noEvidenceReason: null
+      noEvidenceReason: "証拠未収集"
     },
     {
       id: "fpw_pw_system_gap",
       name: "参謀本部・電信・鉄道のシステム格差",
       category: "戦略・動員",
       exAnteEvaluability: "低",
-      actuallyEvaluated: "形跡なし",
+      actuallyEvaluated: "不明",
       evaluationDifficulty: "高",
       auditQuestion: "システム格差の認識を欠いていたか？",
       counterPoint: "当時は優位性が確立・認知されていなかった",
-      evidenceBasis: "当時はプロイセン型参謀本部制度の優位性が現代ほど確立・認知されておらず、事前の評価可能性自体が低い。実際にどの程度認識していたかを示す一次資料は未収集。",
+      evidenceBasis: "当時はプロイセン型参謀本部制度の優位性が現代ほど確立・認知されておらず、事前の評価可能性自体が低い。実際にどの程度認識していたかを示す一次資料は未収集のため、『形跡なし』とは断定しない。",
       linkedCells: ["fpw_cell_mobilization_crisis"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["FPW-EL-007", "FPW-EL-008"],
-      noEvidenceReason: null
+      noEvidenceReason: "証拠未収集"
     },
     {
       id: "fpw_pw_regime_survival",
@@ -170,10 +170,10 @@ export const francoPrussianWarFranceCase = {
       id: "fpw_cell_mobilization_crisis",
       axis: "動員能力見積もり",
       phase: "開戦危機・宣戦判断",
-      status: "重大懸念",
+      status: "要検証",
       impact: "高",
       evidenceStrength: "弱",
-      opinion: "ル・ブフ陸軍大臣の議会答弁（FPW-E-005）等から、陸軍内部には『準備完了』という主観的な自信が存在したことが支持される。一方で、戦後の研究（FPW-E-001）が示す実際の動員混乱を、開戦前に客観的に予見できたかを示す一次資料の裏付けは弱く、判断当時の情報の非対称性を考慮すれば、プロイセンの動員速度を正確に見積もれていなかった重大な懸念が残る。",
+      opinion: "ル・ブフ陸軍大臣の議会答弁（FPW-E-005）等から、陸軍内部には『準備完了』という主観的な自信が存在したことが支持される。一方で、戦後の研究（FPW-E-001）が示す実際の動員混乱を、開戦前に客観的に予見できたかを示す一次資料の裏付けは弱い。現段階では、過信の疑いは残るが、事前に評価可能だった失敗を明確に無視したとまでは断定しない。",
       criteria: ["プロイセンの鉄道動員計画と、自国の常備軍・予備役体制の比較評価がなされていたか"],
       changeConditions: ["当時のフランス軍中枢による正確な事前見積もり資料が発見されれば懸念は緩和される"],
       noEvidenceReason: null
@@ -185,7 +185,7 @@ export const francoPrussianWarFranceCase = {
       status: "要注意",
       impact: "高",
       evidenceStrength: "中〜強",
-      opinion: "1869–70年の対オーストリア・イタリア交渉の頓挫を示す外交記録（FPW-E-006）から、開戦時点でフランスが外交的に孤立しており、他大国の確約が得られていないことは当時の指導部にとって既知の事実（ex-ante）であった。戦後の研究（FPW-E-002）や回顧録（FPW-E-004b）には南ドイツ参戦リスクの不確実性が指摘されているが、確実な同盟の担保がないまま開戦に踏み切った外交判断には重大な懸念がある。",
+      opinion: "1869–70年の対オーストリア・イタリア交渉の頓挫を示す外交記録（FPW-E-006）から、開戦時点でフランスが外交的に孤立しており、他大国の確約が得られていないことは当時の指導部にとって既知の事実（ex-ante）であった。戦後の研究（FPW-E-002）や回顧録（FPW-E-004b）には南ドイツ参戦リスクの不確実性が指摘されているが、確実な同盟の担保がないまま開戦に踏み切った外交判断には要注意の懸念がある。",
       criteria: ["エムス電報によるナショナリズムの爆発を予測し、南ドイツの参戦リスクを評価していたか"],
       changeConditions: ["南ドイツ諸邦の行動が予測不可能であったことを示す当時の外交記録が確認されれば緩和される"],
       noEvidenceReason: null
@@ -209,7 +209,7 @@ export const francoPrussianWarFranceCase = {
       status: "重大懸念",
       impact: "高",
       evidenceStrength: "中〜強",
-      opinion: "パリカオ伯爵からマクマオン将軍への進軍命令電報（FPW-E-007）から、軍事的にはパリへの後退が合理的だった局面で、摂政政府が『パリ放棄は革命を招く』との政権維持上の理由によりバゼーヌ救援を強行させたことが直接（ex-ante）支持される。戦後の研究（FPW-E-001）による軍事的擁護論もあるが、前線指揮官の懸念を押し切って政治動機でセダンへ向かわせた責任の所在は明らかである。",
+      opinion: "パリカオ伯爵からマクマオン将軍への進軍命令電報（FPW-E-007）から、軍事的にはパリへの後退が合理的だった局面で、摂政政府が『パリ放棄は革命を招く』との政権維持上の理由によりバゼーヌ救援を強く求めたことが直接（ex-ante）支持される。戦後の研究（FPW-E-001）による軍事的擁護論もあるため、セダンの結果そのものではなく、前線指揮官の懸念を押して政治的制約を優先した判断を評価対象とする。",
       criteria: ["パリ後退という軍事的選択肢を、政権維持上の理由がどの程度覆したか", "前線指揮官の軍事的反対が同時代に表明されていたか"],
       changeConditions: ["バゼーヌ救援に十分な軍事的勝算・合理があったことを示す同時代の作戦評価が優越する場合"],
       noEvidenceReason: null
@@ -221,7 +221,7 @@ export const francoPrussianWarFranceCase = {
       id: "FPW-E-001",
       title: "Michael Howard, The Franco-Prussian War",
       source: "Michael Howard, The Franco-Prussian War: The German Invasion of France, 1870–1871 (Rupert Hart-Davis, 1961 / Routledge reprint ISBN: 978-0415266710 等)",
-      type: "公開資料",
+      type: "戦後研究",
       publishedDate: "1961",
       coveragePeriod: "1870-1871",
       authenticity: "高",
@@ -232,7 +232,7 @@ export const francoPrussianWarFranceCase = {
       id: "FPW-E-002",
       title: "Geoffrey Wawro, The Franco-Prussian War",
       source: "Geoffrey Wawro, The Franco-Prussian War: The German Conquest of France in 1870–1871 (Cambridge University Press, 2003, ISBN: 978-0521584364)",
-      type: "公開資料",
+      type: "戦後研究",
       publishedDate: "2003",
       coveragePeriod: "1870-1871",
       authenticity: "高",
@@ -243,8 +243,8 @@ export const francoPrussianWarFranceCase = {
       id: "FPW-E-003",
       title: "エムス電報および関連外交文書",
       source: "当時のビスマルクによる電報編集の経緯（ビスマルク回顧録『Gedanken und Erinnerungen』(1898) 第2巻「Die Emser Depesche」の章）、および当時の『Journal officiel』等を通じたフランス国内への公表記録。Internet Archive / Gallica等で所蔵確認",
-      type: "同時代公開資料",
-      publishedDate: "1870",
+      type: "同時代公開資料＋戦後回顧録",
+      publishedDate: "1870/1898",
       coveragePeriod: "1870",
       authenticity: "高",
       interpretiveReliability: "中",
@@ -266,7 +266,7 @@ export const francoPrussianWarFranceCase = {
       title: "エミール・オリヴィエ回顧録",
       source: "Émile Ollivier, 『L'Empire libéral』 第14巻 (La guerre) (Garnier frères, 1909)。1870年7月15日の議会での「軽い心で (d'un cœur léger)」発言等を含む。Gallica / Internet Archive等でデジタル所蔵確認",
       type: "回顧録",
-      publishedDate: "1895",
+      publishedDate: "1909",
       coveragePeriod: "1870",
       authenticity: "高",
       interpretiveReliability: "低",
@@ -274,7 +274,7 @@ export const francoPrussianWarFranceCase = {
     },
     {
       id: "FPW-E-005",
-      title: "ル・ブフ陸軍大臣の議会答弁および陸軍省事前計画書",
+      title: "ル・ブフ陸軍大臣の議会答弁",
       source: "1870年7月15日の立法院 (Corps législatif) におけるル・ブフ陸軍大臣の答弁（「ゲートルボタン一つ欠けていない」等）。当時の『Journal officiel de l'Empire français』や議会記録『Annales du Sénat et du Corps législatif』(1870年巻) に収録。Gallicaにて所蔵確認",
       type: "公刊一次資料",
       publishedDate: "1870",
@@ -287,8 +287,8 @@ export const francoPrussianWarFranceCase = {
       id: "FPW-E-006",
       title: "フランスの開戦前同盟外交の失敗と外交的孤立",
       source: "1869年の三国同盟（仏・墺・伊）交渉の不成立を示す書簡群（ローマ駐留問題に関するイタリアの条件提示とナポレオン3世の拒絶）。『Les origines diplomatiques de la guerre de 1870-1871』(フランス外務省編, 1910-1932, 全29巻) 等に開戦前の外交交渉記録として収録。HathiTrust / Internet Archive 等でデジタル所蔵を確認",
-      type: "公刊一次資料",
-      publishedDate: "1870",
+      type: "公刊外交文書集",
+      publishedDate: "1910-1932",
       coveragePeriod: "1869-1870",
       authenticity: "高",
       interpretiveReliability: "中",
@@ -297,20 +297,20 @@ export const francoPrussianWarFranceCase = {
     {
       id: "FPW-E-007",
       title: "バゼーヌ救援強行命令をめぐる政府＝前線の往復電報（1870年8月下旬）",
-      source: "1870年8月下旬、パリカオ伯爵（摂政政府）からマクマオン将軍への進軍命令電報（「もしバゼーヌを見捨ててパリへ退却すれば、パリに革命が起こるだろう」等の内容）。『Enquête parlementaire sur les actes du gouvernement de la Défense nationale』 Tome II: Dépêches télégraphiques officielles (Cerf et fils, 1875, p. 148 近辺) 等に同時代記録として収録。Gallica / Internet Archive 等で所蔵確認",
+      source: "1870年8月下旬、パリカオ伯爵（摂政政府）からマクマオン将軍への進軍命令電報（「もしバゼーヌを見捨ててパリへ退却すれば、パリに革命が起こるだろう」等の内容）。『Enquête parlementaire sur les actes du gouvernement de la Défense nationale』 Tome II: Dépêches télégraphiques officielles (Cerf et fils, 1875, p. 148 近辺) 等に同時代記録として収録。ページ指定は要精査",
       type: "公刊一次資料",
-      publishedDate: "1870",
+      publishedDate: "1875",
       coveragePeriod: "1870",
       authenticity: "高",
       interpretiveReliability: "中",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "FPW-E-008",
       title: "グラモン外相の追加保証要求と1870年7月の開戦決定",
       source: "1870年7月12日19時発のグラモン外相から駐普大使ベネデッティ宛の訓令電報（「王が将来の不再候補を保証すること」を要求）。ベネデッティ著『Ma mission en Prusse』(Plon, 1871, pp. 372-374) に原記録として収録。Internet Archive 所蔵 (Identifier: mamissionenpruss00beneuoft)",
       type: "公刊一次資料",
-      publishedDate: "1870",
+      publishedDate: "1871",
       coveragePeriod: "1870",
       authenticity: "高",
       interpretiveReliability: "中",
@@ -378,15 +378,15 @@ export const francoPrussianWarFranceCase = {
       claimLabel: "プロイセン動員速度",
       target: "過小評価",
       relationship: "反証",
-      relevance: "中",
+      relevance: "低",
       timeFit: "直接",
       availableAtDecisionTime: true,
       availableToAnalysts: false,
       knownByDecisionMakers: "明白",
-      knownByDecisionMakersBasis: "陸軍大臣自身の発言および内部計画書",
-      canSay: "ル・ブフ陸軍大臣が『準備完了』と豪語するなど、陸軍内部には客観的あるいは主観的な自信が存在したこと",
-      cannotSay: "その自信がプロイセンの実際の動員速度を正確に見積もった上での合理的なものであったこと",
-      reviewState: "確認済"
+      knownByDecisionMakersBasis: "陸軍大臣自身の議会答弁",
+      canSay: "ル・ブフ陸軍大臣が『準備完了』と豪語するなど、陸軍内部には主観的な自信が存在したこと。この限りで『何も評価しなかった』という強い claim には限定的な留保を置く",
+      cannotSay: "その自信がプロイセンの実際の動員速度を正確に見積もった上での合理的なものであったこと、または過小評価 claim 全体を直接反証すること",
+      reviewState: "要検証"
     },
     {
       id: "FPW-EL-003",
@@ -450,15 +450,15 @@ export const francoPrussianWarFranceCase = {
       claimLabel: "自国の動員混乱",
       target: "事前評価しなかった",
       relationship: "反証",
-      relevance: "中",
+      relevance: "低",
       timeFit: "直接",
       availableAtDecisionTime: true,
       availableToAnalysts: false,
       knownByDecisionMakers: "明白",
       knownByDecisionMakersBasis: "ル・ブフ陸軍大臣の議会答弁",
-      canSay: "陸軍大臣の答弁が示す通り、最高首脳部に対しては兵站・動員の準備が完全に整っていると公式に報告されていたこと",
-      cannotSay: "客観的な兵站データに基づく合理的な報告であったこと",
-      reviewState: "確認済"
+      canSay: "陸軍大臣の答弁が示す通り、最高首脳部に対しては兵站・動員の準備が整っているという公式説明がなされていたこと。この限りで『準備をまったく評価しなかった』という強い claim には限定的な留保を置く",
+      cannotSay: "客観的な兵站データに基づく合理的な報告であったこと、または動員混乱の過小評価 claim 全体を直接反証すること",
+      reviewState: "要検証"
     },
     {
       id: "FPW-EL-007",
@@ -486,15 +486,15 @@ export const francoPrussianWarFranceCase = {
       claimLabel: "システム格差",
       target: "認識欠如",
       relationship: "反証",
-      relevance: "中",
+      relevance: "低",
       timeFit: "直接",
       availableAtDecisionTime: true,
       availableToAnalysts: false,
       knownByDecisionMakers: "明白",
-      knownByDecisionMakersBasis: "フランス陸軍の装備優位に関する事前計画",
-      canSay: "シャスポー銃などの装備的優位性を根拠に、作戦面での独自の自信が存在したことが当時の計画からうかがえること",
-      cannotSay: "それが参謀本部制度のシステム格差を相殺しうるものだと合理的に評価されていたこと",
-      reviewState: "確認済"
+      knownByDecisionMakersBasis: "ル・ブフ陸軍大臣の議会答弁",
+      canSay: "フランス陸軍中枢に軍備・準備への主観的自信が存在したこと。この限りで『自国の軍事能力を一切検討していなかった』という強い claim には限定的な留保を置く",
+      cannotSay: "その自信が参謀本部制度・鉄道運用・電信運用のシステム格差を評価した結果であること、または認識欠如 claim 全体を直接反証すること",
+      reviewState: "要検証"
     },
     {
       id: "FPW-EL-009",
@@ -543,12 +543,12 @@ export const francoPrussianWarFranceCase = {
       relevance: "高",
       timeFit: "直接",
       availableAtDecisionTime: true,
-      availableToAnalysts: true,
+      availableToAnalysts: false,
       knownByDecisionMakers: "明白",
-      knownByDecisionMakersBasis: "開戦前の同盟交渉の経緯はフランス指導部自身が当事者として把握",
+      knownByDecisionMakersBasis: "開戦前の同盟交渉の経緯はフランス指導部自身が当事者として把握。ただし現参照は1910-1932年刊行の公刊外交文書集",
       canSay: "フランスは開戦時点で同盟交渉に失敗し、いずれの大国の確約も得られないまま外交的に孤立していたこと（南ドイツの離反に加え、大国支援の不在は開戦前に既知の外交環境だった）",
       cannotSay: "この孤立が指導部によって正しくリスクとして織り込まれていたか、あるいは既知の事実を軽視したかの断定",
-      reviewState: "確認済"
+      reviewState: "要検証"
     },
     {
       id: "FPW-EL-012",
@@ -561,12 +561,12 @@ export const francoPrussianWarFranceCase = {
       relevance: "高",
       timeFit: "直接",
       availableAtDecisionTime: true,
-      availableToAnalysts: true,
+      availableToAnalysts: false,
       knownByDecisionMakers: "明白",
-      knownByDecisionMakersBasis: "摂政政府と前線指揮官の間の同時代の電報",
-      canSay: "軍事的後退案を退け、政権維持上の理由からバゼーヌ救援を命じた政府電報が同時代に存在し、その結果マクマオン軍がセダンで包囲・降伏に至ったこと",
-      cannotSay: "パリへ後退していれば第二帝政が確実に延命できた、あるいはセダンの結末が完全に回避できたこと",
-      reviewState: "確認済"
+      knownByDecisionMakersBasis: "摂政政府と前線指揮官の間の同時代の電報。ただし現参照は1875年刊行の議会調査資料で、ページ指定は要精査",
+      canSay: "軍事的後退案を退け、政権維持上の理由からバゼーヌ救援を命じた政府電報が同時代に存在したこと",
+      cannotSay: "パリへ後退していれば第二帝政が確実に延命できた、セダンの結末が完全に回避できたこと、またはセダンでの包囲・降伏という結果を開戦前評価に直接算入できること",
+      reviewState: "要検証"
     },
     {
       id: "FPW-EL-013",
@@ -597,20 +597,16 @@ export const francoPrussianWarFranceCase = {
       relevance: "高",
       timeFit: "直接",
       availableAtDecisionTime: true,
-      availableToAnalysts: true,
+      availableToAnalysts: false,
       knownByDecisionMakers: "明白",
-      knownByDecisionMakersBasis: "1870年7月の外交・議会記録",
-      canSay: "ホーエンツォレルン候補が撤回された後もグラモン外相が将来の不再候補の保証を要求し、閣議・宮廷が開戦へ傾いた経緯が同時代記録にあり、危機の不必要なエスカレーションを示すこと",
+      knownByDecisionMakersBasis: "1870年7月の外交訓令として当時の外務当局・駐普大使が把握。ただし現参照は1871年刊行のベネデッティ著作",
+      canSay: "ホーエンツォレルン候補が撤回された後もグラモン外相が将来の不再候補の保証を要求し、危機がさらにエスカレートした経緯を示す同時代訓令が後年公刊資料に収録されていること",
       cannotSay: "そのエスカレーションが純粋に政権維持目的のみによるもので、安全保障上の懸念が一切なかったこと",
-      reviewState: "確認済"
+      reviewState: "要検証"
     }
   ],
 
   ratingBasis: [
-    {
-      cellId: "fpw_cell_mobilization_crisis",
-      weight: 2
-    },
     {
       cellId: "fpw_cell_diplomacy_crisis",
       weight: 2
