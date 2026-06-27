@@ -97,7 +97,8 @@ export const russoUkrainianWarRussiaCase = {
       evidenceBasis: "公開演説等から、歴史的・イデオロギー的な「一体性」の主張により抵抗意思が過小評価されていた形跡が強いが、内部文書の確認には至っていない。",
       linkedCells: ["ruw_cell_resistance_estimation"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-001", "RUW-EL-002", "RUW-EL-003"]
+      linkedEvidenceLinks: ["RUW-EL-001", "RUW-EL-002", "RUW-EL-003"],
+      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_pw_western_response",
@@ -111,7 +112,8 @@ export const russoUkrainianWarRussiaCase = {
       evidenceBasis: "2014年のクリミア併合時の経験等から西側の反応を限定的と見積もった可能性が指摘されているが、直接的な内部評価文書は未収集。",
       linkedCells: ["ruw_cell_western_response"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-004", "RUW-EL-005"]
+      linkedEvidenceLinks: ["RUW-EL-004", "RUW-EL-005"],
+      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_pw_russian_force_readiness",
@@ -125,7 +127,8 @@ export const russoUkrainianWarRussiaCase = {
       evidenceBasis: "開戦後の損耗と作戦の混乱から過大評価が強く疑われるが、事前の内部軍事見積もり文書は未公開。",
       linkedCells: ["ruw_cell_force_estimation"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-006", "RUW-EL-007"]
+      linkedEvidenceLinks: ["RUW-EL-006", "RUW-EL-007"],
+      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_pw_logistics_command",
@@ -139,7 +142,8 @@ export const russoUkrainianWarRussiaCase = {
       evidenceBasis: "キーウ方面の撤退等から兵站と指揮の破綻は明らかであるが、開戦前にこれを軍部がどう評価していたか（あるいは軽視されたか）は内部文書未公開。",
       linkedCells: ["ruw_cell_logistics_command"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-008", "RUW-EL-009"]
+      linkedEvidenceLinks: ["RUW-EL-008", "RUW-EL-009"],
+      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_pw_regime_ideology_bias",
@@ -153,7 +157,8 @@ export const russoUkrainianWarRussiaCase = {
       evidenceBasis: "開戦前の公開演説から強いイデオロギー的動機は読み取れるが、それが実際の意思決定においてどこまで情報を歪めたかは断定に制約がある。",
       linkedCells: ["ruw_cell_decision_process"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-010", "RUW-EL-011", "RUW-EL-012"]
+      linkedEvidenceLinks: ["RUW-EL-010", "RUW-EL-011", "RUW-EL-012"],
+      nextEvidenceActionType: "collect_primary_source"
     }
   ],
 

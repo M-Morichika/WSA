@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260627-ruu-expost-cleanup";
+} from "../data/auditSchema.js?v=20260627-ruu-time-caveats";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -32,6 +32,18 @@ function badge(label) {
   return `<span class="badge ${statusClass[label] || "review"}">${label}</span>`;
 }
 
+function relationshipBadge(label) {
+  const className = { 支持: "evidence-support", 反証: "evidence-counter", 保留: "evidence-hold" }[label] || "evidence-hold";
+  return `<span class="badge ${className}">${label}</span>`;
+}
+
+function timeBadge(link) {
+  const isAfterDecision = link.availableAtDecisionTime === false || link.target?.includes("事後対照");
+  const className = isAfterDecision ? "time-after" : "time-direct";
+  const label = isAfterDecision ? "事後対照" : "判断時点可";
+  return `<span class="time-badge ${className}">${label}</span>`;
+}
+
 function getEvidence(id) {
   return auditData.evidence.find((item) => item.id === id);
 }
@@ -50,7 +62,7 @@ function getEvidenceActionLabel(type) {
 
 function getCellsWithoutEvidenceLinks() {
   return auditData.assessmentCells.filter(
-    (cell) => !auditData.evidenceLinks.some((link) => link.assessmentCellId === cell.id),
+    (cell) => cell.noEvidenceReason || !auditData.evidenceLinks.some((link) => link.assessmentCellId === cell.id),
   );
 }
 
@@ -314,7 +326,7 @@ function renderAssessment() {
           const evidence = getEvidence(link.evidenceId);
           return `
             <div class="issue-row assessment-link-row">
-              ${badge(link.relationship)}
+              ${relationshipBadge(link.relationship)}
               <strong>${evidence ? evidence.title : missingEvidenceTitle(link)}</strong>
               <span>真正性 ${evidence?.authenticity || "未確認"}</span>
               <span>${link.reviewState}</span>
@@ -388,9 +400,10 @@ function renderEvidence() {
                     <td>
                       <div class="cell-stack">
                         <strong>${link.target}</strong>
-                        ${badge(link.relationship)}
+                        ${relationshipBadge(link.relationship)}
                         <span class="cell-meta">真正性: ${evidence.authenticity}</span>
                         <span class="cell-meta">解釈信頼性: ${evidence.interpretiveReliability}</span>
+                        ${timeBadge(link)}
                       </div>
                     </td>
                   </tr>
@@ -405,26 +418,28 @@ function renderEvidence() {
       <section class="section">
         <h3>証拠待ち・未接続セル一覧</h3>
         <p class="muted">${getNoEvidenceReasonSummary(cellsWithoutEvidenceLinks)}</p>
-        ${getCellsWithoutEvidenceLinksByReason(cellsWithoutEvidenceLinks)
-          .map(
-            (group) => `
-              <div class="queue-group">
-                <h4>${group.reason}</h4>
-                ${group.cells
-                  .map(
-                    (cell) => `
-                      <button class="queue-row" type="button" data-queue-assessment-cell="${cell.id}">
-                        <strong>${cell.axis} / ${cell.phase}</strong>
-                        <span>${getEvidenceActionLabel(cell.nextEvidenceActionType)}</span>
-                        <span class="queue-action">Assessmentで確認</span>
-                      </button>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            `,
-          )
-          .join("")}
+        ${cellsWithoutEvidenceLinks.length
+          ? getCellsWithoutEvidenceLinksByReason(cellsWithoutEvidenceLinks)
+              .map(
+                (group) => `
+                  <div class="queue-group">
+                    <h4>${group.reason}</h4>
+                    ${group.cells
+                      .map(
+                        (cell) => `
+                          <button class="queue-row" type="button" data-queue-assessment-cell="${cell.id}">
+                            <strong>${cell.axis} / ${cell.phase}</strong>
+                            <span>${getEvidenceActionLabel(cell.nextEvidenceActionType)}</span>
+                            <span class="queue-action">Assessmentで確認</span>
+                          </button>
+                        `,
+                      )
+                      .join("")}
+                  </div>
+                `,
+              )
+              .join("")
+          : `<p class="muted">証拠待ち・未接続セルはありません。</p>`}
       </section>
 
       <section class="section detail-panel">
@@ -443,7 +458,7 @@ function renderEvidence() {
             <dl class="metric-list">
               <div class="metric-row"><dt>刊行/生成</dt><dd>${selectedEvidence?.publishedDate || "未確認"}</dd></div>
               <div class="metric-row"><dt>対象期間</dt><dd>${selectedEvidence?.coveragePeriod || "未確認"}</dd></div>
-              <div class="metric-row"><dt>時点適合度</dt><dd>${selectedLink.timeFit}</dd></div>
+              <div class="metric-row"><dt>時点適合度</dt><dd>${selectedLink.timeFit} ${timeBadge(selectedLink)}</dd></div>
               <div class="metric-row"><dt>判断時点で利用可能</dt><dd>${selectedLink.availableAtDecisionTime ? "はい" : "いいえ"}</dd></div>
               <div class="metric-row"><dt>分析者が知り得た</dt><dd>${selectedLink.availableToAnalysts ? "はい" : "いいえ"}</dd></div>
             </dl>
@@ -505,10 +520,23 @@ function renderOpinion() {
               // S-2: 両ケースとも cellId に統一済み。旧 item.cell（表示文字列）フォールバックは撤去。
               const cell = item.cellId ? getAssessmentCell(item.cellId) : null;
               const label = cell ? `${cell.axis} / ${cell.phase}` : item.cellId || "未設定";
-              return `<div class="metric-row"><dt>${label}</dt><dd>重み ${item.weight}</dd></div>`;
+              const caveats = [cell?.status ? `状態 ${cell.status}` : null, cell?.evidenceStrength ? `証拠 ${cell.evidenceStrength}` : null, cell?.noEvidenceReason ? cell.noEvidenceReason : null].filter(Boolean).join(" / ");
+              return `<div class="metric-row"><dt>${label}</dt><dd>重み ${item.weight}${caveats ? `<br><span class="muted">${caveats}</span>` : ""}</dd></div>`;
             })
             .join("")}
         </dl>
+        ${auditData.ratingBasisExclusions?.length ? `
+          <h3>算入外セル</h3>
+          <ul class="clean">
+            ${auditData.ratingBasisExclusions
+              .map((item) => {
+                const cell = item.cellId ? getAssessmentCell(item.cellId) : null;
+                const label = cell ? `${cell.axis} / ${cell.phase}` : item.cellId || "未設定";
+                return `<li>${label}<br><span class="muted">${item.reason}</span></li>`;
+              })
+              .join("")}
+          </ul>
+        ` : ""}
       </section>
       <section class="section">
         <h3>反対仮説</h3>
@@ -700,6 +728,5 @@ function renderPreWar() {
     opinion: renderOpinion,
   };
 }
-
 
 

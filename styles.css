@@ -49,8 +49,9 @@ select {
   flex-direction: column;
   gap: 22px;
   padding: 28px 18px;
-  background: #172128;
-  color: #f8fafc;
+  background: var(--panel-strong);
+  color: var(--ink);
+  border-right: 1px solid var(--line);
 }
 
 .brand-block {
@@ -66,7 +67,7 @@ select {
 
 .brand-block p {
   margin: 0;
-  color: #cad5db;
+  color: var(--muted);
 }
 
 .eyebrow {
@@ -78,30 +79,26 @@ select {
   text-transform: uppercase;
 }
 
-.sidebar .eyebrow {
-  color: #8fd3bd;
-}
-
 .case-picker {
   display: grid;
   gap: 8px;
   padding: 0 8px;
-  color: #d8e3e8;
+  color: var(--ink);
   font-size: 13px;
 }
 
 .case-picker span {
-  color: #8fd3bd;
+  color: var(--ink);
   font-weight: 700;
 }
 
 .case-picker select {
   width: 100%;
   min-height: 38px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  border: 1px solid var(--line);
   border-radius: 6px;
-  color: #102027;
-  background: #f8fafc;
+  color: var(--ink);
+  background: var(--panel);
 }
 
 /* I-9: 対照ケース導線 */
@@ -115,16 +112,16 @@ select {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #8fd3bd;
+  color: var(--muted);
 }
 
 .counterpart-button {
   min-height: 38px;
   padding: 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid var(--line);
   border-radius: 6px;
-  color: #d8e3e8;
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  background: var(--panel);
   text-align: left;
   cursor: pointer;
   font-size: 13px;
@@ -132,14 +129,14 @@ select {
 
 .counterpart-button::before {
   content: "⇄ ";
-  color: #8fd3bd;
+  color: var(--blue);
 }
 
 .counterpart-button:hover,
 .counterpart-button:focus-visible {
-  border-color: #f7d77c;
+  border-color: var(--blue);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(247, 215, 124, 0.22);
+  box-shadow: 0 0 0 3px rgba(36, 92, 138, 0.12);
 }
 
 .nav-tabs {
@@ -152,7 +149,7 @@ select {
   padding: 0 12px;
   border: 1px solid transparent;
   border-radius: 6px;
-  color: #d8e3e8;
+  color: var(--muted);
   background: transparent;
   text-align: left;
   cursor: pointer;
@@ -160,21 +157,23 @@ select {
 
 .nav-tab:hover,
 .nav-tab:focus-visible {
-  border-color: rgba(255, 255, 255, 0.28);
+  border-color: var(--line);
+  color: var(--ink);
   outline: none;
 }
 
 .nav-tab.is-active {
-  color: #102027;
-  background: #f7d77c;
+  color: var(--ink);
+  background: #e8f2f8;
+  border-color: var(--blue);
 }
 
 .sidebar-panel {
   margin-top: auto;
   padding: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--panel);
 }
 
 .sidebar-panel h2 {
@@ -185,7 +184,7 @@ select {
 .sidebar-panel ul {
   margin: 0;
   padding-left: 20px;
-  color: #d6e1e6;
+  color: var(--muted);
   font-size: 13px;
   line-height: 1.7;
 }
@@ -339,6 +338,32 @@ select {
 .badge.support { background: var(--green); }
 .badge.counter { background: var(--red); }
 .badge.hold { background: var(--amber); }
+.badge.evidence-support { background: var(--blue); }
+.badge.evidence-counter { background: #6b7280; }
+.badge.evidence-hold { background: #7c6f55; }
+
+.time-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 24px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.time-badge.time-direct {
+  color: var(--green);
+  background: rgba(66, 112, 90, 0.08);
+}
+
+.time-badge.time-after {
+  color: var(--violet);
+  background: rgba(114, 89, 155, 0.08);
+}
 
 .muted {
   color: var(--muted);
@@ -517,8 +542,8 @@ dd {
   padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: 6px;
-  background: #172128;
-  color: #fff;
+  background: var(--panel-strong);
+  color: var(--ink);
   cursor: pointer;
 }
 
@@ -633,8 +658,8 @@ ul.clean {
   margin-left: 6px;
   padding: 1px 6px;
   border-radius: 999px;
-  background: #172128;
-  color: #f7d77c;
+  background: var(--amber);
+  color: #fff;
   font-size: 11px;
   font-weight: 700;
 }

@@ -5,9 +5,9 @@ import {
   validateCaseReferences,
   validateCaseRegistry,
   viewMeta,
-} from "./data/auditSchema.js?v=20260627-ruu-expost-cleanup";
-import { cases } from "./data/cases/index.js?v=20260627-ruu-expost-cleanup";
-import { createRenderers } from "./ui/renderers.js?v=20260627-ruu-expost-cleanup";
+} from "./data/auditSchema.js?v=20260627-ruu-time-caveats";
+import { cases } from "./data/cases/index.js?v=20260627-ruu-time-caveats";
+import { createRenderers } from "./ui/renderers.js?v=20260627-ruu-time-caveats";
 
 let activeCase = cases.find((item) => item.warCase.id === "gulf-war-1990-iraq") || cases[0];
 let state = stateForCase(activeCase);
@@ -238,4 +238,3 @@ validateActiveCase();
 updateShellCaseMetadata();
 renderCounterpartNav();
 render();
-
