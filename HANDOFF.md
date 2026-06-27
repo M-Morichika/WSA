@@ -1,6 +1,6 @@
 # 引き継ぎ文（セッション状態サマリ）
 
-最終更新: 2026-06-26（**本コミットで 普 prussia の訴追2セルを ex-ante 接地強化＋仏/普/露の格付け「未確定」を rating-readiness 条件付きで明文化＋Opinion ビューの要約/全文モードトグルを撤去**。詳細は §2-NEW-J。直前のコミット `287bb21`〔4→7ケース拡張＝普仏 仏/普・ウクライナ露 skeleton 追加＋サブエージェントレビュー★★以上適用＋普仏エビデンス補強。詳細は §2-NEW-I〕。cache-bust 現行 `20260626-prussia-exante`。`verify.js`（7ケース一括検証ヘルパ）同梱。**`9ad43d1` まで origin/master と同期済み（push 済み）**。次セッションは仏 france のエビデンス埋め＝§2-NEW-J 末尾「次セッション計画」を参照）
+最終更新: 2026-06-27（**本セッションでウクライナ戦争 Ukraine/Russia 両側 skeleton の追加・監査ラベル弱め修正、普 prussia ケース監査ラベル弱め修正、lintCaseMethodology 強化を反映。詳細は §2-NEW-L〜O / §2-NEW-K**。直前のコミットは普 prussia の訴追2セル ex-ante 接地強化等。詳細は §2-NEW-J。）
 
 ## 0. このファイルの目的
 セッションが長くなったため状態を要約。次セッションは**まずこれを読んでから**再開すること。
@@ -14,7 +14,7 @@
   2. 言えること(canSay)/言えないこと(cannotSay)を分ける
   3. **開戦後の証拠を直接証拠にしない**（＝時点性 ex-ante / ex-post）
 - 方法論的には ACH（競合仮説分析）/ 構造化分析技法に相当。価値は「題材」より**転用可能な監査の作法**にある。
-- **方向性**: 単一ケース（フォークランド）から**複数ケース・フレームワーク**へ移行中。実装済みは**7ケース**＝フォークランド2（ア軍/英国）＋湾岸戦争2（イラク側/多国籍軍側）＋**普仏戦争2（仏/普・skeleton）＋ウクライナ戦争1（ロシア側・skeleton）**。正式採用済みの作業リストは8視点（下記、残るはウクライナ西側支援側のみ）。同一戦争を加害側と相手側/連合側の両面から監査する「対照ケース」設計（`warCase.counterpartCaseId` で相互リンク）まで到達。枠の汎用性を検証中。
+- **方向性**: 単一ケース（フォークランド）から**複数ケース・フレームワーク**へ移行中。実装済みは**8ケース**＝フォークランド2（ア軍/英国）＋湾岸戦争2（イラク側/多国籍軍側）＋**普仏戦争2（仏/普・skeleton）＋ウクライナ戦争2（ロシア側・ウクライナ側 skeleton）**。正式採用済みの8視点が初期実装として揃った。同一戦争を加害側と相手側/連合側の両面から監査する「対照ケース」設計（`warCase.counterpartCaseId` で相互リンク）まで到達。枠の汎用性を検証中。
 
 ### 具体的な設計思想
 **「開戦前に、その時点で利用可能な情報だけを使って、継戦能力・勝算・社会耐久力・政権リスクを記録し、戦後に為政者の説明責任と歴史判断を検証できるようにする。」**
@@ -36,7 +36,7 @@
 - 普仏戦争：フランス側（実装済み・skeleton）
 - 普仏戦争：プロイセン側（実装済み・skeleton）
 - ウクライナ戦争：ロシア側（実装済み・skeleton）
-- ウクライナ戦争：ウクライナ／西側支援側（未実装＝露の counterpart 不在）
+- ウクライナ戦争：ウクライナ／西側支援側（実装済み・skeleton。ウクライナ政府・軍を主対象、西側支援国は支援環境）
 
 **候補:**
 - 太平洋戦争
@@ -55,8 +55,9 @@
 - `data/cases/gulf-war-1990-iraq.js` — **湾岸戦争1990-91 イラク側監査**（id: `gulf-war-1990-iraq`, 格付 D+/D, phase3/cell5/evidence12/link17/claim6/prewar5）。現行既定 activeCase。`counterpartCaseId: gulf-war-1990-coalition`。
 - `data/cases/gulf-war-1990-coalition.js` — **湾岸戦争1990-91 多国籍軍側（米国主導）監査**（id: `gulf-war-1990-coalition`, 格付 B+/B, phase3/cell7/**evidence14/link20/claim4/prewar9**）。iraq の対照ケース（`counterpartCaseId: gulf-war-1990-iraq`）。E-1/E-2/E-3＋深掘り精査（①サウジ駐留正統性 `GWC-E-014`/`GWC-EL-019`/新Pre-War `gwc_pw_basing_legitimacy`、②決議678広範性 `GWC-EL-020`、③サフワン原記録化）を反映。正統性軸は支持4/反証4で両建て。長期封じ込めコストはなお暫定要検証。
 - `data/cases/franco-prussian-war-1870-france.js` — **普仏戦争1870-71 フランス第二帝政側**（id: `franco-prussian-war-1870-france`, 格付 未確定, **evidence9/link14/claim6/cell4/prewar5**, counterpart=prussia）。skeleton。phase3（セダン前判断）まで監査拡張済み。
-- `data/cases/franco-prussian-war-1870-prussia.js` — **普仏戦争1870-71 プロイセン側**（id: `franco-prussian-war-1870-prussia`, 格付 未確定, **evidence12/link12/claim6/cell5/prewar4**, counterpart=france）。skeleton。claim は能力肯定4(counter_claim)＋訴追2(audit_issue)。
-- `data/cases/russo-ukrainian-war-2022-russia.js` — **ウクライナ戦争2022- ロシア連邦側**（id: `russo-ukrainian-war-2022-russia`, 格付 未確定, **evidence9/link17/claim10/cell8/prewar5**, counterpart 無し＝ウクライナ／西側支援側 未実装）。skeleton。
+- `data/cases/franco-prussian-war-1870-prussia.js` — **普仏戦争1870-71 プロイセン側**（id: `franco-prussian-war-1870-prussia`, 格付 B/B-, **evidence13/link14/claim6/cell5/prewar4**, counterpart=france）。skeleton。claim は能力肯定4(counter_claim)＋訴追2(audit_issue)。collectionState/reviewState は要検証へ弱め、証拠種別を細分化済み。
+- `data/cases/russo-ukrainian-war-2022-russia.js` — **ウクライナ戦争2022- ロシア連邦側**（id: `russo-ukrainian-war-2022-russia`, 格付 未確定, **evidence9/link17/claim10/cell8/prewar5**, counterpart=ukraine）。skeleton。Pre-War は内部資料未公開のため全5項目を `不明` に戻し、collectionState/reviewState は要検証へ弱め、証拠種別を細分化済み。ratingBasis は初期侵攻判断の6セルに限定。
+- `data/cases/russo-ukrainian-war-2022-ukraine.js` — **ウクライナ戦争2022- ウクライナ／西側支援側**（id: `russo-ukrainian-war-2022-ukraine`, 格付 未確定, **evidence10/link22/claim10/cell7/prewar5**, counterpart=russia）。skeleton。ウクライナ政府・軍を主対象、西側支援国は支援環境として扱う。
 - 全 warCase に `conflict`（戦争グループ名）フィールドあり＝セレクタの `<optgroup>` グルーピングに使用（命名文字列分割でなくデータ駆動）。
 - `ui/renderers.js` — 全ビューのレンダラ（ケース非依存。`createRenderers(caseData, state)`）。
 - `styles.css` — `.case-picker` 等を追加。
@@ -68,6 +69,16 @@
 
 ## 2. 直近セッションで完了したこと
 
+### 2-NEW-K. エビデンスのラベル付けルール（lintCaseMethodology）強化（本セッション）
+> 監査品質を担保するリントルール `lintCaseMethodology` の抜け漏れを解消し、より堅牢な構造へと強化。
+- **全リンクの紐付け漏れチェック**: 従来は「反証」リンクに対してのみ行われていた `claimId` / `assessmentCellId` の紐付けチェックを、「支持」「保留」を含むすべてのリンクに拡大（浮きリンクの防止）。
+- **クレームの対称性・生存性の検証（3パターンの分離）**: 片側のみのクレームや実体のないクレームをより詳細に検知するため、以下の3パターンに分類して警告を出力。
+  - `unlinked_claim`（重大）: 支持0・反証0・保留0。完全に死蔵されているクレーム。
+  - `one_sided_claim`（注意）: 支持1件以上・反証0。反証を隠さない原則の観点で対立検証が欠けている状態。
+  - `unsupported_claim`（注意）: 支持0・反証1件以上。藁人形論法（誰も支持していない主張を叩く）や支持リンクの付け忘れの可能性。
+- **サブエージェントレビューの反映**: 「保留」リンクのみを持つクレームが誤って `unlinked_claim` と判定される論理的な穴を、総リンク数（`totalLinks`）による判定へ是正。
+- **意思決定者の認識ラベルの検証**: `knownByDecisionMakers` および `knownByDecisionMakersBasis` を必須テキストフィールドとしてバリデーションに追加。
+- **検証結果**: `node verify.js` の実行により、Skeleton段階のケースにおいて `unsupported_claim` が正しく検知されること等を確認（データの意図的な未完成状態としてそのまま残置）。
 > ✅ 2-NEW-A／2-NEW-B はコミット+push 済み（`19c28b1`, origin/master）。2-NEW-C（連合側ケース証拠増補＋再レビュー反映）も `610088a` でコミット+push 済み。正式作業リストの HANDOFF 更新は `ab3f6cd` でコミット+push 済み。
 > ✅ **本セッション（前半）**: E-1/E-2/E-3 増補を `5ce393f`、証拠出典の一次資料精密化を `25c4b23`、サブエージェントレビュー後のラベリング/表示是正を `10851e9` で反映。
 > ✅ **本セッション（後半・連合側深掘り精査）**: ①サウジ駐留正統性・②決議678広範性・③サフワン原記録化を `7e5d8d6`、HANDOFF反映を `ad6597b` で反映し **push 済み（origin/master と同期）**。
@@ -75,6 +86,38 @@
 > ✅ **本セッション（R-2）**: サフワン機密解除トランスクリプトの出所を特定（一次的開示 = Laurie Mylroie, WaPo 1992/6/28／再録 = Gordon & Trainor『The Generals' War』1995）。`GWC-E-012` の source/collectionState・`GWC-EL-016` 認識根拠に反映。残る隙間（DoD/NARA 文書管理番号）は狭い `要精査` として明記＝`a26926d` でコミット+push 済み。
 > ✅ **本セッション（I-9/UI-8）**: I-9 対照ケース軽量ボタン導線＋ UI-8 一部（疎マトリクス未定義表示是正・aria-live 冗長解消）を `a4eaf06` でコミット+push 済み。
 > ✅ **レビュー後ブラッシュアップ（push済み: `3e1f04b`）**: サブエージェントレビューを受け、HANDOFFの古い未同期記述を現状同期済みに修正。`GWC-E-012` は「原本確認」ではなく「公刊引用・再録で確認」に弱め、Pre-War の `gwc_pw_iraqi_capability` / `gwc_pw_ground_cost` から開戦後説明 `GWC-EL-010` を直接根拠として外した。`app.js` はケースセレクタ/対照導線を DOM API 化し、対照ケース切替後のフォーカス、`announce()` の再通知、Timeline/Evidence/Opinion/Assessment 移動の通知を補強。疎マトリクスの未評価セルは個別長文 aria-label をやめた。cache-bust は `20260626-review-brushup`。
+
+
+### 2-NEW-L. ウクライナ戦争 ウクライナ／西側支援側 skeleton ケース追加（本セッション・未コミット）
+> ロシア側の対照ケースとして `russo-ukrainian-war-2022-ukraine` を追加。既存 UI は変更せず、ケースレジストリと相互 `counterpartCaseId`、cache-busting を `20260627-ruu-ukraine` に同期。
+- **新ケース方針**: ウクライナ政府・ゼレンスキー政権・ウクライナ軍を主対象とし、西側支援国は支援環境として扱う。侵略開始責任ではなく、防衛継続・首都防衛・国家動員・西側支援依存・長期抗戦化入口の判断を監査する。
+- **構成**: phase4 / preWar5 / assessment cell7 / evidence10 / claim10 / evidenceLink22 / ratingBasis6。各 claim は支持・反証を最低1本ずつ持ち、`lintCaseMethodology` 0。
+- **相互リンク**: ロシア側 `warCase.counterpartCaseId = "russo-ukrainian-war-2022-ukraine"`、ウクライナ側 `counterpartCaseId = "russo-ukrainian-war-2022-russia"`。
+- **検証**: `node --check` 対象主要ファイル OK、`node verify.js` で全8ケース `validateCaseRegistry` 0 / `validateCaseReferences` 0 / `lintCaseMethodology` 0。renderer HTML 生成も Overview/Timeline/Pre-War/Assessment/Evidence/Opinion 全ビューで成功。ブラウザ実機確認は環境ポリシーで `127.0.0.1:8123` アクセスがブロックされたため未実施。
+
+### 2-NEW-M. 普 prussia ケース監査ラベル弱め修正（本セッション・未コミット）
+> プロイセン側ケースの過剰確定ラベルを修正。格付けを B+/B ではなく B/B- に抑え、全 evidence の collectionState と evidenceLinks の reviewState を要検証へ戻した。Evidence type も公開資料一色から、同時代公開資料/軍事計画資料/条約/外交文書/回顧録/戦後公刊軍事資料/書簡/同時代記録/公刊一次資料/議会記録へ細分化。
+- `FPWP-E-013` は source の 1870年11月26日に合わせ publishedDate を 1870 に修正。
+- 秘密条約と参謀本部展開計画に依存する `FPWP-EL-007` / `FPWP-EL-013` は `availableToAnalysts:false` に修正。
+- 検証: `node --check data/cases/franco-prussian-war-1870-prussia.js` OK / `node verify.js` 全8ケース 0。
+
+### 2-NEW-N. ウクライナ戦争 Russia ケース監査ラベル弱め修正（本セッション・未コミット）
+> ロシア側ケースのエビデンス分類・評価・コメントを監査し、機械チェックでは拾えない過確定を弱めた。格付け未確定の理由である「内部意思決定資料・軍内部評価・作戦計画文書の未公開」と整合するよう、Pre-War 5項目から provisional statusOverride を撤去し、実際の評価形跡を全て `不明` に戻した。
+- 全 evidence の `collectionState` と全 evidenceLinks の `reviewState` を `要検証` に統一。
+- Evidence type を `公開論文` / `公式演説` / `公開会議映像` / `国際機関決議` / `戦中外部研究` / `事後分析` / `軍事年鑑` に細分化。
+- `ruw_cell_attrition_shift` / `ruw_cell_donbas_shift_objective` は長期戦化入口・初期判断後の方針修正セルとして、初期判断の `ratingBasis` から除外。本文にも「初期判断の ratingBasis には直接算入しない」と明記。
+- `RUW-EL-011` / `RUW-EL-012` は公開放送そのものではなく外部解釈に依存するため、`knownByDecisionMakers` を `不明` に弱めた。
+- Overview と抵抗意思セルの断定寄り表現を弱め、内部見積もりの直接証拠が未収集であることを明示。
+- 検証: `node --check data/cases/russo-ukrainian-war-2022-russia.js` OK / `node verify.js` 全8ケース 0。
+
+### 2-NEW-O. ウクライナ戦争 Ukraine ケース サブエージェントレビュー反映（本セッション・未コミット）
+> 監査方法論 / シニアエンジニア / UIデザイナーのレビュー統合を受け、Ukraine 側 skeleton の過確定・意味参照ズレ・共有 UI 小バグを修正。
+- Pre-War の provisional statusOverride を撤去し、内部資料未収集の項目は `不明` に戻した。西側支援依存の linkedEvidenceLinks は軍事バランス系 `RUU-EL-007/008` から専用 `RUU-EL-009/010` へ修正。
+- `RUU-EL-022` は「警告がなかった」風の見せかけ反証から、警告の実用的確度への反証に修正。
+- キーウ防衛セルと `RUU-EL-005/006` は ex-post 成功を直接免責に見せないよう、「事後的再構成」と明記。
+- `ruu_cell_long_war_boundary` は境界管理メモとして `ratingBasis` から除外し、Ukraine 側 ratingBasis は7→6。
+- 共有 UI: Timeline の alternatives 配列表示を ` / ` 区切りへ修正し、Overview/Opinion の `overviewOpinion` 改段落を段落表示する `renderParagraphs()` を追加。
+- 検証: `node --check data/cases/russo-ukrainian-war-2022-ukraine.js` OK / `node --check ui/renderers.js` OK / `node verify.js` 全8ケース 0 / render smoke 全8ケース全ビュー OK。
 
 ### 2-NEW-J. 普 prussia 訴追セルの ex-ante 接地強化＋格付け「未確定」の明文化＋Opinion モードトグル撤去（`1f571bc`＋ratingNote是正 `9ad43d1`・push済み）
 > 直前コミット `287bb21`（§2-NEW-I）の上に積む差分。証拠を新規大量追加するのではなく、**既存の訴追セルの支持側が結果（ex-post）依存だった弱点を事前資料へ接地し直す**監査品質の補強と、**「未確定」格付けの根拠を明文化**する誠実性整理、および**死蔵 UI の撤去**が主眼。検証は `node --check` 全OK／`verify.js` で `validateCaseRegistry` 0・全7ケース `validateCaseReferences`/`lintCaseMethodology` 0（全 claim 支持≥1・反証≥1 を維持）。cache-bust 全コードファイル＋`verify.js` を `20260626-fpw-france`→`20260626-prussia-exante` に更新。

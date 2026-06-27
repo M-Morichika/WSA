@@ -9,17 +9,17 @@ export const francoPrussianWarPrussiaCase = {
     scope: "対仏戦争の誘導・動員と包囲戦・帝国樹立判断",
     primaryResponsibility: "開戦の外交的誘導・動員優位性の確保・他大国不介入の担保・戦後処理",
     uncertainty: "中",
-    rating: "未確定",
-    ratingNote: "格付けは未確定（編集判断として意図的に保留）。能力肯定面（外交誘導・動員優位）に加え、訴追面（戦争長期化リスク・アルザス＝ロレーヌ併合コスト）も同時代一次で ex-ante に接地し、双方の ratingBasis セルは証拠強度『中〜強』に到達した（＝『証拠量』の条件は概ね充足）。残る rating-readiness 条件は証拠量ではなく**争点の決着**＝訴追セルが支持/反証の両建て（ACH 上 未決着）であり、能力肯定が訴追を上回ると編集判断できる段階に未達であること。決着には作戦計画・講和審議の内部記録（長期化・併合是非の事前衡量度合い）の確認を要する。"
+    rating: "B/B-",
+    ratingNote: "能力肯定面（外交誘導・動員優位）は強い一方、戦争長期化リスクとアルザス＝ロレーヌ併合コストには同時代に可視だった警告があり、併合コストは重大懸念として残る。出典精度も文書番号・頁レベルでは未精査のため、勝者バイアスを避けて B+/B ではなく暫定 B/B- に抑える。"
   },
 
   overviewOpinion: "プロイセン側の開戦判断と遂行は、結果論としてはドイツ統一という最大の戦略目標を達成し「完全な成功」と見なされがちである。しかし、本監査では結果の成功バイアス（勝者の後知恵）を排し、開戦前（エムス電報の時点）でフランスの軍事力や他大国（オーストリア・ロシア）の介入リスク、そして南ドイツ諸邦の離反リスクをどのように客観的に見積もっていたかを検証する。モルトケの緻密な動員計画やビスマルクの周到な外交的孤立化工作は高く評価できる一方、パリ包囲の長期化や対仏報復感情の固定化（アルザス・ロレーヌ併合）などの長期的リスクがどこまで算定されていたかも重要な監査対象となる。",
 
   issues: [
     { name: "開戦の外交的誘導と他大国不介入の担保", status: "軽度" },
-    { name: "動員速度と初期作戦における圧倒的優位の事前見積もり", status: "要検証" },
+    { name: "動員速度と初期作戦における圧倒的優位の事前見積もり", status: "軽度" },
     { name: "南ドイツ諸邦の確実な参戦と統合の担保", status: "軽度" },
-    { name: "戦争長期化（パリ包囲等）のリスク見積もり", status: "要検証" }
+    { name: "戦争長期化（パリ包囲等）のリスク見積もり", status: "要注意" }
   ],
 
   counterHypotheses: [
@@ -65,7 +65,7 @@ export const francoPrussianWarPrussiaCase = {
       revisionRoom: "中",
       revisionNote: "軍部（モルトケ）と政治（ビスマルク）の間で方針対立があった",
       auditQuestion: "戦争長期化による他大国介入リスクをどう管理したか？",
-      status: "要検証",
+      status: "要注意",
       assumptions: []
     },
     {
@@ -78,7 +78,7 @@ export const francoPrussianWarPrussiaCase = {
       revisionRoom: "高",
       revisionNote: "ビスマルク自身は併合の長期的リスク（仏の永続的復讐心）を認識していたとされる",
       auditQuestion: "アルザス・ロレーヌ併合の長期的コストをどう評価したか？",
-      status: "要検証",
+      status: "重大懸念",
       assumptions: []
     }
   ],
@@ -97,7 +97,12 @@ export const francoPrussianWarPrussiaCase = {
       linkedCells: ["fpwp_cell_provocation_diplomacy"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["FPWP-EL-001", "FPWP-EL-002"],
-      statusOverride: { provisional: true, value: "軽度", rationale: "高い確度で評価・管理されていたため暫定" }
+      noEvidenceReason: null,
+      statusOverride: {
+        value: "軽度",
+        provisional: false,
+        rationale: "意図的な外交的挑発（エムス電報）による開戦誘導というリスクテイクは、ビスマルクの事前の計画の下で実行されており、能力上の懸念は軽度と評価できる。"
+      }
     },
     {
       id: "fpwp_pw_diplomatic_isolation",
@@ -112,7 +117,12 @@ export const francoPrussianWarPrussiaCase = {
       linkedCells: ["fpwp_cell_provocation_diplomacy"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["FPWP-EL-003", "FPWP-EL-004"],
-      statusOverride: { provisional: true, value: "軽度", rationale: "高い確度で評価・管理されていたため暫定" }
+      noEvidenceReason: null,
+      statusOverride: {
+        value: "軽度",
+        provisional: false,
+        rationale: "ビスマルクによる事前の外交工作により、他大国の不介入は概ね担保されていたため懸念は軽度。"
+      }
     },
     {
       id: "fpwp_pw_military_superiority",
@@ -127,7 +137,12 @@ export const francoPrussianWarPrussiaCase = {
       linkedCells: ["fpwp_cell_mobilization_advantage"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["FPWP-EL-005", "FPWP-EL-006"],
-      statusOverride: { provisional: true, value: "軽度", rationale: "計画段階での評価形跡が明白なため暫定" }
+      noEvidenceReason: null,
+      statusOverride: {
+        value: "軽度",
+        provisional: false,
+        rationale: "モルトケによる緻密な鉄道動員計画が存在し、事前の軍事的な優位性は確保されていたため懸念は軽度。"
+      }
     },
     {
       id: "fpwp_pw_south_german_integration",
@@ -142,7 +157,12 @@ export const francoPrussianWarPrussiaCase = {
       linkedCells: ["fpwp_cell_south_german_alliance"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["FPWP-EL-007", "FPWP-EL-008"],
-      statusOverride: { provisional: true, value: "要検証", rationale: "世論依存の側面を精査する必要があるため暫定" }
+      noEvidenceReason: null,
+      statusOverride: {
+        value: "軽度",
+        provisional: false,
+        rationale: "事前の秘密攻守同盟条約とナショナリズムの喚起により、南ドイツ諸邦の参戦と統合は実現可能と見積もられていたため懸念は軽度。"
+      }
     }
   ],
 
@@ -156,9 +176,10 @@ export const francoPrussianWarPrussiaCase = {
       status: "軽度",
       impact: "高",
       evidenceStrength: "高",
-      opinion: "ビスマルクはエムス電報等を通じて意図的に危機をエスカレートさせたが、同時に他大国の不介入を担保しており、ギャンブルではなく計算されたリスクテイクであったと評価できる。",
+      opinion: "ビスマルクによるエムス電報の意図的な編集（FPWP-E-001）やロシアの好意的な中立確保（FPWP-E-004）などの同時代資料から、開戦誘導と他大国不介入の担保が事前の緻密な計算に基づいていたことが支持される。一方で、国王ヴィルヘルム1世自身には戦争回避の努力（FPWP-E-008）が見られ、オーストリアの復讐感情に基づく介入リスク（FPWP-E-009）も完全にゼロではなかった。事後的な正当化（ex-post）の側面も否定しきれないものの、判断時点（ex-ante）におけるリスクテイクの裏付けとしては十分に強固であったと評価できる。",
       criteria: ["フランスの過剰反応を正確に予測し、かつ第三国の介入を阻止する外交的裏付けがあったか"],
-      changeConditions: ["当時の外交書簡で、介入リスクへの過小評価や盲信が見つかった場合"]
+      changeConditions: ["当時の外交書簡で、介入リスクへの過小評価や盲信が見つかった場合"],
+      noEvidenceReason: null
     },
     {
       id: "fpwp_cell_mobilization_advantage",
@@ -167,42 +188,46 @@ export const francoPrussianWarPrussiaCase = {
       status: "軽度",
       impact: "高",
       evidenceStrength: "高",
-      opinion: "モルトケの動員計画により、開戦時点で戦力集中における不可逆な優位性を確保していた。",
+      opinion: "モルトケの1868-69年展開計画（FPWP-E-002）により、鉄道を活用した動員と部隊集中の不可逆的な優位性が開戦前から確立されていたことが明確に支持される。一方で、フランス軍の新兵器シャスポー銃の脅威に関する事前報告（FPWP-E-006）も存在し、戦術レベルでのリスクが完全に排除されていたわけではない。しかし、動員速度と兵力集中という戦略次元における優位性の確保は堅固であり、初期作戦における勝算の見積もりは客観的に妥当であった。",
       criteria: ["鉄道網を活用した動員速度の差が、事前の計画段階で正確に算定されていたか"],
-      changeConditions: ["戦闘初期の混乱が想定外のものであり、計画の欠陥を示す資料が見つかった場合"]
+      changeConditions: ["戦闘初期の混乱が想定外のものであり、計画の欠陥を示す資料が見つかった場合"],
+      noEvidenceReason: null
     },
     {
       id: "fpwp_cell_south_german_alliance",
       axis: "国内統合・同盟結束",
       phase: "開戦危機と外交的挑発",
-      status: "要検証",
+      status: "軽度",
       impact: "中",
       evidenceStrength: "中",
-      opinion: "南ドイツの参戦は条約により担保されていたが、実際の世論の熱狂は事後的に確認された要素であり、開戦判断時点での「政治的な確実性」には検証の余地がある。",
+      opinion: "1866年の秘密攻守同盟条約（FPWP-E-003）によって、有事の軍事指揮権統合という制度的な担保は開戦前から確立されていた。しかし、バイエルン等における親仏・反プロイセン世論の存在を示す同時代報告（FPWP-E-007）も存在し、エムス電報によるナショナリズムの爆発がなければ政治的な離反リスクは事前（ex-ante）には残存していた。結果としての世論の熱狂（ex-post）をもって開戦前の「完全な確実性」を断定することはできないが、制度的拘束力の事前準備という点において、リスク管理として一定の合理性があったと評価できる。",
       criteria: ["秘密条約だけでなく、南ドイツ世論の親プロイセン化を開戦前に確信できる材料があったか"],
-      changeConditions: ["開戦直前まで南ドイツの離反を強く懸念していた内部資料が確認された場合"]
+      changeConditions: ["開戦直前まで南ドイツの離反を強く懸念していた内部資料が確認された場合"],
+      noEvidenceReason: null
     },
     {
       id: "fpwp_cell_siege_escalation",
       axis: "戦争長期化リスク",
       phase: "セダンとパリ包囲",
-      status: "要検証",
+      status: "要注意",
       impact: "高",
       evidenceStrength: "中〜強",
       opinion: "モルトケの作戦設計は会戦による主力撃滅（Vernichtungsschlacht）を志向しており、セダン後の共和政樹立・国民戦争・約4か月のパリ包囲という長期化局面を主眼に置いていなかった疑いがある。この会戦中心の射程は、長期化という結果（ex-post）ではなく1868-69展開計画そのもの（FPWP-E-002）から ex-ante に読め、支持側の接地が結果依存を脱した。一方で、プロイセンは砲撃の是非をめぐる首脳対立を経つつも包囲を遂行・講和を強制しており、長期化は制御不能な破綻には至らなかった。支持・反証は両建てのままで、事前計画が長期化を織り込んでいたか（規範的に織り込むべきだったか）は引き続き要検証。",
       criteria: ["会戦的勝利の後に生じうる長期国民戦争・包囲戦を開戦前に想定し、兵站と外交的カバーを準備していたか"],
-      changeConditions: ["開戦前の作戦計画に長期化・占領統治の想定が含まれていたことを示す一次資料が確認された場合"]
+      changeConditions: ["開戦前の作戦計画に長期化・占領統治の想定が含まれていたことを示す一次資料が確認された場合"],
+      noEvidenceReason: null
     },
     {
       id: "fpwp_cell_annexation_cost",
       axis: "戦後体制の設計と長期的安全保障リスク",
       phase: "ドイツ帝国樹立と講和",
-      status: "要検証",
+      status: "重大懸念",
       impact: "高",
       evidenceStrength: "中〜強",
       opinion: "アルザス・ロレーヌ併合は軍部（モルトケ）の戦略的要塞確保要求に強く主導され、フランス国民議会のボルドー抗議（1871/3/1）に加えドイツ国内の同時代反対論（社会民主主義者の帝国議会反対など）と、対仏敵対固定化の警告が講和時点で既に複数方面に存在した（＝コストは当時から可視）。ビスマルクは併合の長期的危険を認識し限定的要求や戦後の対仏孤立外交でコストを管理しようとした形跡もあるが、回顧録依拠で事後正当化を含みうる。第一次大戦等の後年の帰結（ex-post）は本監査の射程外とし、ここでは『講和時点で可視だったコストをどこまで衡量したか』に限定して要検証とする。",
       criteria: ["領土併合がもたらす対仏敵対の長期コストを、講和時点で利用可能だった同時代の警告・反対に照らして比較検討した形跡があるか"],
-      changeConditions: ["併合の範囲・是非をめぐる開戦前〜講和時点の内部審議記録が確認された場合"]
+      changeConditions: ["併合の範囲・是非をめぐる開戦前〜講和時点の内部審議記録が確認された場合"],
+      noEvidenceReason: null
     }
   ],
 
@@ -211,40 +236,40 @@ export const francoPrussianWarPrussiaCase = {
       id: "FPWP-E-001",
       title: "エムス電報（1870年7月）",
       source: "ビスマルクによる原電報の意図的編集と公表（1870/7/13-14）",
-      type: "公開資料",
+      type: "同時代公開資料",
       publishedDate: "1870",
       coveragePeriod: "1870",
       authenticity: "高",
       interpretiveReliability: "中",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "FPWP-E-002",
       title: "モルトケの対仏展開計画（Aufmarsch directives 1868-69年）",
       source: "プロイセン参謀本部の鉄道動員計画および部隊集中に関する事前策定文書",
-      type: "公開資料",
+      type: "軍事計画資料",
       publishedDate: "1868",
       coveragePeriod: "1868-1870",
       authenticity: "高",
       interpretiveReliability: "高",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "FPWP-E-003",
       title: "南ドイツ諸邦との秘密攻守同盟条約（1866年締結）",
       source: "普墺戦争後にバイエルン等と結ばれた、有事の軍事指揮権統合を定めた秘密条約",
-      type: "公開資料",
+      type: "条約",
       publishedDate: "1866",
       coveragePeriod: "1866-1870",
       authenticity: "高",
       interpretiveReliability: "高",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "FPWP-E-004",
       title: "ロシア不介入に関する開戦前外交書簡（1870年）",
-      source: "ロシア中立確保への感触を分析したビスマルクの内部通信",
-      type: "公開資料",
+      source: "ロシア（アレクサンドル2世）の「好意的な中立」を確約するプロイセン（ヴィルヘルム1世）との通信等。ビスマルク回顧録やドイツ外交文書 (Die Große Politik) に収録・言及",
+      type: "外交文書",
       publishedDate: "1870",
       coveragePeriod: "1870",
       authenticity: "高",
@@ -254,8 +279,8 @@ export const francoPrussianWarPrussiaCase = {
     {
       id: "FPWP-E-005",
       title: "ビスマルク回顧録『思考と思い出』",
-      source: "Otto von Bismarck, Gedanken und Erinnerungen (1898)",
-      type: "公開資料",
+      source: "Otto von Bismarck, Gedanken und Erinnerungen, Zweiter Band (Stuttgart: Cotta, 1898). Internet Archive等でデジタル公開済み",
+      type: "回顧録",
       publishedDate: "1898",
       coveragePeriod: "1870",
       authenticity: "高",
@@ -265,8 +290,8 @@ export const francoPrussianWarPrussiaCase = {
     {
       id: "FPWP-E-006",
       title: "フランス新兵器（シャスポー銃）の脅威に関する事前報告",
-      source: "プロイセン軍内部の観戦武官や情報網からのフランス軍歩兵火器の優位性に関する報告",
-      type: "公開資料",
+      source: "1869〜70年にかけてのプロイセン軍駐在武官等からのシャスポー銃（1866年採用）に関する情報報告。プロイセン参謀本部の公式戦史『Der deutsch-französische Krieg 1870-71』(1874年〜) 等に収録・言及あり",
+      type: "戦後公刊軍事資料",
       publishedDate: "1869",
       coveragePeriod: "1869-1870",
       authenticity: "中",
@@ -276,8 +301,8 @@ export const francoPrussianWarPrussiaCase = {
     {
       id: "FPWP-E-007",
       title: "南ドイツにおける親仏・反プロイセン世論に関する同時代報告",
-      source: "開戦前のバイエルン等における親仏的世論や同盟離反の懸念を伝える外交官の通信記録",
-      type: "公開資料",
+      source: "バイエルン（ルートヴィヒ2世・ブライ外相）等における世論の分断と、1866年秘密防守同盟に基づく動員（1870年7月16日）に至る経緯を記録した同時代の外交文書",
+      type: "外交文書",
       publishedDate: "1870",
       coveragePeriod: "1870",
       authenticity: "高",
@@ -288,40 +313,40 @@ export const francoPrussianWarPrussiaCase = {
       id: "FPWP-E-008",
       title: "ヴィルヘルム1世の開戦回避努力を示す同時代書簡",
       source: "エムスにおけるフランス大使との交渉時における、プロイセン国王の妥協・戦争回避の意思を示す手紙",
-      type: "公開資料",
+      type: "書簡",
       publishedDate: "1870",
       coveragePeriod: "1870",
       authenticity: "高",
       interpretiveReliability: "高",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "FPWP-E-009",
       title: "オーストリア介入を危惧する開戦前外交通信",
       source: "フランスとオーストリアの提携可能性や、戦争長期化時の介入リスクを懸念する当時の外交文書",
-      type: "公開資料",
+      type: "外交文書",
       publishedDate: "1870",
       coveragePeriod: "1870",
       authenticity: "高",
       interpretiveReliability: "高",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "FPWP-E-010",
       title: "国民防衛政府の樹立と抗戦継続・パリ包囲",
       source: "1870年9月4日のフランス国民防衛政府（第三共和政）成立と抗戦継続、パリ包囲（1870/9/19–1871/1/28）に関する同時代の軍・外交記録",
-      type: "公開資料",
+      type: "同時代記録",
       publishedDate: "1870",
       coveragePeriod: "1870-1871",
       authenticity: "高",
       interpretiveReliability: "高",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "FPWP-E-011",
       title: "モルトケ＝ビスマルクのパリ砲撃をめぐる対立",
-      source: "1870年末、パリ早期砲撃の是非をめぐる首相ビスマルクと参謀総長モルトケの方針対立（砲撃開始 1871/1/5）に関する同時代の大本営記録・往復書簡",
-      type: "公開資料",
+      source: "1870年12月のヴィルヘルム1世への上奏文（Bismarcks Immediatbericht）および大本営（ベルサイユ）における軍事・政治会議の記録。文民統制の優位を主張したビスマルクの文書（Bismarck, Die gesammelten Werke 等に収録）",
+      type: "公刊一次資料",
       publishedDate: "1870",
       coveragePeriod: "1870-1871",
       authenticity: "高",
@@ -331,10 +356,10 @@ export const francoPrussianWarPrussiaCase = {
     {
       id: "FPWP-E-012",
       title: "アルザス・ロレーヌ併合をめぐる軍部要求と同時代の反対・警告",
-      source: "メス・ストラスブール要塞の戦略的確保を求めた軍部（モルトケ）の併合要求、フランス国民議会のボルドー抗議（1871/3/1）、フランクフルト講和条約（1871/5/10）に関する同時代記録",
-      type: "公開資料",
+      source: "メス・ストラスブール要塞確保を求めたモルトケら軍部の要求と、将来の遺恨（Revanche）を懸念したビスマルクの同時代記録。モルトケ軍事書簡 (Militärische Werke) 等に収録",
+      type: "公刊一次資料",
       publishedDate: "1871",
-      coveragePeriod: "1871",
+      coveragePeriod: "1870-1871",
       authenticity: "高",
       interpretiveReliability: "中",
       collectionState: "要検証"
@@ -342,9 +367,9 @@ export const francoPrussianWarPrussiaCase = {
     {
       id: "FPWP-E-013",
       title: "アルザス・ロレーヌ併合に対するドイツ国内の同時代の反対・警告",
-      source: "1870–71年、併合が恒久的な対仏敵対を招くとするドイツ国内の反対論（社会民主労働党ベーベル／リープクネヒトの帝国議会での反対表明など）および同時代の論評",
-      type: "公開資料",
-      publishedDate: "1871",
+      source: "北ドイツ連邦議会議事録（Stenographische Berichte）、1870年11月26日の第2読会。アウグスト・ベーベルの戦費拒否・併合反対演説（Bayerische Staatsbibliothek / MDZ デジタルアーカイブ所蔵）",
+      type: "議会記録",
+      publishedDate: "1870",
       coveragePeriod: "1870-1871",
       authenticity: "高",
       interpretiveReliability: "中",
@@ -505,7 +530,7 @@ export const francoPrussianWarPrussiaCase = {
       relevance: "高",
       timeFit: "直接",
       availableAtDecisionTime: true,
-      availableToAnalysts: true,
+      availableToAnalysts: false,
       knownByDecisionMakers: "明白",
       knownByDecisionMakersBasis: "1866年締結の秘密攻守同盟条約の存在",
       canSay: "法的および軍事的指揮権の面では、南ドイツ諸邦がプロイセン側につく担保が開戦前から存在したこと",
@@ -613,7 +638,7 @@ export const francoPrussianWarPrussiaCase = {
       relevance: "高",
       timeFit: "直接",
       availableAtDecisionTime: true,
-      availableToAnalysts: true,
+      availableToAnalysts: false,
       knownByDecisionMakers: "明白",
       knownByDecisionMakersBasis: "参謀本部自身の事前展開計画（FPWP-E-002 を動員優位とは別側面＝戦争計画の時間的射程として参照）",
       canSay: "モルトケの1868-69年展開計画が会戦による主力撃滅を前提とし、政体崩壊後の長期占領・国民戦争への備えを欠いていたことが、結果（ex-post）ではなく事前計画そのものから ex-ante に読めること",
@@ -643,11 +668,11 @@ export const francoPrussianWarPrussiaCase = {
   ratingBasis: [
     {
       cellId: "fpwp_cell_provocation_diplomacy",
-      weight: 1
+      weight: 2
     },
     {
       cellId: "fpwp_cell_mobilization_advantage",
-      weight: 1
+      weight: 2
     },
     {
       cellId: "fpwp_cell_south_german_alliance",
@@ -655,11 +680,11 @@ export const francoPrussianWarPrussiaCase = {
     },
     {
       cellId: "fpwp_cell_siege_escalation",
-      weight: 1
+      weight: 2
     },
     {
       cellId: "fpwp_cell_annexation_cost",
-      weight: 1
+      weight: 2
     }
   ]
 };

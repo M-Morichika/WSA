@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260626-prussia-exante";
+} from "../data/auditSchema.js?v=20260627-ruu-ukraine";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -89,12 +89,26 @@ function missingEvidenceTitle(link) {
   return `欠損証拠: ${link.evidenceId}`;
 }
 
+function formatValue(value) {
+  if (Array.isArray(value)) return value.join(" / ");
+  return value ?? "";
+}
+
+function renderParagraphs(text) {
+  return String(text || "")
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .map((paragraph) => `<p>${paragraph}</p>`)
+    .join("");
+}
+
 function renderOverview() {
   const snapshot = auditData.warCase;
   return `
     <section class="section">
       <h3>総合監査意見</h3>
-      <p>${auditData.overviewOpinion}</p>
+      ${renderParagraphs(auditData.overviewOpinion)}
     </section>
 
     <section class="section">
@@ -192,7 +206,7 @@ function renderTimeline() {
         <h3>監査シート</h3>
         <dl class="metric-list">
           <div class="metric-row"><dt>当時利用可能だった情報</dt><dd>${selected.availableInfo}</dd></div>
-          <div class="metric-row"><dt>代替案</dt><dd>${selected.alternatives}</dd></div>
+          <div class="metric-row"><dt>代替案</dt><dd>${formatValue(selected.alternatives)}</dd></div>
           <div class="metric-row"><dt>判断修正余地</dt><dd>${selected.revisionRoom}。${selected.revisionNote}</dd></div>
           <div class="metric-row"><dt>監査上の疑問</dt><dd>${selected.auditQuestion}</dd></div>
         </dl>
@@ -314,14 +328,6 @@ function renderAssessment() {
       }
     </section>
 
-    <section class="section">
-      <h3>証拠リンクなし理由の凡例</h3>
-      <div class="grid three">
-        <div class="mini-card"><h3>証拠未収集</h3><p>必要な資料がまだ集まっていない状態。</p></div>
-        <div class="mini-card"><h3>未接続</h3><p>関連しそうな資料はあるが、この評価セルには未接続の状態。</p></div>
-        <div class="mini-card"><h3>該当証拠なし</h3><p>現時点では、このセルに直接結びつく証拠を置かない状態。</p></div>
-      </div>
-    </section>
 
     <div class="grid two">
       <section class="section">
@@ -467,7 +473,7 @@ function renderOpinion() {
   return `
     <section class="section">
       <h3>総合監査意見</h3>
-      <p>${auditData.overviewOpinion}</p>
+      ${renderParagraphs(auditData.overviewOpinion)}
       <p><strong>限定事項:</strong> この監査意見は、Evidence Graph に接続された証拠と未確認事項の範囲に限られる。</p>
     </section>
 
@@ -554,7 +560,7 @@ function renderPreWar() {
                               <span class="prewar-chip">
                                 ${r.item.name}
                                 ${r.res.pending ? '<span class="prewar-flag">⏳昇格候補</span>' : ""}
-                                ${r.res.basis === "override" && !r.res.pending ? '<span class="prewar-flag">▸判断</span>' : ""}
+                                ${r.res.basis === "override" && !r.res.pending ? '<span class="prewar-flag">▸個別判断</span>' : ""}
                               </span>
                             `,
                           )
@@ -584,7 +590,7 @@ function renderPreWar() {
             <strong>${item.name}</strong>
             <span class="cell-meta">${item.category}</span>
             ${res.pending ? '<span class="prewar-flag">暫定評価</span>' : ""}
-            ${res.basis === "override" && !res.pending ? '<span class="prewar-flag">▸判断(override)</span>' : ""}
+            ${res.basis === "override" && !res.pending ? '<span class="prewar-flag">▸個別判断</span>' : ""}
           </summary>
           <div class="prewar-card-body">
             <div class="grid three">
@@ -606,7 +612,7 @@ function renderPreWar() {
             ${item.asymmetry ? `<p class="prewar-asymmetry"><strong>非対称性:</strong> ${item.asymmetry}</p>` : ""}
             ${
               res.basis === "override" || res.pending
-                ? `<p class="prewar-rationale"><strong>${res.pending ? "昇格保留中の根拠" : "override 根拠"}:</strong> ${item.statusOverride.rationale}</p>`
+                ? `<p class="prewar-rationale"><strong>${res.pending ? "昇格保留中の根拠" : "個別判断の根拠"}:</strong> ${item.statusOverride.rationale}</p>`
                 : ""
             }
             <div class="grid two">
@@ -671,7 +677,7 @@ function renderPreWar() {
 
     <section class="section">
       <h3>評価ギャップ・マトリクス</h3>
-      <p class="muted">横軸=開戦前の評価可能性、縦軸=実際の評価形跡。右上（高 × 形跡なし）が重大懸念ゾーン。override は軸位置で配置せず、注釈バッジで重ねる。</p>
+      <p class="muted">横軸=開戦前の評価可能性、縦軸=実際の評価形跡。右上（高 × 形跡なし）が重大懸念ゾーン。個別判断による評価は軸位置で配置せず、注釈バッジで重ねる。</p>
       ${matrix}
     </section>
 

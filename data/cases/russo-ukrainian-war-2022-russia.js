@@ -1,6 +1,7 @@
 export const russoUkrainianWarRussiaCase = {
   warCase: {
     id: "russo-ukrainian-war-2022-russia",
+    counterpartCaseId: "russo-ukrainian-war-2022-ukraine",
     conflict: "ウクライナ戦争 2022–",
     name: "ウクライナ戦争 2022–：ロシア連邦側",
     auditedActor: "ロシア連邦・プーチン政権",
@@ -12,7 +13,7 @@ export const russoUkrainianWarRussiaCase = {
     ratingNote: "格付けは未確定。他ケースと異なり rating-readiness 条件が構造的に重い＝開戦判断の核心（抵抗意思・西側反応・自軍能力の見積もり）の ex-ante 直接証拠＝ロシア側内部意思決定資料・軍内部評価・作戦計画文書の精査が必要。これらが封鎖されている間に事後資料からの逆算で格付けすると第3原則（開戦後の証拠を直接根拠にしない）に抵触するため、構造的に未確定を維持する（仏/普の一時的保留とは性質が異なる）。"
   },
 
-  overviewOpinion: "ロシア側の侵攻判断には、ウクライナ抵抗意思、西側反応、自軍統合作戦能力、兵站・指揮統制、短期決着可能性について重大な過小・過大評価が含まれていた疑いが強い。\n\nただし、開戦前の公開軍事バランス上はロシア優位に見える要素も存在し、外部分析者にも同様の過大評価があったため、戦後結果だけを根拠に単純な後知恵評価へ落としてはならない。本ケースでは、ロシアの侵攻を正当化するか否かではなく、ロシア指導部が侵攻前に敵抵抗意思・西側反応・自軍能力・兵站・政治目的をどのように見積もったかを監査対象とする。国際法上の侵略評価は重要な背景資料だが、開戦前判断の能力監査とは層を分けて扱う。",
+  overviewOpinion: "ロシア側の侵攻判断には、ウクライナ抵抗意思、西側反応、自軍統合作戦能力、兵站・指揮統制、短期決着可能性について重大な過小・過大評価が含まれていた疑いが強いが、内部見積もりの直接証拠は未収集である。\n\nただし、開戦前の公開軍事バランス上はロシア優位に見える要素も存在し、外部分析者にも同様の過大評価があったため、戦後結果だけを根拠に単純な後知恵評価へ落としてはならない。本ケースでは、ロシアの侵攻を正当化するか否かではなく、ロシア指導部が侵攻前に敵抵抗意思・西側反応・自軍能力・兵站・政治目的をどのように見積もったかを監査対象とする。国際法上の侵略評価は重要な背景資料だが、開戦前判断の能力監査とは層を分けて扱う。",
 
   issues: [
     { name: "敵抵抗意思・国家耐久力の過小評価", status: "要検証" },
@@ -89,30 +90,28 @@ export const russoUkrainianWarRussiaCase = {
       name: "ウクライナ抵抗意思の見積もり",
       category: "政治・社会",
       exAnteEvaluability: "高",
-      actuallyEvaluated: "限定的",
+      actuallyEvaluated: "不明",
       evaluationDifficulty: "高",
       auditQuestion: "ウクライナ国家、軍、社会、ゼレンスキー政権の抵抗意思と動員能力をどう見積もったか？",
       counterPoint: "外部専門家もウクライナの早期崩壊を予測していた",
       evidenceBasis: "公開演説等から、歴史的・イデオロギー的な「一体性」の主張により抵抗意思が過小評価されていた形跡が強いが、内部文書の確認には至っていない。",
       linkedCells: ["ruw_cell_resistance_estimation"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-001", "RUW-EL-002", "RUW-EL-003"],
-      statusOverride: { provisional: true, value: "要検証", rationale: "ロシア側の内部意思決定資料が未公開であり、公開演説・戦中研究・外部分析に依存するため。" }
+      linkedEvidenceLinks: ["RUW-EL-001", "RUW-EL-002", "RUW-EL-003"]
     },
     {
       id: "ruw_pw_western_response",
       name: "西側の反応と支援の見積もり",
       category: "外交・国際",
       exAnteEvaluability: "中",
-      actuallyEvaluated: "限定的",
+      actuallyEvaluated: "不明",
       evaluationDifficulty: "高",
       auditQuestion: "米欧・NATO・EU・日本などによる制裁、軍事支援、情報支援、外交的結束の規模をどう見積もったか？",
       counterPoint: "西側支援の規模と結束は開戦前には不確実性が高かった",
       evidenceBasis: "2014年のクリミア併合時の経験等から西側の反応を限定的と見積もった可能性が指摘されているが、直接的な内部評価文書は未収集。",
       linkedCells: ["ruw_cell_western_response"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-004", "RUW-EL-005"],
-      statusOverride: { provisional: true, value: "要検証", rationale: "ロシア側の内部意思決定資料が未公開であり、公開演説・戦中研究・外部分析に依存するため。" }
+      linkedEvidenceLinks: ["RUW-EL-004", "RUW-EL-005"]
     },
     {
       id: "ruw_pw_russian_force_readiness",
@@ -126,8 +125,7 @@ export const russoUkrainianWarRussiaCase = {
       evidenceBasis: "開戦後の損耗と作戦の混乱から過大評価が強く疑われるが、事前の内部軍事見積もり文書は未公開。",
       linkedCells: ["ruw_cell_force_estimation"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-006", "RUW-EL-007"],
-      statusOverride: { provisional: true, value: "要検証", rationale: "ロシア側の内部意思決定資料が未公開であり、公開演説・戦中研究・外部分析に依存するため。" }
+      linkedEvidenceLinks: ["RUW-EL-006", "RUW-EL-007"]
     },
     {
       id: "ruw_pw_logistics_command",
@@ -141,8 +139,7 @@ export const russoUkrainianWarRussiaCase = {
       evidenceBasis: "キーウ方面の撤退等から兵站と指揮の破綻は明らかであるが、開戦前にこれを軍部がどう評価していたか（あるいは軽視されたか）は内部文書未公開。",
       linkedCells: ["ruw_cell_logistics_command"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-008", "RUW-EL-009"],
-      statusOverride: { provisional: true, value: "要検証", rationale: "ロシア側の内部意思決定資料が未公開であり、公開演説・戦中研究・外部分析に依存するため。" }
+      linkedEvidenceLinks: ["RUW-EL-008", "RUW-EL-009"]
     },
     {
       id: "ruw_pw_regime_ideology_bias",
@@ -156,8 +153,7 @@ export const russoUkrainianWarRussiaCase = {
       evidenceBasis: "開戦前の公開演説から強いイデオロギー的動機は読み取れるが、それが実際の意思決定においてどこまで情報を歪めたかは断定に制約がある。",
       linkedCells: ["ruw_cell_decision_process"],
       linkedAssumptions: [],
-      linkedEvidenceLinks: ["RUW-EL-010", "RUW-EL-011", "RUW-EL-012"],
-      statusOverride: { provisional: true, value: "要検証", rationale: "ロシア側の内部意思決定資料が未公開であり、公開演説・戦中研究・外部分析に依存するため。" }
+      linkedEvidenceLinks: ["RUW-EL-010", "RUW-EL-011", "RUW-EL-012"]
     }
   ],
 
@@ -184,7 +180,7 @@ export const russoUkrainianWarRussiaCase = {
       status: "要検証",
       impact: "高",
       evidenceStrength: "弱〜中",
-      opinion: "ウクライナの国家・社会の抵抗意思を大幅に過小評価し、早期崩壊を想定していた疑いが強いが、外部専門家も類似の過大・過小評価を行っていた。",
+      opinion: "ウクライナの国家・社会の抵抗意思を過小評価し、早期崩壊を想定していた疑いは強いが、内部見積もりの直接証拠は未収集であり、外部専門家も類似の過大・過小評価を行っていた。",
       criteria: ["ウクライナ軍・社会の動員能力と抗戦意思を事前にどう評価していたか"],
       changeConditions: ["FSB等の事前の世論調査・情報分析報告書の全容が判明した場合"],
       noEvidenceReason: "証拠未収集",
@@ -223,7 +219,7 @@ export const russoUkrainianWarRussiaCase = {
       status: "要検証",
       impact: "高",
       evidenceStrength: "弱",
-      opinion: "軍事目標を縮小した際、最終的な政治目的（勝利条件）をどう再定義したか不明。",
+      opinion: "軍事目標を縮小した際、最終的な政治目的（勝利条件）をどう再定義したか不明。ただし、このセルは初期侵攻判断後の方針修正であり、初期判断の ratingBasis には直接算入しない。",
       criteria: ["戦力再編時の目標設定の妥当性"],
       changeConditions: ["2022年4月の作戦変更命令書が公開された場合"],
       noEvidenceReason: "証拠未収集",
@@ -262,7 +258,7 @@ export const russoUkrainianWarRussiaCase = {
       status: "要検証",
       impact: "高",
       evidenceStrength: "弱",
-      opinion: "短期決着仮説の破綻後、長期戦化への移行をどのように判断し、当初の戦争目的をどう再定義したか（本ケースの監査境界）。",
+      opinion: "短期決着仮説の破綻後、長期戦化への移行をどのように判断し、当初の戦争目的をどう再定義したか（本ケースの監査境界）。このセルは境界管理のメモであり、初期判断の ratingBasis には直接算入しない。",
       criteria: ["初期目標の未達を認識した上で、戦争継続の正当性と持続可能性をどう再評価したか"],
       changeConditions: ["2022年春〜夏の戦略再評価に関する内部資料が判明した場合"],
       noEvidenceReason: "証拠未収集",
@@ -275,100 +271,100 @@ export const russoUkrainianWarRussiaCase = {
       id: "RUW-E-001",
       title: "Vladimir Putin, \"On the Historical Unity of Russians and Ukrainians\"",
       source: "2021年7月 ロシア大統領府公開論文",
-      type: "公開資料",
+      type: "公開論文",
       publishedDate: "2021-07",
       coveragePeriod: "2021",
       authenticity: "高",
       interpretiveReliability: "中",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "RUW-E-002",
       title: "ドネツク・ルガンスク承認に関する大統領演説",
       source: "2022年2月21日 大統領演説",
-      type: "公開資料",
+      type: "公式演説",
       publishedDate: "2022-02-21",
       coveragePeriod: "2022",
       authenticity: "高",
       interpretiveReliability: "中",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "RUW-E-003",
       title: "「特別軍事作戦」開始に関する大統領演説",
       source: "2022年2月24日 大統領演説",
-      type: "公開資料",
+      type: "公式演説",
       publishedDate: "2022-02-24",
       coveragePeriod: "2022",
       authenticity: "高",
       interpretiveReliability: "中",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "RUW-E-004",
       title: "ロシア連邦安全保障会議の公開放送",
       source: "2022年2月21日前後 公開放送映像",
-      type: "公開資料",
+      type: "公開会議映像",
       publishedDate: "2022-02",
       coveragePeriod: "2022",
       authenticity: "高",
       interpretiveReliability: "低",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "RUW-E-005",
       title: "UN General Assembly Resolution ES-11/1, Aggression against Ukraine",
       source: "2022年3月2日 国連総会決議",
-      type: "公開資料",
+      type: "国際機関決議",
       publishedDate: "2022-03",
       coveragePeriod: "2022",
       authenticity: "高",
       interpretiveReliability: "高",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "RUW-E-006",
       title: "Preliminary Lessons in Conventional Warfighting from Russia's Invasion of Ukraine: February–July 2022",
       source: "RUSI (Royal United Services Institute), 2022年",
-      type: "外部研究",
+      type: "戦中外部研究",
       publishedDate: "2022",
       coveragePeriod: "2022",
       authenticity: "高",
       interpretiveReliability: "中",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "RUW-E-007",
       title: "The Russia-Ukraine War: A Study in Analytic Failure",
       source: "CSIS (Center for Strategic and International Studies), 2023年",
-      type: "外部研究",
+      type: "事後分析",
       publishedDate: "2023",
       coveragePeriod: "2022",
       authenticity: "高",
       interpretiveReliability: "中",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "RUW-E-008",
       title: "Russia's Grinding War in Ukraine",
       source: "CSIS, 2023年",
-      type: "外部研究",
+      type: "事後分析",
       publishedDate: "2023",
       coveragePeriod: "2022-2023",
       authenticity: "高",
       interpretiveReliability: "中",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     },
     {
       id: "RUW-E-009",
       title: "IISS The Military Balance 2022",
       source: "IISS (International Institute for Strategic Studies), 2022年2月",
-      type: "公開資料",
+      type: "軍事年鑑",
       publishedDate: "2022-02",
       coveragePeriod: "2021-2022",
       authenticity: "高",
       interpretiveReliability: "高",
-      collectionState: "収集済み"
+      collectionState: "要検証"
     }
   ],
 
@@ -460,7 +456,7 @@ export const russoUkrainianWarRussiaCase = {
       knownByDecisionMakersBasis: "欧米シンクタンクの事後反省",
       canSay: "西側の分析者の間でもロシア軍の能力過大評価とウクライナ軍の過小評価が広く存在したこと",
       cannotSay: "他者も間違えていたからといってロシア指導部の誤判断が正当化されること",
-      reviewState: "完了"
+      reviewState: "要検証"
     },
     {
       id: "RUW-EL-003",
@@ -514,7 +510,7 @@ export const russoUkrainianWarRussiaCase = {
       knownByDecisionMakersBasis: "当時の情勢からの推測",
       canSay: "西側の政治的結束や軍事支援のスピードは事前の確定事項ではなく、開戦後のウクライナの抵抗によって引き出された側面があること",
       cannotSay: "制裁や支援の可能性を事前に検討しなくてよかったこと",
-      reviewState: "完了"
+      reviewState: "要検証"
     },
     {
       id: "RUW-EL-006",
@@ -550,7 +546,7 @@ export const russoUkrainianWarRussiaCase = {
       knownByDecisionMakersBasis: "公然の軍事力データ",
       canSay: "兵力、戦車、航空機などの帳簿上の数量において、ロシア軍がウクライナ軍に対して圧倒的な物量優位にあると開戦前は（外部からも）評価されていたこと",
       cannotSay: "その物量優位が、実際の統合作戦能力や兵站維持能力を担保するものであったこと",
-      reviewState: "完了"
+      reviewState: "要検証"
     },
     {
       id: "RUW-EL-008",
@@ -559,7 +555,7 @@ export const russoUkrainianWarRussiaCase = {
       assessmentCellId: "ruw_cell_logistics_command",
       claimLabel: "短期決着仮説",
       target: "依存",
-      relationship: "保留",
+      relationship: "支持",
       relevance: "高",
       timeFit: "間接",
       availableAtDecisionTime: false,
@@ -604,7 +600,7 @@ export const russoUkrainianWarRussiaCase = {
       knownByDecisionMakersBasis: "大統領自身の執筆・公開",
       canSay: "プーチン大統領自身が、ウクライナとロシアの歴史的一体性や、西側による「反ロシア」化への強い警戒感を公式に表明していたこと",
       cannotSay: "その歴史認識が客観的真実であるか、あるいは侵攻の国際法上の正当化事由となること",
-      reviewState: "完了"
+      reviewState: "要検証"
     },
     {
       id: "RUW-EL-011",
@@ -618,8 +614,8 @@ export const russoUkrainianWarRussiaCase = {
       timeFit: "直接",
       availableAtDecisionTime: true,
       availableToAnalysts: true,
-      knownByDecisionMakers: "明白",
-      knownByDecisionMakersBasis: "公開放送における指導部内の力学の露見",
+      knownByDecisionMakers: "不明",
+      knownByDecisionMakersBasis: "公開放送そのものは意思決定者に明白だが、閉鎖性の評価は外部観察者による解釈であるため。",
       canSay: "公開された安全保障会議の映像において、プーチン大統領への異論が許容されにくい雰囲気が演出（または露見）されていたこと",
       cannotSay: "カメラのない密室での実際の討議内容や、軍部からの正確な報告の有無",
       reviewState: "要検証"
@@ -636,11 +632,11 @@ export const russoUkrainianWarRussiaCase = {
       timeFit: "直接",
       availableAtDecisionTime: true,
       availableToAnalysts: true,
-      knownByDecisionMakers: "明白",
-      knownByDecisionMakersBasis: "会議の意図的な公開・演出",
+      knownByDecisionMakers: "不明",
+      knownByDecisionMakersBasis: "公開放送そのものは意思決定者に明白だが、真の内部資料ではないという評価は外部観察者側の解釈であるため。",
       canSay: "我々がアクセスできる「開戦前判断」の直接資料の多くは、ロシア指導部が意図的に公開・演出したものであり、真の内部資料ではないこと",
       cannotSay: "内部資料がないからといって、作戦結果と公開発言から初期判断の破綻を推測してはならないこと",
-      reviewState: "完了"
+      reviewState: "要検証"
     },
     {
       id: "RUW-EL-013",
@@ -676,7 +672,7 @@ export const russoUkrainianWarRussiaCase = {
       knownByDecisionMakersBasis: "戦中分析",
       canSay: "帳簿上の物量優位が、実際の戦場での統合作戦能力や兵站維持能力に直結しなかったこと",
       cannotSay: "開戦前の時点で物量優位という評価が完全に誤りだと見通せたこと",
-      reviewState: "完了"
+      reviewState: "要検証"
     },
     {
       id: "RUW-EL-015",
@@ -694,7 +690,7 @@ export const russoUkrainianWarRussiaCase = {
       knownByDecisionMakersBasis: "事後反省",
       canSay: "外部専門家の過大評価も独自の情報ギャップや偏見によるものであり、それがロシアの指導部の見積もり責任を免除するわけではないこと",
       cannotSay: "外部専門家とロシア情報機関が全く同じ情報源に依存していたこと",
-      reviewState: "完了"
+      reviewState: "要検証"
     },
     {
       id: "RUW-EL-016",
@@ -710,7 +706,7 @@ export const russoUkrainianWarRussiaCase = {
       availableToAnalysts: false,
       knownByDecisionMakers: "不明",
       knownByDecisionMakersBasis: "事後分析",
-      canSay: "西側諸国が開戦前から前例のない制裁の準備を進め、明確な警告を発していた形跡もあること",
+      canSay: "RUSI等の戦中分析上は、西側諸国が開戦前から前例のない制裁の準備を進め、明確な警告を発していた形跡もあると再構成されること",
       cannotSay: "開戦前に支援・制裁の全容が完全に確定していたこと",
       reviewState: "要検証"
     },
@@ -730,7 +726,7 @@ export const russoUkrainianWarRussiaCase = {
       knownByDecisionMakersBasis: "公開放送の内容",
       canSay: "公開放送の演出や作戦の実際の展開から、内部の意思決定の偏りや誤算の構造をある程度推測できること",
       cannotSay: "完全な議事録の代わりになること",
-      reviewState: "完了"
+      reviewState: "要検証"
     }
   ],
 
@@ -759,13 +755,5 @@ export const russoUkrainianWarRussiaCase = {
       cellId: "ruw_cell_decision_process",
       weight: 1
     },
-    {
-      cellId: "ruw_cell_attrition_shift",
-      weight: 1
-    },
-    {
-      cellId: "ruw_cell_donbas_shift_objective",
-      weight: 1
-    }
   ]
 };

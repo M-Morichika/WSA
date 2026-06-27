@@ -1,5 +1,5 @@
-import { cases } from './data/cases/index.js?v=20260626-prussia-exante';
-import { validateCaseRegistry, validateCaseReferences, lintCaseMethodology } from './data/auditSchema.js?v=20260626-prussia-exante';
+import { cases } from './data/cases/index.js?v=20260627-ruu-ukraine';
+import { validateCaseRegistry, validateCaseReferences, lintCaseMethodology } from './data/auditSchema.js?v=20260627-ruu-ukraine';
 
 console.log("=== Running Validations ===");
 console.log("1. validateCaseRegistry:");

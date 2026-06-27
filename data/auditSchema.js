@@ -236,7 +236,7 @@ export function lintCaseMethodology(caseData) {
   const links = Array.isArray(caseData.evidenceLinks) ? caseData.evidenceLinks : [];
   const claims = Array.isArray(caseData.claims) ? caseData.claims : [];
   const validTimeFits = new Set(["直接", "間接"]);
-  const requiredTextFields = ["canSay", "cannotSay"];
+  const requiredTextFields = ["canSay", "cannotSay", "knownByDecisionMakers", "knownByDecisionMakersBasis"];
 
   links.forEach((link) => {
     requiredTextFields.forEach((field) => {
@@ -254,8 +254,8 @@ export function lintCaseMethodology(caseData) {
     if (link.timeFit === "直接" && link.availableAtDecisionTime !== true) {
       findings.push({ type: "direct_evidence_not_available_at_decision_time", id: link.id, severity: "重大" });
     }
-    if (link.relationship === "反証" && (!link.claimId || !link.assessmentCellId)) {
-      findings.push({ type: "counter_link_without_claim_or_cell", id: link.id, severity: "注意" });
+    if (!link.claimId || !link.assessmentCellId) {
+      findings.push({ type: "link_without_claim_or_cell", id: link.id, relationship: link.relationship, severity: "注意" });
     }
   });
 
@@ -265,23 +265,27 @@ export function lintCaseMethodology(caseData) {
     findings.push({ type: "no_counter_evidence", severity: "重大" });
   }
 
-  // (2) 一方的なクレーム（支持があるのに反証ゼロ）＝「反証を隠さない」原則の片側欠落。
-  //   R-4: 検査を対称化。counter_claim（免責側＝whitewash リスク）だけでなく audit_issue
-  //   （訴追側＝witch-hunt リスク）も対象にする。原則は claim 種別に依らず対称であり、
-  //   訴追側を構造的に検査免除すべきでない（対になる counter_claim が常に存在する保証もない）。
-  //   finding の claimType で両リスクを区別できるようにする。
+  // (2) クレームの対称性・生存性の検証
   const supportByClaim = new Map();
   const counterByClaim = new Map();
+  const totalLinksByClaim = new Map();
   links.forEach((link) => {
     if (!link.claimId) return;
+    totalLinksByClaim.set(link.claimId, (totalLinksByClaim.get(link.claimId) || 0) + 1);
     if (link.relationship === "支持") supportByClaim.set(link.claimId, (supportByClaim.get(link.claimId) || 0) + 1);
     if (link.relationship === "反証") counterByClaim.set(link.claimId, (counterByClaim.get(link.claimId) || 0) + 1);
   });
   claims.forEach((claim) => {
     const supports = supportByClaim.get(claim.id) || 0;
     const counters = counterByClaim.get(claim.id) || 0;
-    if (supports > 0 && counters === 0) {
+    const totalLinks = totalLinksByClaim.get(claim.id) || 0;
+    
+    if (totalLinks === 0) {
+      findings.push({ type: "unlinked_claim", id: claim.id, claimType: claim.type, severity: "重大" });
+    } else if (supports > 0 && counters === 0) {
       findings.push({ type: "one_sided_claim", id: claim.id, claimType: claim.type, severity: "注意", supports });
+    } else if (supports === 0 && counters > 0) {
+      findings.push({ type: "unsupported_claim", id: claim.id, claimType: claim.type, severity: "注意", counters });
     }
   });
 
