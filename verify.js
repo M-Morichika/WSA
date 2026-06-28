@@ -1,5 +1,5 @@
-import { cases } from './data/cases/index.js?v=20260627-phaseb-coalition';
-import { validateCaseRegistry, validateCaseReferences, lintCaseMethodology } from './data/auditSchema.js?v=20260627-phaseb-coalition';
+import { cases } from './data/cases/index.js?v=20260628-phasec';
+import { validateCaseRegistry, validateCaseReferences, lintCaseMethodology } from './data/auditSchema.js?v=20260628-phasec';
 
 console.log("=== Running Validations ===");
 console.log("1. validateCaseRegistry:");

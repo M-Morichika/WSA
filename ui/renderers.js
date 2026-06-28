@@ -11,7 +11,7 @@ import {
   resolveStatus,
   statusClass,
   statusOrder,
-} from "../data/auditSchema.js?v=20260627-phaseb-coalition";
+} from "../data/auditSchema.js?v=20260628-phasec";
 
 export function createRenderers(auditData, state) {
 function getAssumption(id) {
@@ -556,6 +556,23 @@ function renderOpinion() {
           ${auditData.ratingRules.weightedScore?.enabled === false
             ? `<p class="muted">加重平均は自動算出に使用しない。${auditData.ratingRules.weightedScore.note || ""}</p>`
             : ""}
+        ` : ""}
+        ${auditData.dependencyRules?.length ? `
+          <h3>複合リスク・依存関係</h3>
+          <p class="muted">この評価は単独項目ではなく、以下の項目の組み合わせに依存する。依存関係は補助情報であり、証拠未収集セルを確定評価には変換しない。</p>
+          <ul class="clean">
+            ${auditData.dependencyRules
+              .map((dep) => {
+                const cells = (Array.isArray(dep.linkedCellIds) ? dep.linkedCellIds : [])
+                  .map((id) => getAssessmentCell(id))
+                  .filter(Boolean)
+                  .map((cell) => `${cell.axis} / ${cell.phase}`)
+                  .join("、");
+                const inputs = (Array.isArray(dep.inputs) ? dep.inputs : []).join(" × ");
+                return `<li><strong>${dep.label}</strong>${inputs ? `<br><span class="muted">入力: ${inputs}</span>` : ""}<br><span class="muted">${dep.logic}${dep.output ? ` → ${dep.output}` : ""}${cells ? `（対象セル: ${cells}）` : ""}</span></li>`;
+              })
+              .join("")}
+          </ul>
         ` : ""}
       </section>
       <section class="section">

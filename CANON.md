@@ -365,16 +365,19 @@ dependencyRules: [
   {
     id: "deterrence_adjusted_invasion_risk",
     label: "抑止シグナル補正後の侵攻リスク",
-    inputs: [
+    inputs: [                          // 抽象ファクタ（assessmentCell より細かい粒度を保持・自由記述）
       "deterrence_signal_strength",
       "opponent_intent_assessment",
       "alliance_commitment_credibility"
     ],
+    linkedCellIds: ["..."],           // 任意。実 assessmentCell への追跡（validateCaseReferences が dangling を検査）
     logic: "抑止シグナルが弱く、相手意図を低く見積もり、同盟関与を疑った場合、侵攻リスク評価は過小化される",
     output: "adjusted_invasion_risk"
   }
 ]
 ```
+
+`inputs` は assessmentCell より細かい粒度の概念ファクタで自由記述（参照検査の対象外）。`linkedCellIds` は実 assessmentCell への追跡リンクで、`validateCaseReferences` が dangling を検査する（type: `missing_dependency_cell`）。依存関係は補助情報であり、証拠未収集セルを確定評価に変換しない（logic は条件付き機構として記述する）。
 
 ### 6C-2. 依存関係の典型例
 
@@ -465,7 +468,7 @@ verify.js（検証ヘルパが import 文字列を持つ場合）
 - **H（対照ケース設計）**: 同一戦争を加害側/連合側の両面から監査する「対照ケース」は `warCase.counterpartCaseId` の**相互（双方向）参照**で表現。`validateCaseRegistry` が実在・双方向・自己参照禁止を検査。UI 導線（I-9）は**軽量ボタン導線を 2-NEW-H で実装**（counterpart 実在時のみサイドバーに表示、`setActiveCase` で双方向切替）。対比ビュー新設のみ凍結維持。
 - **I（skeleton ケースの扱い）**: skeleton 段階のケースに対しては「証拠数を増やす系の指摘（反証リンク追加・セル新設・evidenceBasis 補充）はオミット」が方針。証拠未収集セルは `provisional:true`＋`noEvidenceReason` で**誠実に暫定**と明示する（確定評価に変換しない）。証拠量に依存しない構造・コード・ラベリングの是正のみ先行。
 - **J（conflict グルーピング）**: ケースセレクタの戦争単位グルーピングは `warCase.conflict` フィールド（データ駆動）で行う。ケース名の文字列分割はア軍ケース名が陣営サフィックス無しで脆弱なため不採用。
-- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行は `20260627-phaseb-coalition`（検証ヘルパ `verify.js` の import 文字列も同期対象に含める＝実質5箇所）。
+- **K（cache-busting）**: ESM の `?v=` クエリは **app.js / index.html / data/cases/index.js / ui/renderers.js の4箇所で同一文字列**に揃える（renderers.js 冒頭にコメント常設）。ズレると同一モジュールが別URLで二重ロードされ状態分裂。静的importはテンプレートリテラル不可ゆえ定数集約はビルド無しでは不能＝手動同期が前提。現行は `20260628-phasec`（検証ヘルパ `verify.js` の import 文字列も同期対象に含める＝実質5箇所）。
 - **L（連合側 正統性の二層化）**: 連合側の正統性は **国際的正統性（国連決議・連合形成＝強い）とホスト国正統性（サウジ駐留の宗教政治＝同時代に係争的）を別軸**として扱う。サウジ駐留正統性は `gwc_pw_basing_legitimacy`＝高×形跡あり（撤退条件付きファトワ取得＝中枢が係争性を認識し管理した形跡）で `要検証`（最低懸念）。`GWC-EL-019` は正統性claimへの批判方向反証。長期ブローバック（1996/2001）は **ex-post ＝射程外**（第3原則）。決議678の授権は「地域の平和と安全の回復」まで広範＝目的のクウェート解放への限定は**法的天井でなく政治的選択**（`GWC-EL-020`）。サフワンのヘリ容認は**機密解除トランスクリプト主導**で扱い回想録単独依拠を脱した（ただし所蔵アーカイブID未特定＝R-2 残課題）。
 - **M（skeleton Pre-War の `形跡なし` 規律）**: Pre-War の `actuallyEvaluated:"形跡なし"` は**証拠で「評価痕跡なし」を裏づけた場合のみ**用いる。証拠未収集なら `"不明"`＋`noEvidenceReason:"証拠未収集"`（russia流）にする。`resolveStatus` は `形跡なし` で provisional override を自動発火させるため（`auditSchema.js:51`）、未精査のまま `形跡なし` を置くと校正αの 高×形跡なし→重大懸念 を黙って降格させる＝I-3 の non-honesty 違反。`exAnteEvaluability` は `高/中/低` のみ（`低〜中` 等は enum ガードγで黙って要検証に落ちるので不可）。
 - **N（claim type の極性）**: 能力肯定（監査対象が X をうまくやった）の命題は `counter_claim`（免責側）、懸念・失敗の命題は `audit_issue`（訴追側）。連合側 `gwc_claim_legitimacy`（能力肯定＝counter_claim）が先行例。勝者側ケースでも audit_issue と counter_claim を両方持つのが健全（prussia は当初 能力肯定を全て audit_issue にしていた＝AUD-2 で是正し、長期化・併合コストの訴追 claim を新設して両建て化）。

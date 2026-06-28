@@ -10,7 +10,7 @@ export const russoUkrainianWarRussiaCase = {
     primaryResponsibility: "敵抵抗意思、西側反応、自軍能力、兵站・指揮統制、政治目的の見積もり責任",
     uncertainty: "中〜高",
     rating: "未確定",
-    ratingNote: "格付けは未確定。他ケースと異なり rating-readiness 条件が構造的に重い＝開戦判断の核心（抵抗意思・西側反応・自軍能力の見積もり）の ex-ante 直接証拠＝ロシア側内部意思決定資料・軍内部評価・作戦計画文書の精査が必要。これらが封鎖されている間に事後資料からの逆算で格付けすると第3原則（開戦後の証拠を直接根拠にしない）に抵触するため、構造的に未確定を維持する（仏/普の一時的保留とは性質が異なる）。"
+    ratingNote: "格付けは未確定。他ケースと異なり rating-readiness 条件が構造的に重い＝開戦判断の核心（抵抗意思・西側反応・自軍能力の見積もり）の ex-ante 直接証拠＝ロシア側内部意思決定資料・軍内部評価・作戦計画文書の精査が必要。これらが封鎖されている間に事後資料からの逆算で格付けすると第3原則（開戦後の証拠を直接根拠にしない）に抵触するため、構造的に未確定を維持する（仏/普の一時的保留とは性質が異なる）。条件付きノックアウト基準（敵抵抗意思の過小評価＝上限C、自軍兵站・指揮統制の過信＝上限C+）を設定したが、対象セルは全て証拠未収集のため現状いずれも未発火である。"
   },
 
   overviewOpinion: "ロシア側の侵攻判断には、ウクライナ抵抗意思、西側反応、自軍統合作戦能力、兵站・指揮統制、短期決着可能性について重大な過小・過大評価が含まれていた疑いが強いが、内部見積もりの直接証拠は未収集である。\n\nただし、開戦前の公開軍事バランス上はロシア優位に見える要素も存在し、外部分析者にも同様の過大評価があったため、戦後結果だけを根拠に単純な後知恵評価へ落としてはならない。本ケースでは、ロシアの侵攻を正当化するか否かではなく、ロシア指導部が侵攻前に敵抵抗意思・西側反応・自軍能力・兵站・政治目的をどのように見積もったかを監査対象とする。国際法上の侵略評価は重要な背景資料だが、開戦前判断の能力監査とは層を分けて扱う。",
@@ -91,6 +91,7 @@ export const russoUkrainianWarRussiaCase = {
       category: "政治・社会",
       exAnteEvaluability: "高",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "高",
       auditQuestion: "ウクライナ国家、軍、社会、ゼレンスキー政権の抵抗意思と動員能力をどう見積もったか？",
       counterPoint: "外部専門家もウクライナの早期崩壊を予測していた",
@@ -106,6 +107,7 @@ export const russoUkrainianWarRussiaCase = {
       category: "外交・国際",
       exAnteEvaluability: "中",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "高",
       auditQuestion: "米欧・NATO・EU・日本などによる制裁、軍事支援、情報支援、外交的結束の規模をどう見積もったか？",
       counterPoint: "西側支援の規模と結束は開戦前には不確実性が高かった",
@@ -121,6 +123,7 @@ export const russoUkrainianWarRussiaCase = {
       category: "軍事・作戦",
       exAnteEvaluability: "高",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "中",
       auditQuestion: "ロシア軍の即応性、統合作戦能力、兵士練度、部隊充足、航空・地上連携を過大評価していなかったか？",
       counterPoint: "開戦前の公開軍事バランス上はロシアが圧倒的優位に見えた",
@@ -136,6 +139,7 @@ export const russoUkrainianWarRussiaCase = {
       category: "軍事・作戦",
       exAnteEvaluability: "高",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "中",
       auditQuestion: "多軸侵攻を支える兵站、燃料、整備、通信、指揮統制、作戦保全とのトレードオフを適切に評価していたか？",
       counterPoint: "初期作戦の失敗は事後結果であり、事前計画段階での致命的欠陥の有無は直接確認されていない",
@@ -151,6 +155,7 @@ export const russoUkrainianWarRussiaCase = {
       category: "政治・社会",
       exAnteEvaluability: "中",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "高",
       auditQuestion: "NATO脅威認識、ウクライナ国家否認的歴史観、体制安全保障論理によって客観的情報が遮断されていなかったか？",
       counterPoint: "ロシア指導部の内部意思決定プロセスはブラックボックスである",
@@ -782,5 +787,51 @@ export const russoUkrainianWarRussiaCase = {
       cellId: "ruw_cell_decision_process",
       weight: 1
     },
-  ]
+  ],
+
+  // Phase B（rating 透明化）横展開。CANON 6B-1 準拠。
+  // 全セルが要検証＋証拠未収集のため、発火しない条件付き上限のみ（未発火）。
+  ratingRules: {
+    knockoutCriteria: [
+      {
+        id: "ko_resistance_underestimation",
+        cellIds: ["ruw_cell_resistance_estimation"],
+        applies: false,
+        condition:
+          "敵抵抗意思・国家耐久力（高重要度）の過小評価が、内部見積もり等の一次資料で確定した場合。短期決着仮説の前提が崩れる。",
+        capRatingAt: "C",
+        rationale:
+          "敵の抵抗意思を過小評価していたことが確定すれば、短期決着仮説の信頼性が崩れ、他項目が相対的に良好でも総合評価の上限を引き上げられない。現状は証拠未収集ゆえ未発火。",
+      },
+      {
+        id: "ko_force_logistics_overconfidence",
+        cellIds: ["ruw_cell_force_estimation", "ruw_cell_logistics_command"],
+        applies: false,
+        condition:
+          "自軍能力・兵站・指揮統制（高重要度）の過信が、軍内部の戦備評価・作戦計画の一次資料で確定した場合。",
+        capRatingAt: "C+",
+        rationale:
+          "多軸侵攻を支える兵站・指揮統制の過信が確定すれば、作戦継続能力の見積もりの根幹を損なう。現状は証拠未収集ゆえ未発火。",
+      },
+    ],
+    weightedScore: {
+      enabled: false,
+      note: "ratingBasis の weight は参考指標であり、rating の自動決定には使わない。",
+    },
+  },
+
+  // Phase C（複合リスク・依存関係）試験導入。CANON 6C 準拠。データのみ・補助情報。
+  // inputs は抽象ファクタ（セルより細かい粒度）、linkedCellIds で実セルへ追跡（参照検証）。
+  // 各要素は証拠未収集のため、依存関係は確定評価ではなく構造的論点として提示する。
+  dependencyRules: [
+    {
+      id: "dep_short_war_feasibility",
+      label: "短期決着仮説の成立条件（複合依存）",
+      inputs: ["ウクライナの抵抗意思の見積もり", "西側支援の規模・持続性の見積もり", "自軍の短期決着能力の見積もり"],
+      linkedCellIds: ["ruw_cell_resistance_estimation", "ruw_cell_western_response", "ruw_cell_force_estimation"],
+      logic:
+        "敵抵抗意思を低く、西側支援を限定的と見積もり、自軍の短期決着能力を高く見積もった場合にのみ短期決着仮説が成立する。3要素は独立ではなく、いずれかの過小・過大評価が他要素の許容度を狭める。各要素は現状いずれも証拠未収集であり、本依存関係は証拠未収集セルを確定評価に変換しない（構造的論点としてのみ提示）。",
+      output: "短期決着仮説の脆弱性（要素間の連動による崩壊条件）",
+    },
+  ],
 };

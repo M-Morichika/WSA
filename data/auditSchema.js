@@ -202,6 +202,18 @@ export function validateCaseReferences(caseData) {
     });
   });
 
+  // Phase C: dependencyRules[].linkedCellIds → assessmentCell の参照整合（任意フィールド）。
+  // inputs は抽象ファクタ（自由記述）ゆえ参照検査の対象外。linkedCellIds のみ dangling を検査する。
+  const dependencyRules = Array.isArray(caseData.dependencyRules) ? caseData.dependencyRules : [];
+  dependencyRules.forEach((dep, index) => {
+    const cellIds = Array.isArray(dep.linkedCellIds) ? dep.linkedCellIds : [];
+    cellIds.forEach((id) => {
+      if (!assessmentCellIds.has(id)) {
+        issues.push({ type: "missing_dependency_cell", id, depId: dep.id, index });
+      }
+    });
+  });
+
   // 注: hypothesisTracking[].checkpoints[].phase は phase.name への参照ではなく
   //   自由記述のチェックポイント名（例「機動部隊派遣後」）であり、ID 参照を持たない。
   //   よって参照整合の検査対象にはしない（誤検知を避ける）。
@@ -292,13 +304,30 @@ export function lintCaseMethodology(caseData) {
     const supports = supportByClaim.get(claim.id) || 0;
     const counters = counterByClaim.get(claim.id) || 0;
     const totalLinks = totalLinksByClaim.get(claim.id) || 0;
-    
+
     if (totalLinks === 0) {
       findings.push({ type: "unlinked_claim", id: claim.id, claimType: claim.type, severity: "重大" });
     } else if (supports > 0 && counters === 0) {
       findings.push({ type: "one_sided_claim", id: claim.id, claimType: claim.type, severity: "注意", supports });
     } else if (supports === 0 && counters > 0) {
       findings.push({ type: "unsupported_claim", id: claim.id, claimType: claim.type, severity: "注意", counters });
+    }
+  });
+
+  // (3) 未収集の「形跡なし」検出（CANON §6）。
+  //   actuallyEvaluated:"形跡なし" は証拠で評価痕跡の不在を裏づけた場合のみ許容し、
+  //   その裏づけは noEvidenceReason:"該当証拠なし"（＝調査範囲を確認した上での不在）で表す。
+  //   証拠未収集・未接続・未指定のまま「形跡なし」とするのは、未収集を確定評価へ変換する違反で、
+  //   高重要度では偽の「重大懸念」（高×形跡なし）を生む。Gulf イラク2件（該当証拠なし＋調査範囲明記）は許容。
+  const preWarChecklist = Array.isArray(caseData.preWarChecklist) ? caseData.preWarChecklist : [];
+  preWarChecklist.forEach((item) => {
+    if (item.actuallyEvaluated === "形跡なし" && item.noEvidenceReason !== "該当証拠なし") {
+      findings.push({
+        type: "uncollected_no_trace",
+        id: item.id,
+        noEvidenceReason: item.noEvidenceReason ?? null,
+        severity: "重大",
+      });
     }
   });
 

@@ -750,4 +750,18 @@ export const gulfWar1990IraqCase = {
       note: "ratingBasis の weight は参考指標であり、rating の自動決定には使わない。",
     },
   },
+
+  // Phase C（複合リスク・依存関係）試験導入。CANON 6C 準拠。データのみ・補助情報。
+  // inputs は抽象ファクタ（セルより細かい粒度）、linkedCellIds で実セルへ追跡（参照検証）。
+  dependencyRules: [
+    {
+      id: "dep_external_reaction_adjusted_invasion",
+      label: "外部反応見積もり補正後の侵攻リスク",
+      inputs: ["米国の抑止シグナルの強度", "グラスピー会談の解釈", "アラブ諸国反応の見積もり"],
+      linkedCellIds: ["gw_cell_external_reaction_opening", "gw_cell_decision_process_opening"],
+      logic:
+        "米国の抑止シグナルを弱いと読み、グラスピー会談を黙認と解釈し、アラブ諸国の反対を限定的と見積もった場合、外部介入リスクが体系的に過小化され、侵攻判断の中核前提（限定反応仮説）が自己強化される。3要素は独立ではなく、いずれかの下振れ評価が他要素の楽観を補強する。",
+      output: "過小化された外部介入リスク（限定反応仮説の自己強化）",
+    },
+  ],
 };

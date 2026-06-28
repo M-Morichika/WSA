@@ -10,7 +10,7 @@ export const russoUkrainianWarUkraineCase = {
     primaryResponsibility: "防衛継続判断、国家動員、首都防衛、西側支援依存、停戦・交渉余地の見積もり責任",
     uncertainty: "中",
     rating: "未確定",
-    ratingNote: "初期ケースであり、ウクライナ政府・軍を主対象、西側支援国を支援環境として扱う。現行 ratingBasis 4セルはいずれも証拠未収集または弱〜中の証拠強度に留まり、長期戦コスト・停戦交渉余地・別ケース境界セルは ex-post 資料依存のため算入外。格付け確定には、2021年末〜2022年春のウクライナ側内部危機評価、軍事準備、首都防衛計画、停戦交渉判断、支援依存リスク評価の精査が必要。"
+    ratingNote: "初期ケースであり、ウクライナ政府・軍を主対象、西側支援国を支援環境として扱う。現行 ratingBasis 4セルはいずれも証拠未収集または弱〜中の証拠強度に留まり、長期戦コスト・停戦交渉余地・別ケース境界セルは ex-post 資料依存のため算入外。格付け確定には、2021年末〜2022年春のウクライナ側内部危機評価、軍事準備、首都防衛計画、停戦交渉判断、支援依存リスク評価の精査が必要。条件付きノックアウト基準（侵攻リスク過小評価＝上限C、西側支援依存・動員耐久コストの欠落＝上限C+）を設定したが、対象セルは証拠未収集のため現状いずれも未発火である。"
   },
 
   overviewOpinion: "ウクライナ側の初期判断には、ロシア全面侵攻リスクの見積もり、首都防衛、国家総動員、西側支援依存、長期抗戦コストについて検証すべき論点がある。\n\nただし、本ケースは侵略開始責任を問うものではなく、被侵略側が利用可能な情報のもとで防衛継続・抵抗・支援獲得をどう判断したかを監査する。ゼレンスキー政権の首都残留と抗戦継続は国家崩壊を防いだ可能性がある一方、長期戦化以降の人的・経済的コスト評価は本ケースの境界として慎重に扱う。",
@@ -91,6 +91,7 @@ export const russoUkrainianWarUkraineCase = {
       category: "安全保障",
       exAnteEvaluability: "高",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "中",
       auditQuestion: "ロシア軍集結と米英警告を踏まえ、全面侵攻の規模・時期・目的をどう評価したか？",
       counterPoint: "警告は存在したが、過剰警報による社会・経済混乱も制約だった",
@@ -106,6 +107,7 @@ export const russoUkrainianWarUkraineCase = {
       category: "政治・社会",
       exAnteEvaluability: "中",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "高",
       auditQuestion: "政府残留、首都防衛、国民動員、情報発信が国家崩壊を防ぐ可能性をどう見積もったか？",
       counterPoint: "首都残留は国家士気を支えた可能性があるが、指導部喪失リスクも高かった",
@@ -121,6 +123,7 @@ export const russoUkrainianWarUkraineCase = {
       category: "軍事・作戦",
       exAnteEvaluability: "高",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "中",
       auditQuestion: "2014年以降の戦争経験と軍改革を踏まえ、全面侵攻に対する即応性をどう評価したか？",
       counterPoint: "帳簿上の軍事バランスではロシア優位が大きく、防衛成功を当然視することはできなかった",
@@ -136,6 +139,7 @@ export const russoUkrainianWarUkraineCase = {
       category: "外交・国際",
       exAnteEvaluability: "中",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "高",
       auditQuestion: "武器供与、情報支援、制裁、財政支援の規模・速度・持続性をどう見積もったか？",
       counterPoint: "支援規模はウクライナの初期抵抗によって拡大した面があり、開戦前に完全確定していなかった",
@@ -151,6 +155,7 @@ export const russoUkrainianWarUkraineCase = {
       category: "政治・外交",
       exAnteEvaluability: "中",
       actuallyEvaluated: "不明",
+      noEvidenceReason: "証拠未収集",
       evaluationDifficulty: "高",
       auditQuestion: "抗戦継続、停戦、領土譲歩、長期戦化の人的・経済的コストをどう比較したか？",
       counterPoint: "早期妥協が主権喪失や占領暴力を避けられたとは断定できない",
@@ -845,5 +850,36 @@ export const russoUkrainianWarUkraineCase = {
     { cellId: "ruu_cell_mobilization_cost", reason: "開戦後・戦中/事後資料のみで、初期判断の直接根拠にしない" },
     { cellId: "ruu_cell_negotiation_space", reason: "交渉報道・研究が ex-post であり、後知恵対照として扱う" },
     { cellId: "ruu_cell_long_war_boundary", reason: "別ケース境界の管理セルであり、初期格付け母数に含めない" }
-  ]
+  ],
+
+  // Phase B（rating 透明化）横展開。CANON 6B-1 準拠。
+  // 全セルが要検証＋証拠未収集のため、発火しない条件付き上限のみ（未発火）。
+  ratingRules: {
+    knockoutCriteria: [
+      {
+        id: "ko_invasion_risk_underestimation",
+        cellIds: ["ruu_cell_invasion_risk"],
+        applies: false,
+        condition:
+          "全面侵攻リスク（高重要度）の過小評価が、2021年末〜2022年春のウクライナ側内部危機評価の一次資料で確定した場合。",
+        capRatingAt: "C",
+        rationale:
+          "開戦前の脅威認識の欠落が確定すれば、防衛準備・抑止判断の前提が崩れ、他項目が良好でも総合評価の上限を引き上げられない。現状は証拠未収集ゆえ未発火。",
+      },
+      {
+        id: "ko_support_endurance_gap",
+        cellIds: ["ruu_cell_western_support", "ruu_cell_mobilization_cost"],
+        applies: false,
+        condition:
+          "西側支援の持続性（高重要度）と長期動員・社会耐久コスト（高重要度）の見積もり欠落が、開戦前のウクライナ側内部資料で確定した場合。",
+        capRatingAt: "C+",
+        rationale:
+          "継戦を支える支援依存と動員コストの未評価が確定すれば、継戦可能性の根幹を損なう。mobilization_cost は現状 ex-post 資料依存で ratingBasis から除外しており、本基準は未発火。",
+      },
+    ],
+    weightedScore: {
+      enabled: false,
+      note: "ratingBasis の weight は参考指標であり、rating の自動決定には使わない。",
+    },
+  },
 };

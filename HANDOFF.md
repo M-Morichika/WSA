@@ -1,15 +1,15 @@
 # HANDOFF.md — 現在状態と次手順
 
 最終再編成: 2026-06-27  
-最終更新: 2026-06-27（Phase B 実施・push 済み: rating 透明化ノックアウト基準を湾岸2ケースに試験導入。CANON/HISTORY を追跡化。worktree 片付け）  
+最終更新: 2026-06-28（Phase B 横展開＝ウクライナ両側・普仏両側に `ratingRules.knockoutCriteria` を追加 / P3＝Ukraine 両側の `不明` 10件を CANON §6 標準形へ統一 / 未収集の `形跡なし` 検出 lint を追加 / Phase C＝依存関係 `dependencyRules` を3ケースに試験導入。worktree `claude/gallant-nash-f5484c` で作業・コミット。**master / origin へは未反映**）  
 由来: `HANDOFF(3).md` から、次セッションで必要な現在状態と次手順だけを抽出・整理。
 
 > ⚠️ ブランチ topology（最重要・嵌まりやすい）
-> - プロジェクト本体は **`master` / `origin/master`**（このメインチェックアウト `C:\Users\Masayuki\Documents\war_sustainability_audit`）。現在の tip は **`6b7115e`（origin/master と同期済み）**。
+> - プロジェクト本体は **`master` / `origin/master`**（このメインチェックアウト `C:\Users\Masayuki\Documents\war_sustainability_audit`）。master の tip は **`bcb912b`**（前回 Phase B を反映した HANDOFF コミット。origin/master と同期済み）。
 > - `main`（`023e43c Initial commit`）は **LICENSE だけの空コミット**。`claude/*` worktree は main 起点で作られ初期状態は空 → 新 worktree では最初に `git reset --hard master` で揃える。
-> - `CANON.md` / `HISTORY.md` は **`6b7115e` で git 追跡対象に変更済み**（以前の untracked 運用は終了）。新 worktree では `git reset --hard master` すれば揃う（手動コピー不要）。
+> - `CANON.md` / `HISTORY.md` は git 追跡対象（`6b7115e` 以降）。新 worktree では `git reset --hard master` すれば揃う（手動コピー不要）。
 > - **作業場所の罠**: worktree がセットアップ済みでも、Read/Edit でメインチェックアウトの絶対パスを使うと編集がメイン側に入り、worktree の検証に出ない。作業中の Read/Edit は常に worktree パス（`...\.claude\worktrees\<name>\...`）を使うこと。食い違ったらメイン側を `git checkout -- <files>` で巻き戻し、worktree へ再適用。
-> - 旧 worktree `claude/festive-poitras-5f9ac3`（Phase A/B セッション）は **片付け済み**。Phase B は master に cherry-pick（`fac05c7`）、France 精緻化は master 作業ツリー版を `6b7115e` で確定済み。
+> - **本セッション（2026-06-28）**: worktree `claude/gallant-nash-f5484c` を `git reset --hard master`（bcb912b）で揃えて作業し、Phase B横展開／P3／lint／Phase C を同ブランチにコミット。**master および origin/master へは未反映**。次回、内容を master へ cherry-pick / merge して push する必要がある。
 
 ## 0. このファイルの目的
 
@@ -81,7 +81,20 @@ styles.css
 
 ## 3. 直近で完了した内容（要約）
 
-### 本セッション（2026-06-27 後半）: Phase B — rating 透明化 試験導入 ＋ master 確定
+### 本セッション（2026-06-28）: Phase B 横展開 / P3 / lint 追加 / Phase C 試験導入
+
+- **Phase B 横展開**（rating 透明化）: ウクライナ両側・普仏両側に `ratingRules.knockoutCriteria` を追加。湾岸2ケース（イラク=発火 / 連合=未発火）の雛形を踏襲し `applies` で発火/未発火を明示。
+  - 仏 France（未確定）: `ko_regime_motive_distortion`＝政権存続動機による評価歪曲が重大懸念確定（ex-ante 接地）で **`applies:true` 発火**＝上限 C にcap（rating 自体は未確定のまま）。`ko_mobilization_overconfidence` は要検証で未発火。`ratingNote` に発火を追記。
+  - 普 Prussia（B/B-）: 併合コスト軽視確定＝上限B-、長期化の事前不織込み確定＝上限B の条件付き2基準。対象セルが要検証のため**いずれも未発火**。`ratingNote` に追記。
+  - ウクライナ Russia / Ukraine（共に未確定）: 各2基準。全セルが証拠未収集のため**いずれも未発火**（条件付き上限のみ提示）。両 `ratingNote` に追記。
+- **P3（`不明` 標準形統一）**: ウクライナ Russia 5件・Ukraine 5件の Pre-War `actuallyEvaluated:"不明"` に `noEvidenceReason:"証拠未収集"` を付与し CANON §6 標準形へ統一（計10件）。
+- **lint 追加**: `lintCaseMethodology` に「未収集の `形跡なし` 検出」(3) を追加（`auditSchema.js`）。`actuallyEvaluated:"形跡なし"` かつ `noEvidenceReason!=="該当証拠なし"` を `uncollected_no_trace`（重大）で弾く。Gulf イラク2件（該当証拠なし＋調査範囲明記）は許容。再発防止。
+- **Phase C（依存関係）試験導入**: `dependencyRules` を Gulf イラク・仏 France・ウクライナ Russia の3ケースにデータ追加。`inputs`＝抽象ファクタ（自由記述）、`linkedCellIds`＝実セルへの追跡リンク。`auditSchema.js` の `validateCaseReferences` に `linkedCellIds` の dangling 検査を追加（`missing_dependency_cell`）。`renderers.js` の Audit Opinion に「複合リスク・依存関係」節を追加表示（補助情報・証拠未収集セルを確定評価に変換しない旨を明記）。CANON 6C に `inputs`/`linkedCellIds` の区別を正典化。
+- cache-busting を **`20260628-phasec`** に同期（index.html / app.js / data/cases/index.js / ui/renderers.js / verify.js の5箇所＋CANON §K）。
+- 検証: `node --check` 全OK / `verify.js` 全8ケース 0件 ALL CHECKS PASSED。
+- **状態**: worktree `claude/gallant-nash-f5484c` にコミット。**master / origin へは未反映**（次回 cherry-pick / merge して push が必要）。
+
+### 前セッション（2026-06-27 後半）: Phase B — rating 透明化 試験導入 ＋ master 確定
 
 - **Phase B（rating 透明化）を湾岸2ケースに試験導入**。CANON 6B-1 に基づき `ratingRules.knockoutCriteria` を追加（rating は編集判断のまま、自動算出には使わない上限制約の説明）。
   - イラク側（D+/D）: 外部介入見積もりの重大懸念で上限 D+、期限後の継戦・再評価不全で上限 D。`applies:true` で**発火**し実 cap。
@@ -148,7 +161,7 @@ styles.css
 
 ## 4. 現在の注意点
 
-- cache-busting の実値は **`20260627-phaseb-coalition`**（index.html / app.js / data/cases/index.js / ui/renderers.js / verify.js の5箇所で一致。CANON §K も同値に更新済み。2026-06-27）。
+- cache-busting の実値は **`20260628-phasec`**（index.html / app.js / data/cases/index.js / ui/renderers.js / verify.js の5箇所で一致。CANON §K も同値に更新済み。2026-06-28）。
 - 原文には複数時点の cache-bust 文字列が残っている。次回も実ファイルの import を直接確認すること。
 - `verify.js` がある前提の記述があるが、実在を確認してから使うこと。
 - `preview_screenshot` はタイムアウトしがちなので、`preview_eval` または Node import 検証を優先する。
@@ -166,12 +179,15 @@ styles.css
 5. 未コミット差分がある場合は、差分内容を分類する。
 6. 次の作業単位をひとつ選ぶ。
 
-候補（本セッションの続き優先）:
+最優先（本セッション成果の master 反映）:
 
-- **Phase B 横展開**: ウクライナ両側・普仏両側などに `ratingRules.knockoutCriteria` を展開。湾岸2ケース（イラク=発火 / 連合=未発火）が雛形。`applies` で発火/未発火を明示する流儀を踏襲。
-- **P3**: Ukraine 両側10件の `不明` 項目に `noEvidenceReason:"証拠未収集"` を付与し CANON §6 標準形へ統一。
-- **lint 追加**: 「`形跡なし` なのに証拠探索状態が不十分」を検出する検査を `auditSchema.js` に追加（Gulf イラク2件のような `noEvidenceReason:"該当証拠なし"`＋調査範囲明記は許容、France 旧状態のような未収集の `形跡なし` を弾く）。再発防止。
-- **Phase C**: 依存関係（`dependencyRules`）のデータのみ試験導入。
+- **master / origin への反映**: 本セッションの差分（Phase B 横展開 / P3 / lint / Phase C）は worktree `claude/gallant-nash-f5484c` のみに存在。master へ cherry-pick / merge して `origin/master` に push する。反映後 cache-busting 実値（`20260628-phasec`）の一致を再確認。
+
+候補（次のブラッシュアップ）:
+
+- **Phase C 横展開**: `dependencyRules` を残ケース（連合・普 Prussia・ウクライナ Ukraine・フォークランド両側）へ展開。現状は Gulf イラク・仏 France・ウクライナ Russia の3ケースのみ。
+- **Phase B 残り**: フォークランド両側への `ratingRules.knockoutCriteria` 展開（未着手）。
+- **依存関係 UI 深化**: 現状は Audit Opinion の文章リスト表示。2軸マトリクス／フローチャートはデータ表現が安定してから検討（CANON 6C 受入条件）。
 
 その他候補:
 

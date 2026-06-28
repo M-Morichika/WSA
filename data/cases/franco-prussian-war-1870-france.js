@@ -10,7 +10,7 @@ export const francoPrussianWarFranceCase = {
     primaryResponsibility: "動員能力・同盟環境・兵站/指揮統制・政権維持動機の見積もり責任",
     uncertainty: "中〜高",
     rating: "未確定",
-    ratingNote: "格付けは未確定（skeleton 段階・編集判断として意図的に保留）。ratingBasis 各セルが証拠強度『中』以上になり、Pre-War が『不明』から『形跡あり/なし』へ解決された段階で格付けを行う。訴追側の一部が事後二次研究（Howard/Wawro）依存である点が暫定格付け保留の理由であり、未確定は一時的・証拠駆動である。"
+    ratingNote: "格付けは未確定（skeleton 段階・編集判断として意図的に保留）。ratingBasis 各セルが証拠強度『中』以上になり、Pre-War が『不明』から『形跡あり/なし』へ解決された段階で格付けを行う。訴追側の一部が事後二次研究（Howard/Wawro）依存である点が暫定格付け保留の理由であり、未確定は一時的・証拠駆動である。なお政権存続動機による判断歪み（fpw_cell_regime_crisis、重大懸念確定・ex-ante 接地）のノックアウト基準が発火しており、格付けを確定する際の上限は C 圏に制限される（rating 自体は引き続き未確定）。"
   },
 
   overviewOpinion: "フランス第二帝政の開戦判断は、結果としてセダンでの大敗と政権崩壊を招いたため、事後的には極めて無謀に見える。しかし、本監査では「セダンの結果を知らなかった開戦前時点で、どこまで客観的劣勢が予見可能だったか」を検証する。プロイセンの動員速度や南ドイツ諸邦の参戦可能性についての見積もり甘さは指摘される一方、当時の兵器優位（シャスポー銃など）への自信や、開戦前の不確実性を考慮し、安易な後知恵バイアスを排除した評価を目指す。第三共和政によるパリ防衛および継戦の判断は別監査対象とし、本ケースでは対象外とする。",
@@ -619,5 +619,50 @@ export const francoPrussianWarFranceCase = {
       cellId: "fpw_cell_sedan_decision",
       weight: 3
     }
-  ]
+  ],
+
+  // Phase B（rating 透明化）横展開。CANON 6B-1 準拠。
+  // KO1 は重大懸念確定セル（ex-ante 接地）に基づき発火し上限を実 cap、KO2 は条件付き上限（未発火）。
+  ratingRules: {
+    knockoutCriteria: [
+      {
+        id: "ko_regime_motive_distortion",
+        cellIds: ["fpw_cell_regime_crisis"],
+        applies: true,
+        condition:
+          "政権存続動機（面子の政治）が軍事・外交バランスの客観評価を歪めた点が重大懸念に確定（開戦判断、ex-ante 接地: グラモン外相の追加保証要求 FPW-E-008・議会記録 FPW-E-004a）。",
+        capRatingAt: "C",
+        rationale:
+          "開戦判断の中核（外交・軍事評価）が体制維持動機で歪んでいる場合、動員・外交の個別評価が相対的に良好でも総合評価の上限を引き上げられない。rating は引き続き未確定だが、その上限は C 圏に制限される。",
+      },
+      {
+        id: "ko_mobilization_overconfidence",
+        cellIds: ["fpw_cell_mobilization_crisis"],
+        applies: false,
+        condition:
+          "プロイセンの鉄道動員に対する自軍動員能力の過信が、当時の正確な事前見積もり資料に照らして一次資料で確定した場合。",
+        capRatingAt: "C+",
+        rationale:
+          "動員能力の過信が確定すれば軍事的勝算の前提を損なう。現状は evidenceStrength 弱・要検証で確定に至らず、本基準は未発火。",
+      },
+    ],
+    weightedScore: {
+      enabled: false,
+      note: "ratingBasis の weight は参考指標であり、rating の自動決定には使わない。",
+    },
+  },
+
+  // Phase C（複合リスク・依存関係）試験導入。CANON 6C 準拠。データのみ・補助情報。
+  // inputs は抽象ファクタ（セルより細かい粒度）、linkedCellIds で実セルへ追跡（参照検証）。
+  dependencyRules: [
+    {
+      id: "dep_regime_pressure_war_decision",
+      label: "政権圧力下での開戦可否（複合依存）",
+      inputs: ["プロイセンの動員能力の見積もり", "南ドイツ諸邦参戦リスクの見積もり", "国内政権存続危機の圧力"],
+      linkedCellIds: ["fpw_cell_mobilization_crisis", "fpw_cell_diplomacy_crisis", "fpw_cell_regime_crisis"],
+      logic:
+        "プロイセンの動員能力を過小評価し、南ドイツ諸邦の参戦リスクを軽視した状態に政権維持上の圧力（面子の政治）が加わると、外交的孤立のまま開戦に踏み切る判断が正当化されやすくなる。政権存続動機が前2要素の客観評価を歪める方向に作用する点で、3要素は独立ではない。",
+      output: "外交的孤立下での開戦判断（政権圧力による評価歪曲の増幅）",
+    },
+  ],
 };
