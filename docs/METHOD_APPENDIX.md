@@ -158,7 +158,7 @@ dependencyRules: [
 - **N（claim type の極性）**: 能力肯定＝`counter_claim`、懸念・失敗＝`audit_issue`。勝者側でも両方持つのが健全（prussia は AUD-2 で長期化・併合コストの訴追 claim を新設し両建て化）。
 - **O（timeFit と時間性の軸分離）**: `timeFit` は関係性軸のまま `{直接, 間接}` の2値に留め、**「事後」を追加しない**。後年資料（回顧録・戦後研究による再構成）は `間接 ＋ availableAtDecisionTime:false` で表す（§C で戦後研究は既に間接証拠に分類済み）。理由: 「事後」を timeFit に足すと時間性を関係性軸へ混入させ、独立軸として維持する G(A-3) の `availableAtDecisionTime` と二重化する。第3原則（開戦後証拠を直接証拠にしない）は lint の `direct_evidence_not_available_at_decision_time`＝重大 で既に強制済み。2026-06-28 確認時、間接＋false は58リンク・全8ケースに分布し、現行2軸で破綻なし（lintCaseMethodology 全ケース0）。
 - **P（M-1 不採用 / 2026-06-28）**: claim 単位の支持/反証**集計ビューは新設しない**（去就＝削除）。ただし `claims[]` 自体は保持必須。`claims[]` は集計ビュー用ではなく、`validateCaseReferences` の claimId 参照整合・重複検査（missing_claim 等）と `lintCaseMethodology` の支持/反証**対称性**検査の土台＝load-bearing。renderer 非参照を「死蔵」と見なして削除しない。§G から M-1 を除去。
-- **Q（I-6 撤去 / 2026-06-28）**: `nextEvidenceActionType` を**撤去**（去就＝削除）。除去対象＝`ui/renderers.js` の表示3箇所＋`getEvidenceActionLabel` ヘルパー、`data/auditSchema.js` の `evidenceActionLabels` 定義/export、全データの当該 field（5ファイル計39件）。`verify.js`/`validateCaseReferences`/`lintCaseMethodology` は当該 field 非依存のため監査影響なし。欠落時に renderer が「未設定」を出す退行の温床を恒久解消。§G から I-6 を除去。
+- **Q（I-6 撤去 / 2026-06-28）**: `nextEvidenceActionType` を**撤去**（去就＝削除）。除去対象＝`ui/renderers.js` の表示3箇所＋`getEvidenceActionLabel` ヘルパー、`data/auditSchema.js` の `evidenceActionLabels` 定義/export、全データの当該 field（5ファイル計39件）。`verify.js`/`validateCaseReferences`/`lintCaseMethodology` は当該 field 非依存のため監査影響なし。欠落時に renderer が「未設定」を出す退行の温床を恒久解消。§G から I-6 を除去。撤去に伴い `styles.css` の `.queue-row` grid を3→2カラム（`minmax(220px,1fr) 120px`）に調整（中央列の次アクション span 削除で導線が中途半端に左寄せ＋右端に死列が出る回帰を修正。客観レビューで検出）。
 
 ---
 
