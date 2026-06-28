@@ -62,11 +62,14 @@ node tools/check-cache-busting.mjs  # ⚠️ ドリフト疑い。要確認
 [済] 1. clean・同期確認。main 統一・2-NEW-P/Q 取込済み（2026-06-28）。
 [済] 2. cache-bust 一本化（20260628-phasec）。check-cache-busting.mjs exit 0。
 [済] 3. timeFit 確定＝現行維持（判断 O）。
-4. 連合側深掘りの残課題: CIA/DIA/CENTCOM 開戦前原見積もり本体（未特定・要精査）、
+4. 連合側深掘りの残課題: CIA/DIA/CENTCOM 開戦前原見積もり本体（未特定・要精査／R-3）、
    サフワン・トランスクリプトの所蔵アーカイブID特定（§F-L の R-2 残課題・要精査）。
    └ R-2 調査済(2026-06-28): 出所連鎖は固定（原典=ペンタゴン機密解除の1991/3/3会談記録、初出公開=Mylroie WaPo 1992/6/28）。
      DoD/NARA 文書番号は開放系二次資料では未特定のまま。次の特定先=①Bourque『Jayhawk!』(CMH 2002)/『The Road to Safwan』(UNT) 脚注、
      ②Khaled bin Sultan『Desert Warrior』(1995) 付録、③Gordon & Trainor 注。詳細は METHOD_APPENDIX §F-L の R-2 調査メモ。
+   └ R-3 調査済(2026-06-28): 所蔵先を絞込み。①NSArchive EBB39（Doc5 G-2第3軍 1991/4、Doc6 CENTCOM Exec Summary 1991/7、Doc16 DIA Chronology 1997）、
+     ②CIA CREST 未確認候補「Iraq's Military Capabilities」(RDP08R00805R000100420003-5)・SNIE 37-89(RDP94T00885R000100230024-8)＝主題日付未確認(Reading Room 403)、
+     ③レビュー=DTIC ADA338886/GAO NSIAD-97-134/CSIS Cordesman 第5章。注意:「54万」は連合軍兵力でイラク軍見積もりではない。詳細は §F-L R-3 調査メモ。
 5. 凍結中項目（対比ビュー新設 / claim集計ビュー M-1 / 色覚対応 / I-6 nextEvidenceActionType）は独立セッションでのみ着手。
 ※ §2 が参照する docs/archive/HISTORY.snapshot.md は未作成（HISTORY 退避は未了の小宿題）。
 ```
