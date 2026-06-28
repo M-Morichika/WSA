@@ -71,7 +71,11 @@ node tools/check-cache-busting.mjs  # ⚠️ ドリフト疑い。要確認
      ②CIA CREST 未確認候補「Iraq's Military Capabilities」(RDP08R00805R000100420003-5)・SNIE 37-89(RDP94T00885R000100230024-8)＝主題日付未確認(Reading Room 403)、
      ③レビュー=DTIC ADA338886/GAO NSIAD-97-134/CSIS Cordesman 第5章。注意:「54万」は連合軍兵力でイラク軍見積もりではない。詳細は §F-L R-3 調査メモ。
 5. 凍結中項目（対比ビュー新設 / claim集計ビュー M-1 / 色覚対応 / I-6 nextEvidenceActionType）は独立セッションでのみ着手。
-※ §2 が参照する docs/archive/HISTORY.snapshot.md は未作成（HISTORY 退避は未了の小宿題）。
+※ docs/archive/HISTORY.snapshot.md は作成済（2026-06-28、root HISTORY.md の全文コピー＝再編前 WSA 履歴スナップショット）。
+※ 【未修正・残課題】docs/HISTORY.md が ASAA（自動車版 Automotive Strategy Accountability Audit）の履歴に汚染されている（727b6e6 で別プロジェクトのファイルが混入）。
+  CANON/HANDOFF は「由来は docs/HISTORY.md」と指すが実体は ASAA。WSA の本物の履歴は root HISTORY.md。
+  修正案（保留中）= docs/HISTORY.md を root HISTORY.md 本文＋0B/0C 断片の統合に置換（ASAA 混入のみ除去）。
+  ※ docs/METHOD_APPENDIX.md / HISTORY-append-0B,0C の ASAA 言及は正当な姉妹プロジェクト参照（§H 昇格前候補の出典）で汚染ではない。
 ```
 
 ---
