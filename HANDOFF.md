@@ -1,7 +1,7 @@
 # HANDOFF.md — War Accountability Audit（圧縮版）
 
 最終更新: 2026-06-28
-役割: 再開に必要な **現在状態・検証状態・次作業だけ**。設計原則は `docs/CANON.md`、由来は `docs/HISTORY.md`、詳細仕様は `docs/METHOD_APPENDIX.md`。
+役割: 再開に必要な **現在状態・検証状態・次作業だけ**。設計原則は `CANON.md`（root）、由来は `HISTORY.md`（root）、詳細仕様は `docs/METHOD_APPENDIX.md`。
 
 > ⚠️ 再構成注記: 本 HANDOFF は、今回アップロードされた HANDOFF が別プロジェクト（ASAA）の旧版だったため、**WSA の CANON / HISTORY の現在状態記述から再構成** した。§1・§3 の「未コミット」「cache-bust」状態は、実リポジトリの `git status` と `rg --files` で必ず突き合わせること。
 
@@ -37,7 +37,8 @@ data/auditSchema.js
 data/cases/index.js
 data/cases/<8 case files>.js
 ui/renderers.js
-docs/CANON.md / docs/METHOD_APPENDIX.md / docs/HISTORY.md
+CANON.md（root） / HISTORY.md（root） / docs/METHOD_APPENDIX.md
+docs/HISTORY-append-0B.md / docs/HISTORY-append-0C.md
 docs/archive/CANON.pre-reorg.md / docs/archive/HISTORY.snapshot.md
 HANDOFF.md
 ```
@@ -72,9 +73,8 @@ node tools/check-cache-busting.mjs  # ⚠️ ドリフト疑い。要確認
      ③レビュー=DTIC ADA338886/GAO NSIAD-97-134/CSIS Cordesman 第5章。注意:「54万」は連合軍兵力でイラク軍見積もりではない。詳細は §F-L R-3 調査メモ。
 5. 凍結中項目（対比ビュー新設 / claim集計ビュー M-1 / 色覚対応 / I-6 nextEvidenceActionType）は独立セッションでのみ着手。
 ※ docs/archive/HISTORY.snapshot.md は作成済（2026-06-28、root HISTORY.md の全文コピー＝再編前 WSA 履歴スナップショット）。
-※ 【未修正・残課題】docs/HISTORY.md が ASAA（自動車版 Automotive Strategy Accountability Audit）の履歴に汚染されている（727b6e6 で別プロジェクトのファイルが混入）。
-  CANON/HANDOFF は「由来は docs/HISTORY.md」と指すが実体は ASAA。WSA の本物の履歴は root HISTORY.md。
-  修正案（保留中）= docs/HISTORY.md を root HISTORY.md 本文＋0B/0C 断片の統合に置換（ASAA 混入のみ除去）。
+※ 【解消済 2026-06-28】ASAA 汚染の docs/HISTORY.md を廃棄。重複の docs/CANON.md も削除し、CANON/HISTORY を root に一本化。
+  参照（CANON.md §0 / 本 HANDOFF）は root の CANON.md・HISTORY.md を指すよう張替え済み。docs/ 配下は METHOD_APPENDIX / archive / HISTORY-append-0B,0C のみ。
   ※ docs/METHOD_APPENDIX.md / HISTORY-append-0B,0C の ASAA 言及は正当な姉妹プロジェクト参照（§H 昇格前候補の出典）で汚染ではない。
 ```
 

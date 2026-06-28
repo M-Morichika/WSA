@@ -9,7 +9,7 @@
 
 - 詳細仕様・導入候補・プロトタイプ・確定設計判断ログ → `docs/METHOD_APPENDIX.md`
 - 現在状態・検証状態・次作業 → `HANDOFF.md`
-- いつ何を決めたか → `docs/HISTORY.md`
+- いつ何を決めたか → `HISTORY.md`
 
 **昇格規律（今回追加）**: CANON に新規仕様候補を直接書かない。新規候補はまず METHOD_APPENDIX に置き、**複数ケースで必要性が確認されたものだけ** CANON へ昇格する。
 
