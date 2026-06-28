@@ -1,0 +1,2 @@
+# シェルスクリプトは LF 固定（autocrlf による CRLF 変換で shebang/改行が壊れるのを防ぐ）
+*.sh text eol=lf
