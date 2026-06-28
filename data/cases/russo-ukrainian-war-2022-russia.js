@@ -99,7 +99,6 @@ export const russoUkrainianWarRussiaCase = {
       linkedCells: ["ruw_cell_resistance_estimation"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUW-EL-001", "RUW-EL-002", "RUW-EL-003"],
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_pw_western_response",
@@ -115,7 +114,6 @@ export const russoUkrainianWarRussiaCase = {
       linkedCells: ["ruw_cell_western_response"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUW-EL-004", "RUW-EL-005"],
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_pw_russian_force_readiness",
@@ -131,7 +129,6 @@ export const russoUkrainianWarRussiaCase = {
       linkedCells: ["ruw_cell_force_estimation"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUW-EL-006", "RUW-EL-007"],
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_pw_logistics_command",
@@ -147,7 +144,6 @@ export const russoUkrainianWarRussiaCase = {
       linkedCells: ["ruw_cell_logistics_command"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUW-EL-008", "RUW-EL-009"],
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_pw_regime_ideology_bias",
@@ -163,7 +159,6 @@ export const russoUkrainianWarRussiaCase = {
       linkedCells: ["ruw_cell_decision_process"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUW-EL-010", "RUW-EL-011", "RUW-EL-012"],
-      nextEvidenceActionType: "collect_primary_source"
     }
   ],
 
@@ -181,7 +176,6 @@ export const russoUkrainianWarRussiaCase = {
       criteria: ["公式説明と実際の軍事的目標に乖離がないか", "政治目的と手段のバランスが開戦前に評価されていたか"],
       changeConditions: ["詳細な侵攻計画書や最高意思決定の議事録が公開された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_cell_resistance_estimation",
@@ -194,7 +188,6 @@ export const russoUkrainianWarRussiaCase = {
       criteria: ["ウクライナ軍・社会の動員能力と抗戦意思を事前にどう評価していたか"],
       changeConditions: ["FSB等の事前の世論調査・情報分析報告書の全容が判明した場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_cell_force_estimation",
@@ -207,7 +200,6 @@ export const russoUkrainianWarRussiaCase = {
       criteria: ["自軍の即応性や統合作戦能力を客観的に評価した形跡があるか"],
       changeConditions: ["軍内部の事前準備状況や戦備評価の真の報告が確認された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_cell_logistics_command",
@@ -220,7 +212,6 @@ export const russoUkrainianWarRussiaCase = {
       criteria: ["多軸侵攻を支えるだけの兵站・通信能力が事前計画に存在したか"],
       changeConditions: ["多軸侵攻計画の策定過程が判明した場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_cell_donbas_shift_objective",
@@ -233,7 +224,6 @@ export const russoUkrainianWarRussiaCase = {
       criteria: ["戦力再編時の目標設定の妥当性"],
       changeConditions: ["2022年4月の作戦変更命令書が公開された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_cell_western_response",
@@ -246,7 +236,6 @@ export const russoUkrainianWarRussiaCase = {
       criteria: ["西側からの大規模な武器供与や経済制裁のリスクをどう算定していたか"],
       changeConditions: ["経済関係機関や情報機関からの制裁・支援リスク見積もりが公開された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_cell_decision_process",
@@ -259,7 +248,6 @@ export const russoUkrainianWarRussiaCase = {
       criteria: ["軍・情報機関からのネガティブな見積もりが意思決定層に適切に共有・検討されたか"],
       changeConditions: ["開戦前の安全保障会議等の非公開議事録が公開された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruw_cell_attrition_shift",
@@ -272,7 +260,6 @@ export const russoUkrainianWarRussiaCase = {
       criteria: ["初期目標の未達を認識した上で、戦争継続の正当性と持続可能性をどう再評価したか"],
       changeConditions: ["2022年春〜夏の戦略再評価に関する内部資料が判明した場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     }
   ],
 

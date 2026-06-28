@@ -7,12 +7,6 @@ export const viewMeta = {
   opinion: ["Audit Opinion", "証拠と限定事項を踏まえると、最終的な監査意見は何か？"],
 };
 
-export const evidenceActionLabels = {
-  collect_primary_source: "一次資料を探す",
-  connect_existing_evidence: "既存証拠リンクを接続する",
-  maintain_not_applicable: "該当なしとして維持する",
-};
-
 export const noEvidenceReasonOrder = ["証拠未収集", "未接続", "該当証拠なし"];
 
 export const statusClass = {

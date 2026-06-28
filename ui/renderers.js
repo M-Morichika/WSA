@@ -4,7 +4,6 @@ import {
   actuallyEvaluatedOrder,
   deriveStatus,
   evaluabilityOrder,
-  evidenceActionLabels,
   evidenceLinkMatchesFilters as linkMatchesFilters,
   getEvidenceFilterOptions,
   noEvidenceReasonOrder,
@@ -54,10 +53,6 @@ function getEvidenceLink(id) {
 
 function getAssessmentCell(id) {
   return auditData.assessmentCells.find((item) => item.id === id);
-}
-
-function getEvidenceActionLabel(type) {
-  return evidenceActionLabels[type] || "未設定";
 }
 
 function getCellsWithoutEvidenceLinks() {
@@ -337,7 +332,7 @@ function renderAssessment() {
         .join("")}
       ${
         evidenceRows.length === 0
-          ? `<p class="muted">この評価セルに紐づく証拠リンクはまだありません。理由: ${selectedCell.noEvidenceReason || "未分類"}。次アクション: ${getEvidenceActionLabel(selectedCell.nextEvidenceActionType)}</p>`
+          ? `<p class="muted">この評価セルに紐づく証拠リンクはまだありません。理由: ${selectedCell.noEvidenceReason || "未分類"}。</p>`
           : ""
       }
     </section>
@@ -429,7 +424,6 @@ function renderEvidence() {
                         (cell) => `
                           <button class="queue-row" type="button" data-queue-assessment-cell="${cell.id}">
                             <strong>${cell.axis} / ${cell.phase}</strong>
-                            <span>${getEvidenceActionLabel(cell.nextEvidenceActionType)}</span>
                             <span class="queue-action">Assessmentで確認</span>
                           </button>
                         `,
@@ -674,7 +668,6 @@ function renderPreWar() {
                 return link && evidence ? `${id}（${evidence.id} / ${link.timeFit} / 判断時点${link.availableAtDecisionTime ? "可" : "不可"} / ${link.reviewState}）` : id;
               })
               .join(" / ")}</p>` : ""}
-            ${item.nextEvidenceActionType ? `<p><strong>次アクション:</strong> ${getEvidenceActionLabel(item.nextEvidenceActionType)}</p>` : ""}
             <p class="prewar-counter"><strong>反証・留保:</strong> ${item.counterPoint}</p>
             ${item.asymmetry ? `<p class="prewar-asymmetry"><strong>非対称性:</strong> ${item.asymmetry}</p>` : ""}
             ${

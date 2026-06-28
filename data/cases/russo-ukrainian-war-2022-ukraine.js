@@ -99,7 +99,6 @@ export const russoUkrainianWarUkraineCase = {
       linkedCells: ["ruu_cell_invasion_risk"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUU-EL-001", "RUU-EL-022"],
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_pw_state_resilience",
@@ -115,7 +114,6 @@ export const russoUkrainianWarUkraineCase = {
       linkedCells: ["ruu_cell_kyiv_defense"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUU-EL-004"],
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_pw_military_readiness",
@@ -131,7 +129,6 @@ export const russoUkrainianWarUkraineCase = {
       linkedCells: ["ruu_cell_military_readiness"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUU-EL-007", "RUU-EL-008"],
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_pw_western_support_dependency",
@@ -147,7 +144,6 @@ export const russoUkrainianWarUkraineCase = {
       linkedCells: ["ruu_cell_western_support"],
       linkedAssumptions: [],
       linkedEvidenceLinks: ["RUU-EL-009", "RUU-EL-010"],
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_pw_negotiation_and_escalation_risk",
@@ -163,7 +159,6 @@ export const russoUkrainianWarUkraineCase = {
       linkedCells: ["ruu_cell_negotiation_space"],
       linkedAssumptions: [],
       linkedEvidenceLinks: [],
-      nextEvidenceActionType: "collect_primary_source"
     }
   ],
 
@@ -181,7 +176,6 @@ export const russoUkrainianWarUkraineCase = {
       criteria: ["全面侵攻リスクを政策決定にどう反映したか", "過剰警報による社会・経済混乱とのトレードオフを記録していたか"],
       changeConditions: ["2021年末〜2022年2月の国家安全保障・国防会議資料が確認された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_cell_kyiv_defense",
@@ -194,7 +188,6 @@ export const russoUkrainianWarUkraineCase = {
       criteria: ["政府残留のリスクと効果をどう評価したか", "指導部喪失時の代替指揮系統が準備されていたか"],
       changeConditions: ["政府継続計画や首都防衛計画の詳細が確認された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_cell_military_readiness",
@@ -207,7 +200,6 @@ export const russoUkrainianWarUkraineCase = {
       criteria: ["全面侵攻に備えた部隊配備・予備役・防空・通信の準備状況", "ロシア軍優位を前提にした防衛計画が存在したか"],
       changeConditions: ["開戦前の作戦命令・部隊展開・防衛準備資料が確認された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_cell_western_support",
@@ -220,7 +212,6 @@ export const russoUkrainianWarUkraineCase = {
       criteria: ["支援遅延・支援不足時の代替計画", "制裁・武器供与・情報支援の持続性評価"],
       changeConditions: ["開戦前の外交調整文書や支援見通し評価が確認された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_cell_mobilization_cost",
@@ -233,7 +224,6 @@ export const russoUkrainianWarUkraineCase = {
       criteria: ["動員負担と社会耐久力の評価", "長期戦化時の財政・避難民・インフラ負担の見積もり"],
       changeConditions: ["2022年春〜夏の政府内部コスト評価が確認された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_cell_negotiation_space",
@@ -246,7 +236,6 @@ export const russoUkrainianWarUkraineCase = {
       criteria: ["交渉条件と軍事情勢の比較", "占領リスク・主権維持・人的被害の比較評価"],
       changeConditions: ["2022年春の交渉記録と軍事情勢評価が照合できた場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     },
     {
       id: "ruu_cell_long_war_boundary",
@@ -259,7 +248,6 @@ export const russoUkrainianWarUkraineCase = {
       criteria: ["初期防衛成功後の戦争目的再定義", "長期戦化以降の判断を初期判断と混同していないか"],
       changeConditions: ["2022年春〜夏の戦略再評価資料が確認された場合"],
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source"
     }
   ],
 

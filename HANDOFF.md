@@ -71,7 +71,9 @@ node tools/check-cache-busting.mjs  # ⚠️ ドリフト疑い。要確認
    └ R-3 調査済(2026-06-28): 所蔵先を絞込み。①NSArchive EBB39（Doc5 G-2第3軍 1991/4、Doc6 CENTCOM Exec Summary 1991/7、Doc16 DIA Chronology 1997）、
      ②CIA CREST 未確認候補「Iraq's Military Capabilities」(RDP08R00805R000100420003-5)・SNIE 37-89(RDP94T00885R000100230024-8)＝主題日付未確認(Reading Room 403)、
      ③レビュー=DTIC ADA338886/GAO NSIAD-97-134/CSIS Cordesman 第5章。注意:「54万」は連合軍兵力でイラク軍見積もりではない。詳細は §F-L R-3 調査メモ。
-5. 凍結中項目（対比ビュー新設 / claim集計ビュー M-1 / 色覚対応 / I-6 nextEvidenceActionType）は独立セッションでのみ着手。
+5. 凍結中項目（対比ビュー新設 / M-2 claim 横断リンク / 色覚対応 UI-8）は独立セッションでのみ着手。
+   [済] M-1 集計ビューは不採用に決定（§F-P。claims[] は参照整合/対称性の土台として保持）。
+   [済] I-6 nextEvidenceActionType を撤去（§F-Q。renderer3箇所＋ヘルパー＋schema 定義＋データ39件を削除、verify 全0）。
 ※ docs/archive/HISTORY.snapshot.md は作成済（2026-06-28、root HISTORY.md の全文コピー＝再編前 WSA 履歴スナップショット）。
 ※ 【解消済 2026-06-28】ASAA 汚染の docs/HISTORY.md を廃棄。重複の docs/CANON.md も削除し、CANON/HISTORY を root に一本化。
   参照（CANON.md §0 / 本 HANDOFF）は root の CANON.md・HISTORY.md を指すよう張替え済み。docs/ 配下は METHOD_APPENDIX / archive / HISTORY-append-0B,0C のみ。

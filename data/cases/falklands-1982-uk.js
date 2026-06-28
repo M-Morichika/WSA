@@ -191,7 +191,6 @@ export const falklands1982UkCase = {
       impact: "中",
       evidenceStrength: "弱",
       noEvidenceReason: "未接続",
-      nextEvidenceActionType: "connect_existing_evidence",
       opinion:
         "軍事派遣と外交交渉の接続は合理的だった可能性がある一方、英国側がどの妥協条件を受け入れ可能と見ていたかは未整理である。",
       criteria: ["外交出口の条件が不明確", "米国仲介との接続が要検証"],
@@ -229,7 +228,6 @@ export const falklands1982UkCase = {
       impact: "中",
       evidenceStrength: "弱",
       noEvidenceReason: "証拠未収集",
-      nextEvidenceActionType: "collect_primary_source",
       opinion:
         "ポートスタンリー陥落後に戦争を島嶼奪還で止めた点は目的限定を示すが、戦後の防衛・統治コストと外交的出口の設計は追加検証を要する。",
       criteria: ["勝利後の目的限定", "戦後防衛負担と外交枠組みの説明責任"],
