@@ -11,10 +11,9 @@
 
 - 8ケース登録済み（4戦争 × 両陣営）。`lintCaseMethodology` 全ケース0が基本維持線。
 - 既定 activeCase は最後に着手した戦争に依存（直近 HISTORY では湾岸→ウクライナ系へ移動）。再開時 `data/cases/index.js` で確認する。
-- **未コミットの可能性が高い差分**（直近 HISTORY より）:
-  - `2-NEW-P` 仏 france ケース 一次資料接地＋格付け「未確定」復旧（未コミット）
-  - `2-NEW-Q` ウクライナ Ukraine 側 skeleton 追加レビュー M-1〜M-5/M-7 反映（未コミット）
-- **cache-bust 文字列がドリフトしている**（要統一確認）: CANON §10-K は `20260627-phaseb-coalition` を現行と記すが、直近 HISTORY は `20260627-fpw-france-grounding` と `20260627-ruu-time-caveats` を併用。**5箇所（index.html / app.js / data/cases/index.js / ui/renderers.js / verify.js）が同一文字列か** を最優先で確認する。
+- **2026-06-28: リポジトリを `main` 単一ブランチに統一（master 削除）。ドキュメントは `b864148` で正本確定**（root CANON 圧縮版＋`docs/`＋`docs/archive/CANON.pre-reorg.md`）。`2-NEW-P`/`2-NEW-Q` の差分は取込済み（未コミット差分は解消）。
+- **cache-bust 一本化済み**: 全15箇所が `?v=20260628-phasec`。`node tools/check-cache-busting.mjs` exit 0（13 imports）。旧 `20260627-*` 文字列の残骸なし。
+- **§4-3 timeFit 確定（判断 O / METHOD_APPENDIX §F）**: `timeFit={直接,間接}` 維持、「事後」は追加しない。後年資料は `間接＋availableAtDecisionTime:false`。
 
 ### 登録ケース（8）
 
@@ -60,13 +59,13 @@ node tools/check-cache-busting.mjs  # ⚠️ ドリフト疑い。要確認
 ## 4. 次にやること（優先順）
 
 ```text
-1. git status / rg --files で clean・同期状態を確認し、§1 の未コミット差分（2-NEW-P / 2-NEW-Q）の扱いを決める。
-2. cache-bust 文字列を5箇所で1本化し、check-cache-busting.mjs を通す。
-3. timeFit 設計の確定: 後年資料を「間接」で代用している箇所が残る場合、
-   lintCaseMethodology の validTimeFits に "事後" を追加するか、現行どおり間接＋availableAtDecisionTime:false で表すかを決める（CANON 監査3原則と整合させる）。
+[済] 1. clean・同期確認。main 統一・2-NEW-P/Q 取込済み（2026-06-28）。
+[済] 2. cache-bust 一本化（20260628-phasec）。check-cache-busting.mjs exit 0。
+[済] 3. timeFit 確定＝現行維持（判断 O）。
 4. 連合側深掘りの残課題: CIA/DIA/CENTCOM 開戦前原見積もり本体（未特定・要精査）、
-   サフワン・トランスクリプトの所蔵アーカイブID特定（狭い要精査）。
-5. 凍結中項目（対比ビュー新設 / claim集計ビュー / 色覚対応）は独立セッションでのみ着手。
+   サフワン・トランスクリプトの所蔵アーカイブID特定（§F-L の R-2 残課題・要精査）。
+5. 凍結中項目（対比ビュー新設 / claim集計ビュー M-1 / 色覚対応 / I-6 nextEvidenceActionType）は独立セッションでのみ着手。
+※ §2 が参照する docs/archive/HISTORY.snapshot.md は未作成（HISTORY 退避は未了の小宿題）。
 ```
 
 ---

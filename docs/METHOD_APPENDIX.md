@@ -156,6 +156,7 @@ dependencyRules: [
 - **L（連合側 正統性の二層化）**: 連合側正統性は国際的正統性（国連決議・連合形成＝強い）とホスト国正統性（サウジ駐留の宗教政治＝同時代に係争的）を別軸として扱う。サウジ駐留正統性は `gwc_pw_basing_legitimacy`＝高×形跡あり で `要検証`。長期ブローバック（1996/2001）は ex-post ＝射程外（第3原則）。決議678授権の限定は法的天井でなく政治的選択（`GWC-EL-020`）。サフワンのヘリ容認は機密解除トランスクリプト主導（所蔵アーカイブID未特定＝R-2 残課題）。
 - **M（skeleton Pre-War の `形跡なし` 規律）**: `形跡なし` は証拠で「評価痕跡なし」を裏づけた場合のみ。未収集なら `"不明"`＋`noEvidenceReason:"証拠未収集"`。`resolveStatus` は `形跡なし` で provisional override を自動発火させるため、未精査のまま置くと校正α（高×形跡なし→重大懸念）を黙って降格させる＝non-honesty 違反。`exAnteEvaluability` は `高/中/低` のみ。
 - **N（claim type の極性）**: 能力肯定＝`counter_claim`、懸念・失敗＝`audit_issue`。勝者側でも両方持つのが健全（prussia は AUD-2 で長期化・併合コストの訴追 claim を新設し両建て化）。
+- **O（timeFit と時間性の軸分離）**: `timeFit` は関係性軸のまま `{直接, 間接}` の2値に留め、**「事後」を追加しない**。後年資料（回顧録・戦後研究による再構成）は `間接 ＋ availableAtDecisionTime:false` で表す（§C で戦後研究は既に間接証拠に分類済み）。理由: 「事後」を timeFit に足すと時間性を関係性軸へ混入させ、独立軸として維持する G(A-3) の `availableAtDecisionTime` と二重化する。第3原則（開戦後証拠を直接証拠にしない）は lint の `direct_evidence_not_available_at_decision_time`＝重大 で既に強制済み。2026-06-28 確認時、間接＋false は58リンク・全8ケースに分布し、現行2軸で破綻なし（lintCaseMethodology 全ケース0）。
 
 ---
 
